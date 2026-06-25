@@ -59,7 +59,7 @@ I take no responsibility for bans, issues, or account losses that may result fro
 * **Races** – Schedule in advance and auto-pick optimal races.
 * **Skills** – Buys and prioritizes selected skills automatically.
 * **Goals & Styles** – Handles special goals and lets you set racing style.
-* **Cross-Platform** – Works on PC (Steam) and Android (scrcpy/Bluestacks); resolution independent but OCR works better on bigger resolutions.
+* **Cross-Platform** – Works on PC (Steam), Android (scrcpy/Bluestacks), and **Linux via Wine**; resolution independent but OCR works better on bigger resolutions.
 * **Claw Machine** – Supports the claw mini-game.
 * **Hints** – Prioritize skill hints when enabled, with automatic de-prioritization when the skill is already learned.
 * **Skill Memory** – Tracks purchased skills per run to prevent double-buying single-circle variants and coordinate hint scoring.
@@ -78,12 +78,17 @@ Make sure you meet these conditions:
 * Start from the **career lobby screen** (the one with the Tazuna hint icon).
 * Set in Umamusume config **Center Stage** (Race recommendations)
 * It works on the primary display only, don't move the game to second screen.
-* GPU optimization is described in another README file, it is only available for NVIDIA GPU cards
+* GPU optimizations:
+    * **NVIDIA**: Detailed in [README.gpu.md](docs/README.gpu.md).
+    * **AMD (Experimental)**: Detailed in [README.amd_gpu.md](docs/README.amd_gpu.md).
+      > ⚠️ **AMD Users**: This experimental ROCm fork has been tested on **RX 7900 GRE**. It offloads YOLO to the GPU (2-3x speedup) but runs OCR on CPU to avoid crashes. See the guide for specific installation steps.
 ---
 
 ## 🚀 Getting Started
 
-### Installation
+### Installation (Windows)
+
+> **Linux/Wine Users:** See [Wine Setup Guide](docs/README.wine.md) for Linux-specific installation instructions.
 
 ### 🛠️ Required Software Installation
 
@@ -114,6 +119,9 @@ Make sure you meet these conditions:
    ```
 
 3. **Set Up Python Environment**
+
+   > ⚠️ **AMD GPU Users**: Stop here! Please follow the instructions in [docs/README.amd_gpu.md](docs/README.amd_gpu.md) to set up your environment with ROCm support. Do not create the Python 3.10 environment below.
+
    ```bash
    conda create -n env_uma python==3.10
    conda activate env_uma

@@ -67,3 +67,11 @@ dev_train.ipynb
 
 capture_steam.py
 change.patch
+
+# Personal convenience scripts
+run.sh
+start_uma.sh
+
+scripts
+
+.deps_installed

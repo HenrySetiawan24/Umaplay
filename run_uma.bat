@@ -1,4 +1,9 @@
 @echo off
+adb disconnect 127.0.0.1:5555
+adb start-server
+adb connect 127.0.0.1:5555
+adb devices
+
 setlocal ENABLEDELAYEDEXPANSION
 
 title Umaplay Launcher
@@ -105,11 +110,6 @@ if not exist ".deps_installed" (
   echo [OK] Dependencies installed
   echo.
 )
-
-:: --- Open Web UI ---
-echo [Launch] Opening Web UI...
-start "" "http://127.0.0.1:8000/"
-timeout /t 2 /nobreak >nul
 
 :: --- Run the application ---
 echo [Run] Starting Umaplay...

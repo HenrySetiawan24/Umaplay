@@ -3,6 +3,7 @@ import { appConfigSchema, defaultAppConfig, defaultGeneral, defaultPreset, defau
 import type { AppConfig, GeneralConfig, Preset, ScenarioConfig, UnityCupAdvancedSettings } from '@/models/types'
 
 const LS_KEY = 'uma:config:v1'
+const LS_THEME_KEY = 'uma:theme:v1'
 
 type State = {
   config: AppConfig
@@ -457,6 +458,7 @@ export const useConfigStore = create<State & Actions>((set, get) => ({
     
     console.log('[SAVE] Saving to localStorage:', totalPresets, 'total presets')
     localStorage.setItem(LS_KEY, JSON.stringify(snapshot))
+    localStorage.setItem(LS_THEME_KEY, get().uiTheme)
   },
 
   loadLocal: () => {
@@ -486,6 +488,10 @@ export const useConfigStore = create<State & Actions>((set, get) => ({
         uiSelectedPresetId: safe.scenarios[safe.general.activeScenario]?.activePresetId,
         uiScenarioKey: safe.general.activeScenario,
       })
+      const theme = localStorage.getItem(LS_THEME_KEY)
+      if (theme === 'dark' || theme === 'light') {
+        set({ uiTheme: theme })
+      }
       console.log('[LOAD] State updated successfully')
     } catch (err) {
       console.error('[LOAD] Failed to load config from localStorage:', err)
@@ -520,7 +526,10 @@ export const useConfigStore = create<State & Actions>((set, get) => ({
   },
 
   // ---- theme
-  setUiTheme: (mode) => set({ uiTheme: mode }),
+  setUiTheme: (mode) => {
+    set({ uiTheme: mode })
+    localStorage.setItem(LS_THEME_KEY, mode)
+  },
   setGeneralCollapsed: (v: boolean) => set({ uiGeneralCollapsed: v }),
 }))
 

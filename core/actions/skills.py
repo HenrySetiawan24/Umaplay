@@ -134,15 +134,35 @@ class SkillsFlow:
             purchases_made[t] = 0
 
         patience = 3
+        running_sp: Optional[int] = None
         for i in range(max_scrolls):
-            clicked, game_img, dets, cur_ocr_sig = self._scan_and_click_buys(
-                targets=skill_list,
-                ocr_threshold=ocr_threshold,
-                desired_counts=desired_counts,
-                purchases_made=purchases_made,
-                date_key=date_key,
+            clicked, game_img, dets, cur_ocr_sig, min_visible_cost, purchased_cost = (
+                self._scan_and_click_buys(
+                    targets=skill_list,
+                    ocr_threshold=ocr_threshold,
+                    desired_counts=desired_counts,
+                    purchases_made=purchases_made,
+                    date_key=date_key,
+                    running_sp=running_sp,
+                )
             )
             any_clicked |= clicked
+
+            # Extract initial SP from the first pass screenshot
+            if i == 0:
+                sp_crop = crop_pil(game_img, self._sp_region(game_img.size), pad=0)
+                running_sp = self.ocr.digits(sp_crop)
+                if running_sp <= 0:
+                    running_sp = 9999
+                logger_uma.info("[skills] Initial SP: %d", running_sp)
+
+            # Track remaining SP
+            if purchased_cost > 0 and running_sp is not None:
+                running_sp -= purchased_cost
+                logger_uma.debug(
+                    "[skills] SP remaining after purchase: %d (cost %d)",
+                    running_sp, purchased_cost,
+                )
 
             # Early-stop if the scene didn't change between passes and nothing was clicked
             cur_sig = yolo_signature(dets)
@@ -165,6 +185,18 @@ class SkillsFlow:
             # Stop if we've satisfied all purchase requirements
             if all(purchases_made[t] >= desired_counts[t] for t in skill_list):
                 logger_uma.info("[skills] All target purchase counts satisfied.")
+                break
+
+            # SP-based early exit: can't afford anything visible
+            if (
+                running_sp is not None
+                and min_visible_cost > 0
+                and running_sp < min_visible_cost
+            ):
+                logger_uma.info(
+                    "[skills] SP exhausted: %d remaining, min cost %d, stopping scroll",
+                    running_sp, min_visible_cost,
+                )
                 break
 
             # First pass focus nudge if nothing clicked
@@ -368,6 +400,36 @@ class SkillsFlow:
         return (left, top, right, bot)
 
     @staticmethod
+    def _skill_cost_roi(
+        square_xyxy: Tuple[int, int, int, int],
+    ) -> Tuple[int, int, int, int]:
+        """Crop region for the SP cost number in the bottom-left of a skill card."""
+        x1, y1, x2, y2 = square_xyxy
+        w = max(1, x2 - x1)
+        h = max(1, y2 - y1)
+        left = x1 + int(w * 0.02)
+        right = x1 + int(w * 0.45)
+        top = y2 - int(h * 0.32)
+        bot = y2 - int(h * 0.02)
+        if right <= left:
+            right = left + 1
+        if bot <= top:
+            bot = top + 1
+        return (left, top, right, bot)
+
+    @staticmethod
+    def _sp_region(
+        img_size: Tuple[int, int],
+    ) -> Tuple[int, int, int, int]:
+        """Fixed crop region for the total SP text in the top-right of the skills screen."""
+        W, H = img_size
+        left = int(W * 0.78)
+        right = int(W * 0.96)
+        top = int(H * 0.010)
+        bot = int(H * 0.055)
+        return (left, top, right, bot)
+
+    @staticmethod
     def _find_buy_inside(
         square: DetectionDict, candidates: List[DetectionDict]
     ) -> Optional[DetectionDict]:
@@ -387,10 +449,12 @@ class SkillsFlow:
         desired_counts: Dict[str, int],
         purchases_made: Dict[str, int],
         date_key: Optional[str],
-    ) -> Tuple[bool, Image.Image, List[DetectionDict], List[Tuple[str, int, int]]]:
+        running_sp: Optional[int] = None,
+    ) -> Tuple[bool, Image.Image, List[DetectionDict], List[Tuple[str, int, int]], int, int]:
         """
         Single pass: find all skills_square + their BUY button; OCR title-band and
-        click BUY if matches a target. Returns (clicked_any, img, dets, ocr_title_signature).
+        click BUY if matches a target.
+        Returns (clicked_any, img, dets, ocr_title_signature, min_visible_cost, purchased_cost).
         """
         game_img, dets = self._collect("skills_scan")
 
@@ -400,10 +464,26 @@ class SkillsFlow:
         clicked_any = False
         ocr_titles_sig: List[Tuple[str, int, int]] = []
         seen_dirty = False
+        min_visible_cost = 9999
+        purchased_cost = 0
 
         for sq in squares:
             buy = self._find_buy_inside(sq, buys)
             if buy is None:
+                continue
+
+            # OCR SP cost from bottom-left of the skill card
+            cost_crop = crop_pil(game_img, self._skill_cost_roi(sq["xyxy"]), pad=0)
+            cost = self.ocr.digits(cost_crop)  # returns int, 0 if none found
+            if cost > 0 and (min_visible_cost == 0 or cost < min_visible_cost):
+                min_visible_cost = cost
+
+            # Affordability guard: skip if we can't afford this skill
+            if running_sp is not None and cost > 0 and running_sp < cost:
+                logger_uma.debug(
+                    "[skills] skipping '%s' (cost %d > running SP %d)",
+                    self.ocr.text(cost_crop) or "?", cost, running_sp,
+                )
                 continue
 
             # BUY must be active
@@ -514,6 +594,7 @@ class SkillsFlow:
                 shifted = (bx1, by1 - dy, bx2, by2 - dy)
                 self.ctrl.click_xyxy_center(shifted, clicks=click_counts, jitter=0)
                 purchases_made[best_name] = purchases_made.get(best_name, 0) + 1
+                purchased_cost = cost
                 if canonical_name and self._skill_memory:
                     self._skill_memory.record_bought(
                         canonical_name,
@@ -523,8 +604,9 @@ class SkillsFlow:
                         boughts=click_counts
                     )
                 logger_uma.info(
-                    "Clicked BUY for '%s' (score=%.2f reason=%s) [%d/%d]",
+                    "Clicked BUY for '%s' (cost=%d score=%.2f reason=%s) [%d/%d]",
                     best_name or "?",
+                    cost,
                     best_score,
                     match_reason,
                     purchases_made.get(best_name, 0),
@@ -533,10 +615,12 @@ class SkillsFlow:
                 clicked_any = True
 
         if seen_dirty and self._skill_memory:
-            # Persist sightings even when no purchases occur in this pass.
             self._skill_memory.save()
 
-        return clicked_any, game_img, dets, ocr_titles_sig
+        if min_visible_cost == 9999:
+            min_visible_cost = 0
+
+        return clicked_any, game_img, dets, ocr_titles_sig, min_visible_cost, purchased_cost
 
     # --------------------------
     # Text normalization helpers

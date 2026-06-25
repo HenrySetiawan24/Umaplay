@@ -163,6 +163,7 @@ class Settings:
         "DEBUG" if DEBUG else "INFO"
     )
     FAST_MODE = False
+    FAST_MODE_ENERGY_THRESHOLD = 35
     USE_FAST_OCR = True
     USE_GPU = True
     HINT_IS_IMPORTANT = False
@@ -297,6 +298,9 @@ class Settings:
             cls.WINDOW_TITLE = wt
             cls.ANDROID_WINDOW_TITLE = wt
         cls.FAST_MODE = bool(g.get("fastMode", cls.FAST_MODE))
+        cls.FAST_MODE_ENERGY_THRESHOLD = int(
+            g.get("fastModeEnergyThreshold", cls.FAST_MODE_ENERGY_THRESHOLD)
+        )
         cls.TRY_AGAIN_ON_FAILED_GOAL = bool(
             g.get("tryAgainOnFailedGoal", cls.TRY_AGAIN_ON_FAILED_GOAL)
         )

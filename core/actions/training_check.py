@@ -25,6 +25,7 @@ from core.utils.training_check_helpers import (
     failure_pct,
     reindex_left_to_right
 )
+from core.constants import DEFAULT_TILE_TO_TYPE
 from core.scenarios.registry import registry
 
 def get_compute_support_values():
@@ -101,7 +102,7 @@ def scan_training_screen(
     if (
         Settings.FAST_MODE
         and isinstance(energy, (int, float))
-        and 0 <= int(energy) <= 35
+        and 0 <= int(energy) <= Settings.FAST_MODE_ENERGY_THRESHOLD
     ):
         # Identify raised and WIT (last) indices
         ridx_fast = raised_training_ltr_index(cur_parsed)
@@ -204,13 +205,18 @@ def scan_training_screen(
                 # Never break scanning on SV errors; just continue
                 logger_uma.error(f"Error while checking FAST_MODE greedy SV: {e}")
 
-    # -------- 3) Visit remaining tiles exactly once --------
+    # -------- 3) Visit remaining tiles in priority order --------
+    type_to_tile = {v: k for k, v in DEFAULT_TILE_TO_TYPE.items()}
+    visit_order = [type_to_tile[s] for s in Settings.PRIORITY_STATS if s in type_to_tile]
     for idx in range(len(scan)):
+        if idx not in visit_order:
+            visit_order.append(idx)
+
+    for idx in visit_order:
         if idx in processed:
             continue
 
         tile = scan[idx]
-        # Click to raise this tile
         ctrl.click_xyxy_center(
             tile["tile_xyxy"],
             clicks=1,
@@ -219,12 +225,10 @@ def scan_training_screen(
 
         time.sleep(_jitter_delay())
 
-        # Recapture once
         cur_img, _, cur_parsed = yolo_engine.recognize(
             imgsz=param_imgsz, conf=param_conf, iou=param_iou, tag="training"
         )
 
-        # Refresh geometry (LTR) to keep tile_xyxy up-to-date
         btns_now = get_buttons_ltr(cur_parsed)
         if len(btns_now) == len(scan):
             for j, b in enumerate(btns_now):
@@ -237,7 +241,6 @@ def scan_training_screen(
                 len(btns_now),
             )
 
-        # Whichever tile is raised after the click is the effective index
         ridx = raised_training_ltr_index(cur_parsed)
         eff_idx = ridx if (ridx is not None and 0 <= ridx < len(scan)) else idx
         eff_tile = scan[eff_idx]
@@ -257,19 +260,24 @@ def scan_training_screen(
         # -------- FAST_MODE: Greedy short-circuit --------
         if Settings.FAST_MODE:
             try:
-                # Compute SV for just this tile and check greedy
                 sv_rows_one = get_compute_support_values()([tile_record])
                 if sv_rows_one and sv_rows_one[0].get("greedy_hit", False):
                     notes = sv_rows_one[-1].get("notes", "")
                     logger_uma.info(
                         f"FAST MODE: Found a greedy training option, not analizing nothing more. notes={notes}"
                     )
-                    # Return results so far, don't waste time checking other options; caller will act immediately
                     return results, cur_img, cur_parsed
             except Exception as e:
-                # Never break scanning on SV errors; just continue
                 logger_uma.error(f"Error while checking FAST_MODE greedy SV: {e}")
 
-    # Final normalization: enforce 0..N-1 by on-screen LTR to avoid duplicated WIT/GUTS
+        # -------- Early exit: stop once we've seen ≥4 supports --------
+        total_supports = sum(len(r.get("supports", [])) for r in results)
+        if total_supports >= 4:
+            logger_uma.info(
+                "EARLY EXIT: %d supports seen across %d tiles, stopping scan",
+                total_supports, len(results)
+            )
+            break
+
     results = reindex_left_to_right(results)
     return results, cur_img, cur_parsed

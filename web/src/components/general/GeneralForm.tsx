@@ -286,6 +286,27 @@ export default function GeneralForm() {
           info="Lower-latency settings (might reduce accuracy in edge cases)."
         />
 
+        {g.fastMode && (
+          <FieldRow
+            label="Fast mode energy threshold"
+            info="When energy drops below this %, skip all training tiles except WIT."
+            control={
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <Slider
+                  value={g.fastModeEnergyThreshold ?? 35}
+                  onChange={(_, v) => setGeneral({ fastModeEnergyThreshold: Number(v) })}
+                  min={0}
+                  max={100}
+                  sx={{ flex: 1 }}
+                />
+                <Typography variant="body2" sx={{ width: 32, textAlign: 'right' }}>
+                  {g.fastModeEnergyThreshold ?? 35}%
+                </Typography>
+              </Box>
+            }
+          />
+        )}
+
         <FieldRow
           label="Try again on failed goal"
           control={

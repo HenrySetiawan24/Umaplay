@@ -17,45 +17,44 @@ import {
   List,
   ListItemButton,
   ListItemText,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
+  Tabs,
+  Tab,
 } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 import SearchIcon from '@mui/icons-material/Search'
 import ClearIcon from '@mui/icons-material/Clear'
+import ChevronLeft from '@mui/icons-material/ChevronLeft'
+import ChevronRight from '@mui/icons-material/ChevronRight'
+import CloseIcon from '@mui/icons-material/Close'
 import { useQuery } from '@tanstack/react-query'
 import { useMemo, useState } from 'react'
 import { fetchRaces } from '@/services/api'
 import type { RacesMap, RaceInstance } from '@/models/datasets'
-import { toDateKey } from '@/utils/race'
+import { toDateKey, parseDateKey, monthHalfLabel, yearLabel, dateKeysForYear, nextDateKey } from '@/utils/race'
 import { useConfigStore } from '@/store/configStore'
 import { BADGE_ICON } from '@/constants/ui'
 
 type RaceRow = { raceName: string; instance: RaceInstance; dateKey: string }
 
-const MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+const surfaceColor: Record<string, string> = { Turf: '#2e7d32', Dirt: '#bf8f4a', Varies: '#757575' }
 
-const YEAR_COLS = [
-  { label: 'Junior', year: 1 },
-  { label: 'Classic', year: 2 },
-  { label: 'Senior', year: 3 },
-]
+function imgEncoded(path: string | undefined): string {
+  return path ? path.replace(/ /g, '%20') : ''
+}
 
 export default function RaceScheduler({ presetId }: { presetId: string; compact?: boolean }) {
   const preset = useConfigStore((s) => s.getSelectedPreset().preset)
   const patchPreset = useConfigStore((s) => s.patchPreset)
   const { data: races = {} as RacesMap } = useQuery({ queryKey: ['races'], queryFn: fetchRaces })
 
+  const [activeYearTab, setActiveYearTab] = useState(1)
   const [dialogOpen, setDialogOpen] = useState(false)
   const [dialogDateKey, setDialogDateKey] = useState('')
   const [dialogMonth, setDialogMonth] = useState(1)
   const [dialogHalf, setDialogHalf] = useState(1)
   const [dialogSearch, setDialogSearch] = useState('')
   const [searchQuery, setSearchQuery] = useState('')
+  const [autoAdvance, setAutoAdvance] = useState(true)
 
   if (!preset) return null
 
@@ -78,6 +77,16 @@ export default function RaceScheduler({ presetId }: { presetId: string; compact?
     }
     return map
   }, [flat])
+
+  const instanceByDateKeyName = useMemo(() => {
+    const map = new Map<string, RaceInstance>()
+    for (const r of flat) {
+      map.set(`${r.dateKey}::${r.raceName}`, r.instance)
+    }
+    return map
+  }, [flat])
+
+  const allDateKeys = useMemo(() => dateKeysForYear(1).concat(dateKeysForYear(2)).concat(dateKeysForYear(3)), [])
 
   const searchResults = useMemo(() => {
     const x = searchQuery.trim().toLowerCase()
@@ -111,7 +120,7 @@ export default function RaceScheduler({ presetId }: { presetId: string; compact?
     ).slice(0, 300)
   }, [flat, dialogSearch, availableForDate])
 
-  const remove = (dateKey: string) => {
+  const removeRace = (dateKey: string) => {
     const next = { ...preset.plannedRaces }
     delete next[dateKey]
     patchPreset(presetId, 'plannedRaces', next)
@@ -128,16 +137,30 @@ export default function RaceScheduler({ presetId }: { presetId: string; compact?
     setDialogDateKey(toDateKey(year, month, half))
     setDialogSearch('')
     setDialogOpen(true)
+    if (year !== activeYearTab) setActiveYearTab(year)
+  }
+
+  const navigateToDate = (dk: string) => {
+    const { year, month, half } = parseDateKey(dk)
+    setDialogDateKey(dk)
+    setDialogMonth(month)
+    setDialogHalf(half)
+    setDialogSearch('')
+    if (year !== activeYearTab) setActiveYearTab(year)
   }
 
   const handleSelectRace = (row: RaceRow) => {
     patchPreset(presetId, 'plannedRaces', { ...preset.plannedRaces, [dialogDateKey]: row.raceName })
-    setDialogOpen(false)
+    if (autoAdvance) {
+      const next = nextDateKey(dialogDateKey, allDateKeys)
+      if (next) {
+        navigateToDate(next)
+      }
+    }
   }
 
   const handleRemoveFromDialog = () => {
-    if (dialogDateKey) remove(dialogDateKey)
-    setDialogOpen(false)
+    if (dialogDateKey) removeRace(dialogDateKey)
   }
 
   const handleToggleTentative = () => {
@@ -149,59 +172,121 @@ export default function RaceScheduler({ presetId }: { presetId: string; compact?
     }
   }
 
-  const existingRace = (year: number, month: number, half: number): { name: string; tentative: boolean } | null => {
-    const dk = toDateKey(year, month, half)
+  const currentIdx = allDateKeys.indexOf(dialogDateKey)
+  const canGoPrev = currentIdx > 0
+  const canGoNext = currentIdx >= 0 && currentIdx < allDateKeys.length - 1
+
+  const getSelectedRace = (dk: string): { name: string; tentative: boolean } | null => {
     const name = preset.plannedRaces[dk]
     if (!name) return null
     return { name, tentative: !!preset.plannedRacesTentative?.[dk] }
   }
 
-  const renderCell = (year: number, month: number, half: number) => {
-    const dk = toDateKey(year, month, half)
-    const selected = existingRace(year, month, half)
+  const renderCard = (dk: string) => {
+    const { year, month, half } = parseDateKey(dk)
+    const selected = getSelectedRace(dk)
+    const inst = selected ? instanceByDateKeyName.get(`${dk}::${selected.name}`) : null
     const isBeforeJune = year === 1 && month < 6
     const isDisabled = isBeforeJune
+    const badge = inst ? BADGE_ICON[inst.rank] : null
 
     return (
-      <TableCell
-        key={dk}
-        onClick={() => !isDisabled && handleCellClick(year, month, half)}
-        sx={{
-          p: 0.5,
-          border: 1,
-          borderColor: selected ? 'primary.main' : 'divider',
-          cursor: isDisabled ? 'default' : 'pointer',
-          opacity: isDisabled ? 0.25 : 1,
-          bgcolor: selected?.tentative ? 'warning.dark' : selected ? 'primary.dark' : 'background.paper',
-          '&:hover': isDisabled ? {} : { borderColor: selected ? 'primary.light' : 'text.secondary' },
-          minWidth: 100,
-          maxWidth: 160,
-          width: 120,
-          height: 52,
-          transition: 'border-color 0.15s',
-        }}
-      >
-        <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-          {selected ? (
+      <Box key={dk} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.25 }}>
+        <Paper
+          onClick={() => !isDisabled && handleCellClick(year, month, half)}
+          sx={{
+            width: '100%',
+            minHeight: 160,
+            p: 0.75,
+            cursor: isDisabled ? 'default' : 'pointer',
+            opacity: isDisabled ? 0.25 : 1,
+            bgcolor: selected?.tentative ? 'warning.dark' : selected ? 'primary.dark' : 'background.paper',
+            border: selected ? 2 : 1,
+            borderColor: selected ? 'primary.main' : 'divider',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 0.5,
+            '&:hover': isDisabled ? {} : { borderColor: selected ? 'primary.light' : 'text.secondary' },
+          }}
+        >
+          {selected && inst ? (
             <>
-              <Typography variant="caption" sx={{ lineHeight: 1.2, fontSize: '0.7rem', fontWeight: 600 }}>
-                {selected.name}
-              </Typography>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.25, mt: 'auto' }}>
+              {inst.public_banner_path && (
+                <Box
+                  component="img"
+                  src={imgEncoded(inst.public_banner_path)}
+                  alt=""
+                  sx={{
+                    width: '100%',
+                    aspectRatio: '2 / 1',
+                    objectFit: 'cover',
+                    borderRadius: '3px 3px 0 0',
+                    flexShrink: 0,
+                    display: 'block',
+                  }}
+                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+                />
+              )}
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, minWidth: 0 }}>
+                {badge && (
+                  <Box component="img" src={badge} alt={inst.rank} sx={{ height: 16, flexShrink: 0 }} />
+                )}
+                <Typography variant="caption" noWrap sx={{ fontSize: '0.7rem', fontWeight: 600, lineHeight: 1.2 }}>
+                  {selected.name}
+                </Typography>
                 {selected.tentative && (
-                  <Chip size="small" label="?" variant="outlined" sx={{ height: 14, fontSize: '0.55rem' }} />
+                  <Chip size="small" label="?" variant="outlined" sx={{ height: 14, fontSize: '0.5rem', flexShrink: 0 }} />
                 )}
               </Box>
+              <Box sx={{ display: 'flex', gap: 0.25, flexWrap: 'wrap' }}>
+                <Chip
+                  size="small"
+                  label={inst.surface}
+                  sx={{
+                    height: 16,
+                    fontSize: '0.55rem',
+                    bgcolor: surfaceColor[inst.surface] ?? '#757575',
+                    color: '#fff',
+                  }}
+                />
+                <Chip
+                  size="small"
+                  label={inst.distance_category}
+                  variant="outlined"
+                  sx={{ height: 16, fontSize: '0.55rem' }}
+                />
+              </Box>
+              <Typography variant="caption" noWrap sx={{ fontSize: '0.6rem', color: 'text.secondary', lineHeight: 1.1 }}>
+                {inst.location ? `${inst.location} — ` : ''}{inst.distance_text}
+              </Typography>
             </>
           ) : !isDisabled ? (
-            <Typography variant="caption" sx={{ fontSize: '0.6rem', color: 'text.disabled', alignSelf: 'center', mt: 'auto', mb: 'auto' }}>
-              +
-            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+              <Typography variant="body1" sx={{ color: 'text.disabled', fontSize: '1.2rem', lineHeight: 1 }}>
+                +
+              </Typography>
+            </Box>
           ) : null}
-        </Box>
-      </TableCell>
+        </Paper>
+        <Typography variant="caption" sx={{ fontSize: '0.6rem', color: 'text.secondary', whiteSpace: 'nowrap' }}>
+          {monthHalfLabel(month, half)}
+        </Typography>
+      </Box>
     )
   }
+
+  const yearKeys = useMemo(() => {
+    const keys = dateKeysForYear(activeYearTab)
+    if (activeYearTab === 1) {
+      const early: string[] = []
+      for (let m = 1; m <= 5; m++) {
+        early.push(toDateKey(1, m, 1))
+        early.push(toDateKey(1, m, 2))
+      }
+      return [...early, ...keys]
+    }
+    return keys
+  }, [activeYearTab])
 
   return (
     <Paper variant="outlined" sx={{ p: 1.5 }}>
@@ -229,21 +314,27 @@ export default function RaceScheduler({ presetId }: { presetId: string; compact?
         />
 
         {searchQuery.trim() ? (
-          <Paper variant="outlined" sx={{ maxHeight: 360, overflow: 'auto' }}>
+          <Paper variant="outlined" sx={{ overflow: 'auto' }}>
             <Typography variant="caption" color="text.secondary" sx={{ p: 1, display: 'block' }}>
               {searchResults.length} results — click to add
             </Typography>
-            <List dense disablePadding>
+            <List disablePadding>
               {searchResults.map((r) => {
                 const badge = BADGE_ICON[r.instance.rank] || null
                 const alreadyPlanned = !!preset.plannedRaces[r.dateKey]
-                const surfaceColor: Record<string, string> = { Turf: '#2e7d32', Dirt: '#bf8f4a', Varies: '#757575' }
                 return (
                   <ListItemButton
                     key={`${r.dateKey}-${r.raceName}`}
                     onClick={() => handleQuickAdd(r)}
-                    sx={{ gap: 1 }}
+                    sx={{ gap: 1.5, py: 1.5 }}
                   >
+                    <Box
+                      component="img"
+                      src={imgEncoded(r.instance.public_banner_path)}
+                      alt=""
+                      sx={{ width: 80, display: 'block', borderRadius: 1, flexShrink: 0 }}
+                      onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+                    />
                     <ListItemText
                       primary={
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
@@ -288,45 +379,26 @@ export default function RaceScheduler({ presetId }: { presetId: string; compact?
             </List>
           </Paper>
         ) : (
-          <TableContainer component={Paper} variant="outlined" sx={{ maxHeight: 520 }}>
-            <Table size="small" stickyHeader sx={{ tableLayout: 'fixed' }}>
-              <TableHead>
-                <TableRow>
-                  <TableCell sx={{ width: 64, minWidth: 64, fontWeight: 700, fontSize: '0.7rem', py: 0.5 }}>
-                    Turn
-                  </TableCell>
-                  {YEAR_COLS.map(col => (
-                    <TableCell key={col.year} align="center" sx={{ fontWeight: 700, fontSize: '0.75rem', py: 0.5 }}>
-                      {col.label}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].flatMap(m =>
-                  [1, 2].map(half => (
-                    <TableRow key={`${m}-${half}`} sx={{ '&:hover': { bgcolor: 'action.hover' } }}>
-                      <TableCell
-                        sx={{
-                          width: 64,
-                          minWidth: 64,
-                          fontWeight: 600,
-                          fontSize: '0.65rem',
-                          color: 'text.secondary',
-                          py: 0.5,
-                          border: 1,
-                          borderColor: 'divider',
-                        }}
-                      >
-                        {MONTH_NAMES[m - 1]} {half === 1 ? '1st' : '2nd'}
-                      </TableCell>
-                      {YEAR_COLS.map(col => renderCell(col.year, m, half))}
-                    </TableRow>
-                  ))
-                )}
-              </TableBody>
-            </Table>
-          </TableContainer>
+          <>
+            <Tabs
+              value={activeYearTab}
+              onChange={(_, v) => setActiveYearTab(v)}
+              sx={{ minHeight: 0, '& .MuiTab-root': { minHeight: 36, py: 0.5 } }}
+            >
+              <Tab label="Junior Year" value={1} />
+              <Tab label="Classic Year" value={2} />
+              <Tab label="Senior Year" value={3} />
+            </Tabs>
+            <Box
+              sx={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(4, 1fr)',
+                gap: 1,
+              }}
+            >
+              {yearKeys.map(renderCard)}
+            </Box>
+          </>
         )}
       </Stack>
 
@@ -337,15 +409,27 @@ export default function RaceScheduler({ presetId }: { presetId: string; compact?
         fullWidth
       >
         <DialogTitle sx={{ pb: 1 }}>
-          {dialogRaceName
-            ? `Change: ${MONTH_NAMES[dialogMonth - 1]} ${dialogHalf === 1 ? '\u524d\u534a' : '\u5f8c\u534a'}`
-            : `Select Race \u2014 ${MONTH_NAMES[dialogMonth - 1]} ${dialogHalf === 1 ? '\u524d\u534a' : '\u5f8c\u534a'}`}
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+            <IconButton size="small" disabled={!canGoPrev} onClick={() => navigateToDate(allDateKeys[currentIdx - 1])}>
+              <ChevronLeft fontSize="small" />
+            </IconButton>
+            <Typography variant="body1" sx={{ flex: 1, textAlign: 'center', fontWeight: 600 }}>
+              {dialogRaceName
+                ? `Change — ${yearLabel(parseDateKey(dialogDateKey).year)}, ${monthHalfLabel(dialogMonth, dialogHalf)}`
+                : `Select Race — ${yearLabel(parseDateKey(dialogDateKey).year)}, ${monthHalfLabel(dialogMonth, dialogHalf)}`}
+            </Typography>
+            <IconButton size="small" disabled={!canGoNext} onClick={() => navigateToDate(allDateKeys[currentIdx + 1])}>
+              <ChevronRight fontSize="small" />
+            </IconButton>
+            <IconButton size="small" onClick={() => setDialogOpen(false)}>
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          </Box>
         </DialogTitle>
 
         <DialogContent sx={{ pt: 1 }}>
           {dialogRaceName && (() => {
             const current = flat.find(r => r.dateKey === dialogDateKey && r.raceName === dialogRaceName)
-            const surfaceColor: Record<string, string> = { Turf: '#2e7d32', Dirt: '#bf8f4a', Varies: '#757575' }
             return (
               <Box
                 sx={{
@@ -358,6 +442,15 @@ export default function RaceScheduler({ presetId }: { presetId: string; compact?
                   bgcolor: 'action.selected',
                 }}
               >
+                {current && (
+                  <Box
+                    component="img"
+                    src={imgEncoded(current.instance.public_banner_path)}
+                    alt=""
+                    sx={{ width: 96, display: 'block', borderRadius: 1, flexShrink: 0 }}
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+                  />
+                )}
                 <Box sx={{ flex: 1, minWidth: 0 }}>
                   <Typography variant="body2">
                     Current: <strong>{dialogRaceName}</strong>
@@ -410,35 +503,53 @@ export default function RaceScheduler({ presetId }: { presetId: string; compact?
             </Typography>
           )}
 
+          <FormControlLabel
+            control={
+              <Checkbox
+                size="small"
+                checked={autoAdvance}
+                onChange={(e) => setAutoAdvance(e.target.checked)}
+              />
+            }
+            label={<Typography variant="caption">Auto-advance to next turn after selecting</Typography>}
+            sx={{ mb: 0.5 }}
+          />
+
           <Box sx={{ maxHeight: 320, overflow: 'auto', display: 'flex', flexDirection: 'column', gap: 0.5 }}>
             {dialogFiltered.map((r) => {
               const badge = BADGE_ICON[r.instance.rank] || null
-              const surfaceColor: Record<string, string> = { Turf: '#2e7d32', Dirt: '#bf8f4a', Varies: '#757575' }
               return (
                 <Box
                   key={`${r.dateKey}-${r.raceName}`}
                   onClick={() => handleSelectRace(r)}
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 1,
-                    p: 0.75,
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1.5,
+                      p: 1.5,
                     borderRadius: 1,
                     cursor: 'pointer',
                     bgcolor: r.dateKey === dialogDateKey && dialogRaceName === r.raceName ? 'action.selected' : 'transparent',
                     '&:hover': { bgcolor: 'action.hover' },
                   }}
                 >
+                  <Box
+                    component="img"
+                    src={imgEncoded(r.instance.public_banner_path)}
+                    alt=""
+                    sx={{ width: 80, display: 'block', borderRadius: 1, flexShrink: 0 }}
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+                  />
                   <Box sx={{ flex: 1, minWidth: 0 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75, flexWrap: 'wrap' }}>
-                      <Typography variant="body2" noWrap>{r.raceName}</Typography>
-                      {badge && <Box component="img" src={badge} alt={r.instance.rank} sx={{ height: 16, flexShrink: 0 }} />}
+                      <Typography variant="body2" noWrap sx={{ fontWeight: 600 }}>{r.raceName}</Typography>
+                      {badge && <Box component="img" src={badge} alt={r.instance.rank} sx={{ height: 20, flexShrink: 0 }} />}
                       <Chip
                         size="small"
                         label={r.instance.surface}
                         sx={{
-                          height: 18,
-                          fontSize: '0.6rem',
+                          height: 20,
+                          fontSize: '0.65rem',
                           bgcolor: surfaceColor[r.instance.surface] ?? '#757575',
                           color: '#fff',
                         }}
@@ -447,11 +558,11 @@ export default function RaceScheduler({ presetId }: { presetId: string; compact?
                         size="small"
                         label={r.instance.distance_category}
                         variant="outlined"
-                        sx={{ height: 18, fontSize: '0.6rem' }}
+                        sx={{ height: 20, fontSize: '0.65rem' }}
                       />
                     </Box>
-                    <Typography variant="caption" color="text.secondary">
-                      {r.instance.location ? `${r.instance.location} \u2014 ` : ''}{r.instance.distance_text}
+                    <Typography variant="caption" color="text.secondary" sx={{ mt: 0.25, display: 'block' }}>
+                      {r.instance.location ? `${r.instance.location} — ` : ''}{r.instance.distance_text}
                     </Typography>
                   </Box>
                   <Chip size="small" label={r.dateKey} variant="outlined" sx={{ fontSize: '0.65rem', flexShrink: 0 }} />

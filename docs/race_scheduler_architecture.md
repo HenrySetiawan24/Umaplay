@@ -114,30 +114,29 @@ const { data: races = {} as RacesMap } = useQuery({
 
 The component renders inside `PresetPanel.tsx` and receives a `presetId` prop.
 
-**Visual layout (single table, all years side by side):**
+**Visual layout (year tabs + sequential card grid):**
 
-1. **Rows**: 24 month+half turns (Jan 前半 through Dec 後半)
-2. **Columns**: Junior, Classic, Senior (years 1-3)
-3. **Cells**: Each cell represents one turn (year + month + half)
-4. **Empty cell**: Shows `+` — click to open search dialog
-5. **Occupied cell**: Shows selected race name (bold) + optional tentative `?` badge
-6. **Search dialog**: Shows races available at that turn by default; free search across all races
-7. **Junior pre-June**: Cells are disabled (career starts at June of first year)
+1. **Search bar** at top — typing a query replaces the grid with filtered race list
+2. **Year tabs** — "Junior Year", "Classic Year", "Senior Year" — switch between years
+3. **Card grid** within each tab — flex-wrap layout of Paper cards, one per turn (month+half)
+4. **Cards** show:
+   - **Empty**: `+` icon centered, click to open search dialog
+   - **Occupied**: Rank badge image, race name, surface chip (colored), distance category chip (outlined), location + distance text
+   - **Disabled**: Junior pre-June cards are dimmed and not clickable
+5. **Month-half label** below each card: "Early Jan", "Late Jan", etc.
+6. **Search dialog** — shows races available at that turn by default; free search across all races; after selecting a race, auto-advances to the next turn's dialog
 
-**Table layout:**
-```
-┌────────┬────────────┬────────────┬────────────┐
-│  Turn  │  Junior    │  Classic   │  Senior    │
-├────────┼────────────┼────────────┼────────────┤
-│ Jan 前 │  +         │  +         │  +         │
-│ Jan 後 │  +         │  +         │  +         │
-│ Feb 前 │  +         │  +         │  +         │
-│ ...    │            │            │            │
-│ Jun 前 │  (race)    │  (race)    │  (race)    │
-│ ...    │            │            │            │
-│ Dec 後 │  +         │  (race)    │  (race)    │
-└────────┴────────────┴────────────┴────────────┘
-```
+### Dialog: Race selection with navigation
+
+The dialog includes:
+- **Title bar**: `◀` / `▶` navigation arrows + `✕` close button
+  - Title format: `"Select Race — Junior Year, Early Jan"` or `"Change — Classic Year, Late Feb"` if a race is already selected
+  - Navigation wraps across all years; the active year tab auto-switches when navigating to a different year
+- **Current race info** (if exists): name, surface, distance category, location, tentative toggle, delete button
+- **Search field**: filters races by name, location, rank, distance, surface
+- **Race list**: rank badge, name, surface chip, distance chip, location + distance
+- **Auto-advance**: After selecting a race, the dialog moves to the next valid turn instead of closing
+- **Cancel** button closes the dialog
 
 ### Data flow:
 
@@ -147,7 +146,11 @@ User clicks cell → handleCellClick(year, month, half)
   → Dialog shows pre-filtered races for that dateKey
   → User can search all races freely
   → User selects a race → patchPreset('plannedRaces', { ...existing, [dateKey]: raceName })
-  → Grid re-renders, showing the selected race
+  → Dialog auto-advances to next dateKey (or closes if last turn)
+
+Navigation (◀/▶):
+  → Navigate to prev/next dateKey across all years
+  → Active year tab auto-switches when crossing year boundaries
 
 Race removal:
   → Click on occupied cell → opens dialog with "Remove" option
@@ -155,6 +158,44 @@ Race removal:
 
 Tentative toggle:
   → Inside dialog, toggle checkbox → patchPreset('plannedRacesTentative')
+```
+
+### Card grid layout (per year tab):
+
+```
++--------------------------------------------------+
+| Junior Year | Classic Year | Senior Year          |
++--------------------------------------------------+
+
++--------+ +--------+ +--------+ +--------+
+|  +      | |  +     | | G3     | |  +     |
+|         | |        | |スプリングS | |        |
+|         | |        | [Turf]   | |        |
+|         | |        |[Mile]    | |        |
+|         | |        |中山 — 1600m| |        |
++--------+ +--------+ +--------+ +--------+
+ Early Jan  Late Jan  Early Feb  Late Feb
+
++--------+ +--------+ +--------+ +--------+
+| G1      | | G1     | | G1     | |  +     |
+|ホープフルS| |ホープフルS| |ホープフルS| |        |
+| [Turf]  | | [Turf] | | [Dirt] | |        |
+| [Mile]  | |[Short] | |[Mile]  | |        |
+|中山—1600m| |中山—1200m| |東京—1600m| |        |
++--------+ +--------+ +--------+ +--------+
+ Early Mar  Late Mar  Early Apr  Late Apr
+```
+
+### Key utilities (from `web/src/utils/race.ts`):
+
+```typescript
+parseDateKey(dk)           // "Y2-04-1" → { year:2, month:4, half:1 }
+monthHalfLabel(month,half)  // (4, 1) → "Early Apr"
+yearLabel(year)             // 2 → "Classic Year"
+orderedDateKeys()           // All valid dateKeys in chronological order
+nextDateKey(current, all)   // Next dateKey in the ordered list
+prevDateKey(current, all)   // Previous dateKey in the ordered list
+dateKeysForYear(year)       // All dateKeys belonging to a specific year
 ```
 
 ### Key constants:

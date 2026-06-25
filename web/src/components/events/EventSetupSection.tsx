@@ -83,24 +83,37 @@ const rarityRank = (r: string) =>
 function SupportPickerDialog({
   open, onClose, index, onPick,
 }: { open: boolean; onClose: () => void; index: EventsIndex; onPick: (s: SupportSet) => void }) {
-  const [query, setQuery] = useState('')
+  const [q, setQ] = useState('')
+  const [debouncedQ, setDebouncedQ] = useState('')
   const [attrFilter, setAttrFilter] = useState<AttrKey>('SPD')
-  // Build both: per-attribute lists AND a global 'all' list for queries.
+
+  useEffect(() => {
+    if (open) {
+      setQ('')
+      setDebouncedQ('')
+      setAttrFilter('SPD')
+    }
+  }, [open])
+
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedQ(q), 400)
+    return () => clearTimeout(timer)
+  }, [q])
+
   const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase()
+    const term = debouncedQ.trim().toLowerCase()
     const byAttrOut: Record<AttrKey, SupportSet[]> = {
       SPD: [], STA: [], PWR: [], GUTS: [], WIT: [], PAL: [], None: [],
     }
     let all: SupportSet[] = []
 
-    const byAttr = index.supports as any // Map<AttrKey, Map<Rarity, SupportSet[]>>
+    const byAttr = index.supports as any
     if (byAttr instanceof Map) {
       for (const attr of ATTR_ORDER) {
         const rarMap = byAttr.get(attr)
         let list: SupportSet[] = []
         if (rarMap instanceof Map) {
           for (const arr of rarMap.values()) list = list.concat(arr as SupportSet[])
-          // sort SSR → SR → R, then by name
           list.sort((a, b) => {
             const ra = rarityRank(String(a.rarity))
             const rb = rarityRank(String(b.rarity))
@@ -108,16 +121,14 @@ function SupportPickerDialog({
             return a.name.localeCompare(b.name)
           })
         }
-        const filt = q ? list.filter(s => s.name.toLowerCase().includes(q)) : list
+        const filt = term ? list.filter(s => s.name.toLowerCase().includes(term)) : list
         byAttrOut[attr] = filt
-        if (q) {
-          // keep global list nicely sorted as well
+        if (term) {
           all = all.concat(filt)
         }
       }
     }
-    if (q) {
-      // keep global list nicely sorted as well
+    if (term) {
       all.sort((a, b) => {
         const ra = rarityRank(String(a.rarity))
         const rb = rarityRank(String(b.rarity))
@@ -126,7 +137,7 @@ function SupportPickerDialog({
       })
     }
     return { byAttr: byAttrOut, all }
-  }, [index, query])
+  }, [index, debouncedQ])
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="md">
       <DialogTitle sx={{ display:'flex', alignItems:'center', gap:1 }}>
@@ -139,8 +150,8 @@ function SupportPickerDialog({
           fullWidth
           size="small"
           placeholder="Search supports…"
-          value={query}
-          onChange={e => setQuery(e.target.value)}
+          value={q}
+          onChange={e => setQ(e.target.value)}
           InputProps={{ startAdornment: <InputAdornment position="start"><SearchIcon /></InputAdornment> }}
           sx={{ mb: 2 }}
         />
@@ -168,7 +179,7 @@ function SupportPickerDialog({
         <Divider sx={{ mb: 2 }} />
         {/* Visible list for the selected attribute */}
         <Stack direction="row" flexWrap="wrap" gap={1.5}>
-          {((query.trim()
+          {((q.trim()
               ? filtered.all
               : filtered.byAttr[attrFilter]) || []
             ).map((s) => (

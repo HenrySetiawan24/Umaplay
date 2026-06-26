@@ -1,7 +1,6 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
 import {
   Box,
-  Paper,
   Typography,
   Table,
   TableBody,
@@ -15,6 +14,7 @@ import {
   Alert,
   Tooltip,
 } from '@mui/material'
+import Section from '@/components/common/Section'
 import DeleteIcon from '@mui/icons-material/Delete'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import TimelineIcon from '@mui/icons-material/Timeline'
@@ -94,16 +94,18 @@ export default function RunHistory() {
   }
 
   if (error) {
-    return <Alert severity="error" sx={{ maxWidth: 600, mx: 'auto' }}>{error}</Alert>
+    return <Alert severity="error" sx={{ maxWidth: 900, mx: 'auto' }}>{error}</Alert>
   }
 
   if (records.length === 0) {
     return (
-      <Box sx={{ textAlign: 'center', py: 6 }}>
-        <Typography variant="body1" color="text.secondary">
-          No run history yet. Complete a scenario run to see it here.
-        </Typography>
-      </Box>
+      <Section title="Run History" sx={{ width: '100%', maxWidth: 1600, mx: 'auto' }}>
+        <Box sx={{ textAlign: 'center', py: 6 }}>
+          <Typography variant="body1" color="text.secondary">
+            No run history yet. Complete a scenario run to see it here.
+          </Typography>
+        </Box>
+      </Section>
     )
   }
 
@@ -139,8 +141,8 @@ export default function RunHistory() {
   }
 
   return (
-    <>
-      <TableContainer ref={scrollRef} component={Paper} variant="outlined" sx={{ width: '100%', overflow: 'auto' }}>
+    <Section title="Run History" sx={{ width: '100%', maxWidth: 1600, mx: 'auto' }}>
+      <TableContainer ref={scrollRef} component={Box} sx={{ width: '100%', overflow: 'auto' }}>
         <Table size="small">
           <TableHead>
             <TableRow>
@@ -256,6 +258,6 @@ export default function RunHistory() {
         record={turnLogRecord}
         onClose={() => setTurnLogRecord(null)}
       />
-    </>
+    </Section>
   )
 }

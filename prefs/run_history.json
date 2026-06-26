@@ -1,0 +1,50 @@
+[
+  {
+    "id": "4ff2a3a1-471a-4e60-9dae-216620eefadb",
+    "scenario": "ura",
+    "preset_name": "Unnamed",
+    "uma_name": null,
+    "start_date": "2026-06-26",
+    "start_time": "2026-06-26T13:02:31.409908",
+    "end_time": null,
+    "final_turn": null,
+    "final_stats": null,
+    "final_mood": null,
+    "final_fans": null,
+    "final_rank": null,
+    "completed": false,
+    "error": null,
+    "races_attempted": [
+      {
+        "race_name": "unknown",
+        "won": true,
+        "timestamp": "2026-06-26T13:07:37.187406"
+      },
+      {
+        "race_name": "Sapporo Junior Stakes",
+        "won": true,
+        "timestamp": "2026-06-26T13:10:02.310388"
+      },
+      {
+        "race_name": "unknown",
+        "won": true,
+        "timestamp": "2026-06-26T13:11:03.428946"
+      },
+      {
+        "race_name": "Daily Hai Junior Stakes",
+        "won": true,
+        "timestamp": "2026-06-26T13:12:21.799622"
+      },
+      {
+        "race_name": "Asahi Hai Futurity Stakes",
+        "won": true,
+        "timestamp": "2026-06-26T13:13:42.953463"
+      },
+      {
+        "race_name": "Hopeful Stakes",
+        "won": true,
+        "timestamp": "2026-06-26T13:14:38.633314"
+      }
+    ]
+  }
+]

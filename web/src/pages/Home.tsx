@@ -7,13 +7,14 @@ import { useNavPrefsStore } from '@/store/navPrefsStore'
 import PresetsShell from '@/components/presets/PresetsShell'
 import ShopPrefs from '@/components/nav/ShopPrefs'
 import TeamTrialsPrefs from '@/components/nav/TeamTrialsPrefs'
+import RunHistory from '@/components/history/RunHistory'
 
 export default function Home() {
   const saveLocal = useConfigStore((s) => s.saveLocal)
   const config = useConfigStore((s) => s.config)
   const getActivePreset = useConfigStore((s) => s.getActivePreset)
   const collapsed = useConfigStore((s) => s.uiGeneralCollapsed)
-  const [tab, setTab] = useState<'scenario' | 'shop' | 'team_trials'>('scenario')
+  const [tab, setTab] = useState<'scenario' | 'shop' | 'team_trials' | 'history'>('scenario')
   const configLoadedRef = useRef(false)
 
   useEffect(() => {
@@ -104,6 +105,7 @@ export default function Home() {
             <Tab value="scenario" label="Scenario setup" />
             <Tab value="shop" label="Shop preferences" />
             <Tab value="team_trials" label="Team Trials" />
+            <Tab value="history" label="Run History" />
           </Tabs>
         </Paper>
 
@@ -186,6 +188,9 @@ export default function Home() {
           <Box sx={{ width: '100%', maxWidth: 540 }}>
             <TeamTrialsPrefs />
           </Box>
+        </Box>
+        <Box sx={{ display: tab === 'history' ? 'block' : 'none' }}>
+          <RunHistory />
         </Box>
       </Stack>
     </Container>

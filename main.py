@@ -40,10 +40,13 @@ from server.utils import (
     load_nav_prefs,
     save_config,
 )
+from uuid import uuid4
 from core.utils.abort import request_abort, clear_abort
 from core.utils.event_processor import UserPrefs
 from core.utils.preset_overlay import show_preset_overlay
 from core.ui.scenario_prompt import choose_active_scenario, ScenarioSelectionCancelled
+from core.run_context import set as set_run_record, get as get_run_record
+from server.run_history import append_history
 
 # Controllers & perception interfaces
 from core.controllers.base import IController
@@ -299,6 +302,33 @@ class BotState:
             #    UserPrefs.from_config() returns safe defaults and EventFlow will still
             #    pick the top option if a pick is invalid at runtime.
             event_prefs = UserPrefs.from_config(cfg or {})
+
+            # 6) Create run record for history tracking
+            from datetime import datetime
+            now = datetime.now()
+            preset_name = (preset_opts.get("preset") or {}).get("name") or preset_opts.get("name", "Unnamed")
+            run_record = {
+                "id": str(uuid4()),
+                "scenario": Settings.ACTIVE_SCENARIO,
+                "preset_name": preset_name,
+                "uma_name": None,
+                "start_date": now.strftime("%Y-%m-%d"),
+                "start_time": now.isoformat(),
+                "end_time": None,
+                "final_turn": None,
+                "final_stats": None,
+                "final_mood": None,
+                "final_fans": None,
+                "final_rank": None,
+                "completed": False,
+                "error": None,
+                "races_attempted": [],
+            }
+            set_run_record(run_record)
+            try:
+                append_history(run_record)
+            except Exception:
+                logger_uma.debug("[run_history] start persist failed", exc_info=True)
             
 
             if Settings.ACTIVE_SCENARIO == "unity_cup":
@@ -340,7 +370,6 @@ class BotState:
                 re_init = False
                 try:
                     logger_uma.info("[BOT] Started.")
-                    # if not none
                     if self.agent_scenario:
                         self.agent_scenario.run(
                             delay=getattr(Settings, "MAIN_LOOP_DELAY", 0.4),
@@ -360,8 +389,28 @@ class BotState:
                             )
                     else:
                         logger_uma.exception("[BOT] Crash: %s", e)
+                    record = get_run_record()
+                    if record and not record.get("end_time"):
+                        from datetime import datetime
+                        record["end_time"] = datetime.now().isoformat()
+                        record["error"] = str(e)
+                        try:
+                            append_history(record)
+                        except Exception:
+                            pass
                 finally:
                     if not re_init:
+                        record = get_run_record()
+                        if record and not record.get("end_time"):
+                            from datetime import datetime
+                            record["end_time"] = datetime.now().isoformat()
+                            if not record.get("error"):
+                                record["error"] = "stopped"
+                            try:
+                                append_history(record)
+                            except Exception:
+                                pass
+                        set_run_record(None)
                         with self._lock:
                             self.running = False
                             logger_uma.info("[BOT] Stopped.")

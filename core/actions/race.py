@@ -34,6 +34,8 @@ from core.utils.text import _normalize_ocr, fuzzy_ratio
 from core.utils.yolo_objects import collect, find, bottom_most, inside
 from core.utils.pointer import smart_scroll_small
 from core.utils.abort import abort_requested, request_abort
+from core.run_context import get as get_run_record
+from server.run_history import append_history
 
 
 class ConsecutiveRaceRefused(Exception):
@@ -80,6 +82,7 @@ class RaceFlow:
         }
         self._waiting_for_manual_retry_decision = False
         self._last_failure_reason: RaceFailureReason = RaceFailureReason.NONE
+        self._last_race_name: Optional[str] = None
 
     def _ensure_in_raceday(
         self, *, reason: str | None = None, from_raceday=False
@@ -720,6 +723,24 @@ class RaceFlow:
         return None, True
 
     # --------------------------
+    # Run history helper
+    # --------------------------
+    def _record_race_attempt(self, won: bool) -> None:
+        try:
+            record = get_run_record()
+            if record is None or record.get("end_time"):
+                return
+            from datetime import datetime
+            record.setdefault("races_attempted", []).append({
+                "race_name": self._last_race_name or "unknown",
+                "won": won,
+                "timestamp": datetime.now().isoformat(),
+            })
+            append_history(record)
+        except Exception:
+            logger_uma.debug("[run_history] _record_race_attempt failed", exc_info=True)
+
+    # --------------------------
     # Public API
     # --------------------------
     def lobby(self) -> bool:
@@ -915,10 +936,12 @@ class RaceFlow:
             )
             self._waiting_for_manual_retry_decision = True
             request_abort()
+            self._record_race_attempt(won=False)
             return False
 
         if clicked_try_again:
             logger_uma.debug("[race] Lost the race, trying again.")
+            self._record_race_attempt(won=False)
             self._handle_retry_transition()
             logger_uma.info(
                 "[race] Loss metrics after retry: %s",
@@ -980,6 +1003,7 @@ class RaceFlow:
             # )
 
             logger_uma.info("[race] RaceDay flow finished.")
+            self._record_race_attempt(won=not loss_indicator_seen)
             return True
 
     # --------------------------
@@ -1146,6 +1170,7 @@ class RaceFlow:
             logger_uma.debug("race square not found")
             self._last_failure_reason = RaceFailureReason.NO_RACE_SQUARE
             return False
+        self._last_race_name = desired_race_name or square.get("race_name") or str(square.get("raw", ""))
 
         # 2) Click the race square
         if need_click:

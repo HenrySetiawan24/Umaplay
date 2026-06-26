@@ -27,6 +27,9 @@ from core.utils.waiter import PollConfig, Waiter
 from core.actions.race import ConsecutiveRaceRefused
 from core.utils.abort import abort_requested
 from core.utils.event_processor import UserPrefs
+from core.run_context import get as get_run_record
+from server.run_history import append_history
+import re
 
 class AgentURA(AgentScenario):
     def __init__(
@@ -591,6 +594,39 @@ class AgentURA(AgentScenario):
                     logger_uma.info("[skill_memory] Reset after career completion")
                 except Exception as exc:
                     logger_uma.error("[skill_memory] reset failed: %s", exc)
+
+                # -- Persist final run record --
+                try:
+                    run_record = get_run_record()
+                    if run_record is not None and not run_record.get("end_time"):
+                        from datetime import datetime
+                        run_record["end_time"] = datetime.now().isoformat()
+                        run_record["final_turn"] = self.lobby.state.turn
+                        run_record["final_stats"] = dict(self.lobby.state.stats)
+                        run_record["final_mood"] = self.lobby.state.mood[0]
+                        run_record["completed"] = True
+                        # OCR final screen for uma name, fans, rank
+                        try:
+                            full_text = self.ocr.text(img, min_conf=0.1)
+                            # fans: look for numbers with commas (e.g. "12,000" or "12000")
+                            fans_match = re.search(r'(\d{1,3}(?:,\d{3})+)', full_text)
+                            if fans_match:
+                                run_record["final_fans"] = int(fans_match.group(1).replace(",", ""))
+                            elif full_text:
+                                nums = re.findall(r'\b\d{4,8}\b', full_text)
+                                if nums:
+                                    run_record["final_fans"] = max(int(n) for n in nums)
+                            # rank: look for rank patterns like A+, S, UG, UE
+                            rank_match = re.search(r'\b([A-Z]{1,2}\+?)\b', full_text)
+                            if rank_match:
+                                candidate = rank_match.group(1)
+                                if candidate in ("S", "A", "B", "C", "D", "E", "F", "G"):
+                                    run_record["final_rank"] = candidate
+                        except Exception:
+                            logger_uma.debug("[run_history] OCR extraction failed", exc_info=True)
+                        append_history(run_record)
+                except Exception:
+                    logger_uma.debug("[run_history] persist failed", exc_info=True)
                 continue
 
 

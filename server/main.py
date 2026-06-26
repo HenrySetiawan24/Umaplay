@@ -17,7 +17,7 @@ from server.utils import (
     ensure_nav_exists,
     load_event_setup_defaults,
 )
-from server.updater import latest_info
+from server.run_history import load_history, append_history, delete_history
 from core.version import __version__
 
 ensure_nav_exists()
@@ -54,6 +54,25 @@ def update_nav(new_nav: Dict[str, Any]):
     data = new_nav or {}
     save_nav_prefs(data)
     return {"status": "success", "data": load_nav_prefs()}
+
+
+@app.get("/api/history")
+def get_history():
+    return load_history()
+
+
+@app.post("/api/history")
+def add_history(record: Dict[str, Any]):
+    append_history(record)
+    return {"status": "success"}
+
+
+@app.delete("/api/history/{record_id}")
+def remove_history(record_id: str):
+    ok = delete_history(record_id)
+    if not ok:
+        raise HTTPException(status_code=404, detail="Record not found")
+    return {"status": "success"}
 
 
 PATH = "web/dist"
@@ -334,6 +353,10 @@ async def force_update(request: Request):
 # ----------------------------
 # Version & update info
 # ----------------------------
+def latest_info() -> dict:
+    return {"version": __version__, "url": "", "published": ""}
+
+
 @app.get("/admin/version")
 def get_version():
     return {"version": __version__}

@@ -7,13 +7,15 @@ import { useNavPrefsStore } from '@/store/navPrefsStore'
 import PresetsShell from '@/components/presets/PresetsShell'
 import ShopPrefs from '@/components/nav/ShopPrefs'
 import TeamTrialsPrefs from '@/components/nav/TeamTrialsPrefs'
+import RunHistory from '@/components/history/RunHistory'
+import BotControl from '@/components/common/BotControl'
 
 export default function Home() {
   const saveLocal = useConfigStore((s) => s.saveLocal)
   const config = useConfigStore((s) => s.config)
   const getActivePreset = useConfigStore((s) => s.getActivePreset)
   const collapsed = useConfigStore((s) => s.uiGeneralCollapsed)
-  const [tab, setTab] = useState<'scenario' | 'shop' | 'team_trials'>('scenario')
+  const [tab, setTab] = useState<'scenario' | 'shop' | 'team_trials' | 'history'>('scenario')
   const configLoadedRef = useRef(false)
 
   useEffect(() => {
@@ -53,13 +55,15 @@ export default function Home() {
                 : 'linear-gradient(to bottom, #ffffff 0%, #fafafa 100%)',
           }}
         >
-          <Tabs
-            value={tab}
-            onChange={(_, next) => setTab(next)}
-            variant="scrollable"
-            scrollButtons="auto"
-            sx={{
-              px: { xs: 1, sm: 2 },
+          <Box sx={{ display: 'flex', alignItems: 'center', pr: { xs: 1, sm: 2 } }}>
+            <Tabs
+              value={tab}
+              onChange={(_, next) => setTab(next)}
+              variant="scrollable"
+              scrollButtons="auto"
+              sx={{
+                flex: 1,
+                px: { xs: 1, sm: 2 },
               '& .MuiTab-root': {
                 minHeight: 56,
                 textTransform: 'uppercase',
@@ -104,7 +108,10 @@ export default function Home() {
             <Tab value="scenario" label="Scenario setup" />
             <Tab value="shop" label="Shop preferences" />
             <Tab value="team_trials" label="Team Trials" />
+            <Tab value="history" label="Run History" />
           </Tabs>
+          <BotControl />
+          </Box>
         </Paper>
 
         <Box sx={{ display: tab === 'scenario' ? 'block' : 'none' }}>
@@ -186,6 +193,9 @@ export default function Home() {
           <Box sx={{ width: '100%', maxWidth: 540 }}>
             <TeamTrialsPrefs />
           </Box>
+        </Box>
+        <Box sx={{ display: tab === 'history' ? 'block' : 'none' }}>
+          <RunHistory />
         </Box>
       </Stack>
     </Container>

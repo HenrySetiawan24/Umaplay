@@ -40,10 +40,14 @@ from server.utils import (
     load_nav_prefs,
     save_config,
 )
+from uuid import uuid4
 from core.utils.abort import request_abort, clear_abort
 from core.utils.event_processor import UserPrefs
 from core.utils.preset_overlay import show_preset_overlay
 from core.ui.scenario_prompt import choose_active_scenario, ScenarioSelectionCancelled
+from core.run_context import set as set_run_record, get as get_run_record, tick_active_time
+from server.run_history import append_history, get_record
+from server.bot_bridge import register as register_bot_bridge
 
 # Controllers & perception interfaces
 from core.controllers.base import IController
@@ -242,10 +246,11 @@ class BotState:
         self.running: bool = False
         self._lock = threading.Lock()
 
-    def start(self):
+    def start(self, continue_id: str | None = None):
         """
         Reload config.json -> Settings.apply_config -> build fresh controller + OCR/YOLO -> run Player.
         This guarantees we always reflect the latest UI changes at start time.
+        If continue_id is provided, resume that incomplete run record instead of creating a new one.
         """
         with self._lock:
             if self.running:
@@ -299,6 +304,50 @@ class BotState:
             #    UserPrefs.from_config() returns safe defaults and EventFlow will still
             #    pick the top option if a pick is invalid at runtime.
             event_prefs = UserPrefs.from_config(cfg or {})
+
+            # 6) Create (or continue) run record for history tracking
+            from datetime import datetime
+            now = datetime.now()
+            preset_name = (preset_opts.get("preset") or {}).get("name") or preset_opts.get("name", "Unnamed")
+            trainee_name = (preset_opts.get("preset") or {}).get("trainee", {}) or preset_opts.get("trainee", {})
+            trainee_name = trainee_name.get("name") if isinstance(trainee_name, dict) else None
+
+            if continue_id:
+                run_record = get_record(continue_id)
+                if run_record is None:
+                    logger_uma.warning("[run_history] continue_id '%s' not found, starting fresh", continue_id)
+                    run_record = None
+                else:
+                    run_record["preset_name"] = preset_name
+                    run_record["error"] = None
+                    run_record["end_time"] = None
+                    tick_active_time()
+                    logger_uma.info("[run_history] Continuing run %s (started %s)", continue_id, run_record.get("start_time"))
+            if not continue_id or run_record is None:
+                run_record = {
+                    "id": str(uuid4()),
+                    "scenario": Settings.ACTIVE_SCENARIO,
+                    "preset_name": preset_name,
+                    "uma_name": f"{preset_name} / {trainee_name}" if trainee_name else preset_name,
+                    "start_date": now.strftime("%Y-%m-%d"),
+                    "start_time": now.isoformat(),
+                    "active_seconds": 0,
+                    "end_time": None,
+                    "final_turn": None,
+                    "final_stats": None,
+                    "final_mood": None,
+                    "final_fans": None,
+                    "final_rank": None,
+                    "completed": False,
+                    "error": None,
+                    "races_attempted": [],
+                }
+                run_record["last_resume_at"] = now.isoformat()
+            set_run_record(run_record)
+            try:
+                append_history(run_record)
+            except Exception:
+                logger_uma.debug("[run_history] start persist failed", exc_info=True)
             
 
             if Settings.ACTIVE_SCENARIO == "unity_cup":
@@ -340,7 +389,6 @@ class BotState:
                 re_init = False
                 try:
                     logger_uma.info("[BOT] Started.")
-                    # if not none
                     if self.agent_scenario:
                         self.agent_scenario.run(
                             delay=getattr(Settings, "MAIN_LOOP_DELAY", 0.4),
@@ -360,8 +408,28 @@ class BotState:
                             )
                     else:
                         logger_uma.exception("[BOT] Crash: %s", e)
+                    record = get_run_record()
+                    if record and not record.get("end_time"):
+                        tick_active_time()
+                        record["end_time"] = datetime.now().isoformat()
+                        record["error"] = str(e)
+                        try:
+                            append_history(record)
+                        except Exception:
+                            pass
                 finally:
                     if not re_init:
+                        record = get_run_record()
+                        if record and not record.get("end_time"):
+                            tick_active_time()
+                            record["end_time"] = datetime.now().isoformat()
+                            if not record.get("error"):
+                                record["error"] = "stopped"
+                            try:
+                                append_history(record)
+                            except Exception:
+                                pass
+                        set_run_record(None)
                         with self._lock:
                             self.running = False
                             logger_uma.info("[BOT] Stopped.")
@@ -908,6 +976,7 @@ if __name__ == "__main__":
     # Launch hotkey listener and server
     state = BotState()
     nav_state = NavState()
+    register_bot_bridge(state.start, state.stop, lambda: state.running)
     logger_uma.debug("[INIT] Spawning server thread…")
     srv_thread = threading.Thread(target=boot_server, daemon=True)
     srv_thread.start()

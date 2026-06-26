@@ -140,6 +140,28 @@ export async function saveConfig(cfg: any) {
   return res.json()
 }
 
+// --- Bot lifecycle ---
+export async function fetchBotStatus(): Promise<{ running: boolean }> {
+  const res = await fetch('/api/bot/status', { cache: 'no-store' })
+  if (!res.ok) throw new Error('Failed to fetch bot status')
+  return res.json()
+}
+
+export async function startBot(continueId?: string): Promise<void> {
+  const body = continueId ? { continue_id: continueId } : {}
+  const res = await fetch('/api/bot/start', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  })
+  if (!res.ok) throw new Error('Failed to start bot')
+}
+
+export async function stopBot(): Promise<void> {
+  const res = await fetch('/api/bot/stop', { method: 'POST' })
+  if (!res.ok) throw new Error('Failed to stop bot')
+}
+
 // Focused preset event_setup endpoints
 import type { EventSetup } from '@/types/events'
 

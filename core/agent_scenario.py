@@ -217,8 +217,12 @@ class AgentScenario(ABC):
 
     def _today_date_key(self) -> Optional[str]:
         di = getattr(self.lobby.state, "date_info", None)
-        if not di or di.month is None or (getattr(di, "half", None) not in (1, 2)):
+        if not di:
             return None
+        if di.year_code == 0:
+            return "Y0"
+        if di.month is None or (getattr(di, "half", None) not in (1, 2)):
+            return f"Y{di.year_code}"
         return f"Y{di.year_code}-{int(di.month):02d}-{int(di.half)}"
 
     def _schedule_planned_skip_release(self) -> None:

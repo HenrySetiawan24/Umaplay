@@ -5,14 +5,18 @@ _current_run: Optional[Dict[str, Any]] = None
 """Shared run record reference for the currently executing scenario.
 Set by BotState.start(), appended to by RaceFlow, finalized by agent on FinalScreen."""
 
+_abs_turn: int = 0
+"""Monotonically incrementing turn counter for absolute turn tracking."""
+
 
 def get() -> Optional[Dict[str, Any]]:
     return _current_run
 
 
 def set(record: Optional[Dict[str, Any]]) -> None:
-    global _current_run
+    global _current_run, _abs_turn
     _current_run = record
+    _abs_turn = 0 if record is None else len(record.get("turn_log") or [])
 
 
 def push_turn_log(
@@ -27,11 +31,14 @@ def push_turn_log(
     mood: Optional[str] = None,
     skill_pts: Optional[int] = None,
 ) -> None:
+    global _abs_turn
     record = _current_run
     if record is None or record.get("end_time"):
         return
+    _abs_turn += 1
     entry: Dict[str, Any] = {
         "turn": turn,
+        "abs_turn": _abs_turn,
         "date_key": date_key,
         "action": action,
     }

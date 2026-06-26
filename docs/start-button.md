@@ -104,10 +104,22 @@ Open:
     {"race_name": "Osaka Hai", "won": true, "turn": 32, "date_key": "Y3-03-2", "fans_after": 135000}
   ],
   "turn_log": [
-    {"turn": 1, "date_key": "Y1-06-2", "action": "to_training", "training_type": "SPD", "stats": {"SPD": 100, "STA": 90, "PWR": 80, "GUTS": 70, "WIT": 60}, "energy": 100, "mood": "GOOD", "skill_pts": 0}
+    {"abs_turn": 1, "turn": 48, "date_key": "Y0", "action": "to_training", "training_type": "SPD", ...},
+    {"abs_turn": 5, "turn": 44, "date_key": "Y1-07-1", "action": "to_race", ...},
+    {"abs_turn": 72, "turn": 0, "date_key": "Y3-12-2", "action": "completed", ...}
   ]
 }
 ```
+
+### Turn Log Improvements
+
+**Absolute turn (`abs_turn`)**: A monotonically incrementing counter (1, 2, 3, ...) stored on every `turn_log` entry. Managed by `run_context.py` — auto-increments in `push_turn_log()` and resets when a new run record is set. Shows clean sequential order regardless of the game's turn-remaining countdown.
+
+**Pre-debut date_key (`"Y0"`)**: When the lobby detects `year_code == 0` (pre-debut phase), `_today_date_key()` now returns `"Y0"` instead of `None`/`""`, so pre-debut turns are clearly labeled in the history.
+
+**Final season date_key (`"Y4"`)**: During the URA/Unity Cup Final Season (`year_code == 4`), the game's `DateInfo` has `month = None`, which previously caused `_today_date_key()` to return `None` → `""` in turn_log entries. Now it falls back to `f"Y{di.year_code}"` so the last ~3 URA turns get `date_key="Y4"` instead of an empty string. This aligns with `DateInfo.as_key()` (`core/utils/date_uma.py`).
+
+**Completed milestone**: When the scenario finishes (FinalScreen), a turn_log entry with `action: "completed"`, `turn: 0` and the final stats is pushed, marking the end of the run in the log.
 
 ## Win/Loss Detection Fix
 
@@ -186,10 +198,11 @@ If OCR fails to extract a placement number, `self._last_placement` remains `None
 | `server/run_history.py` | Added `get_record()`, `find_incomplete()` (checks `completed==False`); `append_history()` → upsert by id |
 | `server/main.py` | `/api/bot/*` + `/api/history/incomplete` routes |
 | `main.py` | `BotState.start(continue_id)`, `register()` call; clear `end_time` on continue |
-| `core/run_context.py` | Added `push_turn_log()`, `update_last_turn_log()`, `tick_active_time()` |
+| `core/run_context.py` | Added `push_turn_log()`, `update_last_turn_log()`, `tick_active_time()`, `_abs_turn` counter with auto-increment in `push_turn_log()` |
+| `core/agent_scenario.py` | `_today_date_key()` returns `"Y0"` for pre-debut phase |
 | `core/actions/race.py` | `_record_race_attempt()` extended with turn/date_key/fans; placement OCR (`_parse_placement()`, `_save_placement_debug()`) replacing TRY AGAIN polling for win/loss; `_last_placement` field; active time tracking via `tick_active_time()` |
-| `core/actions/ura/agent.py` | Turn log push + uma_name OCR in Lobby handler |
-| `core/actions/unity_cup/agent.py` | Turn log push + uma_name OCR in Lobby handler |
+| `core/actions/ura/agent.py` | Turn log push + uma_name OCR; completed milestone push on FinalScreen |
+| `core/actions/unity_cup/agent.py` | Turn log push + uma_name OCR; completed milestone push on FinalScreen |
 | `web/src/services/api.ts` | `fetchBotStatus()`, `startBot()`, `stopBot()` |
 | `web/src/services/historyApi.ts` | `fetchIncompleteHistory()`, extended `RaceAttempt`/`TurnLogEntry`/`RunRecord` types |
 | `web/src/components/common/BotControl.tsx` (new) | Start/Stop toggle + poll + continue dialog trigger |

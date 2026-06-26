@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 import {
   Box,
   Paper,
@@ -44,9 +44,14 @@ export default function RunHistory() {
   const [error, setError] = useState<string | null>(null)
   const [dialogRecord, setDialogRecord] = useState<RunRecord | null>(null)
   const [turnLogRecord, setTurnLogRecord] = useState<RunRecord | null>(null)
+  const scrollRef = useRef<HTMLDivElement | null>(null)
+  const scrollPosRef = useRef(0)
 
   const load = useCallback(async () => {
-    setLoading(true)
+    // Save scroll position before refresh
+    if (scrollRef.current) {
+      scrollPosRef.current = scrollRef.current.scrollTop
+    }
     setError(null)
     try {
       const data = await fetchHistory()
@@ -60,9 +65,14 @@ export default function RunHistory() {
 
   useEffect(() => { load() }, [load])
 
-  // auto-refresh every 5s
+  // auto-refresh every 5s; restore scroll after data settles
   useEffect(() => {
-    const id = setInterval(load, 5000)
+    const id = setInterval(async () => {
+      await load()
+      if (scrollRef.current) {
+        scrollRef.current.scrollTop = scrollPosRef.current
+      }
+    }, 5000)
     return () => clearInterval(id)
   }, [load])
 
@@ -130,7 +140,7 @@ export default function RunHistory() {
 
   return (
     <>
-      <TableContainer component={Paper} variant="outlined" sx={{ width: '100%' }}>
+      <TableContainer ref={scrollRef} component={Paper} variant="outlined" sx={{ width: '100%', overflow: 'auto' }}>
         <Table size="small">
           <TableHead>
             <TableRow>

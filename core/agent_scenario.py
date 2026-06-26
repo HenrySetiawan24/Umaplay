@@ -225,6 +225,36 @@ class AgentScenario(ABC):
             return f"Y{di.year_code}"
         return f"Y{di.year_code}-{int(di.month):02d}-{int(di.half)}"
 
+    def _turn_date_key(self) -> str:
+        """Return the best date key for turn logging.
+
+        Prefer a fully-qualified current date key, but if OCR only gives a year
+        (or nothing), reuse the latest full key for the same year from the
+        current run so the history stays aligned with the scheduler grid.
+        """
+        current = self._today_date_key()
+        if current in ("Y0", "Y4") or (current and "-" in current):
+            return current
+
+        year_prefix = current if current else None
+        try:
+            from core.run_context import get as get_run_record
+
+            record = get_run_record()
+            if record:
+                for entry in reversed(record.get("turn_log") or []):
+                    dk = entry.get("date_key")
+                    if not isinstance(dk, str) or not dk:
+                        continue
+                    if year_prefix and dk.startswith(f"{year_prefix}-"):
+                        return dk
+                    if year_prefix is None and dk:
+                        return dk
+        except Exception:
+            pass
+
+        return current or ""
+
     def _schedule_planned_skip_release(self) -> None:
         self._planned_skip_release_pending = True
         self._planned_skip_release_key = self._today_date_key()

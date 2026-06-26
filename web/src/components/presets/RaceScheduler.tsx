@@ -196,8 +196,8 @@ export default function RaceScheduler({ presetId }: { presetId: string; compact?
           onClick={() => !isDisabled && handleCellClick(year, month, half)}
           sx={{
             width: '100%',
-            minHeight: 160,
-            p: 0.75,
+            minHeight: 180,
+            p: 1,
             cursor: isDisabled ? 'default' : 'pointer',
             opacity: isDisabled ? 0.25 : 1,
             bgcolor: selected?.tentative ? 'warning.dark' : selected ? 'primary.dark' : 'background.paper',
@@ -205,12 +205,30 @@ export default function RaceScheduler({ presetId }: { presetId: string; compact?
             borderColor: selected ? 'primary.main' : 'divider',
             display: 'flex',
             flexDirection: 'column',
-            gap: 0.5,
-            '&:hover': isDisabled ? {} : { borderColor: selected ? 'primary.light' : 'text.secondary' },
+            gap: 0.75,
+            transition: 'border-color 120ms ease, transform 120ms ease',
+            '&:hover': isDisabled ? {} : {
+              borderColor: selected ? 'primary.light' : 'text.secondary',
+              transform: 'translateY(-1px)',
+            },
           }}
         >
           {selected && inst ? (
             <>
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 0.5, minWidth: 0 }}>
+                <Chip
+                  label={monthHalfLabel(month, half)}
+                  size="small"
+                  variant="outlined"
+                  sx={{ height: 20, fontSize: '0.6rem', flexShrink: 0 }}
+                />
+                <Chip
+                  label={selected.tentative ? 'Tentative' : 'Planned'}
+                  size="small"
+                  color={selected.tentative ? 'warning' : 'primary'}
+                  sx={{ height: 20, fontSize: '0.6rem', fontWeight: 700, flexShrink: 0 }}
+                />
+              </Box>
               {inst.public_banner_path && (
                 <Box
                   component="img"
@@ -261,11 +279,27 @@ export default function RaceScheduler({ presetId }: { presetId: string; compact?
               </Typography>
             </>
           ) : !isDisabled ? (
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 1 }}>
-              <Typography variant="body1" sx={{ color: 'text.disabled', fontSize: '1.2rem', lineHeight: 1 }}>
-                +
-              </Typography>
-            </Box>
+            <>
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 0.5 }}>
+                <Chip
+                  label={monthHalfLabel(month, half)}
+                  size="small"
+                  variant="outlined"
+                  sx={{ height: 20, fontSize: '0.6rem', flexShrink: 0 }}
+                />
+                <Chip
+                  label="Add race"
+                  size="small"
+                  variant="outlined"
+                  sx={{ height: 20, fontSize: '0.6rem', fontWeight: 700, flexShrink: 0 }}
+                />
+              </Box>
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 1, minHeight: 90 }}>
+                <Typography variant="body1" sx={{ color: 'text.disabled', fontSize: '1.2rem', lineHeight: 1 }}>
+                  +
+                </Typography>
+              </Box>
+            </>
           ) : null}
         </Paper>
         <Typography variant="caption" sx={{ fontSize: '0.6rem', color: 'text.secondary', whiteSpace: 'nowrap' }}>
@@ -392,7 +426,12 @@ export default function RaceScheduler({ presetId }: { presetId: string; compact?
             <Box
               sx={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(4, 1fr)',
+                gridTemplateColumns: {
+                  xs: '1fr',
+                  sm: 'repeat(2, minmax(0, 1fr))',
+                  md: 'repeat(3, minmax(0, 1fr))',
+                  lg: 'repeat(4, minmax(0, 1fr))',
+                },
                 gap: 1,
               }}
             >

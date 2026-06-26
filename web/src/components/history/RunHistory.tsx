@@ -121,23 +121,39 @@ export default function RunHistory() {
   }
 
   const fmtDuration = (record: RunRecord) => {
-    if (record.active_seconds != null && record.active_seconds > 0) {
-      const sec = Math.floor(record.active_seconds)
+    const formatSeconds = (seconds: number) => {
+      const sec = Math.floor(seconds)
       const min = Math.floor(sec / 60)
       const hr = Math.floor(min / 60)
       if (hr > 0) return `${hr}h ${min % 60}m ${sec % 60}s`
       if (min > 0) return `${min}m ${sec % 60}s`
       return `${sec}s`
     }
+
+    const periods = record.active_periods ?? []
+    if (periods.length > 0) {
+      let totalMs = 0
+      for (const period of periods) {
+        if (!period?.start_time) continue
+        const start = new Date(period.start_time).getTime()
+        if (Number.isNaN(start)) continue
+        const stop = period.stop_time
+          ? new Date(period.stop_time).getTime()
+          : (record.end_time ? new Date(record.end_time).getTime() : Date.now())
+        if (Number.isNaN(stop) || stop < start) continue
+        totalMs += stop - start
+      }
+      if (totalMs > 0) return formatSeconds(totalMs / 1000)
+    }
+
+    if (record.active_seconds != null && record.active_seconds > 0) {
+      return formatSeconds(record.active_seconds)
+    }
+
     if (!record.end_time) return '—'
     const ms = new Date(record.end_time).getTime() - new Date(record.start_time).getTime()
     if (ms < 0) return '—'
-    const sec = Math.floor(ms / 1000)
-    const min = Math.floor(sec / 60)
-    const hr = Math.floor(min / 60)
-    if (hr > 0) return `${hr}h ${min % 60}m ${sec % 60}s`
-    if (min > 0) return `${min}m ${sec % 60}s`
-    return `${sec}s`
+    return formatSeconds(ms / 1000)
   }
 
   return (

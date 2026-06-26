@@ -45,7 +45,7 @@ from core.utils.abort import request_abort, clear_abort
 from core.utils.event_processor import UserPrefs
 from core.utils.preset_overlay import show_preset_overlay
 from core.ui.scenario_prompt import choose_active_scenario, ScenarioSelectionCancelled
-from core.run_context import set as set_run_record, get as get_run_record, tick_active_time
+from core.run_context import set as set_run_record, get as get_run_record, start_active_interval, tick_active_time
 from server.run_history import append_history, get_record
 from server.bot_bridge import register as register_bot_bridge
 
@@ -316,7 +316,7 @@ class BotState:
             event_prefs = UserPrefs.from_config(cfg or {})
 
             # 6) Create (or continue) run record for history tracking
-            from datetime import datetime
+            from datetime import datetime, timedelta
             now = datetime.now()
 
             if continue_id:
@@ -329,7 +329,19 @@ class BotState:
                     run_record["uma_name"] = f"{preset_name} / {trainee_name}" if trainee_name else preset_name
                     run_record["error"] = None
                     run_record["end_time"] = None
-                    tick_active_time()
+                    if not run_record.get("active_periods") and (run_record.get("active_seconds") or 0) > 0:
+                        try:
+                            start_iso = run_record.get("start_time")
+                            start_dt = datetime.fromisoformat(start_iso) if start_iso else now
+                            resume_seconds = float(run_record.get("active_seconds") or 0)
+                            run_record["active_periods"] = [
+                                {
+                                    "start_time": start_dt.isoformat(),
+                                    "stop_time": (start_dt + timedelta(seconds=resume_seconds)).isoformat(),
+                                }
+                            ]
+                        except Exception:
+                            run_record["active_periods"] = []
                     logger_uma.info("[run_history] Continuing run %s (started %s)", continue_id, run_record.get("start_time"))
             if not continue_id or run_record is None:
                 run_record = {
@@ -349,9 +361,10 @@ class BotState:
                     "completed": False,
                     "error": None,
                     "races_attempted": [],
+                    "active_periods": [],
                 }
-                run_record["last_resume_at"] = now.isoformat()
             set_run_record(run_record)
+            start_active_interval()
             try:
                 append_history(run_record)
             except Exception:
@@ -454,6 +467,7 @@ class BotState:
                 logger_uma.info("[BOT] Not running.")
                 return
             logger_uma.info("[BOT] Stopping… (signal loop to exit)")
+            tick_active_time()
             request_abort()
             self.agent_scenario.is_running = False
             try:

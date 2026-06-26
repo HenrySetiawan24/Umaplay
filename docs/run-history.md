@@ -71,11 +71,50 @@ Simple JSON array alongside the other preference files (`config.json`, `nav.json
 
 | Field | Type | Source |
 |-------|------|--------|
-| `date_key` | str | `"Y2-07-1"` — in-game date from `_plan_race_today()` |
+| `date_key` | str | `"Y2-07-1"` — in-game date from the current turn/lobby state |
 | `race_name` | str | `"Hokkaido Race"` — canonical race name |
 | `won` | bool | True = no "TRY AGAIN" after race, False = loss/retry |
 | `finish_pos` | int \| null | OCR from results screen |
 | `fans_gained` | int \| null | OCR from results screen |
+
+### `date_key` mapping
+
+The run history uses the same year buckets as the race scheduler:
+
+```text
+Y0 = Pre-debut
+Y1 = Junior Year
+Y2 = Classic Year
+Y3 = Senior Year
+Y4 = Final Season / URA finale
+```
+
+For regular years, the preferred key format is:
+
+```text
+Y{year}-{MM}-{half}
+```
+
+Examples:
+
+```text
+Y1-01-1  Early Jan
+Y1-01-2  Late Jan
+Y2-07-1  Early Jul
+Y3-12-2  Late Dec
+```
+
+Fallback rules:
+
+- If month/half are missing, the bot reuses the latest known full date key for the same year when available.
+- If only the year is known, it stores `Y1` / `Y2` / `Y3` instead of an empty string.
+- If nothing is known, it still avoids blank keys when a previous same-year key exists in the current run.
+
+URA finale handling:
+
+- Final Season is stored as `Y4`.
+- It does not use month/half slots in the scheduler grid.
+- History cards for `Y4` are shown as final-season entries only.
 
 ---
 

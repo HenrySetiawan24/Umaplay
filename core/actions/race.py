@@ -836,15 +836,19 @@ class RaceFlow:
         if is_view_active and view_btn is not None:
             # Tap 'View Results' a couple times to clear residual screens
             self.ctrl.click_xyxy_center(view_btn["xyxy"], clicks=random.randint(1, 2))
-            time.sleep(random.uniform(3, 3.5))
-            self.ctrl.click_xyxy_center(view_btn["xyxy"], clicks=random.randint(3, 3))
-            time.sleep(random.uniform(0.3, 0.5))
-            # -- Placement OCR on leaderboard after View Results --
-            time.sleep(1.5)
-            img_vr, _ = self._collect("race_placement_vr")
-            raw = self.ocr.text(img_vr, min_conf=0.1)
-            self._last_placement = RaceFlow._parse_placement(raw)
-            RaceFlow._save_placement_debug(img_vr, raw, self._last_placement, "view_results")
+            if Settings.DETAILED_HISTORY:
+                time.sleep(random.uniform(3, 3.5))
+                self.ctrl.click_xyxy_center(view_btn["xyxy"], clicks=random.randint(3, 3))
+                time.sleep(random.uniform(0.3, 0.5))
+                # -- Placement OCR on leaderboard after View Results --
+                time.sleep(1.5)
+                img_vr, _ = self._collect("race_placement_vr")
+                raw = self.ocr.text(img_vr, min_conf=0.1)
+                self._last_placement = RaceFlow._parse_placement(raw)
+                RaceFlow._save_placement_debug(img_vr, raw, self._last_placement, "view_results")
+            else:
+                time.sleep(0.4)
+                self._last_placement = None
         else:
             # Click green 'RACE' (prefer bottom-most; OCR disambiguation if needed)
             if not self.waiter.click_when(
@@ -944,7 +948,7 @@ class RaceFlow:
                 time.sleep(0.12)
 
             # -- Placement OCR on leaderboard (only if we broke on NEXT, not CLOSE) --
-            if not closed_early:
+            if Settings.DETAILED_HISTORY and not closed_early:
                 img_pl, _ = self._collect("race_placement")
                 raw = self.ocr.text(img_pl, min_conf=0.1)
                 self._last_placement = RaceFlow._parse_placement(raw)
@@ -966,16 +970,17 @@ class RaceFlow:
         # Check if we loss — poll with retries to catch the button reliably
         clicked_try_again = False
         loss_indicator_seen = False
-        for _ in range(6):
-            if self.waiter.seen(
-                classes=("button_green",),
-                texts=("TRY AGAIN",),
-                tag="race_try_again_probe",
-                threshold=0.3,
-            ):
-                loss_indicator_seen = True
-                break
-            time.sleep(0.5)
+        if Settings.DETAILED_HISTORY:
+            for _ in range(6):
+                if self.waiter.seen(
+                    classes=("button_green",),
+                    texts=("TRY AGAIN",),
+                    tag="race_try_again_probe",
+                    threshold=0.3,
+                ):
+                    loss_indicator_seen = True
+                    break
+                time.sleep(0.5)
         if loss_indicator_seen:
             self._race_result_counters["loss_indicators"] += 1
             logger_uma.info(

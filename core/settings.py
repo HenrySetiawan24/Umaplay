@@ -164,6 +164,7 @@ class Settings:
     )
     FAST_MODE = False
     FAST_MODE_ENERGY_THRESHOLD = 35
+    DETAILED_HISTORY = True
     USE_FAST_OCR = True
     USE_GPU = True
     HINT_IS_IMPORTANT = False
@@ -301,6 +302,7 @@ class Settings:
         cls.FAST_MODE_ENERGY_THRESHOLD = int(
             g.get("fastModeEnergyThreshold", cls.FAST_MODE_ENERGY_THRESHOLD)
         )
+        cls.DETAILED_HISTORY = bool(g.get("detailedHistory", cls.DETAILED_HISTORY))
         cls.TRY_AGAIN_ON_FAILED_GOAL = bool(
             g.get("tryAgainOnFailedGoal", cls.TRY_AGAIN_ON_FAILED_GOAL)
         )

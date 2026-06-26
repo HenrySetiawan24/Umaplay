@@ -44,6 +44,7 @@ export interface GeneralConfig {
   adbDevice?: string
   fastMode: boolean
   fastModeEnergyThreshold?: number
+  detailedHistory: boolean
   tryAgainOnFailedGoal: boolean
   maxFailure: number
   acceptConsecutiveRace: boolean

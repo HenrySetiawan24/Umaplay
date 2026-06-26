@@ -574,7 +574,7 @@ class AgentUnityCup(AgentScenario):
 
                 # Set race context for attempt recording
                 self.race._current_turn = self.lobby.state.turn
-                self.race._current_date_key = self._today_date_key()
+                self.race._current_date_key = self._turn_date_key()
 
                 run_record = get_run_record()
                 outcome, reason = self.lobby.process_turn()
@@ -588,7 +588,7 @@ class AgentUnityCup(AgentScenario):
                         tt = "recreation" if "recreation" in (reason or "").lower() else "rest"
                     push_turn_log(
                         turn=self.lobby.state.turn,
-                        date_key=self._today_date_key() or "",
+                        date_key=self._turn_date_key(),
                         action=outcome.lower() if outcome else "unknown",
                         training_type=tt,
                         reason=reason,
@@ -640,7 +640,7 @@ class AgentUnityCup(AgentScenario):
                                     prioritize_g1=self.prioritize_g1,
                                     is_g1_goal=False,
                                     desired_race_name=desired_race_name,
-                                    date_key=self._today_date_key(),
+                                    date_key=self._turn_date_key(),
                                     reason=f"Planned race: {desired_race_name}",
                                 )
                             except ConsecutiveRaceRefused:
@@ -790,7 +790,7 @@ class AgentUnityCup(AgentScenario):
                         try:
                             push_turn_log(
                                 turn=self.lobby.state.turn or 0,
-                                date_key=self._today_date_key() or "",
+                                date_key=self._turn_date_key(),
                                 action="completed",
                                 stats=dict(self.lobby.state.stats) if self.lobby.state.stats else None,
                                 energy=self.lobby.state.energy,

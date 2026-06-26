@@ -292,6 +292,23 @@ export default function GeneralForm() {
 
         <Box>
           <Typography variant="body2" color="text.secondary" fontWeight={500} sx={{ mb: 0.5 }}>
+            <Tooltip title="When enabled, the bot spends extra time checking post-race results and placements." arrow>
+              <span>Detailed history</span>
+            </Tooltip>
+          </Typography>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={g.detailedHistory}
+                onChange={(e) => setGeneral({ detailedHistory: e.target.checked })}
+              />
+            }
+            label={g.detailedHistory ? 'Enabled' : 'Disabled'}
+          />
+        </Box>
+
+        <Box>
+          <Typography variant="body2" color="text.secondary" fontWeight={500} sx={{ mb: 0.5 }}>
             <Tooltip title="When enabled, the bot will immediately retry a failed goal race using an alarm clock. Disable to always continue without retrying." arrow>
               <span>Try again on failed goal</span>
             </Tooltip>

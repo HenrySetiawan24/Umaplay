@@ -8,6 +8,11 @@ export interface RaceAttempt {
   fans_after?: number
 }
 
+export interface ActivePeriod {
+  start_time: string
+  stop_time: string | null
+}
+
 export interface TurnLogEntry {
   turn: number
   date_key: string
@@ -28,6 +33,7 @@ export interface RunRecord {
   start_date: string
   start_time: string
   active_seconds?: number
+  active_periods?: ActivePeriod[]
   end_time: string | null
   final_turn: number | null
   final_stats: Record<string, number> | null

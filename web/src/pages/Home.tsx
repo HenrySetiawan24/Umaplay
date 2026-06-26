@@ -1,10 +1,11 @@
-import { Container, Stack, Box, Tabs, Tab, Paper, Chip } from '@mui/material'
+import { Container, Stack, Box, Tabs, Tab, Paper, useTheme, useMediaQuery } from '@mui/material'
 import GeneralForm from '@/components/general/GeneralForm'
 import SaveLoadBar from '@/components/common/SaveLoadBar'
 import { useEffect, useRef, useState } from 'react'
 import { useConfigStore } from '@/store/configStore'
 import { useNavPrefsStore } from '@/store/navPrefsStore'
-import PresetsShell from '@/components/presets/PresetsShell'
+import PresetsTabs from '@/components/presets/PresetsTabs'
+import { PresetSettingsSection, PresetStrategySection, PresetEventSection, PresetSkillsSchedulerSection, PresetRaceSchedulerSection } from '@/components/presets/PresetPanel'
 import ShopPrefs from '@/components/nav/ShopPrefs'
 import TeamTrialsPrefs from '@/components/nav/TeamTrialsPrefs'
 import RunHistory from '@/components/history/RunHistory'
@@ -13,9 +14,10 @@ import BotControl from '@/components/common/BotControl'
 export default function Home() {
   const saveLocal = useConfigStore((s) => s.saveLocal)
   const config = useConfigStore((s) => s.config)
-  const getActivePreset = useConfigStore((s) => s.getActivePreset)
-  const collapsed = useConfigStore((s) => s.uiGeneralCollapsed)
-  const [tab, setTab] = useState<'scenario' | 'shop' | 'team_trials' | 'history'>('scenario')
+  const theme = useTheme()
+  const isWide = useMediaQuery(theme.breakpoints.up(1400))
+  const isMd = useMediaQuery(theme.breakpoints.up('md'))
+  const [tab, setTab] = useState<'scenario' | 'daily_trials' | 'history'>('scenario')
   const configLoadedRef = useRef(false)
 
   useEffect(() => {
@@ -37,10 +39,8 @@ export default function Home() {
     return () => clearTimeout(t)
   }, [config, saveLocal])
 
-  const { preset: activePreset } = getActivePreset()
-
   return (
-    <Container maxWidth="xl" sx={{ py: 4, px: { xs: 2, sm: 3 } }}>
+    <Container maxWidth={false} sx={{ py: 4, px: { xs: 2, sm: 3 } }}>
       <Stack spacing={3}>
         <Paper
           elevation={1}
@@ -106,8 +106,7 @@ export default function Home() {
             indicatorColor="primary"
           >
             <Tab value="scenario" label="Scenario setup" />
-            <Tab value="shop" label="Shop preferences" />
-            <Tab value="team_trials" label="Team Trials" />
+            <Tab value="daily_trials" label="Daily &amp; Trials setup" />
             <Tab value="history" label="Run History" />
           </Tabs>
           <BotControl />
@@ -119,63 +118,46 @@ export default function Home() {
             sx={{
               display: 'grid',
               gap: 3,
-              gridTemplateColumns: {
-                xs: '1fr',
-                md: collapsed ? '1fr' : 'minmax(360px, 480px) minmax(0, 1fr)',
-                lg: collapsed ? '1fr' : 'minmax(400px, 520px) minmax(0, 1fr)',
-              },
+              gridTemplateColumns: isWide
+                ? { xs: '1fr', md: 'minmax(300px, 420px) minmax(420px, 2fr) minmax(360px, 2fr)' }
+                : { xs: '1fr', md: '1fr 1fr' },
               alignItems: 'start',
               '& > .col': { minWidth: 0, width: '100%' },
             }}
           >
-            <Box className="col">
+            {/* Column 1 (xs: General+Tabs+Settings+Strategy+Skills; medium: General+Tabs+Skills; wide: General+Tabs) */}
+            <Box className="col" sx={{
+              gridColumn: { xs: '1 / -1', md: 1 },
+            }}>
               <Stack spacing={3}>
                 <GeneralForm />
+                <PresetsTabs />
+                {!isMd && <PresetSettingsSection />}
+                {!isMd && <PresetStrategySection />}
+                {!isWide && <PresetSkillsSchedulerSection />}
               </Stack>
             </Box>
 
-            <Box className="col">
+            {/* Column 2 (wide only): Settings + Skills */}
+            {isWide && (
+              <Box className="col">
+                <Stack spacing={3}>
+                  <PresetSettingsSection />
+                  <PresetSkillsSchedulerSection />
+                </Stack>
+              </Box>
+            )}
+
+            {/* Column 2/3 (medium: Preset+Strategy+Event+RaceSched; wide: Strategy+Event+RaceSched) */}
+            <Box className="col" sx={{
+              gridColumn: { xs: '1 / -1', md: isWide ? 3 : 2 },
+            }}>
               <Stack spacing={3}>
-                {activePreset && (
-                  <Chip
-                    color="primary"
-                    variant="filled"
-                    icon={<span style={{ width: 10, height: 10, borderRadius: '50%', background: '#ffffff', display: 'inline-block' }} />}
-                    label={`Active preset: ${activePreset.name || 'Unnamed preset'}`}
-                    sx={{
-                      alignSelf: 'flex-start',
-                      fontWeight: 600,
-                      px: 2,
-                      py: 0.75,
-                      height: 36,
-                      borderRadius: 2.5,
-                      boxShadow: (theme) => 
-                        theme.palette.mode === 'dark'
-                          ? `0 2px 8px ${theme.palette.primary.main}66`
-                          : `0 2px 8px ${theme.palette.primary.main}44`,
-                      bgcolor: (theme) => 
-                        theme.palette.mode === 'dark'
-                          ? theme.palette.primary.dark
-                          : theme.palette.primary.main,
-                      color: '#ffffff',
-                      border: (theme) => 
-                        theme.palette.mode === 'dark'
-                          ? `1px solid ${theme.palette.primary.main}`
-                          : 'none',
-                      '& .MuiChip-icon': {
-                        color: '#ffffff',
-                        ml: 0,
-                        mr: 1,
-                      },
-                      '& .MuiChip-label': {
-                        px: 0,
-                        fontSize: { xs: 13, sm: 14 },
-                        color: '#ffffff',
-                      },
-                    }}
-                  />
-                )}
-                <PresetsShell compact={collapsed} />
+                {isMd && !isWide && <PresetSettingsSection />}
+                {isMd && !isWide && <PresetStrategySection />}
+                {isWide && <PresetStrategySection />}
+                <PresetEventSection />
+                <PresetRaceSchedulerSection />
               </Stack>
             </Box>
           </Box>
@@ -184,13 +166,14 @@ export default function Home() {
             <SaveLoadBar />
           </Stack>
         </Box>
-        <Box sx={{ display: tab === 'shop' ? 'flex' : 'none', justifyContent: 'center' }}>
-          <Box sx={{ width: '100%', maxWidth: 540 }}>
+        <Box sx={{ display: tab === 'daily_trials' ? 'block' : 'none' }}>
+          <Box sx={{
+            display: 'grid',
+            gap: 3,
+            gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
+            alignItems: 'start',
+          }}>
             <ShopPrefs />
-          </Box>
-        </Box>
-        <Box sx={{ display: tab === 'team_trials' ? 'flex' : 'none', justifyContent: 'center' }}>
-          <Box sx={{ width: '100%', maxWidth: 540 }}>
             <TeamTrialsPrefs />
           </Box>
         </Box>

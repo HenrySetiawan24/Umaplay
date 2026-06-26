@@ -1,10 +1,14 @@
 import { useConfigStore } from '@/store/configStore'
-import { Box, Divider, IconButton, Menu, MenuItem, Stack, Tab, Tabs, TextField, Tooltip, Typography } from '@mui/material'
+import {
+  Box, ButtonBase, Divider, IconButton, Menu, MenuItem, Stack, TextField, Tooltip, Typography,
+  useTheme, alpha,
+} from '@mui/material'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import AddIcon from '@mui/icons-material/Add'
 import DownloadIcon from '@mui/icons-material/Download'
 import UploadIcon from '@mui/icons-material/Upload'
+import Section from '@/components/common/Section'
 import { useCallback, useMemo, useState } from 'react'
 import { presetSchema } from '@/models/config.schema'
 import { openJsonFile } from '@/services/file'
@@ -16,6 +20,7 @@ const normalizeScenario = (value?: string | null): 'ura' | 'unity_cup' =>
 const GROUP_COLORS = ['#42a5f5', '#ab47bc', '#26a69a', '#ffa726', '#ec407a', '#7e57c2', '#66bb6a', '#ff7043'] as const
 
 export default function PresetsTabs() {
+  const theme = useTheme()
   const uiScenarioKey = useConfigStore((s) => s.uiScenarioKey)
   const uiSelectedPresetId = useConfigStore((s) => s.uiSelectedPresetId)
   const generalActiveScenario = useConfigStore((s) => s.config.general?.activeScenario)
@@ -223,7 +228,8 @@ export default function PresetsTabs() {
   // Cleaner: expose an injection to add exact preset
   ;(window as any)._uma_addPreset = (p: Preset) => appendPreset(p)
   return (
-    <Stack spacing={1}>
+    <Section title="Preset Selector" sx={{ width: '100%', maxWidth: 'none' }}>
+      <Stack spacing={1.5}>
       {groupNames.length > 0 && (
         <Stack spacing={0.5}>
           <Stack direction="row" spacing={0.5} alignItems="center" sx={{ flexWrap: 'wrap' }}>
@@ -289,112 +295,117 @@ export default function PresetsTabs() {
         </Stack>
       )}
 
-      <Typography variant="caption" color="text.secondary">
-        Tip: Right-click a tab to create or rename groups. Drag tabs between groups to rearrange. Press the 'chip' to filter by only that group (you can combine multiple).
+      <Typography variant="caption" color="text.secondary" sx={{ mb: 0.5 }}>
+        Right-click a name to create or rename groups. Drag names between groups to rearrange.
       </Typography>
 
-      <Stack direction="row" alignItems="center" spacing={1} sx={{ flexWrap: 'wrap' }}>
-        <Tabs
-          value={selectedId ?? false}
-          onChange={(_, v) => typeof v === 'string' ? setSelectedPresetId(v) : undefined}
-          variant="scrollable"
-          scrollButtons="auto"
-          TabIndicatorProps={{ sx: { transition: 'transform 140ms ease-out !important' } }}
-          sx={{
-            flex: 1,
-            minHeight: 44,
-            '& .MuiTabs-indicator': {
-              transition: 'transform 140ms ease-out, width 140ms ease-out !important',
-            },
-          }}
-        >
-          {visiblePresets.map((p) => {
-            const color = p.group ? groupColors[p.group] : undefined
-            return (
-              <Tab
-                key={p.id}
-                value={p.id}
-                label={
-                  editingId === p.id ? (
-                    <TextField
-                      size="small"
-                      value={p.name}
-                      onChange={(e) => renamePreset(p.id, e.target.value)}
-                      onBlur={() => setEditingId(null)}
-                      onKeyDown={(e) => e.key === 'Enter' && setEditingId(null)}
-                      autoFocus
-                    />
-                  ) : (
-                    p.name + (p.id === activeId ? ' • Active' : '')
-                  )
-                }
-                onDoubleClick={() => setEditingId(p.id)}
-                draggable
-                onDragStart={() => setDraggingId(p.id)}
-                onDragEnd={() => setDraggingId((prev) => (prev === p.id ? null : prev))}
-                onDragOver={(e) => {
-                  if (draggingId && draggingId !== p.id) e.preventDefault()
-                }}
-                onDrop={(e) => {
-                  e.preventDefault()
-                  handleDropOnTab(p.id)
-                }}
-                onContextMenu={(e) => handleOpenGroupMenu(e, p.id)}
-                sx={{
-                  textTransform: 'none',
-                  fontWeight: p.id === selectedId ? 600 : 400,
-                  ...(color
-                    ? {
-                        '&.Mui-selected': {
-                          color: 'text.primary',
-                        },
-                        '&::after': {
-                          content: '""',
-                          position: 'absolute',
-                          left: 12,
-                          right: 12,
-                          bottom: 4,
-                          height: 3,
-                          borderRadius: 999,
-                          backgroundColor: color,
-                          opacity: p.id === selectedId ? 1 : 0.5,
-                        },
-                      }
-                    : {}),
-                }}
-              />
-            )
-          })}
-        </Tabs>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+        {visiblePresets.map((p) => {
+          const color = p.group ? groupColors[p.group] : undefined
+          const isSelected = p.id === selectedId
+          return (
+            <ButtonBase
+              key={p.id}
+              onClick={() => setSelectedPresetId(p.id)}
+              onDoubleClick={() => setEditingId(p.id)}
+              draggable
+              onDragStart={() => setDraggingId(p.id)}
+              onDragEnd={() => setDraggingId((prev) => (prev === p.id ? null : prev))}
+              onDragOver={(e) => {
+                if (draggingId && draggingId !== p.id) e.preventDefault()
+              }}
+              onDrop={(e) => {
+                e.preventDefault()
+                handleDropOnTab(p.id)
+              }}
+              onContextMenu={(e) => handleOpenGroupMenu(e, p.id)}
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                width: '100%',
+                px: 1.5,
+                py: 0.75,
+                borderRadius: 1.5,
+                textAlign: 'left',
+                bgcolor: isSelected ? alpha(theme.palette.primary.main, 0.08) : 'transparent',
+                transition: 'background-color 120ms',
+                '&:hover': {
+                  bgcolor: isSelected ? alpha(theme.palette.primary.main, 0.12) : alpha(theme.palette.action.hover, 0.5),
+                },
+              }}
+            >
+              {editingId === p.id ? (
+                <TextField
+                  size="small"
+                  value={p.name}
+                  onChange={(e) => renamePreset(p.id, e.target.value)}
+                  onBlur={() => setEditingId(null)}
+                  onKeyDown={(e) => e.key === 'Enter' && setEditingId(null)}
+                  autoFocus
+                  sx={{ width: '100%' }}
+                  onClick={(e) => e.stopPropagation()}
+                />
+              ) : (
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, width: '100%', minWidth: 0 }}>
+                  <Box sx={{ flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    <Typography variant="body2" fontWeight={isSelected ? 600 : 400} noWrap>
+                      {p.name}
+                    </Typography>
+                    {color && (
+                      <Box component="span" sx={{ ml: 0.75, typography: 'caption', color }}>
+                        {p.group}
+                      </Box>
+                    )}
+                  </Box>
+                  {p.id === activeId && (
+                    <Box sx={{
+                      fontSize: 10, fontWeight: 700, px: 0.75, py: 0.25, borderRadius: 1,
+                      bgcolor: alpha(theme.palette.primary.main, 0.1),
+                      color: 'primary.main',
+                      lineHeight: 1.4,
+                    }}>
+                      Active
+                    </Box>
+                  )}
+                  {color && (
+                    <Box sx={{
+                      width: 8, height: 8, borderRadius: '50%', flexShrink: 0,
+                      bgcolor: color,
+                    }} />
+                  )}
+                </Box>
+              )}
+            </ButtonBase>
+          )
+        })}
+      </Box>
 
+      {/* Compact action toolbar */}
+      <Stack direction="row" spacing={0.5} sx={{ flexWrap: 'wrap' }}>
         <Tooltip title="Add preset">
-          <IconButton onClick={addPreset}><AddIcon /></IconButton>
+          <IconButton onClick={addPreset} size="small"><AddIcon fontSize="small" /></IconButton>
         </Tooltip>
-
         <Tooltip title="Copy preset">
           <span>
-            <IconButton disabled={!selected} onClick={() => selected && copyPreset(selected.id)}>
-              <ContentCopyIcon />
+            <IconButton disabled={!selected} onClick={() => selected && copyPreset(selected.id)} size="small">
+              <ContentCopyIcon fontSize="small" />
             </IconButton>
           </span>
         </Tooltip>
-
         <Tooltip title="Delete preset">
           <span>
-            <IconButton disabled={!selected} onClick={() => selected && deletePreset(selected.id)}>
-              <DeleteOutlineIcon />
+            <IconButton disabled={!selected} onClick={() => selected && deletePreset(selected.id)} size="small">
+              <DeleteOutlineIcon fontSize="small" />
             </IconButton>
           </span>
         </Tooltip>
-
-        {/* Per-preset share/import */}
         <Tooltip title="Export this preset">
           <span>
-            <IconButton disabled={!selected} onClick={exportPreset}><DownloadIcon /></IconButton>
+            <IconButton disabled={!selected} onClick={exportPreset} size="small"><DownloadIcon fontSize="small" /></IconButton>
           </span>
         </Tooltip>
         <Tooltip title="Import preset (adds as new)">
-          <IconButton onClick={importPreset}><UploadIcon /></IconButton>
+          <IconButton onClick={importPreset} size="small"><UploadIcon fontSize="small" /></IconButton>
         </Tooltip>
       </Stack>
       <Menu
@@ -438,6 +449,7 @@ export default function PresetsTabs() {
           Remove from group
         </MenuItem>
       </Menu>
-    </Stack>
-  )
+        </Stack>
+      </Section>
+    )
 }

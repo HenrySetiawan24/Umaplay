@@ -191,7 +191,7 @@ export default function RaceScheduler({ presetId }: { presetId: string; compact?
     const badge = inst ? BADGE_ICON[inst.rank] : null
 
     return (
-      <Box key={dk} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.25 }}>
+      <Box key={dk} sx={{ display: 'flex', flexDirection: 'column', gap: 0.25, width: '100%', minWidth: 0 }}>
         <Paper
           onClick={() => !isDisabled && handleCellClick(year, month, half)}
           sx={{

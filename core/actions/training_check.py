@@ -212,8 +212,39 @@ def scan_training_screen(
         if idx not in visit_order:
             visit_order.append(idx)
 
+    # HIGH-FAILURE ABORT check — if the raised tile (Phase 2) already exceeds
+    # MAX_FAILURE, skip straight to WIT before clicking anything in Phase 3.
+    _high_fail_abort = False
+    if (
+        not Settings.FAST_MODE
+        and len(results) >= 1
+        and results[0].get("failure_pct", 0) > Settings.MAX_FAILURE
+    ):
+        wit_idx = len(scan) - 1
+        if wit_idx not in processed:
+            if wit_idx in visit_order:
+                visit_order.remove(wit_idx)
+                visit_order.insert(0, wit_idx)
+            _high_fail_abort = True
+            logger_uma.info(
+                "[TrainingCheck] Raised tile exceeds MAX_FAILURE (%d > %d), "
+                "prioritizing WIT for quick check",
+                results[0].get("failure_pct", 0), Settings.MAX_FAILURE,
+            )
+        else:
+            # WIT already scanned (was the raised tile itself) — return early
+            logger_uma.info(
+                "[TrainingCheck] Raised tile (WIT) exceeds MAX_FAILURE, returning early"
+            )
+            results = reindex_left_to_right(results)
+            return results, cur_img, cur_parsed
+
     for idx in visit_order:
         if idx in processed:
+            continue
+
+        # HIGH-FAILURE ABORT: skip non-WIT tiles until we reach WIT
+        if _high_fail_abort and idx != len(scan) - 1:
             continue
 
         tile = scan[idx]
@@ -256,6 +287,38 @@ def scan_training_screen(
         }
         results.append(tile_record)
         processed.add(eff_idx)
+
+        # HIGH-FAILURE ABORT: if we just scanned WIT in abort mode, return early
+        if _high_fail_abort and idx == len(scan) - 1:
+            logger_uma.info(
+                "[TrainingCheck] High-failure abort: scanned WIT, returning early"
+            )
+            results = reindex_left_to_right(results)
+            return results, cur_img, cur_parsed
+
+        # HIGH-FAILURE TRIGGER: first clicked tile exceeds MAX_FAILURE
+        if (
+            not _high_fail_abort
+            and not Settings.FAST_MODE
+            and len([r for r in results if not r.get("skipped_click", False)]) == 1
+            and results[-1].get("failure_pct", 0) > Settings.MAX_FAILURE
+        ):
+            wit_idx = len(scan) - 1
+            if wit_idx in processed or eff_idx == wit_idx:
+                # WIT already in results — no need to scan anything else
+                logger_uma.info(
+                    "[TrainingCheck] First tile high failure (%d%%), WIT already on file, returning early",
+                    results[-1].get("failure_pct", 0),
+                )
+                results = reindex_left_to_right(results)
+                return results, cur_img, cur_parsed
+            else:
+                _high_fail_abort = True
+                logger_uma.info(
+                    "[TrainingCheck] First tile high failure (%d%%), checking WIT next then returning early",
+                    results[-1].get("failure_pct", 0),
+                )
+                continue
 
         # -------- FAST_MODE: Greedy short-circuit --------
         if Settings.FAST_MODE:

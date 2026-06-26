@@ -34,6 +34,7 @@ dev_utils/*
 !dev_utils/recursive_context_ts.py
 dev.ipynb
 debug
+debug_notebook
 runs
 
 datasets/coco8/**

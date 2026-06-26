@@ -13,7 +13,6 @@ import { Info as InfoIcon } from '@mui/icons-material'
 import Section from '@/components/common/Section'
 import { useConfigStore } from '@/store/configStore'
 import type { Preset } from '@/models/types'
-import FieldRow from '@/components/common/FieldRow'
 
 export interface StrategyComponentProps {
   preset: Preset
@@ -129,20 +128,19 @@ export default function UraStrategy({ preset }: StrategyComponentProps) {
                   </Stack>
                 }
               />
-              <FieldRow
-                label="Pre-check SV threshold"
-                info="Skip races or infirmary if max training SV meets or exceeds this value during lobby pre-check."
-                control={
-                  <TextField
-                    fullWidth
-                    size="small"
-                    type="number"
-                    inputProps={{ min: 0, step: 0.1, style: { paddingRight: '12px' } }}
-                    value={preset.racePrecheckSv ?? ''}
-                    onChange={(e) => handleNumberChange('racePrecheckSv', e.target.value)}
-                  />
-                }
-              />
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+                <Typography variant="body2" color="text.secondary" fontWeight={500}>
+                  Pre-check SV threshold
+                </Typography>
+                <TextField
+                  fullWidth
+                  size="small"
+                  type="number"
+                  inputProps={{ min: 0, step: 0.1, style: { paddingRight: '12px' } }}
+                  value={preset.racePrecheckSv ?? ''}
+                  onChange={(e) => handleNumberChange('racePrecheckSv', e.target.value)}
+                />
+              </Box>
             </Box>
 
             <Box
@@ -161,20 +159,19 @@ export default function UraStrategy({ preset }: StrategyComponentProps) {
               <Typography variant="subtitle2" color="text.secondary">
                 Training fallbacks
               </Typography>
-              <FieldRow
-                label="Weak turn SV threshold"
-                info="If the best allowed training SV is below this value. Bot could skip training and either: rest, race (if enabled), etc."
-                control={
-                  <TextField
-                    fullWidth
-                    size="small"
-                    type="number"
-                    inputProps={{ min: 0, step: 0.1, style: { paddingRight: '12px' } }}
-                    value={preset.weakTurnSv ?? ''}
-                    onChange={(e) => handleNumberChange('weakTurnSv', e.target.value)}
-                  />
-                }
-              />
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+                <Typography variant="body2" color="text.secondary" fontWeight={500}>
+                  Weak turn SV threshold
+                </Typography>
+                <TextField
+                  fullWidth
+                  size="small"
+                  type="number"
+                  inputProps={{ min: 0, step: 0.1, style: { paddingRight: '12px' } }}
+                  value={preset.weakTurnSv ?? ''}
+                  onChange={(e) => handleNumberChange('weakTurnSv', e.target.value)}
+                />
+              </Box>
             </Box>
           </Box>
         </Stack>

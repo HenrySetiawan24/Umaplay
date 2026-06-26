@@ -1,17 +1,13 @@
 import {
-  Accordion, AccordionDetails, AccordionSummary,
   FormControlLabel, MenuItem, Select, Slider, Box, Stack, Switch, TextField, Typography, Button, Snackbar, Alert,
-  Tooltip, IconButton, Avatar, ToggleButton, ToggleButtonGroup,
+  Avatar, ToggleButton, ToggleButtonGroup,
   Dialog,
   DialogTitle,
   DialogContent,
   DialogActions,
-  Link,
+  Link, Tooltip,
 } from '@mui/material'
-import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft'
-import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight'
 import Section from '@/components/common/Section'
-import FieldRow from '@/components/common/FieldRow'
 import { useConfigStore } from '@/store/configStore'
 import AdvancedSettings from './AdvancedSettings'
 import { checkUpdate, forceUpdate, getVersion, updateFromGithub } from '@/services/api'
@@ -23,8 +19,6 @@ export default function GeneralForm() {
   const setUiTheme = useConfigStore((s) => s.setUiTheme)
   const setScenario = useConfigStore((s) => s.setScenario)
   const g = config.general
-  const collapsed = useConfigStore((s) => s.uiGeneralCollapsed)
-  const setCollapsed = useConfigStore((s) => s.setGeneralCollapsed)
   const [updating, setUpdating] = useState(false)
   const [snack, setSnack] = useState<{open:boolean; msg:string; severity:'success'|'error'}>({open:false,msg:'',severity:'success'})
   const [update, setUpdate] = useState<{is_update_available:boolean; latest?:string; html_url?:string} | null>(null)
@@ -61,103 +55,85 @@ export default function GeneralForm() {
           </Button>
         </Alert>
       )}
-      <Accordion
-        elevation={0}
-        expanded={!collapsed}
-        onChange={(_, expanded) => setCollapsed(!expanded)}
-        sx={{ border: (t) => `1px solid ${t.palette.divider}`, borderRadius: 1 }}
-      >
-        <AccordionSummary sx={{ '& .MuiAccordionSummary-content': { m: 0 } }}>
-          <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ width: '100%' }}>
-            <Typography variant="h6">General configurations</Typography>
-            <Tooltip title={collapsed ? 'Expand' : 'Collapse'} placement="left">
-              <IconButton component="span" size="small" onClick={() => setCollapsed(!collapsed)}>
-                {collapsed ? (
-                  <KeyboardDoubleArrowRightIcon fontSize="small" />
-                ) : (
-                  <KeyboardDoubleArrowLeftIcon fontSize="small" />
-                )}
-
-              </IconButton>
-            </Tooltip>
-          </Stack>
-        </AccordionSummary>
-        <AccordionDetails>
+      <Box sx={{ border: (t) => `1px solid ${t.palette.divider}`, borderRadius: 1, p: 2 }}>
+        <Typography variant="h6" sx={{ mb: 1.5 }}>General configurations</Typography>
       <Stack spacing={1}>
-        <FieldRow
-          label="UI Theme"
-          control={
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={uiTheme === 'dark'}
-                  onChange={(e) => setUiTheme(e.target.checked ? 'dark' : 'light')}
-                />
-              }
-              label={uiTheme === 'dark' ? 'Dark' : 'Light'}
-            />
-          }
-          info="Toggle dark/light mode for this configuration UI. (Does not affect in-game visuals.)"
-        />
-        <FieldRow
-          label="Active scenario"
-          control={
-            <ToggleButtonGroup
-              size="small"
-              exclusive
-              value={g.activeScenario}
-              onChange={(_, value) => value && setScenario(value)}
-              sx={{
-                '& .MuiToggleButton-root': {
-                  px: 1.5,
-                  py: 0.75,
-                  textTransform: 'none',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 0.5,
-                  borderRadius: 1,
-                  borderColor: 'transparent',
-                },
-                '& .MuiToggleButton-root.Mui-selected': {
-                  backgroundColor: 'primary.main',
-                  color: 'primary.contrastText',
-                  borderColor: 'primary.main',
-                },
-                '& .MuiToggleButton-root.Mui-selected:hover': {
-                  backgroundColor: 'primary.main',
-                },
-              }}
+        <Box>
+          <Typography variant="body2" color="text.secondary" fontWeight={500} sx={{ mb: 0.5 }}>
+            <Tooltip title="Toggle dark/light mode for this configuration UI. (Does not affect in-game visuals.)" arrow>
+              <span>UI Theme</span>
+            </Tooltip>
+          </Typography>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={uiTheme === 'dark'}
+                onChange={(e) => setUiTheme(e.target.checked ? 'dark' : 'light')}
+              />
+            }
+            label={uiTheme === 'dark' ? 'Dark' : 'Light'}
+          />
+        </Box>
+        <Box>
+          <Typography variant="body2" color="text.secondary" fontWeight={500} sx={{ mb: 0.5 }}>
+            <Tooltip title="Select which training scenario the runtime will execute. Event presets still manage their own scenario preferences in the Presets → Events section." arrow>
+              <span>Active scenario</span>
+            </Tooltip>
+          </Typography>
+          <ToggleButtonGroup
+            size="small"
+            exclusive
+            value={g.activeScenario}
+            onChange={(_, value) => value && setScenario(value)}
+            sx={{
+              '& .MuiToggleButton-root': {
+                px: 1.5,
+                py: 0.75,
+                textTransform: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 0.5,
+                borderRadius: 1,
+                borderColor: 'transparent',
+              },
+              '& .MuiToggleButton-root.Mui-selected': {
+                backgroundColor: 'primary.main',
+                color: 'primary.contrastText',
+                borderColor: 'primary.main',
+              },
+              '& .MuiToggleButton-root.Mui-selected:hover': {
+                backgroundColor: 'primary.main',
+              },
+            }}
+          >
+            <ToggleButton
+              value="ura"
+              aria-label="URA scenario"
+              onClick={() => setScenario('ura')}
             >
-              <ToggleButton
-                value="ura"
-                aria-label="URA scenario"
-                onClick={() => setScenario('ura')}
-              >
-                <Box
-                  component="img"
-                  src="/scenarios/ura_icon.png"
-                  alt="URA"
-                  sx={{ width: 20, height: 20, borderRadius: 1 }}
-                />
-                <span>URA</span>
-              </ToggleButton>
-              <ToggleButton
-                value="unity_cup"
-                aria-label="Unity Cup scenario"
-                onClick={() => setScenario('unity_cup')}
-              >
-                <Box
-                  component="img"
-                  src="/scenarios/unity_cup_icon.png"
-                  alt="Unity Cup"
-                  sx={{ width: 20, height: 20, borderRadius: 1 }}
-                />
-                <span>Unity Cup</span>
-              </ToggleButton>
-            </ToggleButtonGroup>
-          }
-          info="Select which training scenario the runtime will execute. Event presets still manage their own scenario preferences in the Presets → Events section."
-        />
+              <Box
+                component="img"
+                src="/scenarios/ura_icon.png"
+                alt="URA"
+                sx={{ width: 20, height: 20, borderRadius: 1 }}
+              />
+              <span>URA</span>
+            </ToggleButton>
+            <ToggleButton
+              value="unity_cup"
+              aria-label="Unity Cup scenario"
+              onClick={() => setScenario('unity_cup')}
+            >
+              <Box
+                component="img"
+                src="/scenarios/unity_cup_icon.png"
+                alt="Unity Cup"
+                sx={{ width: 20, height: 20, borderRadius: 1 }}
+              />
+              <span>Unity Cup</span>
+            </ToggleButton>
+          </ToggleButtonGroup>
+        </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, ml: { xs: 0, sm: '72px' } }}>
           <Box sx={{ width: 10, height: 10, borderRadius: 0.5, bgcolor: 'primary.main' }} />
           <Typography variant="caption" color="text.secondary">
@@ -166,198 +142,208 @@ export default function GeneralForm() {
         </Box>
 
 
-        <FieldRow
-          label="Mode"
-          control={
-            <Select
-              size="small"
-              value={g.mode}
-              onChange={(e) => setGeneral({ mode: e.target.value as any })}
-              renderValue={(val) => {
-                const m = val as 'steam' | 'scrcpy' | 'bluestack' | 'adb'
-                return (
-                  <Stack direction="row" spacing={1} alignItems="center">
-                    <Avatar
-                      variant="rounded"
-                      src={MODE_ICON[m]}
-                      alt={m}
-                      sx={{ width: 20, height: 20 }}
-                    />
-                    <span style={{ textTransform: 'none' }}>{m}</span>
-                  </Stack>
-                )
-              }}
-            >
-              {(['steam', 'scrcpy', 'bluestack', 'adb'] as const).map((m) => (
-                <MenuItem key={m} value={m}>
-                  <Stack direction="row" spacing={1} alignItems="center">
-                    <Avatar
-                      variant="rounded"
-                      src={MODE_ICON[m]}
-                      alt={m}
-                      sx={{ width: 20, height: 20 }}
-                    />
-                    <span style={{ textTransform: 'none' }}>{m}</span>
-                  </Stack>
-                </MenuItem>
-              ))}
-            </Select>
-          }
-          info="Select the platform/controller the agent should target. Steam mode works on Windows and Linux (via Wine)."
-        />
+        <Box>
+          <Typography variant="body2" color="text.secondary" fontWeight={500} sx={{ mb: 0.5 }}>
+            <Tooltip title="Select the platform/controller the agent should target. Steam mode works on Windows and Linux (via Wine)." arrow>
+              <span>Mode</span>
+            </Tooltip>
+          </Typography>
+          <Select
+            size="small"
+            value={g.mode}
+            onChange={(e) => setGeneral({ mode: e.target.value as any })}
+            renderValue={(val) => {
+              const m = val as 'steam' | 'scrcpy' | 'bluestack' | 'adb'
+              return (
+                <Stack direction="row" spacing={1} alignItems="center">
+                  <Avatar
+                    variant="rounded"
+                    src={MODE_ICON[m]}
+                    alt={m}
+                    sx={{ width: 20, height: 20 }}
+                  />
+                  <span style={{ textTransform: 'none' }}>{m}</span>
+                </Stack>
+              )
+            }}
+          >
+            {(['steam', 'scrcpy', 'bluestack', 'adb'] as const).map((m) => (
+              <MenuItem key={m} value={m}>
+                <Stack direction="row" spacing={1} alignItems="center">
+                  <Avatar
+                    variant="rounded"
+                    src={MODE_ICON[m]}
+                    alt={m}
+                    sx={{ width: 20, height: 20 }}
+                  />
+                  <span style={{ textTransform: 'none' }}>{m}</span>
+                </Stack>
+              </MenuItem>
+            ))}
+          </Select>
+        </Box>
 
         {g.mode === 'scrcpy' && (
-          <FieldRow
-            label="Window title"
-            control={
-              <TextField
-                size="small"
-                value={g.windowTitle}
-                onChange={(e) => setGeneral({ windowTitle: e.target.value })}
-                placeholder="Your scrcpy device title (e.g. 23117RA68G)"
-              />
-            }
-            info="Exact (or unique substring) of the SCRCPY window title to focus and capture."
-          />
+          <Box>
+            <Typography variant="body2" color="text.secondary" fontWeight={500} sx={{ mb: 0.5 }}>
+              <Tooltip title="Exact (or unique substring) of the SCRCPY window title to focus and capture." arrow>
+                <span>Window title</span>
+              </Tooltip>
+            </Typography>
+            <TextField
+              size="small"
+              value={g.windowTitle}
+              onChange={(e) => setGeneral({ windowTitle: e.target.value })}
+              placeholder="Your scrcpy device title (e.g. 23117RA68G)"
+            />
+          </Box>
         )}
 
         {g.mode === 'adb' && (
-          <FieldRow
-            label="ADB device"
-            control={
-              <TextField
-                size="small"
-                value={g.adbDevice ?? 'localhost:5555'}
-                onChange={(e) => setGeneral({ adbDevice: e.target.value })}
-                placeholder="localhost:5555"
-              />
-            }
-            info="ADB device identifier (e.g., localhost:5555). The bot will auto-connect when starting."
-          />
+          <Box>
+            <Typography variant="body2" color="text.secondary" fontWeight={500} sx={{ mb: 0.5 }}>
+              <Tooltip title="ADB device identifier (e.g., localhost:5555). The bot will auto-connect when starting." arrow>
+                <span>ADB device</span>
+              </Tooltip>
+            </Typography>
+            <TextField
+              size="small"
+              value={g.adbDevice ?? 'localhost:5555'}
+              onChange={(e) => setGeneral({ adbDevice: e.target.value })}
+              placeholder="localhost:5555"
+            />
+          </Box>
         )}
 
         {g.mode === 'bluestack' && (
           <>
-            <FieldRow
-              label="Use ADB (no mouse control)"
-              control={
-                <FormControlLabel
-                  control={
-                    <Switch
-                      checked={g.useAdb ?? false}
-                      onChange={(e) => setGeneral({ useAdb: e.target.checked })}
-                    />
-                  }
-                  label={g.useAdb ? 'Enabled' : 'Disabled'}
-                />
-              }
-              info="Use ADB commands instead of mouse control. Requires ADB installed and BlueStacks ADB enabled."
-            />
-            {g.useAdb && (
-              <FieldRow
-                label="ADB device"
+            <Box>
+              <Typography variant="body2" color="text.secondary" fontWeight={500} sx={{ mb: 0.5 }}>
+                <Tooltip title="Use ADB commands instead of mouse control. Requires ADB installed and BlueStacks ADB enabled." arrow>
+                  <span>Use ADB (no mouse control)</span>
+                </Tooltip>
+              </Typography>
+              <FormControlLabel
                 control={
-                  <TextField
-                    size="small"
-                    value={g.adbDevice ?? 'localhost:5555'}
-                    onChange={(e) => setGeneral({ adbDevice: e.target.value })}
-                    placeholder="localhost:5555"
+                  <Switch
+                    checked={g.useAdb ?? false}
+                    onChange={(e) => setGeneral({ useAdb: e.target.checked })}
                   />
                 }
-                info="ADB device identifier (e.g., localhost:5555)."
+                label={g.useAdb ? 'Enabled' : 'Disabled'}
               />
+            </Box>
+            {g.useAdb && (
+              <Box>
+                <Typography variant="body2" color="text.secondary" fontWeight={500} sx={{ mb: 0.5 }}>
+                  <Tooltip title="ADB device identifier (e.g., localhost:5555)." arrow>
+                    <span>ADB device</span>
+                  </Tooltip>
+                </Typography>
+                <TextField
+                  size="small"
+                  value={g.adbDevice ?? 'localhost:5555'}
+                  onChange={(e) => setGeneral({ adbDevice: e.target.value })}
+                  placeholder="localhost:5555"
+                />
+              </Box>
             )}
           </>
         )}
 
-        <FieldRow
-          label="Fast mode"
-          control={
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={g.fastMode}
-                  onChange={(e) => setGeneral({ fastMode: e.target.checked })}
-                />
-              }
-              label={g.fastMode ? 'Enabled' : 'Disabled'}
-            />
-          }
-          info="Lower-latency settings (might reduce accuracy in edge cases)."
-        />
+        <Box>
+          <Typography variant="body2" color="text.secondary" fontWeight={500} sx={{ mb: 0.5 }}>
+            <Tooltip title="Lower-latency settings (might reduce accuracy in edge cases)." arrow>
+              <span>Fast mode</span>
+            </Tooltip>
+          </Typography>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={g.fastMode}
+                onChange={(e) => setGeneral({ fastMode: e.target.checked })}
+              />
+            }
+            label={g.fastMode ? 'Enabled' : 'Disabled'}
+          />
+        </Box>
 
         {g.fastMode && (
-          <FieldRow
-            label="Fast mode energy threshold"
-            info="When energy drops below this %, skip all training tiles except WIT."
-            control={
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Slider
-                  value={g.fastModeEnergyThreshold ?? 35}
-                  onChange={(_, v) => setGeneral({ fastModeEnergyThreshold: Number(v) })}
-                  min={0}
-                  max={100}
-                  sx={{ flex: 1 }}
-                />
-                <Typography variant="body2" sx={{ width: 32, textAlign: 'right' }}>
-                  {g.fastModeEnergyThreshold ?? 35}%
-                </Typography>
-              </Box>
-            }
-          />
-        )}
-
-        <FieldRow
-          label="Try again on failed goal"
-          control={
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={g.tryAgainOnFailedGoal}
-                  onChange={(e) => setGeneral({ tryAgainOnFailedGoal: e.target.checked })}
-                />
-              }
-              label={g.tryAgainOnFailedGoal ? 'Enabled' : 'Disabled'}
-            />
-          }
-          info="When enabled, the bot will immediately retry a failed goal race using an alarm clock. Disable to always continue without retrying."
-        />
-
-        {/* Moved to per-preset Strategy section: prioritizeHint */}
-        <FieldRow
-          label="Max Failure %"
-          info="Upper bound for allowed failure% on a tile."
-          control={
+          <Box>
+            <Typography variant="body2" color="text.secondary" fontWeight={500} sx={{ mb: 0.5 }}>
+              <Tooltip title="When energy drops below this %, skip all training tiles except WIT." arrow>
+                <span>Fast mode energy threshold</span>
+              </Tooltip>
+            </Typography>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <Slider
-                value={g.maxFailure}
-                onChange={(_, v) => setGeneral({ maxFailure: Number(v) })}
+                value={g.fastModeEnergyThreshold ?? 35}
+                onChange={(_, v) => setGeneral({ fastModeEnergyThreshold: Number(v) })}
                 min={0}
-                max={99}
+                max={100}
                 sx={{ flex: 1 }}
               />
               <Typography variant="body2" sx={{ width: 32, textAlign: 'right' }}>
-                {g.maxFailure}
+                {g.fastModeEnergyThreshold ?? 35}%
               </Typography>
             </Box>
-          }
-        />
+          </Box>
+        )}
 
-        <FieldRow
-          label="Accept consecutive race"
-          control={
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={g.acceptConsecutiveRace}
-                  onChange={(e) => setGeneral({ acceptConsecutiveRace: e.target.checked })}
-                />
-              }
-              label={g.acceptConsecutiveRace ? 'Enabled' : 'Disabled'}
+        <Box>
+          <Typography variant="body2" color="text.secondary" fontWeight={500} sx={{ mb: 0.5 }}>
+            <Tooltip title="When enabled, the bot will immediately retry a failed goal race using an alarm clock. Disable to always continue without retrying." arrow>
+              <span>Try again on failed goal</span>
+            </Tooltip>
+          </Typography>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={g.tryAgainOnFailedGoal}
+                onChange={(e) => setGeneral({ tryAgainOnFailedGoal: e.target.checked })}
+              />
+            }
+            label={g.tryAgainOnFailedGoal ? 'Enabled' : 'Disabled'}
+          />
+        </Box>
+
+        {/* Moved to per-preset Strategy section: prioritizeHint */}
+        <Box>
+          <Typography variant="body2" color="text.secondary" fontWeight={500} sx={{ mb: 0.5 }}>
+            <Tooltip title="Upper bound for allowed failure% on a tile." arrow>
+              <span>Max Failure %</span>
+            </Tooltip>
+          </Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Slider
+              value={g.maxFailure}
+              onChange={(_, v) => setGeneral({ maxFailure: Number(v) })}
+              min={0}
+              max={99}
+              sx={{ flex: 1 }}
             />
-          }
-          info="Allows back-to-back racing when conditions are met."
-        />
+            <Typography variant="body2" sx={{ width: 32, textAlign: 'right' }}>
+              {g.maxFailure}
+            </Typography>
+          </Box>
+        </Box>
+
+        <Box>
+          <Typography variant="body2" color="text.secondary" fontWeight={500} sx={{ mb: 0.5 }}>
+            <Tooltip title="Allows back-to-back racing when conditions are met." arrow>
+              <span>Accept consecutive race</span>
+            </Tooltip>
+          </Typography>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={g.acceptConsecutiveRace}
+                onChange={(e) => setGeneral({ acceptConsecutiveRace: e.target.checked })}
+              />
+            }
+            label={g.acceptConsecutiveRace ? 'Enabled' : 'Disabled'}
+          />
+        </Box>
 
         <AdvancedSettings />
 
@@ -461,8 +447,7 @@ export default function GeneralForm() {
           </Alert>
         </Snackbar>
       </Stack>
-        </AccordionDetails>
-      </Accordion>
+      </Box>
     </Section>
   )
 }

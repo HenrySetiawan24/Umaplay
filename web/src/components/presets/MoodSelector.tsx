@@ -42,7 +42,7 @@ export default function MoodSelector({ presetId }: { presetId: string }) {
         sx={{
           display: 'grid',
           gap: 1.5,
-          gridTemplateColumns: { xs: '1fr', md: '1fr auto' },
+          gridTemplateColumns: '1fr',
           alignItems: 'start',
         }}
       >
@@ -76,7 +76,7 @@ export default function MoodSelector({ presetId }: { presetId: string }) {
             border: theme => `1px solid ${theme.palette.divider}`,
             borderRadius: 2,
             p: 1,
-            minWidth: { xs: '100%', md: 220 },
+            minWidth: '100%',
             bgcolor: 'background.default',
           }}
         >

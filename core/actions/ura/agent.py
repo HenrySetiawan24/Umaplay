@@ -22,13 +22,15 @@ from core.agent_scenario import AgentScenario
 from core.settings import Settings
 from core.utils.logger import logger_uma
 from core.utils.text import fuzzy_contains
+from core.constants import DEFAULT_TILE_TO_TYPE
 from core.utils.training_policy_utils import click_training_tile
 from core.utils.waiter import PollConfig, Waiter
 from core.actions.race import ConsecutiveRaceRefused
 from core.utils.abort import abort_requested
 from core.utils.event_processor import UserPrefs
-from core.run_context import get as get_run_record
+from core.run_context import get as get_run_record, push_turn_log, update_last_turn_log, tick_active_time
 from server.run_history import append_history
+from core.utils.geometry import crop_pil
 import re
 
 class AgentURA(AgentScenario):
@@ -431,7 +433,33 @@ class AgentURA(AgentScenario):
                 self.patience = 0
                 self.claw_turn = 0
                 self._iterations_turn += 1
+
+                # Set race context for attempt recording
+                self.race._current_turn = self.lobby.state.turn
+                self.race._current_date_key = self._today_date_key()
+
+                run_record = get_run_record()
                 outcome, reason = self.lobby.process_turn()
+
+                # Push turn log
+                if run_record is not None and not run_record.get("end_time"):
+                    # Determine if rest or recreation
+                    tt = None
+                    if outcome == "TO_TRAINING":
+                        tt = reason
+                    elif outcome == "RESTED":
+                        tt = "recreation" if "recreation" in (reason or "").lower() else "rest"
+                    push_turn_log(
+                        turn=self.lobby.state.turn,
+                        date_key=self._today_date_key() or "",
+                        action=outcome.lower() if outcome else "unknown",
+                        training_type=tt,
+                        reason=reason,
+                        stats=dict(self.lobby.state.stats) if self.lobby.state.stats else None,
+                        energy=self.lobby.state.energy,
+                        mood=self.lobby.state.mood[0] if self.lobby.state.mood else None,
+                        skill_pts=self.lobby.state.skill_pts,
+                    )
                 # outcome = "TO_TRAINING"
                 # self.lobby._go_training_screen_from_lobby(img, dets)
                 # sleep(1)
@@ -600,6 +628,7 @@ class AgentURA(AgentScenario):
                     run_record = get_run_record()
                     if run_record is not None and not run_record.get("end_time"):
                         from datetime import datetime
+                        tick_active_time()
                         run_record["end_time"] = datetime.now().isoformat()
                         run_record["final_turn"] = self.lobby.state.turn
                         run_record["final_stats"] = dict(self.lobby.state.stats)
@@ -680,6 +709,7 @@ class AgentURA(AgentScenario):
                     "[training] Failed to click training tile idx=%s", tidx
                 )
                 return
+            update_last_turn_log(training_type=DEFAULT_TILE_TO_TYPE.get(int(tidx), str(tidx)))
             # Optional slow-path: after landing on a hint tile, defer re-check until back in lobby
             supports_for_recheck: List[Dict[str, Any]] = []
             try:

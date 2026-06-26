@@ -218,7 +218,7 @@ def scan_training_screen(
     if (
         not Settings.FAST_MODE
         and len(results) >= 1
-        and results[0].get("failure_pct", 0) > Settings.MAX_FAILURE
+        and results[0].get("failure_pct", 0) >= Settings.MAX_FAILURE
     ):
         wit_idx = len(scan) - 1
         if wit_idx not in processed:
@@ -301,7 +301,7 @@ def scan_training_screen(
             not _high_fail_abort
             and not Settings.FAST_MODE
             and len([r for r in results if not r.get("skipped_click", False)]) == 1
-            and results[-1].get("failure_pct", 0) > Settings.MAX_FAILURE
+            and results[-1].get("failure_pct", 0) >= Settings.MAX_FAILURE
         ):
             wit_idx = len(scan) - 1
             if wit_idx in processed or eff_idx == wit_idx:

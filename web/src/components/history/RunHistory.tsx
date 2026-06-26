@@ -17,8 +17,10 @@ import {
 } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 import VisibilityIcon from '@mui/icons-material/Visibility'
-import { fetchHistory, deleteHistory, type RunRecord } from '@/services/historyApi'
+import TimelineIcon from '@mui/icons-material/Timeline'
+import { fetchHistory, deleteHistory, type RunRecord, type TurnLogEntry } from '@/services/historyApi'
 import RaceHistoryDialog from './RaceHistoryDialog'
+import TurnLogDialog from './TurnLogDialog'
 
 const statusChip = (record: RunRecord) => {
   if (record.completed) return <Chip label="Completed" color="success" size="small" variant="outlined" />
@@ -27,11 +29,21 @@ const statusChip = (record: RunRecord) => {
   return <Chip label="Running?" color="info" size="small" variant="outlined" />
 }
 
+const countTraining = (log: TurnLogEntry[] | undefined) =>
+  (log ?? []).filter(e => e.action === 'to_training' || e.action === 'training_ready').length
+
+const countRest = (log: TurnLogEntry[] | undefined) =>
+  (log ?? []).filter(e => e.action === 'rested' && e.training_type !== 'recreation').length
+
+const countRecreation = (log: TurnLogEntry[] | undefined) =>
+  (log ?? []).filter(e => e.action === 'rested' && e.training_type === 'recreation').length
+
 export default function RunHistory() {
   const [records, setRecords] = useState<RunRecord[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [dialogRecord, setDialogRecord] = useState<RunRecord | null>(null)
+  const [turnLogRecord, setTurnLogRecord] = useState<RunRecord | null>(null)
 
   const load = useCallback(async () => {
     setLoading(true)
@@ -47,6 +59,12 @@ export default function RunHistory() {
   }, [])
 
   useEffect(() => { load() }, [load])
+
+  // auto-refresh every 5s
+  useEffect(() => {
+    const id = setInterval(load, 5000)
+    return () => clearInterval(id)
+  }, [load])
 
   const handleDelete = async (id: string) => {
     try {
@@ -90,9 +108,17 @@ export default function RunHistory() {
     return d.toLocaleString()
   }
 
-  const fmtDuration = (start: string, end: string | null) => {
-    if (!end) return '—'
-    const ms = new Date(end).getTime() - new Date(start).getTime()
+  const fmtDuration = (record: RunRecord) => {
+    if (record.active_seconds != null && record.active_seconds > 0) {
+      const sec = Math.floor(record.active_seconds)
+      const min = Math.floor(sec / 60)
+      const hr = Math.floor(min / 60)
+      if (hr > 0) return `${hr}h ${min % 60}m ${sec % 60}s`
+      if (min > 0) return `${min}m ${sec % 60}s`
+      return `${sec}s`
+    }
+    if (!record.end_time) return '—'
+    const ms = new Date(record.end_time).getTime() - new Date(record.start_time).getTime()
     if (ms < 0) return '—'
     const sec = Math.floor(ms / 1000)
     const min = Math.floor(sec / 60)
@@ -118,6 +144,7 @@ export default function RunHistory() {
               <TableCell sx={{ fontWeight: 700, fontSize: '0.85rem', py: 1.5 }} align="right">Turn</TableCell>
               <TableCell sx={{ fontWeight: 700, fontSize: '0.85rem', py: 1.5 }}>Status</TableCell>
               <TableCell sx={{ fontWeight: 700, fontSize: '0.85rem', py: 1.5 }} align="center">Races</TableCell>
+              <TableCell sx={{ fontWeight: 700, fontSize: '0.85rem', py: 1.5 }} align="center">Actions</TableCell>
               <TableCell sx={{ fontWeight: 700, fontSize: '0.85rem', py: 1.5 }} align="center" />
             </TableRow>
           </TableHead>
@@ -131,7 +158,7 @@ export default function RunHistory() {
                   {fmtTime(record.end_time)}
                 </TableCell>
                 <TableCell sx={{ whiteSpace: 'nowrap' }}>
-                  {fmtDuration(record.start_time, record.end_time)}
+                  {fmtDuration(record)}
                 </TableCell>
                 <TableCell>
                   <Chip label={record.scenario} size="small" variant="outlined" />
@@ -154,6 +181,31 @@ export default function RunHistory() {
                     {record.races_attempted.length}
                   </Typography>
                 </TableCell>
+                <TableCell align="center">
+                  <Box sx={{ display: 'flex', gap: 0.5, justifyContent: 'center' }}>
+                    <Chip
+                      label={`T${countTraining(record.turn_log)}`}
+                      size="small"
+                      color="primary"
+                      variant="outlined"
+                      sx={{ height: 18, fontSize: '0.6rem' }}
+                    />
+                    <Chip
+                      label={`R${countRest(record.turn_log)}`}
+                      size="small"
+                      color="warning"
+                      variant="outlined"
+                      sx={{ height: 18, fontSize: '0.6rem' }}
+                    />
+                    <Chip
+                      label={`C${countRecreation(record.turn_log)}`}
+                      size="small"
+                      color="secondary"
+                      variant="outlined"
+                      sx={{ height: 18, fontSize: '0.6rem' }}
+                    />
+                  </Box>
+                </TableCell>
                 <TableCell align="center" sx={{ whiteSpace: 'nowrap' }}>
                   <Tooltip title="View races">
                     <IconButton
@@ -162,6 +214,15 @@ export default function RunHistory() {
                       disabled={record.races_attempted.length === 0}
                     >
                       <VisibilityIcon fontSize="small" />
+                    </IconButton>
+                  </Tooltip>
+                  <Tooltip title="View turn log">
+                    <IconButton
+                      size="small"
+                      onClick={() => setTurnLogRecord(record)}
+                      disabled={!record.turn_log || record.turn_log.length === 0}
+                    >
+                      <TimelineIcon fontSize="small" />
                     </IconButton>
                   </Tooltip>
                   <Tooltip title="Delete">
@@ -179,6 +240,11 @@ export default function RunHistory() {
         open={dialogRecord !== null}
         record={dialogRecord}
         onClose={() => setDialogRecord(null)}
+      />
+      <TurnLogDialog
+        open={turnLogRecord !== null}
+        record={turnLogRecord}
+        onClose={() => setTurnLogRecord(null)}
       />
     </>
   )

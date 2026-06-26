@@ -13,6 +13,7 @@ from core.utils.race_index import RaceIndex
 from PIL import Image
 import cv2
 import json
+import re
 from pathlib import Path
 from dataclasses import dataclass
 from enum import Enum
@@ -83,6 +84,38 @@ class RaceFlow:
         self._waiting_for_manual_retry_decision = False
         self._last_failure_reason: RaceFailureReason = RaceFailureReason.NONE
         self._last_race_name: Optional[str] = None
+        self._current_turn: Optional[int] = None
+        self._current_date_key: Optional[str] = None
+        self._last_placement: Optional[int] = None
+
+    @staticmethod
+    def _parse_placement(text: str) -> Optional[int]:
+        m = re.search(r'\[(\d+)(?:st|nd|rd|th)\]', text)
+        if m: return int(m.group(1))
+        m = re.search(r'(\d+)(?:st|nd|rd|th)\s+PL', text)
+        if m: return int(m.group(1))
+        m = re.search(r'(\d+)(?:st|nd|rd|th)', text)
+        if m: return int(m.group(1))
+        return None
+
+    @staticmethod
+    def _save_placement_debug(pil_img: Image.Image, raw_text: str, placement: Optional[int], source: str) -> None:
+        if not Settings.STORE_FOR_TRAINING:
+            return
+        import os, time
+        try:
+            ts = time.strftime("%Y%m%d-%H%M%S") + f"_{int((time.time() % 1) * 1000):03d}"
+            base_dir = Settings.DEBUG_DIR / "race" / "placement"
+            os.makedirs(base_dir, exist_ok=True)
+            label = str(placement) if placement is not None else "unknown"
+            stem = f"{source}_{ts}_{label}"
+            pil_img.save(base_dir / f"{stem}.png")
+            with open(base_dir / f"{stem}.txt", "w", encoding="utf-8") as f:
+                f.write(f"placement={placement}\n")
+                f.write(f"source={source}\n")
+                f.write(f"raw_text={raw_text}\n")
+        except Exception as e:
+            logger_uma.debug("[placement_debug] save failed: %s", e)
 
     def _ensure_in_raceday(
         self, *, reason: str | None = None, from_raceday=False
@@ -725,17 +758,28 @@ class RaceFlow:
     # --------------------------
     # Run history helper
     # --------------------------
-    def _record_race_attempt(self, won: bool) -> None:
+    def _record_race_attempt(self, won: bool, turn: Optional[int] = None, date_key: Optional[str] = None, fans_before: Optional[int] = None, fans_after: Optional[int] = None) -> None:
         try:
             record = get_run_record()
             if record is None or record.get("end_time"):
                 return
             from datetime import datetime
-            record.setdefault("races_attempted", []).append({
+            entry: Dict[str, Any] = {
                 "race_name": self._last_race_name or "unknown",
                 "won": won,
                 "timestamp": datetime.now().isoformat(),
-            })
+            }
+            t = turn if turn is not None else self._current_turn
+            dk = date_key if date_key is not None else self._current_date_key
+            if t is not None:
+                entry["turn"] = t
+            if dk is not None:
+                entry["date_key"] = dk
+            if fans_before is not None:
+                entry["fans_before"] = fans_before
+            if fans_after is not None:
+                entry["fans_after"] = fans_after
+            record.setdefault("races_attempted", []).append(entry)
             append_history(record)
         except Exception:
             logger_uma.debug("[run_history] _record_race_attempt failed", exc_info=True)
@@ -795,6 +839,12 @@ class RaceFlow:
             time.sleep(random.uniform(3, 3.5))
             self.ctrl.click_xyxy_center(view_btn["xyxy"], clicks=random.randint(3, 3))
             time.sleep(random.uniform(0.3, 0.5))
+            # -- Placement OCR on leaderboard after View Results --
+            time.sleep(1.5)
+            img_vr, _ = self._collect("race_placement_vr")
+            raw = self.ocr.text(img_vr, min_conf=0.1)
+            self._last_placement = RaceFlow._parse_placement(raw)
+            RaceFlow._save_placement_debug(img_vr, raw, self._last_placement, "view_results")
         else:
             # Click green 'RACE' (prefer bottom-most; OCR disambiguation if needed)
             if not self.waiter.click_when(
@@ -893,6 +943,15 @@ class RaceFlow:
                     continue
                 time.sleep(0.12)
 
+            # -- Placement OCR on leaderboard (only if we broke on NEXT, not CLOSE) --
+            if not closed_early:
+                img_pl, _ = self._collect("race_placement")
+                raw = self.ocr.text(img_pl, min_conf=0.1)
+                self._last_placement = RaceFlow._parse_placement(raw)
+                RaceFlow._save_placement_debug(img_pl, raw, self._last_placement, "skip_loop")
+            else:
+                self._last_placement = None
+
             if not closed_early:
                 logger_uma.debug("[race] Looking for CLOSE button.")
                 self.waiter.click_when(
@@ -904,15 +963,19 @@ class RaceFlow:
                     tag="race_trophy",
                 )
 
-        # Check if we loss
-        time.sleep(1)
+        # Check if we loss — poll with retries to catch the button reliably
         clicked_try_again = False
-        loss_indicator_seen = self.waiter.seen(
-            classes=("button_green",),
-            texts=("TRY AGAIN",),
-            tag="race_try_again_probe",
-            threshold=0.3,
-        )
+        loss_indicator_seen = False
+        for _ in range(6):
+            if self.waiter.seen(
+                classes=("button_green",),
+                texts=("TRY AGAIN",),
+                tag="race_try_again_probe",
+                threshold=0.3,
+            ):
+                loss_indicator_seen = True
+                break
+            time.sleep(0.5)
         if loss_indicator_seen:
             self._race_result_counters["loss_indicators"] += 1
             logger_uma.info(
@@ -1003,7 +1066,13 @@ class RaceFlow:
             # )
 
             logger_uma.info("[race] RaceDay flow finished.")
-            self._record_race_attempt(won=not loss_indicator_seen)
+            if self._last_placement is not None:
+                won_race = (self._last_placement == 1)
+                logger_uma.debug("[race] Placement-based win=%s (placement=%d)", won_race, self._last_placement)
+            else:
+                won_race = not loss_indicator_seen
+                logger_uma.debug("[race] Fallback win=%s (loss_indicator=%s)", won_race, loss_indicator_seen)
+            self._record_race_attempt(won=won_race)
             return True
 
     # --------------------------

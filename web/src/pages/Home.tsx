@@ -8,6 +8,7 @@ import PresetsShell from '@/components/presets/PresetsShell'
 import ShopPrefs from '@/components/nav/ShopPrefs'
 import TeamTrialsPrefs from '@/components/nav/TeamTrialsPrefs'
 import RunHistory from '@/components/history/RunHistory'
+import BotControl from '@/components/common/BotControl'
 
 export default function Home() {
   const saveLocal = useConfigStore((s) => s.saveLocal)
@@ -54,13 +55,15 @@ export default function Home() {
                 : 'linear-gradient(to bottom, #ffffff 0%, #fafafa 100%)',
           }}
         >
-          <Tabs
-            value={tab}
-            onChange={(_, next) => setTab(next)}
-            variant="scrollable"
-            scrollButtons="auto"
-            sx={{
-              px: { xs: 1, sm: 2 },
+          <Box sx={{ display: 'flex', alignItems: 'center', pr: { xs: 1, sm: 2 } }}>
+            <Tabs
+              value={tab}
+              onChange={(_, next) => setTab(next)}
+              variant="scrollable"
+              scrollButtons="auto"
+              sx={{
+                flex: 1,
+                px: { xs: 1, sm: 2 },
               '& .MuiTab-root': {
                 minHeight: 56,
                 textTransform: 'uppercase',
@@ -107,6 +110,8 @@ export default function Home() {
             <Tab value="team_trials" label="Team Trials" />
             <Tab value="history" label="Run History" />
           </Tabs>
+          <BotControl />
+          </Box>
         </Paper>
 
         <Box sx={{ display: tab === 'scenario' ? 'block' : 'none' }}>

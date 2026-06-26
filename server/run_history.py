@@ -40,3 +40,16 @@ def delete_history(record_id: str) -> bool:
     with open(HISTORY_PATH, "w", encoding="utf-8") as f:
         json.dump(records, f, indent=2)
     return True
+
+
+def get_record(record_id: str) -> Optional[Dict[str, Any]]:
+    records = load_history()
+    for r in records:
+        if r.get("id") == record_id:
+            return r
+    return None
+
+
+def find_incomplete() -> List[Dict[str, Any]]:
+    records = load_history()
+    return [r for r in records if not r.get("completed", False)]

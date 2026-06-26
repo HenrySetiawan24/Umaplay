@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react'
 import {
   Dialog,
   DialogTitle,
@@ -50,6 +51,21 @@ export default function TurnLogDialog({
   record: RunRecord | null
   onClose: () => void
 }) {
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const scrollPosRef = useRef(0)
+
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      scrollPosRef.current = scrollRef.current.scrollTop
+    }
+  }
+
+  useEffect(() => {
+    if (open && scrollRef.current) {
+      scrollRef.current.scrollTop = scrollPosRef.current
+    }
+  })
+
   if (!record) return null
   const log = record.turn_log ?? []
 
@@ -67,7 +83,7 @@ export default function TurnLogDialog({
             No turn log data recorded.
           </Typography>
         ) : (
-          <TableContainer component={Paper} variant="outlined" sx={{ maxHeight: 500 }}>
+          <TableContainer ref={scrollRef} onScroll={handleScroll} component={Paper} variant="outlined" sx={{ maxHeight: 500 }}>
             <Table size="small" stickyHeader>
               <TableHead>
                 <TableRow>

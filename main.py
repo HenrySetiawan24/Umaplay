@@ -300,6 +300,16 @@ class BotState:
             # 4) Extract preset-specific runtime opts (skill_list / plan_races / select_style)
             preset_opts = Settings.extract_runtime_preset(cfg or {})
 
+            # 4b) Also grab the full preset dict for record-keeping (name, trainee)
+            _, _, full_preset = Settings._get_active_preset_from_config(cfg or {})
+            if full_preset:
+                preset_name = full_preset.get("name", "Unnamed")
+                trainee_name = full_preset.get("trainee", {})
+                trainee_name = trainee_name.get("name") if isinstance(trainee_name, dict) else None
+            else:
+                preset_name = "Unnamed"
+                trainee_name = None
+
             # 5) Build event prefs from config (active preset). If malformed/missing,
             #    UserPrefs.from_config() returns safe defaults and EventFlow will still
             #    pick the top option if a pick is invalid at runtime.
@@ -308,9 +318,6 @@ class BotState:
             # 6) Create (or continue) run record for history tracking
             from datetime import datetime
             now = datetime.now()
-            preset_name = (preset_opts.get("preset") or {}).get("name") or preset_opts.get("name", "Unnamed")
-            trainee_name = (preset_opts.get("preset") or {}).get("trainee", {}) or preset_opts.get("trainee", {})
-            trainee_name = trainee_name.get("name") if isinstance(trainee_name, dict) else None
 
             if continue_id:
                 run_record = get_record(continue_id)
@@ -319,6 +326,7 @@ class BotState:
                     run_record = None
                 else:
                     run_record["preset_name"] = preset_name
+                    run_record["uma_name"] = f"{preset_name} / {trainee_name}" if trainee_name else preset_name
                     run_record["error"] = None
                     run_record["end_time"] = None
                     tick_active_time()

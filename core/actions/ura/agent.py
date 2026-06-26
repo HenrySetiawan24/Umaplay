@@ -653,6 +653,19 @@ class AgentURA(AgentScenario):
                                     run_record["final_rank"] = candidate
                         except Exception:
                             logger_uma.debug("[run_history] OCR extraction failed", exc_info=True)
+                        # Push completed milestone to turn_log
+                        try:
+                            push_turn_log(
+                                turn=self.lobby.state.turn or 0,
+                                date_key=self._today_date_key() or "",
+                                action="completed",
+                                stats=dict(self.lobby.state.stats) if self.lobby.state.stats else None,
+                                energy=self.lobby.state.energy,
+                                mood=self.lobby.state.mood[0] if self.lobby.state.mood else None,
+                                skill_pts=self.lobby.state.skill_pts,
+                            )
+                        except Exception:
+                            logger_uma.debug("[run_history] completed milestone push failed", exc_info=True)
                         append_history(run_record)
                 except Exception:
                     logger_uma.debug("[run_history] persist failed", exc_info=True)

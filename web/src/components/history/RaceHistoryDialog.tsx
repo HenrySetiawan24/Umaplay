@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react'
 import {
   Box,
   Dialog,
@@ -69,6 +70,23 @@ export default function RaceHistoryDialog({
     return {}
   }
 
+  const contentRef = useRef<HTMLDivElement>(null)
+  const scrollPosRef = useRef(0)
+
+  // save scroll on any scroll event
+  const handleScroll = () => {
+    if (contentRef.current) {
+      scrollPosRef.current = contentRef.current.scrollTop
+    }
+  }
+
+  // restore scroll when dialog opens, or after data re-renders
+  useEffect(() => {
+    if (open && contentRef.current) {
+      contentRef.current.scrollTop = scrollPosRef.current
+    }
+  })
+
   if (!record) return null
 
   return (
@@ -79,7 +97,7 @@ export default function RaceHistoryDialog({
         </Typography>
         <IconButton onClick={onClose} size="small"><CloseIcon /></IconButton>
       </DialogTitle>
-      <DialogContent>
+      <DialogContent ref={contentRef} onScroll={handleScroll}>
         <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 1.5, pt: 1 }}>
           {record.races_attempted.length === 0 && (
             <Typography variant="body2" color="text.secondary" sx={{ gridColumn: '1 / -1', textAlign: 'center', py: 4 }}>

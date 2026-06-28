@@ -85,6 +85,7 @@ export interface Preset {
   juniorMinimalMood?: MoodName | null
   goalRaceForceTurns?: number
   unityCupAdvanced?: UnityCupAdvancedSettings
+  charId?: number | null
 }
 
 export interface ScenarioConfig {

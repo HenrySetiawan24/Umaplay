@@ -196,6 +196,7 @@ export const presetSchema = z.object({
   lobbyPrecheckEnable: z.boolean().default(false),
   juniorMinimalMood: z.enum(['AWFUL', 'BAD', 'NORMAL', 'GOOD', 'GREAT']).nullable().default(null),
   goalRaceForceTurns: z.number().int().min(0).max(12).default(5),
+  charId: z.number().int().positive().nullable().optional(),
   unityCupAdvanced: unityCupAdvancedSchema.optional().default(() => defaultUnityCupAdvanced()),
   // Make optional on input, but always present on output via default()
   event_setup: (() => {

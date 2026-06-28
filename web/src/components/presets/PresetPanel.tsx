@@ -10,10 +10,21 @@ import RaceScheduler from './RaceScheduler'
 import { useEventsData } from '@/hooks/useEventsData'
 import EventSetupSection from '../events/EventSetupSection'
 import { useEventsSetupStore } from '@/store/eventsSetupStore'
+import { useCharactersData } from '@/hooks/useCharactersData'
 import { useEffect, useMemo, useRef } from 'react'
 import FieldRow from '@/components/common/FieldRow'
+import type { CharacterEntry } from '@/models/datasets'
 import type { Preset, ScenarioConfig } from '@/models/types'
 import { getStrategyComponent } from './strategy'
+
+function findCharByTraineeName(charIndex: Record<string, CharacterEntry> | undefined, traineeName: string): CharacterEntry | undefined {
+  if (!charIndex || !traineeName) return undefined
+  const lower = traineeName.toLowerCase()
+  return Object.values(charIndex).find(entry => {
+    const en = entry.name_en.toLowerCase()
+    return lower === en || lower.startsWith(en + ' ')
+  })
+}
 
 const normalizeScenario = (value?: string | null): 'ura' | 'unity_cup' =>
   value === 'unity_cup' ? 'unity_cup' : 'ura'
@@ -90,10 +101,13 @@ export function PresetEventSection(_props: { compact?: boolean }) {
   const { selected } = useSelectedPreset()
   const patchPreset = useConfigStore((s) => s.patchPreset)
   const eventsIndex = useEventsData()
+  const { data: charIndex } = useCharactersData()
   const lastSyncedRevision = useRef<number>(-1)
 
   const importSetup = useEventsSetupStore((s) => s.importSetup)
   const revision = useEventsSetupStore((s) => s.revision)
+  const trainee = useEventsSetupStore((s) => s.setup.trainee)
+
   useEffect(() => {
     const timer = setTimeout(() => {
       if (selected?.event_setup) importSetup(selected.event_setup)
@@ -109,6 +123,12 @@ export function PresetEventSection(_props: { compact?: boolean }) {
     const setup = useEventsSetupStore.getState().getSetup()
     patchPreset(selected.id, 'event_setup', setup)
   }, [revision, selected?.id, patchPreset])
+
+  useEffect(() => {
+    if (!selected?.id) return
+    const charEntry = trainee?.name ? findCharByTraineeName(charIndex, trainee.name) : undefined
+    patchPreset(selected.id, 'charId', charEntry?.char_id ?? null)
+  }, [trainee?.name, selected?.id, charIndex, patchPreset])
 
   if (!eventsIndex || !selected) return null
 

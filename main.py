@@ -310,6 +310,17 @@ class BotState:
                 preset_name = "Unnamed"
                 trainee_name = None
 
+            # Resolve char_id from trainee name (if possible)
+            char_id = None
+            if trainee_name:
+                try:
+                    from core.utils.character_data import search_characters
+                    results = search_characters(trainee_name)
+                    if results:
+                        char_id = results[0]["char_id"]
+                except Exception:
+                    pass
+
             # 5) Build event prefs from config (active preset). If malformed/missing,
             #    UserPrefs.from_config() returns safe defaults and EventFlow will still
             #    pick the top option if a pick is invalid at runtime.
@@ -362,6 +373,7 @@ class BotState:
                     "error": None,
                     "races_attempted": [],
                     "active_periods": [],
+                    "char_id": char_id,
                 }
             set_run_record(run_record)
             start_active_interval()
@@ -371,40 +383,25 @@ class BotState:
                 logger_uma.debug("[run_history] start persist failed", exc_info=True)
             
 
+            agent_kwargs = dict(
+                ctrl=ctrl,
+                ocr=ocr,
+                yolo_engine=yolo_engine,
+                interval_stats_refresh=1,
+                minimum_skill_pts=preset_opts.get("minimum_skill_pts", Settings.MINIMUM_SKILL_PTS),
+                prioritize_g1=False,
+                auto_rest_minimum=Settings.AUTO_REST_MINIMUM,
+                plan_races=preset_opts["plan_races"],
+                skill_list=preset_opts["skill_list"],
+                select_style=preset_opts["select_style"],
+                event_prefs=event_prefs,
+                char_id=char_id,
+            )
+
             if Settings.ACTIVE_SCENARIO == "unity_cup":
-                # Instantiate Player with runtime knobs from Settings + presets + event prefs
-                self.agent_scenario = AgentUnityCup(
-                    ctrl=ctrl,
-                    ocr=ocr,
-                    yolo_engine=yolo_engine,
-                    interval_stats_refresh=1,
-                    minimum_skill_pts=preset_opts.get("minimum_skill_pts", Settings.MINIMUM_SKILL_PTS),
-                    prioritize_g1=False,
-                    auto_rest_minimum=Settings.AUTO_REST_MINIMUM,
-                    plan_races=preset_opts["plan_races"],
-                    skill_list=preset_opts["skill_list"],
-                    select_style=preset_opts[
-                        "select_style"
-                    ],  # "end"|"late"|"pace"|"front"|None
-                    event_prefs=event_prefs,
-                )
+                self.agent_scenario = AgentUnityCup(**agent_kwargs)
             else:
-                # Instantiate Player with runtime knobs from Settings + presets + event prefs
-                self.agent_scenario = AgentURA(
-                    ctrl=ctrl,
-                    ocr=ocr,
-                    yolo_engine=yolo_engine,
-                    interval_stats_refresh=1,
-                    minimum_skill_pts=preset_opts.get("minimum_skill_pts", Settings.MINIMUM_SKILL_PTS),
-                    prioritize_g1=False,
-                    auto_rest_minimum=Settings.AUTO_REST_MINIMUM,
-                    plan_races=preset_opts["plan_races"],
-                    skill_list=preset_opts["skill_list"],
-                    select_style=preset_opts[
-                        "select_style"
-                    ],  # "end"|"late"|"pace"|"front"|None
-                    event_prefs=event_prefs,
-                )
+                self.agent_scenario = AgentURA(**agent_kwargs)
 
             def _runner():
                 re_init = False

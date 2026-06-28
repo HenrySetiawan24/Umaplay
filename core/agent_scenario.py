@@ -21,6 +21,7 @@ from core.utils.date_uma import date_index as uma_date_index
 from core.utils.waiter import PollConfig, Waiter
 from core.utils.event_processor import CATALOG_JSON, Catalog, UserPrefs
 from core.utils.race_index import RaceIndex
+from core.utils import character_data
 
 class AgentScenario(ABC):
     waiter: Waiter
@@ -51,6 +52,7 @@ class AgentScenario(ABC):
         select_style=None,
         event_prefs: UserPrefs | None = None,
         lobby_flow: LobbyFlow = None,
+        char_id: int | None = None,
     ) -> None:
         self.ctrl = ctrl
         self.ocr = ocr
@@ -62,6 +64,7 @@ class AgentScenario(ABC):
         self.prioritize_g1 = bool(prioritize_g1)
         self._skip_training_race_once = False
         self.plan_races = dict(plan_races or {})
+        self.char_id = char_id
 
         self.scenario = Settings.ACTIVE_SCENARIO
         self.skill_memory_path = Settings.resolve_skill_memory_path(self.scenario)
@@ -91,7 +94,7 @@ class AgentScenario(ABC):
         self.skill_memory = SkillMemoryManager(
             self.skill_memory_path, scenario=self.scenario
         )
-        self.race = RaceFlow(self.ctrl, self.ocr, self.yolo_engine, self.waiter)
+        self.race = RaceFlow(self.ctrl, self.ocr, self.yolo_engine, self.waiter, plan_races=self.plan_races)
 
         self.lobby = lobby_flow
         self.skills_flow = SkillsFlow(
@@ -215,6 +218,15 @@ class AgentScenario(ABC):
             return str(raw_race)
         return None
 
+    def _planned_race_date_key(self, race_name: str) -> Optional[str]:
+        """Reverse-lookup a race name in plan_races to find its date_key."""
+        plan_races = getattr(self.lobby, "plan_races", None) or self.plan_races or {}
+        for dk, name in plan_races.items():
+            if isinstance(name, str) and isinstance(dk, str):
+                if name.strip().lower() == race_name.strip().lower():
+                    return dk
+        return None
+
     def _today_date_key(self) -> Optional[str]:
         di = getattr(self.lobby.state, "date_info", None)
         if not di:
@@ -225,18 +237,140 @@ class AgentScenario(ABC):
             return f"Y{di.year_code}"
         return f"Y{di.year_code}-{int(di.month):02d}-{int(di.half)}"
 
+    def _infer_date_from_turn(self, year_code: int, turn_value: int) -> Optional[Tuple[int, int]]:
+        """Infer (month, half) from remaining-turn count using known date anchors.
+
+        Each turn decrement approximates 1 half-month advance.
+        Anchors come from:
+          1. Character goal entries (pre-seeded from character_data)
+          2. turn_log entries that have full date_keys (race OCR / plannedRaces match)
+        """
+        anchors: List[Tuple[int, int, int]] = []
+
+        # — Pre-seed with character goal anchors —
+        if self.char_id is not None:
+            goal_anchors = character_data.get_goal_anchors(self.char_id)
+            for turn, year, month, day in goal_anchors:
+                if year == year_code and 1 <= month <= 12 and day in (1, 2):
+                    anchors.append((turn, month, day))
+
+        # — Add turn_log anchors (override goals — more precise if OCR matched) —
+        try:
+            from core.run_context import get as get_run_record
+            record = get_run_record()
+            if record:
+                for entry in record.get("turn_log") or []:
+                    dk = entry.get("date_key", "")
+                    if not isinstance(dk, str):
+                        continue
+                    if not dk.startswith(f"Y{year_code}-"):
+                        continue
+                    parts = dk.split("-")
+                    if len(parts) == 3:
+                        try:
+                            m, h = int(parts[1]), int(parts[2])
+                            t = entry.get("turn")
+                            if isinstance(t, (int, float)) and 1 <= m <= 12 and h in (1, 2):
+                                anchors.append((int(t), m, h))
+                        except (ValueError, IndexError):
+                            pass
+        except Exception:
+            pass
+
+        if not anchors:
+            return None
+
+        anchors.sort(key=lambda x: -x[0])
+
+        if turn_value >= anchors[0][0]:
+            earliest_t, earliest_m, earliest_h = anchors[0]
+            idx_offset = (earliest_m - 1) * 2 + (earliest_h - 1)
+            upper_turn = earliest_t + idx_offset
+            if upper_turn <= earliest_t:
+                return earliest_m, earliest_h
+            upper_m, upper_h = 1, 1
+            lower_turn, lower_m, lower_h = earliest_t, earliest_m, earliest_h
+        elif turn_value <= anchors[-1][0]:
+            latest_t, latest_m, latest_h = anchors[-1]
+            idx_to_end = (12 - latest_m) * 2 + (2 - latest_h)
+            lower_turn = latest_t - idx_to_end
+            if lower_turn >= latest_t:
+                return latest_m, latest_h
+            upper_turn, upper_m, upper_h = latest_t, latest_m, latest_h
+            lower_m, lower_h = 12, 2
+        else:
+            pair_found = False
+            for i in range(len(anchors) - 1):
+                if anchors[i][0] >= turn_value >= anchors[i + 1][0]:
+                    upper_turn, upper_m, upper_h = anchors[i]
+                    lower_turn, lower_m, lower_h = anchors[i + 1]
+                    pair_found = True
+                    break
+            if not pair_found:
+                return None
+
+        if upper_turn <= lower_turn:
+            return upper_m, upper_h
+
+        fraction = (upper_turn - turn_value) / (upper_turn - lower_turn)
+
+        upper_idx = (upper_m - 1) * 2 + (upper_h - 1)
+        lower_idx = (lower_m - 1) * 2 + (lower_h - 1)
+
+        target_idx = upper_idx + fraction * (lower_idx - upper_idx)
+        target_idx = round(target_idx)
+        target_idx = max(0, min(23, target_idx))
+
+        month = target_idx // 2 + 1
+        half = target_idx % 2 + 1
+
+        logger_uma.info(
+            "[date] Inferred Y%d-%02d-%d from turn=%d (anchors: %d)",
+            year_code, month, half, turn_value, len(anchors),
+        )
+
+        return month, half
+
     def _turn_date_key(self) -> str:
         """Return the best date key for turn logging.
 
         Prefer a fully-qualified current date key, but if OCR only gives a year
-        (or nothing), reuse the latest full key for the same year from the
-        current run so the history stays aligned with the scheduler grid.
+        (or nothing), try turn-based inference using known date anchors,
+        then fall back to the latest full key for the same year from the
+        current run.
         """
         current = self._today_date_key()
-        if current in ("Y0", "Y4") or (current and "-" in current):
+        if current == "Y4" or (current and "-" in current):
             return current
 
         year_prefix = current if current else None
+
+        # — Try turn-based inference —
+        if year_prefix and year_prefix.startswith("Y"):
+            try:
+                year_code = int(year_prefix[1:])
+                if year_code == 0:
+                    turn_value = getattr(self.lobby.state, "turn", None)
+                    if isinstance(turn_value, (int, float)) and turn_value > 0:
+                        y, m, d = character_data.goal_turn_to_date(int(turn_value))
+                        if y == 1:
+                            logger_uma.info(
+                                "[date] Pre-debut inferred Y1-%02d-%d from turn=%d",
+                                m, d, turn_value,
+                            )
+                            return f"Y1-{m:02d}-{d}"
+                    return current or ""
+                if 1 <= year_code <= 3:
+                    turn_value = getattr(self.lobby.state, "turn", None)
+                    if isinstance(turn_value, (int, float)) and turn_value > 0:
+                        inferred = self._infer_date_from_turn(year_code, int(turn_value))
+                        if inferred:
+                            m, h = inferred
+                            return f"Y{year_code}-{m:02d}-{h}"
+            except (ValueError, AttributeError, TypeError):
+                pass
+
+        # — Fall back to latest same-year full key —
         try:
             from core.run_context import get as get_run_record
 

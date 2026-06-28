@@ -21,6 +21,7 @@ import type {
 } from '@/types/events'
 import SmartImage from '@/components/common/SmartImage'
 import { supportImageCandidates, scenarioImageCandidates, traineeImageCandidates, supportTypeIcons } from '@/utils/imagePaths'
+import { useCharactersData, findCharByName } from '@/hooks/useCharactersData'
 import { useEventsSetupStore } from '@/store/eventsSetupStore'
 import { useConfigStore } from '@/store/configStore'
 import { pickFor } from '@/utils/eventPick'
@@ -220,8 +221,9 @@ function TraineePickerDialog({
   open, onClose, trainees, onPick,
 }: { open: boolean; onClose: () => void; trainees: TraineeSet[]; onPick: (t: TraineeSet) => void }) {
   const [q, setQ] = useState('')
+  const { data: charIndex } = useCharactersData()
   const list = useMemo(() => q ? trainees.filter(t => t.name.toLowerCase().includes(q.toLowerCase())) : trainees, [q, trainees])
-  
+
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="md">
       <DialogTitle sx={{ display:'flex', alignItems:'center' }}>
@@ -237,18 +239,21 @@ function TraineePickerDialog({
           sx={{ mb: 2 }}
         />
         <Stack direction="row" flexWrap="wrap" gap={1.5}>
-          {list.map(t => (
-            <Box key={t.name} sx={{ flexBasis: { xs: 'calc(50% - 12px)', sm: 'calc(33.33% - 12px)', md: 'calc(25% - 12px)' } }}>
-              <Card variant="outlined">
-                <CardActionArea onClick={() => onPick(t)}>
-                  <Stack direction="row" spacing={1} sx={{ p: 1, alignItems: 'center' }}>
-                    <SmartImage candidates={traineeImageCandidates(t.name)} alt={t.name} width={48} height={48} rounded={6}/>
-                    <Typography variant="body2" noWrap>{t.name}</Typography>
-                  </Stack>
-                </CardActionArea>
-              </Card>
-            </Box>
-          ))}
+          {list.map(t => {
+            const thumbUrl = findCharByName(charIndex, t.name)?.thumb_url
+            return (
+              <Box key={t.name} sx={{ flexBasis: { xs: 'calc(50% - 12px)', sm: 'calc(33.33% - 12px)', md: 'calc(25% - 12px)' } }}>
+                <Card variant="outlined">
+                  <CardActionArea onClick={() => onPick(t)}>
+                    <Stack direction="row" spacing={1} sx={{ p: 1, alignItems: 'center' }}>
+                      <SmartImage candidates={traineeImageCandidates(t.name, thumbUrl)} alt={t.name} width={48} height={48} rounded={6}/>
+                      <Typography variant="body2" noWrap>{t.name}</Typography>
+                    </Stack>
+                  </CardActionArea>
+                </Card>
+              </Box>
+            )
+          })}
         </Stack>
       </DialogContent>
     </Dialog>
@@ -521,6 +526,7 @@ function EventOptionsDialog({
 
 // ---- main section
 export default function EventSetupSection({ index }: Props) {
+  const { data: charIndex } = useCharactersData()
   const supports    = useEventsSetupStore((s) => s.setup.supports)
   const scenario    = useEventsSetupStore((s) => s.setup.scenario)
   const trainee     = useEventsSetupStore((s) => s.setup.trainee)
@@ -923,7 +929,7 @@ export default function EventSetupSection({ index }: Props) {
                   <Stack alignItems="center" spacing={1} sx={{ p: 1 }}>
                     {trainee ? (
                       <>
-                        <SmartImage candidates={traineeImageCandidates(trainee.name)} alt={trainee.name || ""} width={THUMB} height={THUMB_H} rounded={8}/>
+                        <SmartImage candidates={traineeImageCandidates(trainee.name, findCharByName(charIndex, trainee.name)?.thumb_url)} alt={trainee.name || ""} width={THUMB} height={THUMB_H} rounded={8}/>
                         <Typography variant="body2" noWrap>{trainee.name}</Typography>
                       </>
                     ) : (

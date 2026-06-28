@@ -44,6 +44,7 @@ export interface RunRecord {
   error: string | null
   races_attempted: RaceAttempt[]
   turn_log?: TurnLogEntry[]
+  char_id?: number | null
 }
 
 export async function fetchHistory(): Promise<RunRecord[]> {

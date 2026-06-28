@@ -14,11 +14,13 @@ import {
 } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 import TimelineIcon from '@mui/icons-material/Timeline'
+import StarIcon from '@mui/icons-material/Star'
 import { useQuery } from '@tanstack/react-query'
 import { fetchRaces } from '@/services/api'
 import { BADGE_ICON } from '@/constants/ui'
 import { monthHalfLabel, dateKeysForYear, toDateKey } from '@/utils/race'
 import type { RunRecord, RaceAttempt, TurnLogEntry } from '@/services/historyApi'
+import { useCharactersData, getGoalForDateKey } from '@/hooks/useCharactersData'
 
 const surfaceColor: Record<string, string> = { Turf: '#2e7d32', Dirt: '#bf8f4a', Varies: '#757575' }
 
@@ -91,6 +93,16 @@ export default function RaceHistoryDialog({
   onClose: () => void
 }) {
   const { data: races = {} } = useQuery({ queryKey: ['races'], queryFn: fetchRaces, enabled: open })
+  const { data: charIndex } = useCharactersData()
+  const charEntry = useMemo(() => {
+    if (!charIndex) return undefined
+    if (record?.char_id) return charIndex[String(record.char_id)]
+    const name = record?.uma_name?.split(' / ').pop()
+    if (name) return Object.values(charIndex).find((c) => c.name_en === name || c.name_jp === name)
+    return undefined
+  }, [charIndex, record])
+  const goals = charEntry?.goals
+
   const [activeYearTab, setActiveYearTab] = useState<1 | 2 | 3>(1)
   const contentRef = useRef<HTMLDivElement>(null)
   const scrollPosRef = useRef(0)
@@ -268,9 +280,14 @@ export default function RaceHistoryDialog({
               const card = cardsByDateKey.get(dk)
               const parsed = parseDateKeySafe(dk)
               const dateLabel = parsed.month && parsed.half ? monthHalfLabel(parsed.month, parsed.half) : dk
+              const goal = getGoalForDateKey(goals, dk)
+              const isGoal = !!goal
 
               if (!card) {
                 const disabled = activeYearTab === 1 && parsed.month != null && parsed.month < 6
+                const effectiveOpacity = disabled ? 0.18 : isGoal ? 0.75 : 0.45
+                const goalRaceInfo = goal?.race_name ? lookupRace(goal.race_name) : null
+                const goalBadge = goalRaceInfo?.rank ? BADGE_ICON[goalRaceInfo.rank] : null
                 return (
                   <Paper
                     key={dk}
@@ -278,9 +295,13 @@ export default function RaceHistoryDialog({
                     sx={{
                       p: 1,
                       minHeight: 180,
-                      opacity: disabled ? 0.18 : 0.45,
+                      opacity: effectiveOpacity,
                       borderStyle: 'dashed',
-                      bgcolor: 'background.paper',
+                      borderColor: isGoal ? '#ffd700' : undefined,
+                      borderWidth: isGoal ? 2 : 1,
+                      bgcolor: isGoal
+                        ? (theme) => theme.palette.mode === 'dark' ? 'rgba(255,215,0,0.09)' : '#fff8e1'
+                        : 'background.paper',
                       display: 'flex',
                       flexDirection: 'column',
                       gap: 0.75,
@@ -288,8 +309,45 @@ export default function RaceHistoryDialog({
                   >
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75, flexWrap: 'wrap' }}>
                       <Chip label={dateLabel} size="small" variant="outlined" sx={{ height: 20, fontSize: '0.6rem' }} />
-                      <Chip label={dk} size="small" variant="outlined" sx={{ height: 20, fontSize: '0.55rem', opacity: 0.8 }} />
+                      {isGoal && (
+                        <Chip
+                          icon={<StarIcon sx={{ fontSize: 12 }} />}
+                          label="Goal"
+                          size="small"
+                          sx={{ height: 20, fontSize: '0.55rem', bgcolor: '#ffd700', color: '#7c5c00', fontWeight: 700 }}
+                        />
+                      )}
                     </Box>
+                    {goal?.race_name && (
+                      <>
+                        {goalRaceInfo?.banner && (
+                          <Box
+                            component="img"
+                            src={imgEncoded(goalRaceInfo.banner)}
+                            alt=""
+                            sx={{ width: '100%', aspectRatio: '2 / 1', objectFit: 'cover', borderRadius: 1 }}
+                            onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+                          />
+                        )}
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, minWidth: 0 }}>
+                          {goalBadge && <Box component="img" src={goalBadge} alt={goalRaceInfo?.rank} sx={{ height: 16, flexShrink: 0 }} />}
+                          <StarIcon sx={{ fontSize: 14, color: '#ffd700', flexShrink: 0 }} />
+                          <Typography variant="caption" noWrap sx={{ fontSize: '0.7rem', fontWeight: 600, lineHeight: 1.2 }}>
+                            {goal.race_name}
+                          </Typography>
+                        </Box>
+                        {goalRaceInfo && (
+                          <Box sx={{ display: 'flex', gap: 0.25, flexWrap: 'wrap' }}>
+                            {goalRaceInfo.surface && (
+                              <Chip label={goalRaceInfo.surface} size="small" sx={{ height: 16, fontSize: '0.55rem', color: '#fff', bgcolor: surfaceColor[goalRaceInfo.surface] || '#757575' }} />
+                            )}
+                            {goalRaceInfo.distance && (
+                              <Chip label={goalRaceInfo.distance} size="small" variant="outlined" sx={{ height: 16, fontSize: '0.55rem' }} />
+                            )}
+                          </Box>
+                        )}
+                      </>
+                    )}
                   </Paper>
                 )
               }
@@ -297,7 +355,9 @@ export default function RaceHistoryDialog({
               const actionKey = normalizeAction(card.action)
               const raceInfo = card.race ? lookupRace(card.race.race_name) : null
               const badge = raceInfo?.rank ? BADGE_ICON[raceInfo.rank] : null
+              const raceIsGoal = !!card.race && goals?.some((g) => g.race_name === card.race?.race_name)
 
+              const goalBorderColor = isGoal ? '#ffd700' : undefined
               return (
                 <Paper
                   key={`${card.turn}::${card.date_key}`}
@@ -308,8 +368,11 @@ export default function RaceHistoryDialog({
                     flexDirection: 'column',
                     gap: 0.75,
                     minHeight: 180,
-                    borderColor: card.race ? (card.race.won ? 'success.main' : 'error.main') : (actionColor[actionKey] || 'divider'),
-                    borderWidth: card.race ? 2 : 1,
+                    borderColor: goalBorderColor ?? (card.race ? (card.race.won ? 'success.main' : 'error.main') : (actionColor[actionKey] || 'divider')),
+                    borderWidth: card.race || isGoal ? 2 : 1,
+                    bgcolor: isGoal
+                      ? (theme) => theme.palette.mode === 'dark' ? 'rgba(255,215,0,0.09)' : '#fff8e1'
+                      : undefined,
                   }}
                 >
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75, flexWrap: 'wrap' }}>
@@ -320,11 +383,20 @@ export default function RaceHistoryDialog({
                     {card.race && (
                       <Chip label={card.race.won ? 'WIN' : 'LOSS'} size="small" color={card.race.won ? 'success' : 'error'} sx={{ height: 20, fontSize: '0.65rem', fontWeight: 700 }} />
                     )}
+                    {isGoal && (
+                      <Chip
+                        icon={<StarIcon sx={{ fontSize: 12 }} />}
+                        label="Goal"
+                        size="small"
+                        sx={{ height: 20, fontSize: '0.55rem', bgcolor: '#ffd700', color: '#7c5c00', fontWeight: 700 }}
+                      />
+                    )}
                   </Box>
 
                   {card.race ? (
                     <>
-                      <Typography variant="body2" fontWeight={700} noWrap>
+                      <Typography variant="body2" fontWeight={700} noWrap sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                        {raceIsGoal && <StarIcon sx={{ fontSize: 14, color: '#ffd700', flexShrink: 0 }} />}
                         {card.race.race_name}
                       </Typography>
 
@@ -363,12 +435,6 @@ export default function RaceHistoryDialog({
                       <Typography variant="body2" fontWeight={700} noWrap>
                         {card.training_type || actionLabel[actionKey] || 'Turn'}
                       </Typography>
-
-                      {card.reason && (
-                        <Typography variant="caption" color="text.secondary" sx={{ lineHeight: 1.2 }}>
-                          {card.reason}
-                        </Typography>
-                      )}
 
                       <Box sx={{ display: 'flex', gap: 0.5, flexWrap: 'wrap' }}>
                         {card.stats && ['SPD', 'STA', 'PWR', 'GUTS', 'WIT'].map((k) => (

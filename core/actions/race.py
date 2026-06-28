@@ -66,12 +66,14 @@ class RaceFlow:
     """
 
     def __init__(
-        self, ctrl: IController, ocr, yolo_engine: IDetector, waiter: Waiter
+        self, ctrl: IController, ocr, yolo_engine: IDetector, waiter: Waiter,
+        plan_races: Optional[Dict[str, str]] = None,
     ) -> None:
         self.ctrl = ctrl
         self.ocr = ocr
         self.yolo_engine = yolo_engine
         self.waiter = waiter
+        self.plan_races: Dict[str, str] = plan_races or {}
         self._banner_matcher = get_race_banner_matcher()
         self._race_result_counters = {
             "loss_indicators": 0,
@@ -764,13 +766,25 @@ class RaceFlow:
             if record is None or record.get("end_time"):
                 return
             from datetime import datetime
+
+            # If date_key is incomplete (year-only or empty), try to resolve from
+            # plan_races using the OCR'd race name as a reverse-lookup key.
+            dk = date_key if date_key is not None else self._current_date_key
+            if dk is None or "-" not in dk:
+                race_name = self._last_race_name or ""
+                if race_name:
+                    for pdk, pname in self.plan_races.items():
+                        if pname.strip().lower() == race_name.strip().lower():
+                            dk = pdk
+                            self._current_date_key = dk
+                            break
+
             entry: Dict[str, Any] = {
                 "race_name": self._last_race_name or "unknown",
                 "won": won,
                 "timestamp": datetime.now().isoformat(),
             }
             t = turn if turn is not None else self._current_turn
-            dk = date_key if date_key is not None else self._current_date_key
             if t is not None:
                 entry["turn"] = t
             if dk is not None:
@@ -847,6 +861,9 @@ class RaceFlow:
                 self._last_placement = RaceFlow._parse_placement(raw)
                 RaceFlow._save_placement_debug(img_vr, raw, self._last_placement, "view_results")
             else:
+                time.sleep(random.uniform(3, 3.5))
+                self.ctrl.click_xyxy_center(view_btn["xyxy"], clicks=random.randint(3, 3))
+                time.sleep(random.uniform(0.3, 0.5))
                 time.sleep(0.4)
                 self._last_placement = None
         else:

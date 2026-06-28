@@ -64,6 +64,7 @@ class AgentUnityCup(AgentScenario):
         interval_stats_refresh=3,
         select_style=None,
         event_prefs: UserPrefs | None = None,
+        char_id: int | None = None,
     ) -> None:
         # Shared Waiter for the whole agent
         if waiter_config is None:
@@ -91,6 +92,7 @@ class AgentUnityCup(AgentScenario):
             interval_stats_refresh=interval_stats_refresh,
             select_style=select_style,
             event_prefs=event_prefs,
+            char_id=char_id,
             lobby_flow=LobbyFlowUnityCup(
                 ctrl,
                 ocr,
@@ -597,9 +599,10 @@ class AgentUnityCup(AgentScenario):
                         mood=self.lobby.state.mood[0] if self.lobby.state.mood else None,
                         skill_pts=self.lobby.state.skill_pts,
                     )
-                # outcome = "TO_TRAINING"
-                # self.lobby._go_training_screen_from_lobby(img, dets)
-                # sleep(1)
+                # Refresh race date context so _record_race_attempt uses the same
+                # date as turn_log (process_turn() may have updated lobby state).
+                self.race._current_turn = self.lobby.state.turn
+                self.race._current_date_key = self._turn_date_key()
 
                 if outcome == "TO_RACE":
                     if "G1" in reason.upper():
@@ -625,6 +628,13 @@ class AgentUnityCup(AgentScenario):
                             self.lobby._skip_race_once = True
                             continue
                         self.lobby.mark_raced_today(self._today_date_key())
+                        # Backfill turn_log with resolved date_key from race flow
+                        if self.race._current_date_key and "-" in self.race._current_date_key:
+                            try:
+                                from core.run_context import update_last_turn_log
+                                update_last_turn_log(date_key=self.race._current_date_key)
+                            except Exception:
+                                pass
                     elif "PLAN" in reason.upper():
                         desired_race_name = self._desired_race_today()
                         if desired_race_name:
@@ -679,6 +689,13 @@ class AgentUnityCup(AgentScenario):
                                 self._today_date_key(),
                             )
                             self._clear_planned_skip_release()
+                            # Backfill turn_log with resolved date_key from race flow
+                            if self.race._current_date_key and "-" in self.race._current_date_key:
+                                try:
+                                    from core.run_context import update_last_turn_log
+                                    update_last_turn_log(date_key=self.race._current_date_key)
+                                except Exception:
+                                    pass
 
                     elif "FANS" in reason.upper():
                         logger_uma.info(reason)
@@ -703,6 +720,13 @@ class AgentUnityCup(AgentScenario):
                             self.lobby._skip_race_once = True
                             continue
                         self.lobby.mark_raced_today(self._today_date_key())
+                        # Backfill turn_log with resolved date_key from race flow
+                        if self.race._current_date_key and "-" in self.race._current_date_key:
+                            try:
+                                from core.run_context import update_last_turn_log
+                                update_last_turn_log(date_key=self.race._current_date_key)
+                            except Exception:
+                                pass
 
                 if outcome == "TO_TRAINING":
                     logger_uma.info(

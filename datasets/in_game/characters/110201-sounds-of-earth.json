@@ -1,0 +1,216 @@
+{
+  "charData": {
+    "url_name": "sounds-of-earth",
+    "tid": "1C",
+    "char_id": 1102,
+    "jp_name": "サウンズオブアース",
+    "en_name": "Sounds of Earth",
+    "name_ko": "사운즈 오브 어스",
+    "name_tw": "萬籟爭鳴",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "MAKIKO",
+    "va_ja": "MAKIKO",
+    "va_ko": "MAKIKO",
+    "va_zh_tw": "MAKIKO",
+    "va_link": "https://myanimelist.net/people/67756/MAKIKO",
+    "three_sizes": {
+      "b": 80,
+      "w": 52,
+      "h": 81
+    },
+    "birth_day": 12,
+    "birth_month": 4,
+    "birth_year": 2011,
+    "height": 161,
+    "sex": 1,
+    "rl": {
+      "country": "jp",
+      "death": "2023-02-13",
+      "races": 30,
+      "wins": 2,
+      "record": "30-2-8-1",
+      "earnings": 467449000,
+      "earnings_other": [
+        [
+          120000,
+          "AED"
+        ]
+      ],
+      "active": "2013-2018"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1102_110201.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1102_110201.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 28,
+      "year": 2,
+      "month": 2,
+      "day": 2,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 4000
+    },
+    {
+      "order": 3,
+      "turn": 33,
+      "year": 2,
+      "month": 5,
+      "day": 1,
+      "race_name": "Kyoto Shimbun Hai",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Nikkei Sho",
+      "cond_type": 1,
+      "cond_value": 2
+    },
+    {
+      "order": 7,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 2
+    },
+    {
+      "order": 8,
+      "turn": 64,
+      "year": 3,
+      "month": 8,
+      "day": 2,
+      "race_name": "Sapporo Kinen",
+      "cond_type": 1,
+      "cond_value": 4
+    },
+    {
+      "order": 9,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 2
+    },
+    {
+      "order": 10,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "sounds-of-earth",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1102,
+    "ja": {
+      "self_intro": "おお、我が愛するムジチスタたちよ！このサウンズオブアースと共に、今日もメロディーアを重ね合おう！",
+      "tagline": "レースはアンサンボゥ！音楽愛する芸術家ウマ娘",
+      "weight": "ベニッシモ！",
+      "shoes": "左右ともに24.5cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "耳カバーは生地にこだわった海外ブランド製",
+      "tail": "普段と正装時で尻尾用コロンを変える",
+      "strong": "エスコート、銀製品の手入れ",
+      "weak": "わさび、人工甘味料、ノートをとること",
+      "family": "セッションで会話することも多い",
+      "secrets": [
+        "実は、作曲作業中のお供といえば『地球儀』。",
+        "実は、コロンで香りづけした便箋で手紙を出している。"
+      ]
+    },
+    "ko": {
+      "self_intro": "오오, 나의 사랑스러운 Musicista들이여! 이 사운즈 오브 어스와 함께 오늘도 Melodia를 쌓아 나가자!",
+      "tagline": "레이스는 앙상블! 음악을 사랑하는 예술가 우마무스메",
+      "weight": "Benissimo!",
+      "shoes": "좌우 모두 24.5cm",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "ears": "귀 커버는 원단이 뛰어난 해외 명품",
+      "tail": "일상용과 정장용 꼬리 코롱을 따로 쓴다",
+      "strong": "에스코트, 은 제품 관리",
+      "weak": "와사비, 인공 감미료, 노트 필기",
+      "family": "대화를 합주로 대신할 때도 많다.",
+      "secrets": [
+        "사실은 작곡 작업의 동반자는 『지구본』.",
+        "사실은 코롱으로 향을 입힌 편지지에 편지를 쓴다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "哦哦，我所深愛的musicista們啊！今天也與我萬籟爭鳴，一起演奏出彼此的melodìa吧！",
+      "tagline": "競賽就是一場合奏！深愛音樂的藝術家賽馬娘",
+      "weight": "Benissimo!",
+      "shoes": "左右都是24.5cm",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "ears": "耳罩是講究材質的國外名牌製品",
+      "tail": "平時與著正裝時會分別用不同的尾巴專用香水",
+      "strong": "引導、保養銀製品",
+      "weak": "芥末、人工糖精、寫筆記",
+      "family": "經常透過合奏來溝通",
+      "secrets": [
+        "其實她在作曲時的良伴是「地球儀」。",
+        "其實她會用噴上古龍水的信紙寫信。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

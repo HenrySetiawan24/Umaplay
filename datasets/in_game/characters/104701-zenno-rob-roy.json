@@ -1,0 +1,236 @@
+{
+  "charData": {
+    "url_name": "zenno-rob-roy",
+    "tid": "K",
+    "char_id": 1047,
+    "jp_name": "ゼンノロブロイ",
+    "en_name": "Zenno Rob Roy",
+    "name_ko": "젠노 롭 로이",
+    "name_tw": "荒漠英雄",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Haruka Terui",
+    "va_ja": "照井春佳",
+    "va_ko": "테루이 하루카",
+    "va_zh_tw": "照井春佳",
+    "va_link": "https://myanimelist.net/people/14161/Haruka_Terui",
+    "three_sizes": {
+      "b": 89,
+      "w": 56,
+      "h": 78
+    },
+    "birth_day": 27,
+    "birth_month": 3,
+    "birth_year": 2000,
+    "height": 140,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2022-09-02",
+      "races": 20,
+      "wins": 7,
+      "record": "7-6-4-3",
+      "earnings": 1115600000,
+      "earnings_other": [
+        [
+          11200,
+          "GBP"
+        ]
+      ],
+      "active": "2003-2005"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1047_104701.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1047_104701.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 27,
+      "year": 2,
+      "month": 2,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 5000
+    },
+    {
+      "order": 3,
+      "turn": 32,
+      "year": 2,
+      "month": 4,
+      "day": 2,
+      "race_name": "Aoba Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 48,
+      "year": 2,
+      "month": 12,
+      "day": 2,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 11,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "zenno-rob-roy",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1047,
+    "ja": {
+      "self_intro": "ゼンノロブロイと申します。その…こんな私ですが、英雄譚に憧れていまして…いつかレースの中で、私の物語を描きたいです…！",
+      "tagline": "いつか英雄譚を。想像力豊かな読書家",
+      "weight": "増減なし",
+      "shoes": "左右ともに21.0cm",
+      "dorm": "美浦寮",
+      "class": "中等部",
+      "ears": "物語の山場になるとピンと反り返る",
+      "tail": "人ごみだと緊張して微動だにしない",
+      "strong": "正確無比な道案内",
+      "weak": "湿気、ヤギ",
+      "family": "両親が最新家電を語りだすと日が暮れる",
+      "secrets": [
+        "実は、牛に好かれやすい。",
+        "実は、洋酒の香りがするお菓子が好き。"
+      ]
+    },
+    "ko": {
+      "self_intro": "젠노 롭 로이라고 합니다. 그… 부족한 저지만, 영웅담을 동경해서요… 언젠가 레이스 안에서 제 이야기를 그리고 싶어요…!",
+      "tagline": "언젠가는 반드시 영웅담을. 상상력이 풍부한 독서가",
+      "weight": "변화 없음",
+      "shoes": "좌우 모두 21.0cm",
+      "dorm": "미호 생활관",
+      "class": "중등부",
+      "ears": "이야기가 절정으로 치달으면 홱 뒤로 젖힌다.",
+      "tail": "붐비는 곳에서는 긴장해서 미동도 하지 않는다.",
+      "strong": "완벽하고 정확한 길 안내",
+      "weak": "습기, 염소",
+      "family": "부모님이 최신 가전제품 이야기를 시작하면 하루가 다 간다.",
+      "secrets": [
+        "사실은 소한테 사랑받는다.",
+        "사실은 양주 향이 나는 과자를 좋아한다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我的名字叫荒漠英雄。那個……別看我這樣，我很嚮往英雄傳說……希望有一天，能在競賽中寫下屬於我的故事……",
+      "tagline": "總有一天要達成英雄傳說。想像力豐富的愛書人",
+      "weight": "無增減",
+      "shoes": "左右都是21.0cm",
+      "dorm": "美浦宿舍",
+      "class": "國中部",
+      "ears": "當讀到故事劇情高潮部分時會翹起來",
+      "tail": "在人群裡會緊張得完全不擺動",
+      "strong": "無比正確地帶路",
+      "weak": "濕氣、山羊",
+      "family": "爸媽一聊起最新家電就會沒完沒了",
+      "secrets": [
+        "其實她很容易被牛喜歡。",
+        "其實她很喜歡散發著洋酒香氣的點心。"
+      ]
+    },
+    "en": {
+      "self_intro": "My name is Zenno Rob Roy. It's a little embarrassing, but I love fantasy novels, and... well, someday I hope to write my own legend through racing!",
+      "tagline": "One day, she'll write her own epic tale. A voracious reader with a rich imagination.",
+      "dorm": "Miho Dormitory",
+      "class": "Junior Division",
+      "secrets": [
+        "Did you know? Cows absolutely love her.",
+        "Did you know? She likes the smell of liqueur-flavored candy and chocolate."
+      ]
+    }
+  }
+}

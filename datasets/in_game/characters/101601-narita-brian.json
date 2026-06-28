@@ -1,0 +1,238 @@
+{
+  "charData": {
+    "url_name": "narita-brian",
+    "tid": "f",
+    "char_id": 1016,
+    "jp_name": "ナリタブライアン",
+    "en_name": "Narita Brian",
+    "name_ko": "나리타 브라이언",
+    "name_tw": "成田白仁",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Rika Kinugawa",
+    "va_ja": "衣川里佳",
+    "va_ko": "키누가와 리카",
+    "va_zh_tw": "衣川里佳",
+    "va_link": "https://myanimelist.net/people/40034/Rika_Kinugawa",
+    "three_sizes": {
+      "b": 91,
+      "w": 58,
+      "h": 85
+    },
+    "birth_day": 3,
+    "birth_month": 5,
+    "birth_year": 1991,
+    "height": 160,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "1998-09-27",
+      "races": 21,
+      "wins": 12,
+      "record": "12-3-1-5",
+      "earnings": 947420000,
+      "active": "1993-1996"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1016_101601.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1016_101601.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "Asahi Hai Futurity Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 48,
+      "year": 2,
+      "month": 12,
+      "day": 2,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Hanshin Daishoten",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 11,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "narita-brian",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1016,
+    "ja": {
+      "self_intro": "…ナリタブライアンだ。わざわざ語って聞かせるような話はない。ただ走り、ブッちぎって勝つだけだ",
+      "tagline": "背中で語れ！硬派で頑固な一匹狼",
+      "weight": "レースに支障なし",
+      "shoes": "左右ともに24.5cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "ファンファーレを聞くと血が滾る",
+      "tail": "手入れしたことも気にかけたこともない",
+      "strong": "クルミを割ること",
+      "weak": "小さな生き物を触ること",
+      "family": "両親と姉いわく『寡黙なのは、優しい証拠』",
+      "secrets": [
+        "実は、咥えている枝は自家栽培。",
+        "実は、たまに猛禽カフェに通っている。"
+      ]
+    },
+    "ko": {
+      "self_intro": "…나리타 브라이언이다. 특별히 할 이야기는 없어. 그저 달리고, 앞서나가 이길 뿐이다.",
+      "tagline": "말보다는 행동!! 강경하고 완고한 한 마리의 고독한 늑대",
+      "weight": "레이스에 지장 없음",
+      "shoes": "좌우 모두 24.5cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "팡파르를 들으면 피가 끓는다.",
+      "tail": "손질한 적도 신경 쓴 적도 없다.",
+      "strong": "호두 까기",
+      "weak": "작은 동물들을 만지는 것",
+      "family": "부모님과 언니가 말하길 『과묵한 건 상냥함의 증거』",
+      "secrets": [
+        "사실은 물고 있는 가지를 직접 재배했다.",
+        "사실은 가끔 맹금류 카페에 다닌다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "……我是成田白仁。沒有什麼特別需要說的。反正跑下去，遙遙領先然後獲勝就對了。",
+      "tagline": "用背影傳達一切！硬派的頑固獨行俠",
+      "weight": "不影響競賽",
+      "shoes": "左右都是24.5cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "聽到開場小號就會熱血沸騰",
+      "tail": "不在意保養，也沒有做過",
+      "strong": "敲碎胡桃",
+      "weak": "摸小生物",
+      "family": "父母跟姊姊表示「沉默寡言就是溫柔的證據」",
+      "secrets": [
+        "其實她嘴裡咬著的樹枝是自家種的。",
+        "其實她偶爾會去猛禽咖啡廳。"
+      ]
+    },
+    "en": {
+      "self_intro": "I'm Narita Brian. I'm here to run circles around my opponents, not chit-chat. That's it.",
+      "tagline": "Actions speak louder than words! A tough and stubborn lone wolf.",
+      "weight": "No impediment to racing",
+      "shoes": "Left and right: 24.5cm",
+      "dorm": "Ritto Dormitory",
+      "class": "Senior Division",
+      "ears": "Her blood starts pumping when she hears fanfare",
+      "tail": "She never cared much for appearances",
+      "strong": "Cracking walnuts",
+      "weak": "Petting small creatures",
+      "family": "Her parents and sister say her silence is proof of her kindness",
+      "secrets": [
+        "Did you know? The stem in her mouth comes from her family's gardens.",
+        "Did you know? She occasionally likes to visit owl cafes."
+      ]
+    }
+  }
+}

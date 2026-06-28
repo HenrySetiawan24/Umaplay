@@ -1,0 +1,142 @@
+{
+  "charData": {
+    "url_name": "kiseki",
+    "tid": "2r",
+    "char_id": 1137,
+    "jp_name": "キセキ",
+    "en_name": "Kiseki",
+    "playable": true,
+    "active": true,
+    "va_ja": "星希成奏",
+    "birth_day": 13,
+    "birth_month": 5,
+    "birth_year": 2014,
+    "height": 166,
+    "sex": 1,
+    "race": false,
+    "rl": {}
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1137_113701.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1137_113701.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 24,
+      "year": 1,
+      "month": 12,
+      "day": 2,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 3000
+    },
+    {
+      "order": 3,
+      "turn": 37,
+      "year": 2,
+      "month": 7,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 2,
+      "cond_value": 1
+    },
+    {
+      "order": 4,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 5,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 67,
+      "year": 3,
+      "month": 10,
+      "day": 1,
+      "race_name": "Kyoto Daishoten",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 7,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 2
+    },
+    {
+      "order": 9,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": null,
+  "profileData": {
+    "char_id": 1137,
+    "ja": {
+      "self_intro": "キセキです！苦しい修行、熱い友情、ドラマティックな勝利！そんなレースの世界で、あたしが主人公になってみせます！",
+      "tagline": "奇跡を描く、情熱系クリエイター",
+      "weight": "大好評調整中！",
+      "shoes": "左右ともに24.5cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "かっこいい単語には敏感に反応",
+      "tail": "原稿を描くとき、無意識のうちに触っちゃう",
+      "strong": "読書感想文、サイン",
+      "weak": "結果発表を待つこと、リズムゲーム",
+      "family": "両親の帰りが遅くても先に寝るのが決まり",
+      "secrets": [
+        "実は、小学校の新聞部で漫画の連載を5本持っていた。"
+      ]
+    },
+    "ko": {
+      "secrets": []
+    },
+    "zh_tw": {
+      "secrets": []
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

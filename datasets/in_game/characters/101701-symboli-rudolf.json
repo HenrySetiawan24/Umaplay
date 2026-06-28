@@ -1,0 +1,218 @@
+{
+  "charData": {
+    "url_name": "symboli-rudolf",
+    "tid": "g",
+    "char_id": 1017,
+    "jp_name": "シンボリルドルフ",
+    "en_name": "Symboli Rudolf",
+    "name_ko": "심볼리 루돌프",
+    "name_tw": "魯道夫象徵",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Azusa Tadokoro",
+    "va_ja": "田所あずさ",
+    "va_ko": "타도코로 아즈사",
+    "va_zh_tw": "田所あずさ",
+    "va_link": "https://myanimelist.net/people/17297/Azusa_Tadokoro",
+    "three_sizes": {
+      "b": 86,
+      "w": 59,
+      "h": 85
+    },
+    "birth_day": 13,
+    "birth_month": 3,
+    "birth_year": 1981,
+    "height": 165,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2011-10-04",
+      "races": 16,
+      "wins": 13,
+      "record": "13-1-1-1",
+      "earnings": 684820000,
+      "active": "1983-1986"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1017_101701.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1017_101701.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 19,
+      "year": 1,
+      "month": 10,
+      "day": 1,
+      "race_name": "Saudi Arabia Royal Cup",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 48,
+      "year": 2,
+      "month": 12,
+      "day": 2,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 2
+    },
+    {
+      "order": 9,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "symboli-rudolf",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1017,
+    "ja": {
+      "self_intro": "私はシンボリルドルフ。あらゆるウマ娘の頂点に立ち導く“皇帝”たらんとする者だ。同じ志を抱く者よ、共に勇往邁進して征こう",
+      "tagline": "君臨する“皇帝”その権威に揺らぎなし！",
+      "weight": "かなり理想的",
+      "shoes": "左右ともに25.0cm",
+      "dorm": "美浦寮",
+      "class": "高等部",
+      "ears": "ダジャレを思いつくと、ピクンと大きく動く",
+      "tail": "演説の時などは毛の一本さえも迫力満点",
+      "strong": "チェス",
+      "weak": "くだけたやり取りをすること",
+      "family": "幼い頃から、帝王学を両親自ら教えていた",
+      "secrets": [
+        "実は、一度見た相手の顔は忘れない。",
+        "実は、ハンコをいかに垂直＆綺麗に押せるか挑戦するのが書類仕事中の密かな楽しみ。"
+      ]
+    },
+    "ko": {
+      "self_intro": "나는 심볼리 루돌프. 모든 우마무스메의 정점에 서서 이끄는 '황제'가 되려는 자다. 같은 뜻을 품은 자여, 함께 용왕매진해 나가자",
+      "tagline": "군림하는 '황제' 그 권위에 흔들림은 없다!",
+      "weight": "꽤 이상적",
+      "shoes": "좌우 모두 25.0cm",
+      "dorm": "미호 생활관",
+      "class": "고등부",
+      "ears": "말장난이 생각나면 크게 움찔거린다.",
+      "tail": "연설할 때는 털 한 가닥마저 박력 만점.",
+      "strong": "체스",
+      "weak": "허물없이 대화하기",
+      "family": "어렸을 때부터 부모님이 직접 제왕학을 가르쳐주셨다.",
+      "secrets": [
+        "사실은 한 번 본 상대의 얼굴을 잊지 않는다.",
+        "사실은 도장을 얼마나 수직＆깔끔하게 찍을 수 있는지 도전하는 것이 서류 작업 중의 은밀한 즐거움."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我是魯道夫象徵。立志成為站在所有賽馬娘的頂點，領導大家的「皇帝」。懷抱相同志向的同志，與我一同勇往直前吧。",
+      "tagline": "君臨天下的「皇帝」絕不動搖的權威！",
+      "weight": "相當理想",
+      "shoes": "左右都是25.0cm",
+      "dorm": "美浦宿舍",
+      "class": "高中部",
+      "ears": "只要想到冷笑話就會大幅擺動",
+      "tail": "在進行演說等活動時，就連一根毛髮都充滿魄力",
+      "strong": "西洋棋",
+      "weak": "日常對話",
+      "family": "從小就由父母親自傳授帝王學",
+      "secrets": [
+        "其實她看過別人的臉一次就絕不會忘記。",
+        "其實挑戰如何垂直和漂亮地按下印章，是她忙於文書工作時的小小樂趣。"
+      ]
+    },
+    "en": {
+      "self_intro": "I am Symboli Rudolf. I hold the honor of being the \"Emperor\" who seeks to help all Umamusume reach their true potential. Together, let us forge a path to honor and glory!",
+      "tagline": "The reigning Emperor. Her rule is absolute!",
+      "weight": "Nearly ideal",
+      "shoes": "Left and right: 25.0cm",
+      "dorm": "Miho Dormitory",
+      "class": "Senior Division",
+      "ears": "Twitch noticeably whenever she comes up with a pun",
+      "tail": "Even the hairs on her tail feel electric when she's giving a speech",
+      "strong": "Chess",
+      "weak": "Small talk",
+      "family": "Her parents have been teaching her the art of governing from a young age",
+      "secrets": [
+        "Did you know? She'll always remember a face.",
+        "Did you know? Her secret pleasure is challenging herself to stamp documents with perfect precision, no smudges."
+      ]
+    }
+  }
+}

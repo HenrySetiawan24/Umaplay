@@ -1,0 +1,218 @@
+{
+  "charData": {
+    "url_name": "mejiro-ardan",
+    "tid": "18",
+    "char_id": 1071,
+    "jp_name": "メジロアルダン",
+    "en_name": "Mejiro Ardan",
+    "name_ko": "메지로 아르당",
+    "name_tw": "目白阿爾丹",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Saya Aizawa",
+    "va_ja": "会沢紗弥",
+    "va_ko": "아이자와 사야",
+    "va_zh_tw": "会沢紗弥",
+    "va_link": "https://myanimelist.net/people/46861/Saya_Aizawa",
+    "three_sizes": {
+      "b": 87,
+      "w": 56,
+      "h": 85
+    },
+    "birth_day": 28,
+    "birth_month": 3,
+    "birth_year": 1985,
+    "height": 162,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2002-06-18",
+      "races": 14,
+      "wins": 4,
+      "record": "4-3-2-5",
+      "earnings": 243329000,
+      "active": "1988-1991"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1071_107101.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1071_107101.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 30,
+      "year": 2,
+      "month": 3,
+      "day": 2,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 6000
+    },
+    {
+      "order": 3,
+      "turn": 32,
+      "year": 2,
+      "month": 4,
+      "day": 2,
+      "race_name": "Aoba Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 6,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Osaka Hai",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 67,
+      "year": 3,
+      "month": 10,
+      "day": 1,
+      "race_name": "Mainichi Okan",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "mejiro-ardan",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1071,
+    "ja": {
+      "self_intro": "メジロアルダンと申します。この脚は儚くとも、誇り高く走りたい…一瞬でもいい。私はレースで輝きたいのです",
+      "tagline": "儚くとも強く輝け。ガラスの脚を持つ令嬢",
+      "weight": "秘密♪",
+      "shoes": "左右ともに22.5cm",
+      "dorm": "美浦寮",
+      "class": "高等部",
+      "ears": "ガラスの割れる音がすると耳を伏せてしまう",
+      "tail": "特注のオーガニックトリートメントを愛用",
+      "strong": "包帯を綺麗に巻くこと",
+      "weak": "喧嘩、揉め事、さくらんぼ",
+      "family": "母が、学園の友だちを家に招きたがっている",
+      "secrets": [
+        "実は、カラフルな大特価チラシを見るのが好き。",
+        "実は、万華鏡は何時間でも眺めていられる。"
+      ]
+    },
+    "ko": {
+      "self_intro": "메지로 아르당이라고 합니다. 덧없는 이 다리라도 자랑스럽게 달리고 싶어요… 한순간이라도 좋아요. 저는 레이스에서 빛나고 싶습니다.",
+      "tagline": "덧없을지라도 강하게 빛나라. 유리 다리를 지닌 영애",
+      "weight": "비밀♪",
+      "shoes": "좌우 모두 22.5cm",
+      "dorm": "미호 생활관",
+      "class": "고등부",
+      "ears": "유리가 깨지는 소리가 나면 귀를 숙인다",
+      "tail": "특별 주문한 유기농 트리트먼트를 애용",
+      "strong": "깔끔하게 붕대 감기",
+      "weak": "싸움, 분쟁, 버찌",
+      "family": "어머니가 학원 친구를 집으로 초대하길 바란다",
+      "secrets": [
+        "사실은 컬러풀한 특가 세일 광고 전단을 보는 걸 좋아한다.",
+        "사실은 만화경을 몇 시간이고 볼 수 있다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我叫目白阿爾丹。雖然這雙腳很脆弱，但我還是想帶著自信奔馳……哪怕只有瞬間也好，我想在競賽中閃耀。",
+      "tagline": "虛幻卻閃亮耀眼。擁有玻璃細腳的千金",
+      "weight": "祕密♪",
+      "shoes": "左右都是22.5cm",
+      "dorm": "美浦宿舍",
+      "class": "高中部",
+      "ears": "聽到玻璃碎掉的聲音耳朵會垂下來",
+      "tail": "愛用品是特別訂購的有機護毛劑",
+      "strong": "漂亮地纏繞繃帶",
+      "weak": "吵架、爭執、櫻桃",
+      "family": "母親想邀請學園的朋友來家裡做客",
+      "secrets": [
+        "其實她喜歡看五顏六色的大特價傳單。",
+        "其實她能盯著萬花筒看好幾個小時。"
+      ]
+    },
+    "en": {
+      "self_intro": "A pleasure. I'm Mejiro Ardan. My legs may be fragile, but I want to shine brightly on the track, even if only for a moment.",
+      "tagline": "She wants to shine bright, no matter how briefly! This well-to-do girl has legs of glass.",
+      "weight": "It's a secret ♪",
+      "shoes": "Left and right: 22.5cm",
+      "dorm": "Miho Dormitory",
+      "class": "Senior Division",
+      "ears": "Flip down at the sound of glass breaking",
+      "tail": "Loves to use custom-made organic treatments",
+      "strong": "Wrapping the perfect bandage",
+      "weak": "Fighting, arguing, cherries",
+      "family": "Her mother wants to invite all her academy friends to visit",
+      "secrets": [
+        "Did you know? She loves looking through bright and colorful sales flyers.",
+        "Did you know? She can spend hours and hours staring into a kaleidoscope."
+      ]
+    }
+  }
+}

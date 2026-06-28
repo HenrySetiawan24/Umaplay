@@ -1,0 +1,218 @@
+{
+  "charData": {
+    "url_name": "maruzensky",
+    "tid": "3",
+    "char_id": 1004,
+    "jp_name": "マルゼンスキー",
+    "en_name": "Maruzensky",
+    "name_ko": "마루젠스키",
+    "name_tw": "丸善斯基",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Lynn",
+    "va_ja": "Lynn",
+    "va_ko": "Lynn",
+    "va_zh_tw": "Lynn",
+    "va_link": "https://myanimelist.net/people/10929/Lynn",
+    "three_sizes": {
+      "b": 92,
+      "w": 58,
+      "h": 88
+    },
+    "birth_day": 19,
+    "birth_month": 5,
+    "birth_year": 1974,
+    "height": 164,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "1997-08-21",
+      "races": 8,
+      "wins": 8,
+      "record": "8-0-0-0",
+      "earnings": 76600000,
+      "active": "1976-1977"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1004_100401.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1004_100401.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "Asahi Hai Futurity Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 30,
+      "year": 2,
+      "month": 3,
+      "day": 2,
+      "race_name": "Spring Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 4,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 6,
+      "turn": 48,
+      "year": 2,
+      "month": 12,
+      "day": 2,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 7,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Osaka Hai",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 59,
+      "year": 3,
+      "month": 6,
+      "day": 1,
+      "race_name": "Yasuda Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "maruzensky",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1004,
+    "ja": {
+      "self_intro": "ハァーイ、マルゼンスキーよ！君も見にきたんでしょ？異次元の走り。ふふっ♪首ったけになっても…知らないゾ♪",
+      "tagline": "昭和レトロな、スーパーカーお姉さん",
+      "weight": "理想的な仕上がり",
+      "shoes": "左右ともに26.0cm",
+      "dorm": "一人暮らし",
+      "class": "高等部",
+      "ears": "ユーロビートを聴くとかっ飛ばしたくなる",
+      "tail": "朝シャンでサラサラにするのがマイブーム",
+      "strong": "ドリフト",
+      "weak": "徐行運転",
+      "family": "真っ赤なスーパーカーは、父のお古",
+      "secrets": [
+        "実は、助手席だと車酔いしやすい。",
+        "実は、ナタデココを飲み込むタイミングで迷いがち。"
+      ]
+    },
+    "ko": {
+      "self_intro": "방가~ 마루젠스키야! 너도 차원이 다른 달리기를 보러온 거지? 후훗♪ 홀딱 반해버려도… 난 모른다♪",
+      "tagline": "80년대 레트로 감성의 슈퍼카 언니",
+      "weight": "이상적으로 완성",
+      "shoes": "좌우 모두 26.0cm",
+      "dorm": "자취",
+      "class": "고등부",
+      "ears": "유로비트를 들으면 반응하게 된다.",
+      "tail": "아침에 샴푸로 찰랑찰랑하게 만드는 것에 푹 빠졌다.",
+      "strong": "드리프트",
+      "weak": "서행 운전",
+      "family": "새빨간 슈퍼카는 아버지가 쓰던 것.",
+      "secrets": [
+        "사실은 조수석에 앉으면 차멀미가 심하다.",
+        "사실은 나타드코코를 마실 타이밍을 자주 망설인다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "嗨～我是丸善斯基唷！你也是來看異次元的奔馳對吧？呵呵♪到時看得無法自拔……我可不管喔♪",
+      "tagline": "昭和復古風，超跑大姐姐",
+      "weight": "調整狀態相當理想",
+      "shoes": "左右都是26.0cm",
+      "dorm": "獨居",
+      "class": "高中部",
+      "ears": "一聽到歐陸節拍就開始想飆車",
+      "tail": "最近熱衷早起梳洗，洗到柔柔順順",
+      "strong": "甩尾",
+      "weak": "低速行駛",
+      "family": "鮮紅的超跑是父親汰換下來的",
+      "secrets": [
+        "其實她坐在副駕駛座時很容易暈車。",
+        "其實她喝椰果飲料時常常會猶豫吞下去的時機。"
+      ]
+    },
+    "en": {
+      "self_intro": "Hiii! Maruzensky here! You came here to see me, right? My running's out of this world! Hehe! Try not to fall in love too hard, okay? ♪",
+      "tagline": "Keeping it old-school! A real hot rod!",
+      "weight": "Optimal form",
+      "shoes": "Left and right: 26.0cm",
+      "dorm": "Lives alone",
+      "class": "Senior Division",
+      "ears": "Wants to boogie when she hears Eurobeat music",
+      "tail": "Getting it all silky with a morning shower is her favorite part of the day",
+      "strong": "Drifting",
+      "weak": "Leisurely drives",
+      "family": "The bright red sports car is a hand-me-down from her dad",
+      "secrets": [
+        "Did you know? She gets carsick when she's in the passenger seat.",
+        "Did you know? When enjoying nata de coco, she gets indecisive over when to swallow the gelatin bits."
+      ]
+    }
+  }
+}

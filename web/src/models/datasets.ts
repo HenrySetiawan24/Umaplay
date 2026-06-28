@@ -30,3 +30,29 @@ export type RaceInstance = {
 }
 
 export type RacesMap = Record<string, RaceInstance[]>
+
+export interface CharacterGoal {
+  order: number
+  turn: number
+  year: number
+  month: number
+  day: number
+  race_name: string
+  cond_type?: number
+  cond_value?: number
+}
+
+export interface CharacterEntry {
+  char_id: number
+  name_en: string
+  name_jp: string
+  card_id: number
+  slug: string
+  playable: boolean
+  goal_count: number
+  image_url: string
+  thumb_url: string
+  goals: CharacterGoal[]
+}
+
+export type CharacterIndex = Record<string, CharacterEntry>

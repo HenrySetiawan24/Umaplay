@@ -1,0 +1,158 @@
+{
+  "charData": {
+    "url_name": "admire-groove",
+    "tid": "1S",
+    "char_id": 1118,
+    "jp_name": "アドマイヤグルーヴ",
+    "en_name": "Admire Groove",
+    "playable": true,
+    "active": true,
+    "va_ja": "鈴木日菜",
+    "birth_day": 30,
+    "birth_month": 4,
+    "birth_year": 2000,
+    "height": 165,
+    "sex": 2,
+    "rl": {}
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1118_111801.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1118_111801.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 3000
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Oka Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Japanese Oaks",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Shuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 45,
+      "year": 2,
+      "month": 11,
+      "day": 1,
+      "race_name": "Queen Elizabeth II Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 7,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Osaka Hai",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 10,
+      "turn": 69,
+      "year": 3,
+      "month": 11,
+      "day": 1,
+      "race_name": "Queen Elizabeth II Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "admire-groove",
+    "images": {
+      "uniform": true,
+      "racing": true
+    }
+  },
+  "profileData": {
+    "char_id": 1118,
+    "ja": {
+      "self_intro": "アドマイヤグルーヴです。甘さも優しさも、私には必要ありません。自分を高めていきたい…それだけですから",
+      "tagline": "気高く、凜と――孤に咲く蒼銀の花",
+      "weight": "見事な仕上がり",
+      "shoes": "左：24.5cm 右：25.0cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "イヤホンはノイキャンがないと落ち着かない",
+      "tail": "カットの腕前はプロ級",
+      "strong": "折り紙",
+      "weak": "囲み取材、スキンシップ全般",
+      "family": "就寝時間を破ったことがない",
+      "secrets": [
+        "実は、チョコレートは堕落を促す悪魔だと思っている。",
+        "実は、たまにアクアリウムをじっと見つめている。"
+      ]
+    },
+    "ko": {
+      "secrets": []
+    },
+    "zh_tw": {
+      "secrets": []
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

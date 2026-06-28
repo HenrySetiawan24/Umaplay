@@ -1,0 +1,208 @@
+{
+  "charData": {
+    "url_name": "rice-shower",
+    "tid": "t",
+    "char_id": 1030,
+    "jp_name": "ライスシャワー",
+    "en_name": "Rice Shower",
+    "name_ko": "라이스 샤워",
+    "name_tw": "米浴",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Manaka Iwami",
+    "va_ja": "石見舞菜香",
+    "va_ko": "이와미 마나카",
+    "va_zh_tw": "石見舞菜香",
+    "va_link": "https://myanimelist.net/people/44317/Manaka_Iwami",
+    "three_sizes": {
+      "b": 75,
+      "w": 51,
+      "h": 76
+    },
+    "birth_day": 5,
+    "birth_month": 3,
+    "birth_year": 1989,
+    "height": 145,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "1995-06-04",
+      "races": 25,
+      "wins": 6,
+      "record": "6-5-2-12",
+      "earnings": 666860000,
+      "active": "1991-1995"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1030_103001.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1030_103001.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 30,
+      "year": 2,
+      "month": 3,
+      "day": 2,
+      "race_name": "Spring Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 5,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Nikkei Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 7,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "rice-shower",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1030,
+    "ja": {
+      "self_intro": "ライスシャワー…です。あ、あのね…？ライス、みんなを不幸にする…だめな子なのでも…か、変われるように…がんばります！",
+      "tagline": "不幸体質？健気に生きる薄幸乙女",
+      "weight": "増減なし",
+      "shoes": "左右ともに21.0cm",
+      "dorm": "美浦寮",
+      "class": "高等部",
+      "ears": "他人の不幸な話を聞くとしゅんと垂れる",
+      "tail": "人にぶつけないよう気を付けている",
+      "strong": "絵を描くこと",
+      "weak": "誰かの不幸、幽霊さん",
+      "family": "昔は、両親の絵本の読み聞かせで寝ていた",
+      "secrets": [
+        "実は、朝食だけはパン派。",
+        "実は、いつか500色セットの色鉛筆を買うのが夢。"
+      ]
+    },
+    "ko": {
+      "self_intro": "라이스 샤워…입니다. 저, 저기 있지…? 라이스, 모두를 불행하게 만드는… 못난 아이야. 하지만… 바, 바뀔 수 있도록… 힘낼게요!",
+      "tagline": "불행 체질? 기특하게 살아가는 박복 소녀",
+      "weight": "변화 없음",
+      "shoes": "좌우 모두 21.0cm",
+      "dorm": "미호 생활관",
+      "class": "고등부",
+      "ears": "다른 사람의 불행한 이야기를 들으면 축 처진다.",
+      "tail": "남에게 부딪히지 않도록 조심한다.",
+      "strong": "그림 그리기",
+      "weak": "누군가의 불행, 유령 씨",
+      "family": "옛날에는 부모님이 읽어주는 그림책 이야기를 들으며 잠들었다.",
+      "secrets": [
+        "사실은 아침 식사만큼은 빵파.",
+        "사실은 언젠가 500색 세트로 된 색연필을 사는 것이 꿈."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我……我叫米浴。聽、聽米浴說喔……？米浴會害大家不幸……是個壞孩子。可是……我、我會努力……做出改變的！",
+      "tagline": "不幸體質？堅強活下去的不幸少女",
+      "weight": "無增減",
+      "shoes": "左右都是21.0cm",
+      "dorm": "美浦宿舍",
+      "class": "高中部",
+      "ears": "聽到別人的不幸就會向下垂",
+      "tail": "總是小心不讓尾巴甩到人",
+      "strong": "畫圖",
+      "weak": "他人的不幸、幽靈",
+      "family": "以前都是聽父母唸的繪本故事入睡",
+      "secrets": [
+        "其實她只有早餐是麵包派。",
+        "其實她的夢想是總有一天要買下500色一組的彩色鉛筆。"
+      ]
+    },
+    "en": {
+      "self_intro": "I'm Rice Shower... To be honest, all I ever do is cause bad things to happen, and... I'm really just no good... B-but I'm trying to be better!",
+      "tagline": "Bringer of misfortune? This racer pursues her dreams despite her dreary outlook.",
+      "weight": "No change",
+      "shoes": "Left and right: 21.0cm",
+      "dorm": "Miho Dormitory",
+      "class": "Senior Division",
+      "ears": "Droop when she hears of other people's misfortune",
+      "tail": "She's mindful not to hit people with her tail",
+      "strong": "Drawing",
+      "weak": "Others' misfortune, ghosts",
+      "family": "Her parents used to read her picture books as bedtime stories",
+      "secrets": [
+        "Did you know? She prefers bread for breakfast.",
+        "Did you know? Her dream is to one day buy a 500-piece colored pencil set."
+      ]
+    }
+  }
+}

@@ -1,0 +1,210 @@
+{
+  "charData": {
+    "url_name": "mr-cb",
+    "tid": "U",
+    "char_id": 1057,
+    "jp_name": "ミスターシービー",
+    "en_name": "Mr. C.B.",
+    "name_ko": "미스터 시비",
+    "name_tw": "千明代表",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Yurina Amami",
+    "va_ja": "天海由梨奈",
+    "va_ko": "아마미 유리나",
+    "va_zh_tw": "天海由梨奈",
+    "va_link": "https://myanimelist.net/people/50827/Yurina_Amami",
+    "three_sizes": {
+      "b": 84,
+      "w": 55,
+      "h": 80
+    },
+    "birth_day": 7,
+    "birth_month": 4,
+    "birth_year": 1980,
+    "height": 166,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2000-12-15",
+      "races": 15,
+      "wins": 8,
+      "record": "8-3-1-3",
+      "earnings": 409598100,
+      "active": "1982-1985"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1057_105701.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1057_105701.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 27,
+      "year": 2,
+      "month": 2,
+      "day": 1,
+      "race_name": "Kyodo News Hai",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "mr-cb",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1057,
+    "ja": {
+      "self_intro": "レースにしかない風があるんだ。軽くて、澄んでいて……自由気ままな追い風でね。――アタシはミスターシービー。よろしく。",
+      "tagline": "何にも縛られない！天衣無縫の陽気なウマ娘",
+      "weight": "増減なし",
+      "shoes": "左右ともに25.0cm",
+      "dorm": "一人暮らし",
+      "class": "高等部",
+      "ears": "足で耳に触ることができる",
+      "tail": "尻尾用トリートメントはコロコロ変わる",
+      "strong": "短歌を詠むこと、放浪の旅、ポーカー",
+      "weak": "整列、嘘や適当な誤魔化し",
+      "family": "両親は半ば駆け落ちのような形で結婚した",
+      "secrets": [
+        "実は、エレベーターがちょっと苦手。",
+        "実は、歌舞伎が好きでよく観に行く。"
+      ]
+    },
+    "ko": {
+      "self_intro": "레이스에만 부는 바람이 있거든. 가볍고 서늘한…… 자유분방한 순풍 말이야. …내 이름은 미스터 시비. 잘 부탁해.",
+      "tagline": "어떤 것에도 얽매이지 않는다! 천의무봉의 쾌활한 우마무스메",
+      "weight": "변화 없음",
+      "shoes": "좌우 모두 25.0cm",
+      "dorm": "자취",
+      "class": "고등부",
+      "ears": "발로 귀를 건드릴 수 있다",
+      "tail": "꼬리용 트리트먼트는 자주 바꾼다",
+      "strong": "단가를 읊는 것, 방랑 여행, 포커",
+      "weak": "정렬, 거짓말과 적당한 눈속임",
+      "family": "부모님은 반쯤 사랑의 도피 같은 형태로 결혼했다",
+      "secrets": [
+        "사실은 엘리베이터가 조금 무섭다.",
+        "사실은 가부키를 좋아해서 자주 보러 간다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "有種只在競賽當下才會吹起的風。那是既柔和又清新……自由自在的順風喔。──我是千明代表，請多指教。",
+      "tagline": "不受任何拘束！毫無破綻的活潑賽馬娘",
+      "weight": "無增減",
+      "shoes": "左右都是25.0cm",
+      "dorm": "獨居",
+      "class": "高中部",
+      "ears": "可以用腳碰到耳朵",
+      "tail": "尾巴護毛劑一直換來換去",
+      "strong": "吟詠短歌、漫無目的的旅行、撲克牌",
+      "weak": "整隊、說謊與隨便矇混",
+      "family": "雙親算是以半私奔的形式結婚",
+      "secrets": [
+        "其實她有點害怕搭電梯。",
+        "其實她因為喜歡歌舞伎所以很常去看。"
+      ]
+    },
+    "en": {
+      "self_intro": "There's a wind you'll only find while racing. It's a gentle tailwind, calm and true to itself. By the way, the name's Mr. C.B.—it's a pleasure.",
+      "tagline": "Cheerful and free-spirited, nothing can hold her down!",
+      "dorm": "Lives alone",
+      "class": "Senior Division",
+      "secrets": [
+        "Did you know? She's not great with elevators.",
+        "Did you know? She loves kabuki theater and goes to see it often."
+      ]
+    }
+  }
+}

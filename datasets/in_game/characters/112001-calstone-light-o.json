@@ -1,0 +1,192 @@
+{
+  "charData": {
+    "url_name": "calstone-light-o",
+    "tid": "1U",
+    "char_id": 1120,
+    "jp_name": "カルストンライトオ",
+    "en_name": "Calstone Light O",
+    "name_ko": "칼스톤 라이트 오",
+    "name_tw": "浮岩光王",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Yumiko Mochizuki",
+    "va_ja": "望月ゆみこ",
+    "va_ko": "모치즈키 유미코",
+    "va_zh_tw": "望月ゆみこ",
+    "va_link": "https://umamusu.wiki/Yumiko_Mochizuki",
+    "three_sizes": {
+      "b": 80,
+      "w": 55,
+      "h": 80
+    },
+    "birth_day": 3,
+    "birth_month": 5,
+    "birth_year": 1998,
+    "height": 159,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2024-02-07",
+      "races": 36,
+      "wins": 9,
+      "record": "36-9-4-7",
+      "earnings": 422044000,
+      "active": "2000-2005"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1120_112001.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1120_112001.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "Asahi Hai Futurity Stakes",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 3,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Aoi Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 38,
+      "year": 2,
+      "month": 7,
+      "day": 2,
+      "race_name": "Ibis Summer Dash",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 5,
+      "turn": 42,
+      "year": 2,
+      "month": 9,
+      "day": 2,
+      "race_name": "Sprinters Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Takamatsunomiya Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 62,
+      "year": 3,
+      "month": 7,
+      "day": 2,
+      "race_name": "Ibis Summer Dash",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 66,
+      "year": 3,
+      "month": 9,
+      "day": 2,
+      "race_name": "Sprinters Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "calstone-light-o",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1120,
+    "ja": {
+      "self_intro": "カルストンライトオ。夢は最高速の更新。好きなものは直線。以上。自己紹介も最速です",
+      "tagline": "光の向こうへ！最速へ突き進む直線番長",
+      "weight": "最高速で成長中",
+      "shoes": "左右ともに23.0cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "猫の鳴き声はどれだけ遠くても聞き逃さない",
+      "tail": "手入れの際は定規を使ってきっちり真っ直ぐ",
+      "strong": "雑巾がけ、ぐるぐるバット競走",
+      "weak": "二次関数、潜水",
+      "family": "表情だけで両親が何を考えてるか大体わかる",
+      "secrets": [
+        "実は、前髪の白い流星だけはなぜかどうしても右に曲がる。",
+        "実は、全ての暗証番号を1111にしているのが最近発覚し、全て変更させられた。"
+      ]
+    },
+    "ko": {
+      "self_intro": "칼스톤 라이트 오. 꿈은 최고속 경신. 좋아하는 것은 직선. 이상. 자기소개도 최속입니다.",
+      "tagline": "빛의 너머로! 최고속을 향해 돌진하는 직선 대장",
+      "weight": "최고속으로 성장 중",
+      "shoes": "좌우 모두 23.0cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "고양이 울음소리는 아무리 멀리서 들려도 절대 놓치지 않는다",
+      "tail": "손질할 때는 자를 사용해 완벽한 직선으로",
+      "strong": "걸레질, 코끼리 코 달리기",
+      "weak": "이차함수, 잠수",
+      "family": "표정만으로 부모님의 생각을 대략 알 수 있다",
+      "secrets": [
+        "사실은 앞머리의 하얀 유성만큼은 어째선지 어떻게 해도 오른쪽으로 휜다.",
+        "사실은 모든 비밀번호를 1111로 설정했던 게 최근에 발각되어 전부 변경당했다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我是浮岩光王。夢想是刷新最高速度，喜歡直線。就這樣。自我介紹也是最快的。",
+      "tagline": "邁向光的彼方！最快速度衝刺的直線老大",
+      "weight": "以最高速成長中",
+      "shoes": "左右都是23.0cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "不論貓叫聲從多遠的地方傳來都不會漏聽",
+      "tail": "保養時會用尺確保完全筆直",
+      "strong": "擦地板、原地轉圈賽跑",
+      "weak": "二次函數、潛水",
+      "family": "光靠表情就大概知道父母在想什麼",
+      "secrets": [
+        "其實她瀏海上那抹流星般的白髮不知為何總是會往右偏。",
+        "其實她最近被發現把所有密碼都設為1111，結果被逼著全部改掉了。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { Skill, RacesMap } from '@/models/datasets'
+import type { Skill, RacesMap, CharacterIndex } from '@/models/datasets'
 import type { EventsRoot } from '@/types/events'
 
 export const api = axios.create({
@@ -38,6 +38,15 @@ export type NavPrefs = {
   }
   team_trials: {
     preferred_banner: 1 | 2 | 3
+  }
+}
+
+export const fetchCharacters = async (): Promise<CharacterIndex> => {
+  try {
+    const { data } = await api.get('/api/characters')
+    return data || {}
+  } catch {
+    return {}
   }
 }
 

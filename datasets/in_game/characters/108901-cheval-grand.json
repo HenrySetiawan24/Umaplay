@@ -1,0 +1,201 @@
+{
+  "charData": {
+    "url_name": "cheval-grand",
+    "tid": "1q",
+    "char_id": 1089,
+    "jp_name": "シュヴァルグラン",
+    "en_name": "Cheval Grand",
+    "name_ko": "슈발 그랑",
+    "name_tw": "高尚駿逸",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Natsuyoshi Yuuko",
+    "va_ja": "夏吉ゆうこ",
+    "va_ko": "나츠요시 유우코",
+    "va_zh_tw": "夏吉ゆうこ",
+    "va_link": "https://myanimelist.net/people/49032/Yuuko_Natsuyoshi",
+    "three_sizes": {
+      "b": 85,
+      "w": 56,
+      "h": 80
+    },
+    "birth_day": 14,
+    "birth_month": 3,
+    "birth_year": 2012,
+    "height": 160,
+    "sex": 1,
+    "race": false,
+    "rl": {
+      "country": "jp",
+      "races": 33,
+      "wins": 7,
+      "record": "33-7-7-7",
+      "earnings": 1000697000,
+      "earnings_other": [
+        [
+          1200000,
+          "AED"
+        ],
+        [
+          16875,
+          "GBP"
+        ]
+      ],
+      "active": "2014-2019"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1089_108901.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1089_108901.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 24,
+      "year": 1,
+      "month": 12,
+      "day": 2,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 3000
+    },
+    {
+      "order": 3,
+      "turn": 47,
+      "year": 2,
+      "month": 12,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 2,
+      "cond_value": 3
+    },
+    {
+      "order": 4,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Hanshin Daishoten",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 5,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 67,
+      "year": 3,
+      "month": 10,
+      "day": 1,
+      "race_name": "Kyoto Daishoten",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "cheval-grand",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1089,
+    "ja": {
+      "self_intro": "…シュヴァルグランです。…その、身の程知らずなのはわかっています。でも…いつか――い、偉大な…いえ、頑張ります",
+      "tagline": "内気な心に抱く野望。目指すは偉大なウマ娘",
+      "weight": "安定感〇",
+      "shoes": "左右ともに24.0cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "1人でいる時は、帽子をとって風に当てる",
+      "tail": "妹からよく勝手に三つ編みにされていた",
+      "strong": "海釣り、野球、1人で時間を潰すこと",
+      "weak": "自己紹介、体重管理",
+      "family": "家族の海外旅行は、交代で行き先を決める",
+      "secrets": [
+        "実は、嬉しいことがあった時はオーストラリアにいる幼馴染に電話する。",
+        "実は、寝ている時に口がもぐもぐしている。"
+      ]
+    },
+    "ko": {
+      "self_intro": "…슈발 그랑입니다. …저기, 제 분수에 안 맞는 소리란 건 알아요. 하지만… 언젠가… 위, 위대한… 아뇨, 열심히 할게요.",
+      "tagline": "내성적인 마음에 품은 야망. 목표는 위대한 우마무스메",
+      "weight": "안정감〇",
+      "shoes": "좌우 모두 24.0cm",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "ears": "혼자 있을 때는 모자를 벗고 바람을 쐰다.",
+      "tail": "툭하면 여동생이 마음대로 땋아 버리곤 했다.",
+      "strong": "바다낚시, 야구, 혼자 시간 보내기",
+      "weak": "자기소개, 체중 관리",
+      "family": "가족끼리 해외여행을 갈 때는 번갈아서 행선지를 정한다.",
+      "secrets": [
+        "사실은 기쁜 일이 있을 때 호주에 있는 소꿉친구에게 전화한다.",
+        "사실은 잘 때 입을 오물거린다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "……我是高尚駿逸。那個……雖然我明白說這種話很不自量力，但……總有一天──我、我會成為偉大的……沒事，我會加油的。",
+      "tagline": "性格內向仍懷抱野心。目標是成為偉大的賽馬娘",
+      "weight": "安定感〇",
+      "shoes": "左右都是24.0cm",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "ears": "獨處時，會摘下帽子任由風吹",
+      "tail": "經常被妹妹擅自編成麻花辮",
+      "strong": "海釣、棒球、獨自打發時間",
+      "weak": "自我介紹、管理體重",
+      "family": "會由家人們輪流決定國外旅遊的目的地",
+      "secrets": [
+        "其實當她遇上開心的事時，會打電話給人在澳洲的青梅竹馬。",
+        "其實她睡覺時嘴巴會嚼個不停。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

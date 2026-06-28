@@ -1,0 +1,227 @@
+{
+  "charData": {
+    "url_name": "gentildonna",
+    "tid": "1Q",
+    "char_id": 1116,
+    "jp_name": "ジェンティルドンナ",
+    "en_name": "Gentildonna",
+    "name_ko": "젠틸돈나",
+    "name_tw": "貴婦人",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Yuu Serizawa",
+    "va_ja": "芹澤優",
+    "va_ko": "세리자와 유우",
+    "va_zh_tw": "芹澤優",
+    "va_link": "https://myanimelist.net/people/21515/Yuu_Serizawa",
+    "three_sizes": {
+      "b": 95,
+      "w": 63,
+      "h": 87
+    },
+    "birth_day": 20,
+    "birth_month": 2,
+    "birth_year": 2009,
+    "height": 167,
+    "sex": 2,
+    "rl": {
+      "country": "jp",
+      "death": "2025-11-25",
+      "races": 19,
+      "wins": 10,
+      "record": "19-10-4-1",
+      "earnings": 1326210000,
+      "earnings_other": [
+        [
+          4000000,
+          "AED"
+        ]
+      ],
+      "active": "2011-2014"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1116_111601.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1116_111601.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 25,
+      "year": 2,
+      "month": 1,
+      "day": 1,
+      "race_name": "Shinzan Kinen",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Oka Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Japanese Oaks",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Shuka Sho",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 6,
+      "turn": 46,
+      "year": 2,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 7,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Osaka Hai",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 11,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "gentildonna",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1116,
+    "ja": {
+      "self_intro": "過程や理屈、そんなものは無意味よ。勝者こそが正義、そうではなくて？ジェンティルドンナ、全てを屈服させるわ",
+      "tagline": "剛毅なる貴婦人。ただ力強く咲き誇る！",
+      "weight": "パワフル",
+      "shoes": "左右ともに26.5cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "メンコに合わせて服を決めるほど、こだわる",
+      "tail": "就寝時はニードルレースの尻尾カバーを使用",
+      "strong": "潜水、装蹄、マスカラ",
+      "weak": "ヒョウ柄、タピオカ",
+      "family": "3歳3合目、5歳5合目、7歳で富士登頂が掟",
+      "secrets": [
+        "実は、足の指でクルミを粉砕できる。",
+        "実は、実家にはメンココレクション用のクローゼットがある。"
+      ]
+    },
+    "ko": {
+      "self_intro": "과정이나 이치, 그런 것들은 무의미해. 승자야말로 정의 아니겠어? 젠틸돈나, 모든 것을 굴복시키겠어.",
+      "tagline": "강인한 귀부인. 오로지 힘차게 피어날 뿐!",
+      "weight": "파워풀",
+      "shoes": "좌우 모두 26.5cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "귀 커버에 맞춰 옷을 고를 정도로 신경 쓴다",
+      "tail": "취침 시에는 니들 레이스 꼬리 커버를 사용",
+      "strong": "잠수, 편자 달기, 마스카라",
+      "weak": "레오파드 무늬, 타피오카 펄",
+      "family": "3살 때 3부 능선, 5살 때 5부 능선, 7살 때는 후지산 등정이 관례",
+      "secrets": [
+        "사실은 발가락으로 호두를 박살 낼 수 있다.",
+        "사실은 본가에 귀 가리개 컬렉션용 수납장이 있다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "過程和道理這種東西一點意義也沒有。贏家就是正義，不是嗎？貴婦人會讓一切臣服。",
+      "tagline": "剛毅的高貴淑女。一心只為強而有力地綻放！",
+      "weight": "充滿力量",
+      "shoes": "左右都是26.5cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "堅持一定要依照耳罩搭配衣服",
+      "tail": "睡覺時會戴上針繡花邊的尾巴護套",
+      "strong": "潛水、裝蹄、刷出捲翹的睫毛",
+      "weak": "豹紋、珍珠奶茶",
+      "family": "三歲三合目，五歲五合目，七歲上富士為家規",
+      "secrets": [
+        "其實她可以用腳趾夾碎核桃。",
+        "其實她在老家有個收藏耳罩專用的櫥櫃。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

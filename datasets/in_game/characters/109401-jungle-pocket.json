@@ -1,0 +1,212 @@
+{
+  "charData": {
+    "url_name": "jungle-pocket",
+    "tid": "1v",
+    "char_id": 1094,
+    "jp_name": "ジャングルポケット",
+    "en_name": "Jungle Pocket",
+    "name_ko": "정글 포켓",
+    "name_tw": "叢林口袋",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Yuri Fujimoto",
+    "va_ja": "藤本侑里",
+    "va_ko": "후지모토 유리",
+    "va_zh_tw": "藤本侑里",
+    "va_link": "https://firstwind.co.jp/talentpage/fujimoto_yuri",
+    "three_sizes": {
+      "b": 77,
+      "w": 56,
+      "h": 80
+    },
+    "birth_day": 7,
+    "birth_month": 5,
+    "birth_year": 1998,
+    "height": 158,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2021-03-02",
+      "races": 13,
+      "wins": 5,
+      "record": "5-3-2-3",
+      "earnings": 704258000,
+      "active": "2000-2002"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1094_109401.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1094_109401.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 24,
+      "year": 1,
+      "month": 12,
+      "day": 2,
+      "race_name": "Hopeful Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 46,
+      "year": 2,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 7,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Hanshin Daishoten",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "jungle-pocket",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1094,
+    "ja": {
+      "self_intro": "ジャングルポケットだ。走りてーなら相手になってやるよ。ま、“最強”の座は譲らねーけどな",
+      "tagline": "最強目指し、レース街道突っ走る！天衣無縫のカリスマヤンキー",
+      "weight": "知らねぇ",
+      "shoes": "左：24.0cm 右：23.0cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "なぜか時々、小鳥にとまられる",
+      "tail": "フジキセキの前ではブンブン振れがち",
+      "strong": "円陣、木登り、カラオケ1曲目！",
+      "weak": "湿っぽい話、ミント飴",
+      "family": "兄が意外とモテるのに納得いかない",
+      "secrets": [
+        "実は、気分がアガってくると唇を舐める癖がある。",
+        "実は、仲間たちが寄せ書きをしてくれた旗が宝物。"
+      ]
+    },
+    "ko": {
+      "self_intro": "정글 포켓이다. 달리고 싶다면 상대해 주겠어. 뭐, '최강'의 자리는 양보 안 할 거지만",
+      "tagline": "최강을 목표로 레이스란 길을 질주한다! 천의무봉의 카리스마 불량소녀",
+      "weight": "알 바냐",
+      "shoes": "좌 : 24.0cm 우 : 23.0cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "어째선지 가끔 작은 새가 와서 쉰다",
+      "tail": "후지 키세키 앞에서는 자꾸만 붕붕 흔들린다",
+      "strong": "둥글게 모여서 기합 넣기, 나무 타기, 노래방 첫 타자!",
+      "weak": "우울한 이야기, 민트 사탕",
+      "family": "오빠가 의외로 인기가 많은 걸 납득할 수 없다",
+      "secrets": [
+        "사실은 기분이 고조되면 입술을 핥는 버릇이 있다.",
+        "사실은 친구들이 롤링 페이퍼로 만들어 준 깃발이 보물."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我是叢林口袋啦。想賽跑的話，我可以奉陪哦。不過我不會將「最強」寶座拱手讓人就是了。",
+      "tagline": "以最強為目標，闖蕩競賽之路！天衣無縫的不良領袖",
+      "weight": "誰管它",
+      "shoes": "左：24.0cm 右：23.0cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "不曉得為什麼偶爾會有小鳥停在上面",
+      "tail": "在富士奇石面前經常會激烈揮舞",
+      "strong": "圍圓陣、爬樹、卡拉OK第一個唱！",
+      "weak": "感傷的話題、薄荷糖",
+      "family": "對於哥哥意外很受歡迎這點難以釋懷",
+      "secrets": [
+        "其實她嗨起來的時候，會有舔嘴唇的習慣。",
+        "其實她的寶物是寫有同伴們留言的錦旗。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

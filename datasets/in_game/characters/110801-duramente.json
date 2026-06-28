@@ -1,0 +1,217 @@
+{
+  "charData": {
+    "url_name": "duramente",
+    "tid": "1I",
+    "char_id": 1108,
+    "jp_name": "ドゥラメンテ",
+    "en_name": "Duramente",
+    "name_ko": "두라멘테",
+    "name_tw": "大鳴大放",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Akina",
+    "va_ja": "秋奈",
+    "va_ko": "아키나",
+    "va_zh_tw": "秋奈",
+    "va_link": "https://myanimelist.net/people/18453/Akina",
+    "three_sizes": {
+      "b": 89,
+      "w": 57,
+      "h": 85
+    },
+    "birth_day": 22,
+    "birth_month": 3,
+    "birth_year": 2012,
+    "height": 166,
+    "sex": 1,
+    "rl": {
+      "country": "jp",
+      "death": "2021-08-31",
+      "races": 9,
+      "wins": 5,
+      "record": "9-5-4-0",
+      "earnings": 516607000,
+      "earnings_other": [
+        [
+          1200000,
+          "AED"
+        ]
+      ],
+      "active": "2014-2016"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1108_110801.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1108_110801.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 27,
+      "year": 2,
+      "month": 2,
+      "day": 1,
+      "race_name": "Kyodo News Hai",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 6,
+      "turn": 52,
+      "year": 3,
+      "month": 2,
+      "day": 2,
+      "race_name": "Nakayama Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 7,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Osaka Hai",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "duramente",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1108,
+    "ja": {
+      "self_intro": "……ドゥラメンテだ。目指すは勝利ではなく、先にある“最強”。…………以上だ",
+      "tagline": "その身に流れるは最強の血。名門一族の結晶",
+      "weight": "見事な仕上がり",
+      "shoes": "左右ともに24.5cm",
+      "dorm": "美浦寮",
+      "class": "中等部",
+      "ears": "ピンと凜々しく立っていることが多い",
+      "tail": "運動に適した重さを自分で決めて整えている",
+      "strong": "体力測定（特に反復横跳び）",
+      "weak": "卵をうまく割ること",
+      "family": "温泉旅行では、家族みんなが卓球で真剣勝負",
+      "secrets": [
+        "実は、かなりの晴れ娘。",
+        "実は、サングラスをかけても運動するうちに落としてしまいがち。"
+      ]
+    },
+    "ko": {
+      "self_intro": "…두라멘테다. 목표는 우승이 아닌, 그 너머에 있는 '최강'. ……이상이다.",
+      "tagline": "그 몸에는 최강의 피가 흐른다. 명문 일족의 결정체",
+      "weight": "훌륭한 성과",
+      "shoes": "좌우 모두 24.5cm",
+      "dorm": "미호 생활관",
+      "class": "중등부",
+      "ears": "늠름하게 우뚝 서 있는 경우가 많다.",
+      "tail": "운동할 때 적합한 무게를 스스로 정해 정리하고 있다.",
+      "strong": "체력 측정(특히 반복 옆뛰기)",
+      "weak": "달걀 깔끔하게 까기",
+      "family": "온천 여행에 가면 가족 모두가 탁구로 진지하게 대결한다.",
+      "secrets": [
+        "사실은 외출하는 날엔 비 예보도 빗나가곤 한다.",
+        "사실은 선글라스를 껴도 운동하는 도중 자주 떨어뜨린다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "……我是大鳴大放。我的目標不是勝利，而是更遠大的「最強」。……就這樣。",
+      "tagline": "最強血統的所有者，名門一族的結晶",
+      "weight": "調整狀態極佳",
+      "shoes": "左右都是24.5cm",
+      "dorm": "美浦宿舍",
+      "class": "國中部",
+      "ears": "總是威風凜凜地豎立著",
+      "tail": "會自己決定並調整為適合運動的重量",
+      "strong": "測試體力（尤其是反覆橫跳）",
+      "weak": "漂亮地打開蛋殼",
+      "family": "在溫泉旅行時，一家人會認真來場桌球比賽",
+      "secrets": [
+        "其實有她在就經常會放晴。",
+        "其實她就算戴上太陽眼鏡，也很容易在運動時掉落。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

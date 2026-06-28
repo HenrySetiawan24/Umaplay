@@ -1,0 +1,260 @@
+{
+  "charData": {
+    "url_name": "ikuno-dictus",
+    "tid": "10",
+    "char_id": 1063,
+    "jp_name": "イクノディクタス",
+    "en_name": "Ikuno Dictus",
+    "name_ko": "이쿠노 딕터스",
+    "name_tw": "生野狄杜斯",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Masumi Tazawa",
+    "va_ja": "田澤茉純",
+    "va_ko": "타자와 마스미",
+    "va_zh_tw": "田澤茉純",
+    "va_link": "https://myanimelist.net/people/29653/Masumi_Tazawa",
+    "three_sizes": {
+      "b": 75,
+      "w": 53,
+      "h": 82
+    },
+    "birth_day": 16,
+    "birth_month": 4,
+    "birth_year": 1987,
+    "height": 163,
+    "sex": 2,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2019-02-16",
+      "races": 51,
+      "wins": 9,
+      "record": "9-8-5-29",
+      "earnings": 531124000,
+      "active": "1989-1993"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1063_106301.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1063_106301.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "Hanshin Juvenile Fillies",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Oka Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 32,
+      "year": 2,
+      "month": 4,
+      "day": 2,
+      "race_name": "Flora Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Japanese Oaks",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 6,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Shuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Osaka Hai",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 9,
+      "turn": 59,
+      "year": 3,
+      "month": 6,
+      "day": 1,
+      "race_name": "Yasuda Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 10,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 11,
+      "turn": 66,
+      "year": 3,
+      "month": 9,
+      "day": 2,
+      "race_name": "All Comers",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 12,
+      "turn": 69,
+      "year": 3,
+      "month": 11,
+      "day": 1,
+      "race_name": "Queen Elizabeth II Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 13,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Mile Championship",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 14,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 0
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "ikuno-dictus",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1063,
+    "ja": {
+      "self_intro": "イクノディクタスと申します。マネジメントならお任せください。鉄の意志で徹底管理してみせます",
+      "tagline": "管理徹底主義。冷熱併せた敏腕ウマ娘",
+      "weight": "完璧な仕上がり",
+      "shoes": "左右ともに23.0cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "左右の毛並みが必ず均等にそろえられている",
+      "tail": "指し棒の代わりに使うことがある",
+      "strong": "皆勤賞を取ること、割り箸を綺麗に割ること",
+      "weak": "賭け事、自撮り",
+      "family": "家族会議ではいつも進行役を任せられる",
+      "secrets": [
+        "実は、三つ編みの数は正確に決まっている。",
+        "実は、ハンバーガーの食べ方がヘタ。"
+      ]
+    },
+    "ko": {
+      "self_intro": "이쿠노 딕터스라고 합니다. 매니지먼트는 제게 맡겨 주세요. 강철 같은 의지로 철저히 관리해 보이겠습니다",
+      "tagline": "관리 철저 주의. 냉열이 어우러진 민완의 우마무스메",
+      "weight": "완벽한 체중",
+      "shoes": "좌우 모두 23.0cm",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "ears": "좌우 털을 반드시 균등하게 정돈해 둔다.",
+      "tail": "지시봉 대신 사용하기도 한다.",
+      "strong": "개근상 받기, 나무젓가락을 깔끔하게 쪼개기",
+      "weak": "내기, 셀카",
+      "family": "가족회의 때면 항상 진행 담당을 맡는다.",
+      "secrets": [
+        "사실은 머리 땋는 수를 정확히 정해뒀다.",
+        "사실은 햄버거를 먹는 것이 서투르다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我名叫生野狄杜斯。管理方面還請交給我，我會用鋼鐵意志進行徹底管理。",
+      "tagline": "徹底管理主義。軟硬兼施的幹練賽馬娘",
+      "weight": "調整狀態相當完美",
+      "shoes": "左右都是23.0cm",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "ears": "兩側毛髮一定要整理到均勻一致",
+      "tail": "有時會用來代替指揮棒",
+      "strong": "拿到全勤獎、工整地拆開竹筷",
+      "weak": "打賭、自拍",
+      "family": "在家族會議上總是被要求負責主持",
+      "secrets": [
+        "其實她的辮子數量算得十分精準。",
+        "其實她吃漢堡的技術非常糟糕。"
+      ]
+    },
+    "en": {
+      "self_intro": "Well met. I am Ikuno Dictus. Allow me to meet all of your management needs with my iron will.",
+      "tagline": "Control freak. A skilled Umamusume who can adapt to anything.",
+      "dorm": "Ritto Dormitory",
+      "class": "Junior Division",
+      "secrets": [
+        "Did you know? Her braid always has the same number of braids in it.",
+        "Did you know? She's pretty messy when eating hamburgers."
+      ]
+    }
+  }
+}

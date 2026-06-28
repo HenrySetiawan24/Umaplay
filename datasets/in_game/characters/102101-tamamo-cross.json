@@ -1,0 +1,208 @@
+{
+  "charData": {
+    "url_name": "tamamo-cross",
+    "tid": "k",
+    "char_id": 1021,
+    "jp_name": "タマモクロス",
+    "en_name": "Tamamo Cross",
+    "name_ko": "타마모 크로스",
+    "name_tw": "玉藻十字",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Naomi Oozora",
+    "va_ja": "大空直美",
+    "va_ko": "오오조라 나오미",
+    "va_zh_tw": "大空直美",
+    "va_link": "https://myanimelist.net/people/22329/Naomi_Oozora",
+    "three_sizes": {
+      "b": 71,
+      "w": 52,
+      "h": 73
+    },
+    "birth_day": 23,
+    "birth_month": 5,
+    "birth_year": 1984,
+    "height": 140,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2003-04-10",
+      "races": 18,
+      "wins": 9,
+      "record": "9-3-2-4",
+      "earnings": 489670000,
+      "active": "1987-1988"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1021_102101.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1021_102101.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 29,
+      "year": 2,
+      "month": 3,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 5000
+    },
+    {
+      "order": 3,
+      "turn": 49,
+      "year": 3,
+      "month": 1,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 2,
+      "cond_value": 3
+    },
+    {
+      "order": 4,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Hanshin Daishoten",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 5,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 7,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "tamamo-cross",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1021,
+    "ja": {
+      "self_intro": "タマモクロスや！ウチはな、レースで勝って勝って勝ちまくって名前を売るんや！ナリがちっさいからって、なめとったらあかんで！",
+      "tagline": "ツッコミは稲妻の如し見せろ根性、浪花っ娘",
+      "weight": "計測不能",
+      "shoes": "左：19.5cm右：20.0cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "『安売り』、『セール』と聞くとピンと立つ",
+      "tail": "怒ると、稲妻のようにビリビリ震える",
+      "strong": "暗算（金額限定）",
+      "weak": "こたつ",
+      "family": "弟妹たちといる時は『タマねぇね』になる",
+      "secrets": [
+        "実は、もやしとはんぺんメインの得意料理がたくさんある。",
+        "実は、たこ焼き機は断然直火派。"
+      ]
+    },
+    "ko": {
+      "self_intro": "타마모 크로스래이! 나는 말이제, 레이스에서 우승하고 우승하고 또 우승해서 이름을 널리 알릴 기다! 쪼그맣다고 얕보면 큰 코 다친대이!",
+      "tagline": "태클은 번개처럼 근성을 보여라, 의리파 소녀",
+      "weight": "측정 불가",
+      "shoes": "좌 : 19.5cm 우 : 20.0cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "『염가 판매』, 『세일』이란 말을 들으면 쫑긋거린다",
+      "tail": "화가 나면 번개처럼 찌르르 흔들린다",
+      "strong": "암산 (금액 한정)",
+      "weak": "탁상 난로",
+      "family": "동생들과 있을 때는 『타마 언니, 누나』가 된다",
+      "secrets": [
+        "사실은 숙주와 한펜으로 만드는 특기 요리가 엄청나게 많다.",
+        "사실은 타코야키 판은 단연코 직화파."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我是玉藻十字！我要在競賽中一贏再贏、百戰百勝、名滿天下！別因為個子小就小看我喔！",
+      "tagline": "閃電般的吐槽展現毅力吧，大阪女孩",
+      "weight": "無法測量",
+      "shoes": "左：19.5cm右：20.0cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "一聽見「便宜賣」或「優惠」就會豎起來",
+      "tail": "生氣時會像閃電般抖動",
+      "strong": "心算（僅限算金額）",
+      "weak": "暖爐桌",
+      "family": "與弟妹們相處時會化身成「小玉姊姊」",
+      "secrets": [
+        "其實她擅長多種以豆芽菜和鱈寶為主的料理。",
+        "其實她認為章魚燒機絕對是能直接用火烘烤的機型比較好。"
+      ]
+    },
+    "en": {
+      "self_intro": "I'm Tamamo Cross! I'm gonna race my butt off and make a name for myself! I may not look like much, but ya don't wanna mess with me!",
+      "tagline": "Her comebacks are lightning fast. Showin' 'em what Naniwa girls are made of!",
+      "weight": "Unweighable",
+      "shoes": "Left: 19.5cm Right: 20.0cm",
+      "dorm": "Ritto Dormitory",
+      "class": "Senior Division",
+      "ears": "Perk straight up at words like \"bargain\" and \"sale\"",
+      "tail": "Crackles like lightning when she's angry",
+      "strong": "Mental arithmetic (finances only)",
+      "weak": "Kotatsu heaters",
+      "family": "Her younger siblings get to see her soft side",
+      "secrets": [
+        "Did you know? Her specialty is cooking with bean sprouts and fish cakes.",
+        "Did you know? She's a purist about making takoyaki and cooks them on a gas stove."
+      ]
+    }
+  }
+}

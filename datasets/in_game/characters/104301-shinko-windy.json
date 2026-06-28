@@ -1,0 +1,200 @@
+{
+  "charData": {
+    "url_name": "shinko-windy",
+    "tid": "G",
+    "char_id": 1043,
+    "jp_name": "シンコウウインディ",
+    "en_name": "Shinko Windy",
+    "name_ko": "신코 윈디",
+    "name_tw": "新光風",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Yuuki Takada",
+    "va_ja": "高田憂希",
+    "va_ko": "타카다 유우키",
+    "va_zh_tw": "高田憂希",
+    "va_link": "https://myanimelist.net/people/37047/Yuuki_Takada",
+    "three_sizes": {
+      "b": 77,
+      "w": 57,
+      "h": 88
+    },
+    "birth_day": 14,
+    "birth_month": 4,
+    "birth_year": 1993,
+    "height": 152,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": null,
+      "races": 17,
+      "wins": 5,
+      "record": "5-3-1-8",
+      "earnings": 225440000,
+      "active": "1995-1999"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1043_104301.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1043_104301.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 25,
+      "year": 2,
+      "month": 1,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 3000
+    },
+    {
+      "order": 3,
+      "turn": 36,
+      "year": 2,
+      "month": 6,
+      "day": 2,
+      "race_name": "Unicorn Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 37,
+      "year": 2,
+      "month": 7,
+      "day": 1,
+      "race_name": "Japan Dirt Derby",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 50,
+      "year": 3,
+      "month": 1,
+      "day": 2,
+      "race_name": "Tokai Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 52,
+      "year": 3,
+      "month": 2,
+      "day": 2,
+      "race_name": "February Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 7,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Teio Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 71,
+      "year": 3,
+      "month": 12,
+      "day": 1,
+      "race_name": "Champions Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "shinko-windy",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1043,
+    "ja": {
+      "self_intro": "ガオ～ッ！シンコウウインディなのだ！ビビったか？正直に怖いって言えなのだ～！…おいっ！無視するなっ！ガブーッ！",
+      "tagline": "いたずら大好き！構わないと噛みつくぞ！",
+      "weight": "増減なし",
+      "shoes": "左右ともに22.5cm",
+      "dorm": "美浦寮",
+      "class": "高等部",
+      "ears": "新しいいたずらを思いつくとぴこぴこする",
+      "tail": "朝起きるとよだれがついていることがある",
+      "strong": "いたずら、穴掘り、屋根の上に登ること",
+      "weak": "わたあめ",
+      "family": "父の会社のCMソングを家族で合唱する",
+      "secrets": [
+        "実は、ルームメイトがいない時は寝つけない。",
+        "実は、歯磨きに10分以上かけている。"
+      ]
+    },
+    "ko": {
+      "self_intro": "크아앙~! 신코 윈디인 것이다! 겁먹었나? 솔직하게 무섭다고 말하라는 것이다~! …야! 무시하지 마! 덥썩~!",
+      "tagline": "못 말리는 장난꾸러기! 관심 가져주지 않으면 물어버릴 테다!",
+      "weight": "변화 없음",
+      "shoes": "좌우 모두 22.5cm",
+      "dorm": "미호 생활관",
+      "class": "고등부",
+      "ears": "새로운 장난이 떠오르면 움찔거린다.",
+      "tail": "아침에 일어나면 침이 묻어 있을 때가 있다.",
+      "strong": "장난, 구멍 파기, 지붕 위에 올라가기",
+      "weak": "솜사탕",
+      "family": "아버지 회사의 CM송을 가족끼리 합창한다.",
+      "secrets": [
+        "사실은 룸메이트가 없을 때는 잠들지 못한다.",
+        "사실은 칫솔질에 10분 이상 걸린다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "嘎吼～！我是新光風！嚇到了嗎？趕快老實承認你害怕了～！……欸！別不理人！我咬──！",
+      "tagline": "最喜歡惡作劇！不搭理她就會咬人喔！",
+      "weight": "無增減",
+      "shoes": "左右都是22.5cm",
+      "dorm": "美浦宿舍",
+      "class": "高中部",
+      "ears": "一想到新的惡作劇就會忍不住晃動",
+      "tail": "有時候早上起床會發現上面沾著口水",
+      "strong": "惡作劇、挖洞、爬上屋頂",
+      "weak": "棉花糖",
+      "family": "會全家一起合唱爸爸公司的廣告歌",
+      "secrets": [
+        "其實她在室友不在時，會睡不著覺。",
+        "其實她刷牙需要花費十分鐘以上的時間。"
+      ]
+    },
+    "en": {
+      "self_intro": "Grawr! I'm Shinko Windy! Did I scare ya? Aw, come on! Admit it! Hey! I'm talking to you! Chomp!",
+      "tagline": "A total prankster! Watch out: she bites!",
+      "dorm": "Miho Dormitory",
+      "class": "Senior Division",
+      "secrets": [
+        "Did you know? She can't fall asleep when her roommate isn't home.",
+        "Did you know? She brushes her teeth for more than ten minutes."
+      ]
+    }
+  }
+}

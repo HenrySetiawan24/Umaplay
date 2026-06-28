@@ -1,0 +1,192 @@
+{
+  "charData": {
+    "url_name": "yamanin-zephyr",
+    "tid": "1f",
+    "char_id": 1078,
+    "jp_name": "ヤマニンゼファー",
+    "en_name": "Yamanin Zephyr",
+    "name_ko": "야마닌 제퍼",
+    "name_tw": "山人西風",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Riona Imaizumi",
+    "va_ja": "今泉りおな",
+    "va_ko": "이마이즈미 리오나",
+    "va_zh_tw": "今泉りおな",
+    "va_link": "https://myanimelist.net/people/60072/Riona_Imaizumi",
+    "three_sizes": {
+      "b": 85,
+      "w": 52,
+      "h": 77
+    },
+    "birth_day": 27,
+    "birth_month": 5,
+    "birth_year": 1988,
+    "height": 154,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2017-05-16",
+      "races": 20,
+      "wins": 8,
+      "record": "8-5-2-5",
+      "earnings": 580809600,
+      "active": "1991-1993"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1078_107801.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1078_107801.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "New Zealand Trophy",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Aoi Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 42,
+      "year": 2,
+      "month": 9,
+      "day": 2,
+      "race_name": "Sprinters Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 5,
+      "turn": 46,
+      "year": 2,
+      "month": 11,
+      "day": 2,
+      "race_name": "Mile Championship",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 59,
+      "year": 3,
+      "month": 6,
+      "day": 1,
+      "race_name": "Yasuda Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 7,
+      "turn": 66,
+      "year": 3,
+      "month": 9,
+      "day": 2,
+      "race_name": "Sprinters Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "yamanin-zephyr",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1078,
+    "ja": {
+      "self_intro": "……ヤマニンゼファーです。私が目指すのは、風…なによりも速く、自由に駆ける――風に、なりたいのです",
+      "tagline": "自然派そよ風ウマ娘。されど魂は烈風の如く",
+      "weight": "軽やか",
+      "shoes": "左右ともに22.0cm",
+      "dorm": "美浦寮",
+      "class": "中等部",
+      "ears": "蝶々や小鳥たちの休憩所",
+      "tail": "自然乾燥派",
+      "strong": "タンギング、凧あげ、即興で歌って踊ること",
+      "weak": "エアコン",
+      "family": "地元で、妖精が住むファンシーな家と有名",
+      "secrets": [
+        "実は、トランペット演奏の腕はなかなかのもの。",
+        "実は、知り合いに大人気ウマ娘俳優がいる。"
+      ]
+    },
+    "ko": {
+      "self_intro": "…야마닌 제퍼예요. 제 목표는, 바람… 무엇보다도 빠르고, 자유롭게 달리는… 바람이, 되고 싶어요.",
+      "tagline": "자연파 산들바람 우마무스메. 그러나 영혼은 열풍과 같다",
+      "weight": "가벼움",
+      "shoes": "좌우 모두 22.0cm",
+      "dorm": "미호 생활관",
+      "class": "중등부",
+      "ears": "나비와 작은 새들의 휴게소",
+      "tail": "자연건조파",
+      "strong": "텅잉, 연날리기, 즉흥으로 노래하고 춤추기",
+      "weak": "에어컨",
+      "family": "지역에서 요정이 살고 있는 판타지스러운 집으로 유명",
+      "secrets": [
+        "사실은 트럼펫 연주 실력은 제법 괜찮은 정도.",
+        "사실은 지인 중에 굉장히 인기 있는 우마무스메 배우가 있다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "……我是山人西風。我追求的是成為風……比任何事物都要快、都要自由的──風，正是我的目標。",
+      "tagline": "自然派的微風賽馬娘。然而心中卻懷有烈風之魂",
+      "weight": "輕巧",
+      "shoes": "左右都是22.0cm",
+      "dorm": "美浦宿舍",
+      "class": "國中部",
+      "ears": "是蝴蝶跟小鳥們的休息場所",
+      "tail": "自然風乾派",
+      "strong": "點舌技法、放風箏、即興唱歌跳舞",
+      "weak": "空調",
+      "family": "在家鄉以有妖精居住的夢幻之家著名",
+      "secrets": [
+        "其實她演奏小號的實力相當不錯。",
+        "其實她認識很有人氣的賽馬娘演員。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "charData": {
+    "url_name": "almond-eye",
+    "tid": "20",
+    "char_id": 1129,
+    "jp_name": "アーモンドアイ",
+    "en_name": "Almond Eye",
+    "name_ko": "아몬드 아이",
+    "name_tw": "杏目",
+    "playable": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Kaori Ishihara",
+    "va_ja": "石原夏織",
+    "va_ko": "이시하라 카오리",
+    "va_zh_tw": "石原夏織",
+    "va_link": "https://myanimelist.net/people/10217/Kaori_Ishihara",
+    "three_sizes": {
+      "b": 86,
+      "w": 57,
+      "h": 81
+    },
+    "birth_day": 10,
+    "birth_month": 3,
+    "birth_year": 2015,
+    "height": 163,
+    "sex": 2,
+    "rl": {
+      "country": "jp",
+      "races": 15,
+      "wins": 11,
+      "record": "15-11-2-1",
+      "earnings": 1519563000,
+      "earnings_other": [
+        [
+          3600000,
+          "AED"
+        ]
+      ],
+      "active": "2017-2020"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1129_112901.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1129_112901.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 25,
+      "year": 2,
+      "month": 1,
+      "day": 1,
+      "race_name": "Shinzan Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Oka Sho",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Japanese Oaks",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Shuka Sho",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 6,
+      "turn": 46,
+      "year": 2,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 7,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Osaka Hai",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 57,
+      "year": 3,
+      "month": 5,
+      "day": 1,
+      "race_name": "Victoria Mile",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 59,
+      "year": 3,
+      "month": 6,
+      "day": 1,
+      "race_name": "Yasuda Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 11,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "almond-eye",
+    "images": {
+      "uniform": true,
+      "racing": true
+    }
+  },
+  "profileData": {
+    "char_id": 1129,
+    "ja": {
+      "self_intro": "アーモンドアイよ。たとえ相手がレジェンドでも、わたしは勝つ。誰でもないわたし自身が、そう信じているもの！",
+      "tagline": "超×9負けず嫌い！最強の挑戦者",
+      "weight": "完璧、よ",
+      "shoes": "左右ともに24.5cm",
+      "dorm": "美浦寮",
+      "class": "中等部",
+      "ears": "日焼け対策は、革製の耳カバー",
+      "tail": "ヨガの時は結ぶ",
+      "strong": "アイコンタクト、間違い探し",
+      "weak": "変装、サウナ",
+      "family": "家族ドライブ中はヒップホップで盛り上がる",
+      "secrets": [
+        "実は、ぱかプチを用いた人形劇が上手い。",
+        "実は、朝はお粥派。"
+      ]
+    },
+    "ko": {
+      "self_intro": "아몬드 아이야. 설령 상대가 레전드라 해도 난 이겨. 다른 누구도 아닌 나 자신이 그렇게 믿고 있으니까!",
+      "tagline": "진짜×9 지고 싶지 않아! 최강의 도전자",
+      "dorm": "미호 생활관",
+      "class": "중등부",
+      "secrets": [
+        "사실은 파카푸치로 인형극을 하는 게 특기다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我是杏目。即使對手是傳奇，我也會獲勝。並非別人，而是我自己堅信著這一點！",
+      "tagline": "超×9不服輸！最強的挑戰者",
+      "dorm": "美浦宿舍",
+      "class": "國中部",
+      "secrets": [
+        "其實她很擅長使用噠噠玩偶表演布偶劇。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

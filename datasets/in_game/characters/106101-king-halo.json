@@ -1,0 +1,218 @@
+{
+  "charData": {
+    "url_name": "king-halo",
+    "tid": "Y",
+    "char_id": 1061,
+    "jp_name": "キングヘイロー",
+    "en_name": "King Halo",
+    "name_ko": "킹 헤일로",
+    "name_tw": "帝王光輝",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Iori Saeki",
+    "va_ja": "佐伯伊織",
+    "va_ko": "사에키 이오리",
+    "va_zh_tw": "佐伯伊織",
+    "va_link": "https://myanimelist.net/people/49619/Iori_Saeki",
+    "three_sizes": {
+      "b": 85,
+      "w": 60,
+      "h": 85
+    },
+    "birth_day": 28,
+    "birth_month": 4,
+    "birth_year": 1995,
+    "height": 159,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2019-03-19",
+      "races": 27,
+      "wins": 6,
+      "record": "6-4-4-13",
+      "earnings": 500266000,
+      "active": "1997-2000"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1061_106101.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1061_106101.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 24,
+      "year": 1,
+      "month": 12,
+      "day": 2,
+      "race_name": "Hopeful Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 6,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Takamatsunomiya Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 7,
+      "turn": 59,
+      "year": 3,
+      "month": 6,
+      "day": 1,
+      "race_name": "Yasuda Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 66,
+      "year": 3,
+      "month": 9,
+      "day": 2,
+      "race_name": "Sprinters Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "king-halo",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1061,
+    "ja": {
+      "self_intro": "おーっほっほ！私の名前はキングヘイロー。一流のウマ娘として最高の結果を残すわ！…この私の才能を世界中に示すためにもね！",
+      "tagline": "高飛車お嬢様。そのプライドは空より高く！",
+      "weight": "完璧",
+      "shoes": "左右ともに23.0cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "一流にふさわしい話題以外耳に入れたくない",
+      "tail": "尻尾の振り方も常に一流を意識している",
+      "strong": "デザインやファッション関係",
+      "weak": "人ごみや暑さ等キングに相応しくないこと",
+      "family": "母は家事が壊滅的にできず、使用人がいる",
+      "secrets": [
+        "実は、当たるまでくじを引き続け、お財布を空っぽにしたことがある。",
+        "実は、ドラマを見る時はつい独り言でツッコミを入れてしまう。"
+      ]
+    },
+    "ko": {
+      "self_intro": "오~호호! 내 이름은 킹 헤일로. 일류 우마무스메로서 최고의 결과를 남기겠어! …나의 재능을 온 세상에 보여주기 위해서도 말이지!",
+      "tagline": "고압적인 소녀. 그 프라이드는 하늘보다 높다!",
+      "weight": "완벽",
+      "shoes": "좌우 모두 23.0cm",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "ears": "일류에 어울리는 화제 말고는 귀에 넣고 싶지 않다.",
+      "tail": "꼬리 흔드는 법도 늘 일류를 의식한다.",
+      "strong": "디자인이나 패션과 관계된 일",
+      "weak": "사람이 붐비는 곳이나 더위 등, 킹에게 걸맞지 않은 것",
+      "family": "어머니가 집안일을 끔찍하게 못해서 고용인을 두었다.",
+      "secrets": [
+        "사실은 당첨될 때까지 계속 제비를 뽑다가 지갑을 텅 비운 적이 있다.",
+        "사실은 드라마를 볼 때 자기도 모르게 혼잣말로 태클을 넣는다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "喔～呵呵！我的名字叫帝王光輝。身為一流賽馬娘，一定會創下最棒的成果！……畢竟要向世界展示我的才能嘛！",
+      "tagline": "趾高氣昂的大小姐。自尊心直上雲霄！",
+      "weight": "完美",
+      "shoes": "左右都是23.0cm",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "ears": "除了能稱得上一流以外的話題都不想聽",
+      "tail": "就連尾巴的甩法都隨時留意要保持一流",
+      "strong": "設計與時尚相關",
+      "weak": "人擠人、炎熱等與帝王不相襯的事物",
+      "family": "母親對做家事一竅不通，家裡有請傭人",
+      "secrets": [
+        "其實她曾試過持續抽獎直到抽中為止，結果把錢全部花光。",
+        "其實她在看影集時，會不由得自言自語地吐槽。"
+      ]
+    },
+    "en": {
+      "self_intro": "Ohoho! My name is King Halo. As a first-rate competitor, you can naturally expect great things from me. Rest assured, King Halo will be a household name soon enough.",
+      "tagline": "Extremely haughty. Her pride extends to the heavens!",
+      "weight": "Perfect",
+      "shoes": "Left and right: 23.0cm",
+      "dorm": "Ritto Dormitory",
+      "class": "Junior Division",
+      "ears": "Uninterested in hearing anything that isn't first-rate",
+      "tail": "Even her tail movements are first-rate",
+      "strong": "Design and fashion",
+      "weak": "Things unsuitable for a king, such as crowds and heat",
+      "family": "Her mother is terrible at housework, so they have a full-time maid",
+      "secrets": [
+        "Did you know? She'll keep playing raffles until she wins or empties her wallet.",
+        "Did you know? When watching TV dramas, she tends to criticize the characters out loud."
+      ]
+    }
+  }
+}

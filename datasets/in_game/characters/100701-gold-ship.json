@@ -1,0 +1,218 @@
+{
+  "charData": {
+    "url_name": "gold-ship",
+    "tid": "6",
+    "char_id": 1007,
+    "jp_name": "ゴールドシップ",
+    "en_name": "Gold Ship",
+    "name_ko": "골드 쉽",
+    "name_tw": "黃金船",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Hitomi Ueda",
+    "va_ja": "上田瞳",
+    "va_ko": "우에다 히토미",
+    "va_zh_tw": "上田瞳",
+    "va_link": "https://myanimelist.net/people/47873/Hitomi_Ueda",
+    "three_sizes": {
+      "b": 88,
+      "w": 55,
+      "h": 88
+    },
+    "birth_day": 6,
+    "birth_month": 3,
+    "birth_year": 2009,
+    "height": 170,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": null,
+      "races": 28,
+      "wins": 13,
+      "record": "13-3-2-10",
+      "earnings": 1397767000,
+      "active": "2011-2015"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1007_100701.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1007_100701.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 24,
+      "year": 1,
+      "month": 12,
+      "day": 2,
+      "race_name": "Hopeful Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 5,
+      "turn": 48,
+      "year": 2,
+      "month": 12,
+      "day": 2,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "gold-ship",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1007,
+    "ja": {
+      "self_intro": "よう、ゴールドシップ様だ！たとえ火の中、芝の中！宇宙の果てでも関係ねえ！どこまでも面白いモン探しに行ってやるぜ☆",
+      "tagline": "粗暴、奔放！　謎テンションな黄金電波娘",
+      "weight": "測定不能",
+      "shoes": "左右ともに26.5cm",
+      "dorm": "栗東寮",
+      "class": "？？？",
+      "ears": "突然他人の耳を塞ぎ『だ～れだ？』と尋ねる",
+      "tail": "時々部屋に忘れてくることがある（本人談）",
+      "strong": "表情筋を動かすこと",
+      "weak": "じっとしていること",
+      "family": "国家レベルの機密事項らしい",
+      "secrets": [
+        "実は、雑学クイズに恐ろしく強い。",
+        "実は、意味のない嘘は山ほどつくが、意味のある嘘はほとんどつかない。"
+      ]
+    },
+    "ko": {
+      "self_intro": "여어, 골드 쉽 님이다! 불 속이든, 잔디 속이든! 우주 끝이든 상관없어! 재밌는 걸 찾으러 어디까지든 가 주마☆",
+      "tagline": "난폭&자유 분방! 알 수 없는 텐션의 골든 망상 소녀",
+      "weight": "측정 불가",
+      "shoes": "좌우 모두 26.5cm",
+      "dorm": "릿토 생활관",
+      "class": "???",
+      "ears": "갑자기 다른 사람 귀를 막고 『누~구게?』하고 묻는다.",
+      "tail": "가끔 깜빡하고 방에 두고 올 때가 있다.(본인피셜)",
+      "strong": "얼굴 근육을 자유자재로 움직이는 것",
+      "weak": "가만히 있는 것",
+      "family": "국가 기밀 급 기밀 사항인 것 같다.",
+      "secrets": [
+        "사실은 무서울 정도로 잡학 퀴즈에 강하다.",
+        "사실은 의미 없는 거짓말은 잔뜩 하지만 의미 있는 거짓말은 거의 안 한다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "嘿，我是黃金船大人啦！不管是要上刀山還是要下草皮，甚至要到宇宙盡頭也無所謂！好玩的事情在哪裡，我就往哪裡走☆",
+      "tagline": "粗暴、奔放！情緒萬變的黃金電波女孩",
+      "weight": "無法測定",
+      "shoes": "左右都是26.5cm",
+      "dorm": "栗東宿舍",
+      "class": "？？？",
+      "ears": "會突然摀住別人耳朵問說「我～是誰？」",
+      "tail": "時不時會忘在房間忘了帶來（本人說詞）",
+      "strong": "活動表情肌",
+      "weak": "靜靜待著",
+      "family": "似乎是國家級機密事項",
+      "secrets": [
+        "其實她在雜學猜謎上強到令人生畏。",
+        "其實她雖然說過一卡車沒意義的謊，但有意義的謊卻幾乎沒說過。"
+      ]
+    },
+    "en": {
+      "self_intro": "Bow down! Gold Ship has arrived! Whether I gotta go through a raging inferno, the most downtrodden turf, or even way out there in outer space, I'm always up for adventure! ☆",
+      "tagline": "Wild and unpredictable, this golden runner is unlike anybody else!",
+      "weight": "Unmeasurable",
+      "shoes": "Left and right: 26.5cm",
+      "dorm": "Ritto Dormitory",
+      "class": "???",
+      "ears": "She covers people's ears and asks \"Guess who?\"",
+      "tail": "Sometimes forgets it in her room (according to her)",
+      "strong": "Moving facial muscles",
+      "weak": "Staying still",
+      "family": "Apparently, it's a national secret",
+      "secrets": [
+        "Did you know? She's scarily good at trivia quizzes.",
+        "Did you know? She constantly lies about unimportant things, but hardly ever about the things that matter."
+      ]
+    }
+  }
+}

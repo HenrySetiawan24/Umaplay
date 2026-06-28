@@ -1,0 +1,208 @@
+{
+  "charData": {
+    "url_name": "sakura-chiyono-o",
+    "tid": "16",
+    "char_id": 1069,
+    "jp_name": "サクラチヨノオー",
+    "en_name": "Sakura Chiyono O",
+    "name_ko": "사쿠라 치요노 오",
+    "name_tw": "櫻花千代王",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Ruriko Noguchi",
+    "va_ja": "野口瑠璃子",
+    "va_ko": "노구치 루리코",
+    "va_zh_tw": "野口瑠璃子",
+    "va_link": "https://myanimelist.net/people/41974/Ruriko_Noguchi",
+    "three_sizes": {
+      "b": 80,
+      "w": 55,
+      "h": 83
+    },
+    "birth_day": 19,
+    "birth_month": 2,
+    "birth_year": 1985,
+    "height": 156,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2012-01-07",
+      "races": 10,
+      "wins": 5,
+      "record": "5-1-1-3",
+      "earnings": 215329000,
+      "active": "1987-1989"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1069_106901.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1069_106901.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "Asahi Hai Futurity Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 59,
+      "year": 3,
+      "month": 6,
+      "day": 1,
+      "race_name": "Yasuda Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 2
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "sakura-chiyono-o",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1069,
+    "ja": {
+      "self_intro": "サ、サクラチヨノオーです！憧れのあの人と、夢の舞台に立つためにこの想い――花開かせてみせますっ！",
+      "tagline": "憧れを追い求めて！素直な努力家ウマ娘",
+      "weight": "微減",
+      "shoes": "左右ともに22.0cm",
+      "dorm": "美浦寮",
+      "class": "高等部",
+      "ears": "いい格言が思い浮かぶとピクンと震える",
+      "tail": "マルゼンスキーと同じオイルでケアしている",
+      "strong": "和菓子作り、整理整頓",
+      "weak": "車や飛行機（酔いやすい）",
+      "family": "夕飯は家族でよく鍋を囲んでいた",
+      "secrets": [
+        "実は、赤い車が通るとつい見てしまう。",
+        "実は、ワサビは平気だけどカラシはだめ。"
+      ]
+    },
+    "ko": {
+      "self_intro": "사, 사쿠라 치요노 오입니다! 동경하는 그 분과 꿈의 무대에 서기 위해 이 마음을… 피워내겠습니다!",
+      "tagline": "동경하는 사람을 쫓아서 솔직한 노력가 우마무스메",
+      "weight": "약간 감소",
+      "shoes": "좌우 모두 22.0cm",
+      "dorm": "미호 생활관",
+      "class": "고등부",
+      "ears": "좋은 격언이 떠오르면 살짝 떨린다",
+      "tail": "마루젠스키와 같은 오일로 케어한다",
+      "strong": "화과자 만들기, 정리 정돈",
+      "weak": "자동차와 비행기(멀미를 잘한다)",
+      "family": "저녁엔 자주 가족과 함께 모여 전골을 먹곤 했다",
+      "secrets": [
+        "사실은 빨간 자동차가 지나가면 무심코 쳐다본다.",
+        "사실은 와사비는 괜찮지만 겨자는 못 먹는다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我、我是櫻花千代王！想要跟崇拜的人一起站上夢想的舞台。這個心願──我會讓它開花結果的！",
+      "tagline": "追求憧憬！率真且奮發圖強的賽馬娘",
+      "weight": "微減",
+      "shoes": "左右都是22.0cm",
+      "dorm": "美浦宿舍",
+      "class": "高中部",
+      "ears": "如果想到好的格言就會抖動",
+      "tail": "跟丸善斯基用同一款保養油",
+      "strong": "製作日式點心、整理收納",
+      "weak": "汽車或飛機（很容易暈）",
+      "family": "晚餐時經常跟家人圍著吃火鍋",
+      "secrets": [
+        "其實她遇到紅色的車經過時，目光總會被吸引。",
+        "其實她不怕山葵但無法接受黃芥末。"
+      ]
+    },
+    "en": {
+      "self_intro": "I-I'm Sakura Chiyono O! My dream is to stand on the same stage as my hero! And I will make my dreams blossom!",
+      "tagline": "Follow your dreams! This Umamusume is honest and hardworking.",
+      "weight": "Slightly down",
+      "shoes": "Left and right: 22.0cm",
+      "dorm": "Miho Dormitory",
+      "class": "Senior Division",
+      "ears": "Quiver whenever she thinks of a good saying or proverb",
+      "tail": "She treats it with the same oil that Maruzensky uses",
+      "strong": "Making Japanese sweets, straightening up",
+      "weak": "Cars, planes, etc. (motion sickness)",
+      "family": "Her family often eats dinner around a big hot pot",
+      "secrets": [
+        "Did you know? Red cars always get her attention.",
+        "Did you know? She's fine with wasabi but can't handle spicy mustard."
+      ]
+    }
+  }
+}

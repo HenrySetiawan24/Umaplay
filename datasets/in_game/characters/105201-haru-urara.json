@@ -1,0 +1,218 @@
+{
+  "charData": {
+    "url_name": "haru-urara",
+    "tid": "P",
+    "char_id": 1052,
+    "jp_name": "ハルウララ",
+    "en_name": "Haru Urara",
+    "name_ko": "하루 우라라",
+    "name_tw": "春烏菈菈",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Yukina Shutou",
+    "va_ja": "首藤志奈",
+    "va_ko": "슈토 유키나",
+    "va_zh_tw": "首藤志奈",
+    "va_link": "https://myanimelist.net/people/47985/Yukina_Shutou",
+    "three_sizes": {
+      "b": 74,
+      "w": 51,
+      "h": 73
+    },
+    "birth_day": 27,
+    "birth_month": 2,
+    "birth_year": 1996,
+    "height": 140,
+    "sex": 2,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2025-09-09",
+      "races": 113,
+      "wins": 0,
+      "record": "0-5-7-101",
+      "earnings": 0,
+      "active": "1998-2004"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1052_105201.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1052_105201.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 37,
+      "year": 2,
+      "month": 7,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 5000
+    },
+    {
+      "order": 3,
+      "turn": 45,
+      "year": 2,
+      "month": 11,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 9000
+    },
+    {
+      "order": 4,
+      "turn": 48,
+      "year": 2,
+      "month": 12,
+      "day": 2,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 12000
+    },
+    {
+      "order": 5,
+      "turn": 50,
+      "year": 3,
+      "month": 1,
+      "day": 2,
+      "race_name": "Negishi Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 6,
+      "turn": 52,
+      "year": 3,
+      "month": 2,
+      "day": 2,
+      "race_name": "February Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 7,
+      "turn": 63,
+      "year": 3,
+      "month": 8,
+      "day": 1,
+      "race_name": "Elm Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 8,
+      "turn": 69,
+      "year": 3,
+      "month": 11,
+      "day": 1,
+      "race_name": "JBC Sprint",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 0
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "haru-urara",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1052,
+    "ja": {
+      "self_intro": "わたし、ハルウララ！にんじんとね、あとは、たのしいから走るのがだ～い好き♪1着めざして、めいっぱいがんばるぞーっ！",
+      "tagline": "連敗しても、くじけない！七転八起ガール",
+      "weight": "微増（でも気にしない）",
+      "shoes": "左右ともに20.0cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "難しい言葉は右から入って左から流れ出る",
+      "tail": "回転させると速く走れると思っていた",
+      "strong": "いっしょうけんめいがんばること",
+      "weak": "むずかしい漢字",
+      "family": "1番好きな母の料理は、にんじんごはん",
+      "secrets": [
+        "実は、『ふんいき』が言えない。",
+        "実は、トンボを素手で捕まえるのが得意。"
+      ]
+    },
+    "ko": {
+      "self_intro": "나는 하루 우라라! 일단은 당근! 그리고 달리는게 즐거워서 달리기를 제~일 좋아해♪ 1착을 목표로 열~심히 할게!",
+      "tagline": "아무리 져도 굴하지 않아! 칠전팔기 소녀",
+      "weight": "약간 증가(하지만 신경 안 씀)",
+      "shoes": "좌우 모두 20.0cm",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "ears": "어려운 말은 오른쪽으로 듣고 왼쪽으로 흘려보낸다.",
+      "tail": "회전하면 더 빨리 달릴 수 있다고 생각했다.",
+      "strong": "최선을 다하는 것",
+      "weak": "어려운 단어, 어려운 말",
+      "family": "가장 좋아하는 어머니의 요리는 당근 밥.",
+      "secrets": [
+        "사실은 『분위기』를 제대로 발음하지 못한다.",
+        "사실은 잠자리를 맨손으로 잡는 것이 특기."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我叫春烏菈菈！我最～喜歡胡蘿蔔跟跑步了，因為跑起來很開心喔♪目標是第一名，我會超級努力的喔～！",
+      "tagline": "就算連敗也不放棄！不屈不撓的女孩",
+      "weight": "微增（但不在意）",
+      "shoes": "左右都是20.0cm",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "ears": "聽到艱澀的用詞時會左耳進右耳出",
+      "tail": "以為使尾巴不斷旋轉就能跑得更快",
+      "strong": "拚盡全力努力加油",
+      "weak": "艱澀的漢字",
+      "family": "母親做的料理中，最喜歡的是胡蘿蔔飯",
+      "secrets": [
+        "其實她唸不好「氛圍」這個詞。",
+        "其實她很擅長空手抓蜻蜓。"
+      ]
+    },
+    "en": {
+      "self_intro": "I'm Haru Urara! I like carrots! Oh, and running too! ♪ I'm always working my hardest to take first place!",
+      "tagline": "No matter how many times she falls, this girl always picks herself back up!",
+      "weight": "Slight increase (but not a big deal)",
+      "shoes": "Left and right: 20.0cm",
+      "dorm": "Ritto Dormitory",
+      "class": "Junior Division",
+      "ears": "Big words go in one ear and out the other",
+      "tail": "She used to think spinning it would make her run faster",
+      "strong": "Working as hard as possible",
+      "weak": "Difficult kanji",
+      "family": "She likes her mom's carrot rice the best",
+      "secrets": [
+        "Did you know? She can't say \"prestigious.\"",
+        "Did you know? She's very good at catching dragonflies with her bare hands."
+      ]
+    }
+  }
+}

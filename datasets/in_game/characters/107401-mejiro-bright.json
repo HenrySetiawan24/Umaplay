@@ -1,0 +1,217 @@
+{
+  "charData": {
+    "url_name": "mejiro-bright",
+    "tid": "1b",
+    "char_id": 1074,
+    "jp_name": "メジロブライト",
+    "en_name": "Mejiro Bright",
+    "name_ko": "메지로 브라이트",
+    "name_tw": "目白光明",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Ayaka Oonishi",
+    "va_ja": "大西綺華",
+    "va_ko": "오오니시 아야카",
+    "va_zh_tw": "大西綺華",
+    "va_link": "https://ja.wikipedia.org/wiki/%E5%A4%A7%E8%A5%BF%E7%B6%BA%E8%8F%AF",
+    "three_sizes": {
+      "b": 84,
+      "w": 59,
+      "h": 81
+    },
+    "birth_day": 19,
+    "birth_month": 4,
+    "birth_year": 1994,
+    "height": 157,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2004-05-16",
+      "races": 25,
+      "wins": 8,
+      "record": "8-8-3-6",
+      "earnings": 832587000,
+      "active": "1996-2000"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1074_107401.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1074_107401.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 24,
+      "year": 1,
+      "month": 12,
+      "day": 2,
+      "race_name": "Hopeful Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 47,
+      "year": 2,
+      "month": 12,
+      "day": 1,
+      "race_name": "Stayers Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "mejiro-bright",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1074,
+    "ja": {
+      "self_intro": "…………まあ？　自己紹介の時間ですの？うふふっ、メジロブライトと申します。メジロ家の一員として励みますわ～。",
+      "tagline": "意志は固くペースは緩く！のんびりご令嬢",
+      "weight": "微増（まあ、食べ過ぎました～）",
+      "shoes": "左右ともに23.0cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "耳かきされると、すぐ眠ってしまう",
+      "tail": "おしりに敷いてもあんまり気づかない",
+      "strong": "ドールの衣装づくり",
+      "weak": "溶ける前にアイスを食べる",
+      "family": "帰省シーズンは家族総出で迎えに来る",
+      "secrets": [
+        "実は、走っている電車を眺めるのが好き。",
+        "実は、いつかひとり旅をしたいと思っている。"
+      ]
+    },
+    "ko": {
+      "self_intro": "……어머? 자기소개 시간인가요? 우후훗, 메지로 브라이트라고 합니다. 메지로 가의 일원으로서 열심히 하겠어요~",
+      "tagline": "의지는 굳게, 페이스는 느슨하게! 느긋한 아가씨",
+      "weight": "약간 증가 (어머, 과식했네요~)",
+      "shoes": "좌우 모두 23.0cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "귀 청소를 받으면 금방 잠들어버린다",
+      "tail": "깔고 앉아도 별로 눈치채지 못한다",
+      "strong": "인형 의상 만들기",
+      "weak": "아이스크림 녹기 전에 먹기",
+      "family": "귀성 시즌에는 가족 모두가 마중을 나온다",
+      "secrets": [
+        "사실은 달리는 전철을 바라보는 것을 좋아한다.",
+        "사실은 언젠가 혼자서 여행을 하고 싶어 한다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "……哎呀？現在要自我介紹嗎？呵呵，我叫目白光明。身為目白家的一份子，我盡全力加油的～",
+      "tagline": "意志堅定節奏緩慢！悠閒的大小姐",
+      "weight": "微增（哎呀，吃太多了～）",
+      "shoes": "左右都是23.0cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "被掏耳朵的話會立刻睡著",
+      "tail": "就算被屁股壓到也不太會發現",
+      "strong": "製作人偶的衣服",
+      "weak": "在冰淇淋融化前吃掉它",
+      "family": "返鄉時期，家族會全員出來迎接",
+      "secrets": [
+        "其實她很喜歡遠眺行走中的電車。",
+        "其實她一直希望有一天可以一個人旅行。"
+      ]
+    },
+    "en": {
+      "self_intro": "...Oh? Are we doing self-introductions? Ehehe, well, my name is Mejiro Bright. I'll do my best to uphold the Mejiro name.",
+      "tagline": "Hard determination wins at a slow pace! A lady of leisure.",
+      "weight": "Gained a bit of weight (I did eat a lot!)",
+      "shoes": "Left and right: 23.0cm",
+      "dorm": "Ritto Dormitory",
+      "class": "Senior Division",
+      "ears": "A good ear cleaning puts her right to sleep",
+      "tail": "Doesn't bother her when she's sitting on it",
+      "strong": "Making doll clothes",
+      "weak": "Eating ice cream before it melts",
+      "family": "When the holidays roll around, her entire family is there to welcome her home",
+      "secrets": [
+        "Did you know? She loves to watch trains go by."
+      ]
+    }
+  }
+}

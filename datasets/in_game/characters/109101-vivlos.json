@@ -1,0 +1,220 @@
+{
+  "charData": {
+    "url_name": "vivlos",
+    "tid": "1s",
+    "char_id": 1091,
+    "jp_name": "ヴィブロス",
+    "en_name": "Vivlos",
+    "name_ko": "비블로스",
+    "name_tw": "比布魯斯",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Ayasa Itou",
+    "va_ja": "伊藤彩沙",
+    "va_ko": "이토 아야사",
+    "va_zh_tw": "伊藤彩沙",
+    "va_link": "https://myanimelist.net/people/23997/Ayasa_Itou",
+    "three_sizes": {
+      "b": 81,
+      "w": 51,
+      "h": 86
+    },
+    "birth_day": 9,
+    "birth_month": 4,
+    "birth_year": 2013,
+    "height": 156,
+    "sex": 2,
+    "rl": {
+      "country": "jp",
+      "races": 17,
+      "wins": 4,
+      "record": "17-4-6-0",
+      "earnings": 186098000,
+      "earnings_other": [
+        [
+          6000000,
+          "AED"
+        ],
+        [
+          5500000,
+          "HKD"
+        ]
+      ],
+      "active": "2015-2018"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1091_109101.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1091_109101.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 30,
+      "year": 2,
+      "month": 3,
+      "day": 2,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 5000
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Oka Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Japanese Oaks",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 41,
+      "year": 2,
+      "month": 9,
+      "day": 1,
+      "race_name": "Shion Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Shuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 52,
+      "year": 3,
+      "month": 2,
+      "day": 2,
+      "race_name": "Nakayama Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 57,
+      "year": 3,
+      "month": 5,
+      "day": 1,
+      "race_name": "Victoria Mile",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "vivlos",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1091,
+    "ja": {
+      "self_intro": "ヴィブロスだよ！いつか絶対、キラキラのドバイで、セレブなレースをしちゃうんだ♪いっしょに行こっ！もう決めちゃったもん♪",
+      "tagline": "天性の甘え上手、夢は遥かな海を越えて",
+      "weight": "低め安定",
+      "shoes": "左：22.5cm右：22.0cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "甘えたい時、ついついパタパタ揺れちゃう",
+      "tail": "セレブ御用達のコンディショナー使用",
+      "strong": "寒さに強い、野球、セレブな空想遊び",
+      "weak": "騒音、掃除",
+      "family": "家族が揃ったときは必ずパパのハンバーグ",
+      "secrets": [
+        "実は、おねがい♡のバリエーションが20個くらいある。",
+        "実は、姉たちより背が伸びたとき用の甘え方をイメトレしている。"
+      ]
+    },
+    "ko": {
+      "self_intro": "비블로스야! 언젠가 반드시, 반짝이는 두바이에서 셀럽한 레이스를 할 거야♪ 같이 가자! 이미 내가 그러기로 했으니까♪",
+      "tagline": "천생 어리광쟁이, 꿈은 먼바다 너머에",
+      "weight": "낮게 안정됨",
+      "shoes": "좌 : 22.5cm 우 : 22.0cm",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "ears": "응석 부리고 싶을 때, 무심코 파닥거리며 흔든다.",
+      "tail": "셀럽이 애용하는 컨디셔너를 쓴다.",
+      "strong": "추위에 강함, 야구, 셀럽한 공상 놀이",
+      "weak": "소음, 청소",
+      "family": "가족들이 모이면 항상 아빠가 햄버그를 만들어 준다.",
+      "secrets": [
+        "사실은 부탁이야♡의 베리에이션이 20개 정도 있다.",
+        "사실은 언니들보다 키가 커졌을 때를 대비한 어리광을 이미지 트레이닝하고 있다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我是比布魯斯哦！總有一天我一定要在閃閃發光的杜拜參加名流般的競賽♪我們一起去吧！這件事已經說定了嘛♪",
+      "tagline": "天生擅長撒嬌，夢想遠渡大海的彼端",
+      "weight": "穩定偏輕",
+      "shoes": "左：22.5cm右：22.0cm",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "ears": "想撒嬌時，會不由自主地晃來晃去",
+      "tail": "使用名流愛用的潤髮乳",
+      "strong": "不怕冷、棒球、名流的幻想遊戲",
+      "weak": "噪音、打掃",
+      "family": "家人們聚在一起時，一定會吃爸爸的漢堡排",
+      "secrets": [
+        "其實她的「拜託嘛♡」約有20個版本。",
+        "其實她有想像自己長得比姊姊們高時該如何撒嬌。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

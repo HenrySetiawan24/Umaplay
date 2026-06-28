@@ -1,0 +1,218 @@
+{
+  "charData": {
+    "url_name": "durandal",
+    "tid": "1V",
+    "char_id": 1121,
+    "jp_name": "デュランダル",
+    "en_name": "Durandal",
+    "name_ko": "뒤랑달",
+    "name_tw": "杜蘭達爾",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Kana Nogi",
+    "va_ja": "野木奏",
+    "va_ko": "노기 카나",
+    "va_zh_tw": "野木奏",
+    "va_link": "https://umamusu.wiki/Kana_Nogi",
+    "three_sizes": {
+      "b": 89,
+      "w": 56,
+      "h": 85
+    },
+    "birth_day": 25,
+    "birth_month": 5,
+    "birth_year": 1999,
+    "height": 162,
+    "sex": 1,
+    "race": false,
+    "rl": {
+      "country": "jp",
+      "death": "2013-07-17",
+      "races": 18,
+      "wins": 8,
+      "record": "18-8-4-1",
+      "earnings": 503232000,
+      "earnings_other": [
+        [
+          450000,
+          "HKD"
+        ]
+      ],
+      "active": "2001-2005"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1121_112101.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1121_112101.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 3000
+    },
+    {
+      "order": 3,
+      "turn": 33,
+      "year": 2,
+      "month": 5,
+      "day": 1,
+      "race_name": "NHK Mile Cup",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 41,
+      "year": 2,
+      "month": 9,
+      "day": 1,
+      "race_name": "Centaur Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 5,
+      "turn": 42,
+      "year": 2,
+      "month": 9,
+      "day": 2,
+      "race_name": "Sprinters Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 46,
+      "year": 2,
+      "month": 11,
+      "day": 2,
+      "race_name": "Mile Championship",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 7,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Takamatsunomiya Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 59,
+      "year": 3,
+      "month": 6,
+      "day": 1,
+      "race_name": "Yasuda Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 66,
+      "year": 3,
+      "month": 9,
+      "day": 2,
+      "race_name": "Sprinters Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Mile Championship",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "durandal",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1121,
+    "ja": {
+      "self_intro": "我が聖剣は疾駆する光輝を放ち、御身に仇なす闇を斬り払います！私はデュランダル、誓いと忠義の騎士！",
+      "tagline": "いざや刮目せよ。瞬く双脚、忠義の聖剣",
+      "weight": "忠実な仕上がり",
+      "shoes": "左右ともに23.5cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "誉め言葉は一言一句、聞き逃さない",
+      "tail": "武器として使えないか、よく思案している",
+      "strong": "草刈り、恋愛ドラマ長文考察レビュー",
+      "weak": "にらめっこ、1人旅、『降参』",
+      "family": "家事当番は『あっち向いてホイ』で決める",
+      "secrets": [
+        "実は、トマトは薄～く切られてないと無理。",
+        "実は、寝相が悪すぎてシーツをビリビリにしたことがある。"
+      ]
+    },
+    "ko": {
+      "self_intro": "저의 성검은 질주하는 광휘를 내뿜으며 당신을 적대하는 어둠을 베어 냅니다! 저는 뒤랑달, 맹세와 충의의 기사!",
+      "tagline": "자, 괄목하라. 번쩍이는 두 다리, 충의의 성검",
+      "weight": "충실한 상태",
+      "shoes": "좌우 모두 23.5cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "칭찬은 한 단어, 한 마디도 놓치지 않는다",
+      "tail": "무기로 사용할 방법이 없는지 모색하고 있다",
+      "strong": "풀베기, 연애 드라마 장문 고찰 리뷰",
+      "weak": "눈싸움, 혼자 여행하기, 『항복』",
+      "family": "집안일 당번은 『참참참』으로 정한다",
+      "secrets": [
+        "사실은 토마토는 얇~게 썰지 않으면 못 먹는다.",
+        "사실은 잠버릇이 너무 나쁜 나머지 침대 시트를 찢어 버린 적이 있다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我的聖劍將釋放疾馳的光輝，斬除加諸於你的黑暗！我是杜蘭達爾，誓言與忠義之騎士！",
+      "tagline": "來吧，看仔細了。飛馳的雙腿正是忠義的聖劍",
+      "weight": "忠於基礎的狀態",
+      "shoes": "左右都是23.5cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "讚美的話語絕不漏聽一字一句",
+      "tail": "經常思考是否能當作武器使用",
+      "strong": "割草、愛情劇長篇考究加評論",
+      "weak": "比誰先笑、獨旅、「投降」",
+      "family": "用「黑白猜」來決定家事由誰負責",
+      "secrets": [
+        "其實她如果不切得很薄～的話就不敢吃番茄。",
+        "其實她的睡相太差，曾經把床單撕破過。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

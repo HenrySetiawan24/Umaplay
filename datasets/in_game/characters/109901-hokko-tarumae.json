@@ -1,0 +1,218 @@
+{
+  "charData": {
+    "url_name": "hokko-tarumae",
+    "tid": "1A",
+    "char_id": 1099,
+    "jp_name": "ホッコータルマエ",
+    "en_name": "Hokko Tarumae",
+    "name_ko": "홋코 타루마에",
+    "name_tw": "北幸樽前",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Sayaka Kikuchi",
+    "va_ja": "菊池紗矢香",
+    "va_ko": "키쿠치 사야카",
+    "va_zh_tw": "菊池紗矢香",
+    "va_link": "https://myanimelist.net/people/51506/Sayaka_Kikuchi",
+    "three_sizes": {
+      "b": 86,
+      "w": 56,
+      "h": 85
+    },
+    "birth_day": 26,
+    "birth_month": 5,
+    "birth_year": 2009,
+    "height": 162,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": null,
+      "races": 39,
+      "wins": 17,
+      "record": "17-5-7-10",
+      "earnings": 1078706000,
+      "earnings_other": [
+        [
+          300000,
+          "USD"
+        ]
+      ],
+      "active": "2011-2016"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1099_109901.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1099_109901.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 5000
+    },
+    {
+      "order": 3,
+      "turn": 39,
+      "year": 2,
+      "month": 8,
+      "day": 1,
+      "race_name": "Leopard Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 47,
+      "year": 2,
+      "month": 12,
+      "day": 1,
+      "race_name": "Champions Cup",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 5,
+      "turn": 51,
+      "year": 3,
+      "month": 2,
+      "day": 1,
+      "race_name": "Kawasaki Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 57,
+      "year": 3,
+      "month": 5,
+      "day": 1,
+      "race_name": "Kashiwa Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Teio Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 69,
+      "year": 3,
+      "month": 11,
+      "day": 1,
+      "race_name": "JBC Classic",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 71,
+      "year": 3,
+      "month": 12,
+      "day": 1,
+      "race_name": "Champions Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Tokyo Daishoten",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "hokko-tarumae",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1099,
+    "ja": {
+      "self_intro": "北の港から飛んできた、紙の翼の渡り鳥♪苫小牧ロコドル、ホッコータルマエだべ！…うーん、もっとひねった方がいいかな",
+      "tagline": "苫小牧を背負って走るリアリストなロコドル",
+      "weight": "増減なし",
+      "shoes": "左右ともに24.5cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "メンコは絶対つけ忘れない",
+      "tail": "ロコドルモードの時は、より動く",
+      "strong": "苫小牧クイズ、山登り",
+      "weak": "運頼み、船に乗ること",
+      "family": "仕送りには、必ず苫小牧銘菓が入っている",
+      "secrets": [
+        "実は、ゲン担ぎをしないのが一番のゲン担ぎだと思っている。",
+        "実は、ストレスがたまると小物を頭に乗せてボーっとしてしまう。"
+      ]
+    },
+    "ko": {
+      "self_intro": "북쪽 항구에서 날아 온, 종이 날개 철새♪ 토마코마이 로컬 아이돌, 홋코 타루마에여! …으~음, 좀 더 색다르게 하는 게 좋으려나.",
+      "tagline": "토마코마이를 짊어지고 달리는 현실주의자 지역 아이돌",
+      "weight": "변화 없음",
+      "shoes": "좌우 모두 24.5cm",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "ears": "귀 가리개 쓰는 것을 절대 잊지 않는다.",
+      "tail": "지역 아이돌 모드일 땐 더 활발히 움직인다.",
+      "strong": "토마코마이 퀴즈, 등산",
+      "weak": "운에 의지하기, 배를 타는 것",
+      "family": "집에서 온 소포엔 반드시 토마코마이 명과가 들어 있다.",
+      "secrets": [
+        "사실은 징크스에 의존하지 않는 것이 가장 좋은 징크스라고 생각한다.",
+        "사실은 스트레스가 쌓이면 작은 물건을 머리에 얹고 멍하니 있는다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "儂是從北方港灣飛來的紙翼候鳥♪苫小牧的地方偶像──北幸樽前！……嗯～是不是應該再想特別一點的呀？",
+      "tagline": "背負著苫小牧未來的務實派地方偶像",
+      "weight": "無增減",
+      "shoes": "左右都是24.5cm",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "ears": "絕對不會忘記戴耳罩",
+      "tail": "進入地方偶像模式的時候特別好動",
+      "strong": "苫小牧知識問答、爬山",
+      "weak": "靠運氣、坐船",
+      "family": "家裡寄來的補給品一定會有苫小牧著名的點心",
+      "secrets": [
+        "其實她覺得不刻意求好運就是最棒的求好運方式。",
+        "其實她壓力大的時候，會把小東西放在頭上發呆。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

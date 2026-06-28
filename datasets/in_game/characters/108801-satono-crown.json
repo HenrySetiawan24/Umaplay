@@ -1,0 +1,217 @@
+{
+  "charData": {
+    "url_name": "satono-crown",
+    "tid": "1p",
+    "char_id": 1088,
+    "jp_name": "サトノクラウン",
+    "en_name": "Satono Crown",
+    "name_ko": "사토노 크라운",
+    "name_tw": "里見皇冠",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Sayumi Suzushiro",
+    "va_ja": "鈴代紗弓",
+    "va_ko": "스즈시로 사유미",
+    "va_zh_tw": "鈴代紗弓",
+    "va_link": "https://myanimelist.net/people/48122/Sayumi_Suzushiro",
+    "three_sizes": {
+      "b": 82,
+      "w": 53,
+      "h": 81
+    },
+    "birth_day": 10,
+    "birth_month": 3,
+    "birth_year": 2012,
+    "height": 163,
+    "sex": 1,
+    "race": false,
+    "rl": {
+      "country": "jp",
+      "races": 20,
+      "wins": 7,
+      "record": "20-7-1-1",
+      "earnings": 486036000,
+      "earnings_other": [
+        [
+          9405000,
+          "HKD"
+        ]
+      ],
+      "active": "2014-2018"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1088_108801.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1088_108801.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 22,
+      "year": 1,
+      "month": 11,
+      "day": 2,
+      "race_name": "Tokyo Sports Hai Junior Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 29,
+      "year": 2,
+      "month": 3,
+      "day": 1,
+      "race_name": "Yayoi Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 6,
+      "turn": 51,
+      "year": 3,
+      "month": 2,
+      "day": 1,
+      "race_name": "Kyoto Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 7,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Osaka Hai",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "satono-crown",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1088,
+    "ja": {
+      "self_intro": "サトノクラウンよ。必ずサトノに栄冠を。そのためにあらゆる準備を尽くし、逆境さえも力にするわっ！期待してね！",
+      "tagline": "ターフの奇術師！頼れるエリートお姉さん",
+      "weight": "内緒よ",
+      "shoes": "左右ともに24.0cm",
+      "dorm": "美浦寮",
+      "class": "中等部",
+      "ears": "ここ一番の瞬間にキュッと絞る癖がある",
+      "tail": "サトノ系列ホテル御用達品を取り寄せている",
+      "strong": "（特に大掛かりな）マジック、マルチタスク",
+      "weak": "真夏の日射し、予定のない休日",
+      "family": "毎日の他愛ない話もSNSで伝えあっている",
+      "secrets": [
+        "実は、レインブーツを集めるのが好き。",
+        "実は、サウナが好き。"
+      ]
+    },
+    "ko": {
+      "self_intro": "사토노 크라운이야. 반드시 사토노에 영광을. 그러기 위해서 수많은 준비를 갖추고 역경조차 힘으로 바꿀 거야! 기대해 줘!",
+      "tagline": "잔디의 마술사! 믿음직한 엘리트 언니",
+      "weight": "비밀이야",
+      "shoes": "좌우 모두 24.0cm",
+      "dorm": "미호 생활관",
+      "class": "중등부",
+      "ears": "중요한 순간에 뒤로 젖히는 버릇이 있다.",
+      "tail": "사토노 그룹 호텔에 납품되는 제품을 쓴다.",
+      "strong": "(특히 대규모)마술, 멀티태스킹",
+      "weak": "한여름의 햇살, 예정에 없던 휴일",
+      "family": "사소한 일상 이야기도 SNS에서 나눈다.",
+      "secrets": [
+        "사실은 레인 부츠 수집을 좋아한다.",
+        "사실은 사우나를 좋아한다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我是里見皇冠哦。我勢必會將榮耀帶給里見。為此我已徹底做好了萬全準備，就連逆境也能成為我的力量！好好期待吧！",
+      "tagline": "草地奇術師！可靠的菁英大姐姐",
+      "weight": "這是祕密喔",
+      "shoes": "左右都是24.0cm",
+      "dorm": "美浦宿舍",
+      "class": "國中部",
+      "ears": "面臨重大場面的瞬間會緊緊將耳朵向後擺",
+      "tail": "會向里見家的飯店訂購保養品來保養",
+      "strong": "魔術（尤其是大規模表演）、多工處理",
+      "weak": "盛夏的陽光、沒有計畫的假日",
+      "family": "平日無關緊要的閒聊也會傳到社群平台",
+      "secrets": [
+        "其實她喜歡收集雨靴。",
+        "其實她很喜歡三溫暖。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

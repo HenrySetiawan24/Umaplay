@@ -1,0 +1,159 @@
+{
+  "charData": {
+    "url_name": "stay-gold",
+    "tid": "26",
+    "char_id": 1135,
+    "jp_name": "ステイゴールド",
+    "en_name": "Stay Gold",
+    "playable": true,
+    "active": true,
+    "va_ja": "松田颯水",
+    "birth_day": 24,
+    "birth_month": 3,
+    "birth_year": 1994,
+    "height": 142,
+    "sex": 1,
+    "rl": {}
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1135_113501.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1135_113501.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 29,
+      "year": 2,
+      "month": 3,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 5000
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "stay-gold",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true
+    }
+  },
+  "profileData": {
+    "char_id": 1135,
+    "ja": {
+      "self_intro": "よろしく、ステイゴールドだ。さあ、楽しい旅にしよう！黄金の旅路を気ままに、な",
+      "tagline": "奔放な放浪者！いつか見た黄金の旅路へ",
+      "weight": "食べても太らない",
+      "shoes": "左：22.5cm 右：23.0cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "相手の真意は、声色の変化で判断する",
+      "tail": "どんな環境にさらされてもなぜかサラサラ",
+      "strong": "金の真贋鑑定、昼寝、ヒッチハイク",
+      "weak": "健康診断",
+      "family": "妹たちいわく、お土産選びのセンスは微妙",
+      "secrets": [
+        "実は、世界各地の熊モチーフのお土産品をコレクションしている。",
+        "実は、目覚ましをかけたことがない。"
+      ]
+    },
+    "ko": {
+      "secrets": []
+    },
+    "zh_tw": {
+      "secrets": []
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

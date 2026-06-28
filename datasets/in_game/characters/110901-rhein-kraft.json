@@ -1,0 +1,211 @@
+{
+  "charData": {
+    "url_name": "rhein-kraft",
+    "tid": "1J",
+    "char_id": 1109,
+    "jp_name": "ラインクラフト",
+    "en_name": "Rhein Kraft",
+    "name_ko": "라인 크라프트",
+    "name_tw": "萊茵實力",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Nanae Kojima",
+    "va_ja": "小島菜々恵",
+    "va_ko": "코지마 나나에",
+    "va_zh_tw": "小島菜々恵",
+    "va_link": "https://myanimelist.net/people/56948/Nanae_Kojima",
+    "three_sizes": {
+      "b": 85,
+      "w": 55,
+      "h": 83
+    },
+    "birth_day": 4,
+    "birth_month": 4,
+    "birth_year": 2002,
+    "height": 157,
+    "sex": 2,
+    "race": false,
+    "rl": {
+      "country": "jp",
+      "death": "2006-08-19",
+      "races": 13,
+      "wins": 6,
+      "record": "13-6-3-2",
+      "earnings": 505630000,
+      "active": "2004-2006"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1109_110901.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1109_110901.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "Hanshin Juvenile Fillies",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 29,
+      "year": 2,
+      "month": 3,
+      "day": 1,
+      "race_name": "Fillies' Revue",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Oka Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Japanese Oaks",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 6,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Shuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Takamatsunomiya Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 57,
+      "year": 3,
+      "month": 5,
+      "day": 1,
+      "race_name": "Victoria Mile",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 66,
+      "year": 3,
+      "month": 9,
+      "day": 2,
+      "race_name": "Sprinters Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 69,
+      "year": 3,
+      "month": 11,
+      "day": 1,
+      "race_name": "Queen Elizabeth II Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "rhein-kraft",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1109,
+    "ja": {
+      "self_intro": "ラインクラフトです！想いを引き継ぎ、道を切り拓き、未来へ繋いでいく。わたし、そんなティアラウマ娘になりたいんです！",
+      "tagline": "輝く未来へ！ティアラを夢見るお日さま娘",
+      "weight": "ほんわか",
+      "shoes": "左：23.5cm 右：23.0cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "スキンシップ中はだらんと垂れてリラックス",
+      "tail": "いつもほわほわで柔らかい",
+      "strong": "ハンドメイド全般、ロッククライミング",
+      "weak": "虫（特にハエ）、演技",
+      "family": "家族全員揃ったらみんなでピクニックが定番",
+      "secrets": [
+        "実は、雷っぽい形の跳ね毛が自慢。",
+        "実は、ビー玉バトルがめちゃくちゃ強い。"
+      ]
+    },
+    "ko": {
+      "self_intro": "라인 크라프트입니다! 마음을 잇고, 길을 개척하고, 미래로 이어 간다. 저는 그런 티아라 우마무스메가 되고 싶어요!",
+      "tagline": "빛나는 미래를 향해! 티아라를 꿈꾸는 햇살 같은 소녀",
+      "weight": "편안함",
+      "shoes": "좌 : 23.5cm 우 : 23.0cm",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "ears": "스킨십 중에는 편안하게 축 늘어진다",
+      "tail": "언제나 폭신폭신하고 부드럽다",
+      "strong": "수공예 전반, 암벽 등반",
+      "weak": "벌레(특히 파리), 연기하기",
+      "family": "가족 전원이 모이면 으레 다 함께 피크닉을 간다",
+      "secrets": [
+        "사실은 번개 같은 모양의 삐침머리가 자랑.",
+        "사실은 구슬치기를 엄청나게 잘한다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我是萊茵實力！繼承意志，開拓出與未來聯繫的道路。我想成為那樣的后冠賽馬娘！",
+      "tagline": "奔向光明的未來！將后冠視為夢想的陽光賽馬娘",
+      "weight": "溫柔暖心",
+      "shoes": "左：23.5cm 右：23.0cm",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "ears": "肢體接觸時會慵懶地下垂呈現放鬆的樣子",
+      "tail": "總是柔軟又溫暖",
+      "strong": "所有手工藝、攀岩",
+      "weak": "昆蟲（尤其是蒼蠅）、演戲",
+      "family": "固定活動是全家聚在一起野餐",
+      "secrets": [
+        "其實她對自己那撮像雷電的翹髮感到自豪。",
+        "其實她打彈珠超強。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

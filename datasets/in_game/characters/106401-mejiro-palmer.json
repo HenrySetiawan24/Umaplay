@@ -1,0 +1,208 @@
+{
+  "charData": {
+    "url_name": "mejiro-palmer",
+    "tid": "11",
+    "char_id": 1064,
+    "jp_name": "メジロパーマー",
+    "en_name": "Mejiro Palmer",
+    "name_ko": "메지로 파머",
+    "name_tw": "目白善信",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Yuri Noguchi",
+    "va_ja": "のぐちゆり",
+    "va_ko": "노구치 유리",
+    "va_zh_tw": "のぐちゆり",
+    "va_link": "https://myanimelist.net/people/36811/Yuri_Noguchi",
+    "three_sizes": {
+      "b": 84,
+      "w": 57,
+      "h": 86
+    },
+    "birth_day": 21,
+    "birth_month": 3,
+    "birth_year": 1987,
+    "height": 160,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2012-04-07",
+      "races": 38,
+      "wins": 9,
+      "record": "9-5-2-22",
+      "earnings": 536742200,
+      "active": "1989-1994"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1064_106401.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1064_106401.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 35,
+      "year": 2,
+      "month": 6,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 9000
+    },
+    {
+      "order": 3,
+      "turn": 37,
+      "year": 2,
+      "month": 7,
+      "day": 1,
+      "race_name": "Hakodate Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 4,
+      "turn": 49,
+      "year": 3,
+      "month": 1,
+      "day": 1,
+      "race_name": "Nikkei Shinshun Hai",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 5,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "mejiro-palmer",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1064,
+    "ja": {
+      "self_intro": "メジロパーマーだよ！元気してる～？ま、なんかあったらいつでも聞くからさ。気軽に話しちゃってよ♪",
+      "tagline": "気楽にいこーよ。頼れるポジティブギャル",
+      "weight": "微減 ",
+      "shoes": "左右ともに24.0cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "風向きと風の強さを感知できる",
+      "tail": "他人の脚をくすぐって笑わせることがある",
+      "strong": "ゴルフ、穴掘り",
+      "weak": "ハードル走",
+      "family": "父はゴルフの師匠だが、スコアは逆転した",
+      "secrets": [
+        "実は、教わったパリピ語をすべて日記に残している。",
+        "実は、日焼け止めはとにかくいいものを使う主義。"
+      ]
+    },
+    "ko": {
+      "self_intro": "메지로 파머야! 잘 지내~? 뭐, 무슨 일 있으면 언제든 들어 줄게. 마음 편하게 말하라고♪",
+      "tagline": "마음 편하게 가자. 든든한 포지티브 걸",
+      "weight": "약간 감소",
+      "shoes": "좌우 모두 24.0cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "풍향과 바람의 세기를 감지할 수 있다",
+      "tail": "다른 사람의 다리를 간지럽혀서 웃게 만들 때가 있다",
+      "strong": "골프, 구멍 파기",
+      "weak": "허들 경주",
+      "family": "아버지는 골프 스승이지만, 스코어는 역전됐다",
+      "secrets": [
+        "사실은 배운 인싸 감성 용어를 전부 일기에 적어두고 있다.",
+        "사실은 자외선 차단제는 아무튼 좋은 것을 쓰는 편."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我是目白善信！今天過得好嗎～？什麼事情都可以跟我說，隨時都能找我聊聊喔♪",
+      "tagline": "放輕鬆一點──可靠的樂觀辣妹",
+      "weight": "微減 ",
+      "shoes": "左右都是24.0cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "可以察覺風向和風的強度",
+      "tail": "曾用尾巴搔別人的腳而讓對方笑出來",
+      "strong": "高爾夫球、挖洞",
+      "weak": "障礙賽",
+      "family": "逆轉勝過了教自己高爾夫的父親",
+      "secrets": [
+        "其實她把學到的玩咖語都寫在日記裡。",
+        "其實她對防曬油的主張是總之只用最好的牌子。"
+      ]
+    },
+    "en": {
+      "self_intro": "I'm Mejiro Palmer! How ya doing? I'm always around if you need me, so don't be shy! ♪",
+      "tagline": "Let's have a good time! This Umamusume is upbeat and always there for friends.",
+      "weight": "Slightly down",
+      "shoes": "Left and right: 24.0cm",
+      "dorm": "Ritto Dormitory",
+      "class": "Senior Division",
+      "ears": "Can sense wind speed and direction",
+      "tail": "Has a tendency to tickle people's legs",
+      "strong": "Golf, digging holes",
+      "weak": "Hurdles",
+      "family": "Her father taught her how to golf, but her handicap is now lower than his",
+      "secrets": [
+        "Did you know? She writes down any slang she learns in her journal.",
+        "Did you know? She's a strong proponent of using only the best sunscreen."
+      ]
+    }
+  }
+}

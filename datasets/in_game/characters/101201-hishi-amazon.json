@@ -1,0 +1,228 @@
+{
+  "charData": {
+    "url_name": "hishi-amazon",
+    "tid": "b",
+    "char_id": 1012,
+    "jp_name": "ヒシアマゾン",
+    "en_name": "Hishi Amazon",
+    "name_ko": "히시 아마존",
+    "name_tw": "菱亞馬遜",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Yuiko Tatsumi",
+    "va_ja": "巽悠衣子",
+    "va_ko": "타츠미 유이코",
+    "va_zh_tw": "巽悠衣子",
+    "va_link": "https://myanimelist.net/people/6997/Yuiko_Tatsumi",
+    "three_sizes": {
+      "b": 92,
+      "w": 59,
+      "h": 89
+    },
+    "birth_day": 26,
+    "birth_month": 3,
+    "birth_year": 1991,
+    "height": 160,
+    "sex": 2,
+    "race": "uma",
+    "rl": {
+      "country": "us",
+      "death": "2019-04-15",
+      "races": 20,
+      "wins": 10,
+      "record": "10-5-0-5",
+      "earnings": 695820000,
+      "active": "1993-1996"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1012_101201.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1012_101201.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "Hanshin Juvenile Fillies",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Oka Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Japanese Oaks",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Shuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 48,
+      "year": 2,
+      "month": 12,
+      "day": 2,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Osaka Hai",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 59,
+      "year": 3,
+      "month": 6,
+      "day": 1,
+      "race_name": "Yasuda Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "hishi-amazon",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1012,
+    "ja": {
+      "self_intro": "いいツラ構えの奴が大勢いるねえ…へへっ、全員このヒシアマ姐さんが相手してやるよ！さあ、タイマンだっ！",
+      "tagline": "タイマン上等！頼れる我らの姐御寮長",
+      "weight": "微増（ノーコメント）",
+      "shoes": "左右ともに24.0cm",
+      "dorm": "美浦寮",
+      "class": "高等部",
+      "ears": "『タイマン』という言葉にとても敏感",
+      "tail": "艶黒の毛並みは多くの生徒の憧れ",
+      "strong": "手料理を振る舞うこと",
+      "weak": "頭を使うこと",
+      "family": "姐御肌は母譲りで、こう見えて末っ子",
+      "secrets": [
+        "実は、あて布のセンスが独特。",
+        "実は、後輩に教えてもらいながらウマスタにキャラ弁をアップしている。"
+      ]
+    },
+    "ko": {
+      "self_intro": "세 보이는 녀석들이 잔뜩 있구만… 헤헷, 모두 이 히시아마 언니께서 상대해 주지! 자, 맞짱 한 번 떠 보자!",
+      "tagline": "맞짱 뜰까! 믿음직한 우리들의 생활 반장 언니",
+      "weight": "약간 증가(노 코멘트)",
+      "shoes": "좌우 모두 24.0cm",
+      "dorm": "미호 생활관",
+      "class": "고등부",
+      "ears": "『맞짱』이라는 단어에 매우 민감하다.",
+      "tail": "윤기 있는 흑빛 꼬리털은 많은 학생의 동경을 사고 있다.",
+      "strong": "직접 만든 요리를 나눠주기",
+      "weak": "머리 쓰기",
+      "family": "여장부 기질은 어머니께 물려받은 것, 이래 봬도 막내다.",
+      "secrets": [
+        "사실은 옷에 덧대는 천을 고르는 센스가 독특하다.",
+        "사실은 후배한테 배우면서 우마스타에 캐릭터 도시락을 올리고 있다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "有很多表情很不錯的傢伙嘛……嘿嘿，就由我菱亞大姐當妳們所有人的對手！來單挑吧！",
+      "tagline": "歡迎單挑！大家的可靠大姐頭宿舍長",
+      "weight": "微增（不予置評）",
+      "shoes": "左右都是24.0cm",
+      "dorm": "美浦宿舍",
+      "class": "高中部",
+      "ears": "對「單挑」這個詞非常敏感",
+      "tail": "漆黑艷麗的毛髮受到眾多學生憧憬",
+      "strong": "請人吃親手做的料理",
+      "weak": "動腦",
+      "family": "大姐氣質遺傳自母親，其實排行老么",
+      "secrets": [
+        "其實她對於燙衣服的隔熱墊有著獨特的品味。",
+        "其實她會一邊向後輩學習製作角色便當，一邊將便當照分享到UG。"
+      ]
+    },
+    "en": {
+      "self_intro": "I see a buncha Umamusume here looking like they wanna take me on! Well, Hishiama will give you all you can handle! Come at me! One-on-one!",
+      "tagline": "You wanna go? One-on-one! The dorm leader everyone knows and loves.",
+      "weight": "Slight increase (no comment)",
+      "shoes": "Left and right: 24.0cm",
+      "dorm": "Miho Dormitory",
+      "class": "Senior Division",
+      "ears": "Can hear someone say \"one-on-one\" from a mile away",
+      "tail": "Her glossy black tail is admired by many students",
+      "strong": "Serving homemade cooking",
+      "weak": "Using her head",
+      "family": "Gets her caring nature from her mother and is actually the youngest child",
+      "secrets": [
+        "Did you know? She uses a peculiar ironing cloth.",
+        "Did you know? Younger students help her post pics of her character-themed bento lunches on Umastagram."
+      ]
+    }
+  }
+}

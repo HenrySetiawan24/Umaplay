@@ -1,0 +1,218 @@
+{
+  "charData": {
+    "url_name": "air-groove",
+    "tid": "h",
+    "char_id": 1018,
+    "jp_name": "エアグルーヴ",
+    "en_name": "Air Groove",
+    "name_ko": "에어 그루브",
+    "name_tw": "氣槽",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Ruriko Aoki",
+    "va_ja": "青木瑠璃子",
+    "va_ko": "아오키 루리코",
+    "va_zh_tw": "青木瑠璃子",
+    "va_link": "https://myanimelist.net/people/23831/Ruriko_Aoki",
+    "three_sizes": {
+      "b": 90,
+      "w": 57,
+      "h": 86
+    },
+    "birth_day": 6,
+    "birth_month": 4,
+    "birth_year": 1993,
+    "height": 165,
+    "sex": 2,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2013-04-23",
+      "races": 19,
+      "wins": 9,
+      "record": "9-5-3-2",
+      "earnings": 821960000,
+      "active": "1995-1999"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1018_101801.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1018_101801.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "Hanshin Juvenile Fillies",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Oka Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Japanese Oaks",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Shuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Osaka Hai",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 64,
+      "year": 3,
+      "month": 8,
+      "day": 2,
+      "race_name": "Sapporo Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "air-groove",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1018,
+    "ja": {
+      "self_intro": "エアグルーヴだ。信念を曲げなければ理想は必ず芽吹く。それを示すため私が“女帝”として皆の指針となろう",
+      "tagline": "冷徹なる“女帝”才色兼備のキャリアレディ",
+      "weight": "見事な仕上がり",
+      "shoes": "左右ともに24.5cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "花の世話をする時は優しくかすかに垂れる",
+      "tail": "母親と同じテールオイルを使っている",
+      "strong": "花を育てること",
+      "weak": "いきなり光るもの、いきなり動くもの",
+      "family": "母の誕生会は、1年かけ緻密に計画している",
+      "secrets": [
+        "実は、虫嫌いだがテントウムシだけは好き。",
+        "実は、リラックスしたい時にはショパンのCDを聴く。"
+      ]
+    },
+    "ko": {
+      "self_intro": "에어 그루브다. 신념을 굽히지 않으면 이상은 반드시 싹트지. 그걸 실제로 보여주기 위해 내가 '여제'로서 모두의 지침이 되겠어",
+      "tagline": "냉철한 '여제' 재색을 겸비한 눈부신 커리어의 차도녀",
+      "weight": "훌륭한 성과",
+      "shoes": "좌우 모두 24.5cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "꽃을 돌볼 때는 아주 약간 온화하게 늘어진다.",
+      "tail": "어머니와 같은 테일 오일을 사용한다.",
+      "strong": "꽃 키우기",
+      "weak": "갑자기 빛나는 것, 갑자기 움직이는 것",
+      "family": "어머니의 생일잔치는 1년에 걸쳐 치밀하게 계획한다.",
+      "secrets": [
+        "사실은 벌레를 싫어하지만 무당벌레만은 좋아한다.",
+        "사실은 안정을 취하고 싶을 때는 쇼팽 CD를 듣는다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我是氣槽。只要信念沒有動搖，理想一定會萌芽。為了展現這點，我作為「女帝」會指引眾人前進的。",
+      "tagline": "冷靜理性的「女帝」才貌兼備的女強人",
+      "weight": "調整狀態極佳",
+      "shoes": "左右都是24.5cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "照料花朵時會溫柔地微微下垂",
+      "tail": "跟母親用同款尾巴保養油",
+      "strong": "種花",
+      "weak": "突然發光的東西、突然動起來的東西",
+      "family": "會花一整年縝密地計畫母親的慶生會",
+      "secrets": [
+        "其實她討厭蟲子，但卻喜歡瓢蟲。",
+        "其實她在想放鬆時，會聽蕭邦的CD。"
+      ]
+    },
+    "en": {
+      "self_intro": "I am Air Groove. If you are unwavering in your beliefs, your ideals will blossom. It is my role as Empress to lead by example.",
+      "tagline": "The coolly calculating Empress. Highly gifted and ambitious.",
+      "weight": "Amazing form",
+      "shoes": "Left and right: 24.5cm",
+      "dorm": "Ritto Dormitory",
+      "class": "Senior Division",
+      "ears": "Droop ever so slightly when she takes care of flowers",
+      "tail": "Uses the same tail oil as her mother",
+      "strong": "Growing flowers",
+      "weak": "Things that suddenly flash or move",
+      "family": "Meticulously plans her mom's birthday party a year in advance.",
+      "secrets": [
+        "Did you know? She hates all insects except ladybugs.",
+        "Did you know? She listens to Chopin when she wants to relax."
+      ]
+    }
+  }
+}

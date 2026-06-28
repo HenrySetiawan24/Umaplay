@@ -1,0 +1,184 @@
+{
+  "charData": {
+    "url_name": "royce-and-royce",
+    "tid": "1D",
+    "char_id": 1103,
+    "jp_name": "ロイスアンドロイス",
+    "en_name": "Royce and Royce",
+    "name_ko": "로이스 앤 로이스",
+    "name_tw": "萊斯萊斯",
+    "playable": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Rui Tanabe",
+    "va_ja": "田辺留依",
+    "va_ko": "타나베 루이",
+    "va_zh_tw": "田辺留依",
+    "va_link": "https://myanimelist.net/people/25435/Rui_Tanabe",
+    "three_sizes": {
+      "b": 83,
+      "w": 56,
+      "h": 82
+    },
+    "birth_day": 10,
+    "birth_month": 3,
+    "birth_year": 1990,
+    "height": 159,
+    "sex": 1,
+    "rl": {
+      "country": "jp",
+      "death": "1996-06-14",
+      "races": 28,
+      "wins": 3,
+      "record": "28-3-9-7",
+      "earnings": 212755000,
+      "active": "1992-1996"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1103_110301.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1103_110301.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 30,
+      "year": 2,
+      "month": 3,
+      "day": 2,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 5000
+    },
+    {
+      "order": 3,
+      "turn": 32,
+      "year": 2,
+      "month": 4,
+      "day": 2,
+      "race_name": "Aoba Sho",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 6,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Osaka Hai",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 66,
+      "year": 3,
+      "month": 9,
+      "day": 2,
+      "race_name": "All Comers",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "royce-and-royce",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1103,
+    "ja": {
+      "self_intro": "望みはひとつ――“最強”の称号よ！人々の記憶に残るウマ娘になりたいの！そのために必要なのは…そう、自己演出よ！",
+      "tagline": "創り出せ伝説！独自の視点で最強を目指す",
+      "weight": "最強の風格",
+      "shoes": "左右ともに23.0cm",
+      "dorm": "美浦寮",
+      "class": "中等部",
+      "ears": "自分の評判は即・キャッチ！",
+      "tail": "尻尾用コロンは自分で調合",
+      "strong": "データ整理（表計算ソフト派）、ながら運動",
+      "weak": "『こちら側のどこからでも開けられます』",
+      "family": "昔、妹の小学校デビューをプロデュースした",
+      "secrets": [
+        "実は、フラッシュ暗算が得意。",
+        "実は、資格コレクター。"
+      ]
+    },
+    "ko": {
+      "self_intro": "바라는 건 하나… '최강'이라는 칭호야! 모든 이들의 기억에 남는 우마무스메가 되고 싶어! 그러기 위해 필요한 건… 그래, 자기 연출이야!",
+      "tagline": "전설을 만들어라! 자신만의 시점으로 최강을 노린다",
+      "dorm": "미호 생활관",
+      "class": "중등부",
+      "secrets": [
+        "사실은 플래시 암산이 특기.",
+        "사실은 자격증 컬렉터."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "唯一的渴望──就是「最強」的稱號！我想成為留在人們記憶中的賽馬娘！為此我需要的……沒錯，就是表現自我！",
+      "tagline": "力創傳說！以獨特的觀點邁向最強",
+      "dorm": "美浦宿舍",
+      "class": "國中部",
+      "secrets": [
+        "其實她很擅長快閃心算。",
+        "其實她是證照收藏家。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

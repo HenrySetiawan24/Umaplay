@@ -1,0 +1,218 @@
+{
+  "charData": {
+    "url_name": "biwa-hayahide",
+    "tid": "m",
+    "char_id": 1023,
+    "jp_name": "ビワハヤヒデ",
+    "en_name": "Biwa Hayahide",
+    "name_ko": "비와 하야히데",
+    "name_tw": "琵琶晨光",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Yui Kondou",
+    "va_ja": "近藤唯",
+    "va_ko": "콘도 유이",
+    "va_zh_tw": "近藤唯",
+    "va_link": "https://myanimelist.net/people/24189/Yui_Kondou",
+    "three_sizes": {
+      "b": 93,
+      "w": 61,
+      "h": 88
+    },
+    "birth_day": 10,
+    "birth_month": 3,
+    "birth_year": 1990,
+    "height": 171,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2020-07-21",
+      "races": 16,
+      "wins": 10,
+      "record": "10-5-0-1",
+      "earnings": 817690000,
+      "active": "1992-1994"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1023_102301.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1023_102301.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "Asahi Hai Futurity Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "biwa-hayahide",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1023,
+    "ja": {
+      "self_intro": "ビワハヤヒデだ。私の目的は、完全なる勝利の方程式を組み立てること。…あと、私の頭は一般的なサイズだからな！",
+      "tagline": "情熱的知性派。論理を武器に立ち向かえ！",
+      "weight": "増減なし",
+      "shoes": "左右ともに25.0cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "幼い頃は物音に敏感で、よく驚いていた",
+      "tail": "湿気があると、服の尻尾穴に入らず苦戦する",
+      "strong": "片付け",
+      "weak": "梅雨",
+      "family": "昔は、母が姉妹でおそろいの髪型にしていた",
+      "secrets": [
+        "実は、ヘアスプレーのレビュアー。",
+        "実は、バナナなら5秒で食べられる。"
+      ]
+    },
+    "ko": {
+      "self_intro": "비와 하야히데다. 내 목적은 완벽한 승리 방정식을 짜내는 것. …그리고 내 머리는 평균적인 사이즈란 말이다!",
+      "tagline": "정열적인 지성파. 논리를 무기 삼아 맞서라!",
+      "weight": "변화 없음",
+      "shoes": "좌우 모두 25.0cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "어렸을 때는 소리에 민감해서 자주 놀랐다.",
+      "tail": "습한 날에는 옷의 꼬리 구멍에 잘 안 들어가서 고생한다.",
+      "strong": "정리",
+      "weak": "장마",
+      "family": "옛날에는 어머니가 자매에게 똑같은 머리모양을 해주셨다.",
+      "secrets": [
+        "사실은 헤어스프레이 리뷰어.",
+        "사실은 바나나라면 5초만에 먹을 수 있다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我是琵琶晨光。我的目標是建立一套完美的勝利方程式……還有，我的頭大小很正常！",
+      "tagline": "充滿熱情的知性派。將理論化為武器，起身對抗吧！",
+      "weight": "無增減",
+      "shoes": "左右都是25.0cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "小時候對聲音很敏感，常常受到驚嚇",
+      "tail": "只要有濕氣，就會因為難以將尾巴穿過衣服上的尾巴洞而陷入苦戰",
+      "strong": "整理",
+      "weak": "梅雨",
+      "family": "母親以前會讓姊妹都留一樣的髮型",
+      "secrets": [
+        "其實她是髮型噴霧的評論員。",
+        "其實她只要五秒就能吃下一根香蕉。"
+      ]
+    },
+    "en": {
+      "self_intro": "I'm Biwa Hayahide. My goal is to devise the perfect winning equation... I'd also like to point out that my head is of completely average size!",
+      "tagline": "A fiery intellectual. Logic is her weapon!",
+      "weight": "No change",
+      "shoes": "Left and right: 25.0cm",
+      "dorm": "Ritto Dormitory",
+      "class": "Senior Division",
+      "ears": "She's been sensitive to noises since she was little, and was therefore easily startled",
+      "tail": "Has a hard time getting her tail through the hole in her pants when it's humid",
+      "strong": "Cleaning",
+      "weak": "Rainy season",
+      "family": "Her mother used to have her wear matching hairstyles with her sister",
+      "secrets": [
+        "Did you know? She writes hair spray reviews.",
+        "Did you know? She can eat a banana in under five seconds."
+      ]
+    }
+  }
+}

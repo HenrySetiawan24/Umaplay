@@ -1,0 +1,208 @@
+{
+  "charData": {
+    "url_name": "grass-wonder",
+    "tid": "a",
+    "char_id": 1011,
+    "jp_name": "グラスワンダー",
+    "en_name": "Grass Wonder",
+    "name_ko": "그래스 원더",
+    "name_tw": "草上飛",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Rena Maeda",
+    "va_ja": "前田玲奈",
+    "va_ko": "마에다 레나",
+    "va_zh_tw": "前田玲奈",
+    "va_link": "https://myanimelist.net/people/17101/Rena_Maeda",
+    "three_sizes": {
+      "b": 77,
+      "w": 53,
+      "h": 84
+    },
+    "birth_day": 18,
+    "birth_month": 2,
+    "birth_year": 1995,
+    "height": 152,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "us",
+      "death": "2025-08-08",
+      "races": 15,
+      "wins": 9,
+      "record": "9-1-0-5",
+      "earnings": 691640000,
+      "active": "1997-2000"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1011_101101.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1011_101101.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "Asahi Hai Futurity Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 46,
+      "year": 2,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 48,
+      "year": 2,
+      "month": 12,
+      "day": 2,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 67,
+      "year": 3,
+      "month": 10,
+      "day": 1,
+      "race_name": "Mainichi Okan",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "grass-wonder",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1011,
+    "ja": {
+      "self_intro": "グラスワンダーと申します。ウマ娘として生まれたからには、その“道”を果てまで窮めたいものですね。ふふっ♪",
+      "tagline": "清楚可憐。アメリカ帰りの大和撫子",
+      "weight": "増減なし",
+      "shoes": "左：23.0cm 右：23.5cm",
+      "dorm": "美浦寮",
+      "class": "中等部",
+      "ears": "お茶を点てる時は微動だにしない",
+      "tail": "振り返らずに背後の虫を落とせる",
+      "strong": "和菓子、日本文化全般、競技かるた",
+      "weak": "虫、歴史や伝統を軽んじた行い",
+      "family": "日本好きは親の影響。実家には和室もある",
+      "secrets": [
+        "実は、スカート丈にひそかなこだわりがある。",
+        "実は、抹茶ラテは『和』としてアリかナシかで悩んでいる。"
+      ]
+    },
+    "ko": {
+      "self_intro": "그래스 원더라고 합니다. 우마무스메로서 태어난 이상, 그 '길'을 끝까지 파고들고 싶네요. 후훗♪",
+      "tagline": "청순가련. 미국에서 온 요조숙녀",
+      "weight": "변화 없음",
+      "shoes": "좌 : 23.0cm 우 : 23.5cm",
+      "dorm": "미호 생활관",
+      "class": "중등부",
+      "ears": "차를 끓일 때는 미동도 안 한다.",
+      "tail": "뒤돌지 않고 등 뒤의 벌레를 떨어뜨릴 수 있다.",
+      "strong": "화과자, 일본 문화 전반, 경기 카루타",
+      "weak": "벌레, 역사나 전통을 경시하는 행위",
+      "family": "일본을 좋아하는 것은 부모의 영향. 고향 집에 일본식 방도 있다.",
+      "secrets": [
+        "사실은 스커트 길이에 남모를 고집이 있다.",
+        "사실은 가루 녹차 라떼는 『전통적』인가 아닌가로 고민하고 있다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我叫做草上飛。既然生為賽馬娘，我就會努力在這條「道路」上達到極致。呵呵♪",
+      "tagline": "清秀可人。自美國歸來的大和撫子",
+      "weight": "無增減",
+      "shoes": "左：23.0cm 右：23.5cm",
+      "dorm": "美浦宿舍",
+      "class": "國中部",
+      "ears": "點茶時文風不動",
+      "tail": "不用轉身就能把背後的蟲弄掉",
+      "strong": "日式點心、所有日本文化、競技歌牌",
+      "weak": "昆蟲、不尊重歷史傳統的行為",
+      "family": "喜歡日本是受到父母影響，老家有和室",
+      "secrets": [
+        "其實她對裙襬長度有著屬於自己的小堅持。",
+        "其實她一直在煩惱著抹茶拿鐵能不能算是「和風」。"
+      ]
+    },
+    "en": {
+      "self_intro": "My name is Grass Wonder. I was born an Umamusume, so I will take this path as far as I possibly can. Hee hee. ♪",
+      "tagline": "Neat and sweet. Japanese at heart, she's back home from the U.S.",
+      "weight": "No change",
+      "shoes": "Left: 23.0cm Right: 23.5cm",
+      "dorm": "Miho Dormitory",
+      "class": "Junior Division",
+      "ears": "Do not tremble in the slightest when she's doing a tea ceremony",
+      "tail": "Can get bugs off her back without looking over her shoulder",
+      "strong": "Japanese sweets, Japanese culture, competitive karuta",
+      "weak": "Insects, disrespect for history and tradition",
+      "family": "Gets her love of Japan from her parents. Her home has a Japanese-style room",
+      "secrets": [
+        "Did you know? She's secretly particular about her skirt length.",
+        "Did you know? She can't figure out if matcha lattes are \"Japanese\" enough."
+      ]
+    }
+  }
+}

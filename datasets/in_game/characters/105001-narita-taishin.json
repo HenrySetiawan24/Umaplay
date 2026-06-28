@@ -1,0 +1,218 @@
+{
+  "charData": {
+    "url_name": "narita-taishin",
+    "tid": "N",
+    "char_id": 1050,
+    "jp_name": "ナリタタイシン",
+    "en_name": "Narita Taishin",
+    "name_ko": "나리타 타이신",
+    "name_tw": "成田大進",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Keiko Watanabe",
+    "va_ja": "渡部恵子",
+    "va_ko": "와타나베 케이코",
+    "va_zh_tw": "渡部恵子",
+    "va_link": "https://myanimelist.net/people/34971/Keiko_Watanabe",
+    "three_sizes": {
+      "b": 69,
+      "w": 50,
+      "h": 73
+    },
+    "birth_day": 10,
+    "birth_month": 6,
+    "birth_year": 1990,
+    "height": 145,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2020-04-13",
+      "races": 15,
+      "wins": 4,
+      "record": "4-6-1-4",
+      "earnings": 397408000,
+      "active": "1992-1995"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1050_105001.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1050_105001.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 24,
+      "year": 1,
+      "month": 12,
+      "day": 2,
+      "race_name": "Hopeful Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 6,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Nikkei Sho",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 7,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "narita-taishin",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1050,
+    "ja": {
+      "self_intro": "ナリタタイシン。以上。アタシはただ勝ちまくって、バカにしたヤツらにわからせたいだけ。…ほっといて",
+      "tagline": "クール＆ドライ！小柄な体で勝ちをとる",
+      "weight": "計測拒否",
+      "shoes": "左右ともに20.5cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "気になる話題には耳だけ向ける",
+      "tail": "気を許した友人以外が触ると、蹴りが飛ぶ",
+      "strong": "ゲーム、家事",
+      "weak": "人ごみ",
+      "family": "ママ友BNWが結成秒読みとのウワサ",
+      "secrets": [
+        "実は、音ゲー専用のプレイヤー名がある。",
+        "実は、ソロキャンプの動画に地味にハマっている。"
+      ]
+    },
+    "ko": {
+      "self_intro": "나리타 타이신. 이상. 나는 그저 계속 우승함으로써 날 무시한 녀석들의 콧대를 꺾어주고 싶을 뿐이야. …내버려 둬",
+      "tagline": "쿨 & 드라이! 작은 몸집으로 승리를 쟁취한다",
+      "weight": "측정 거부",
+      "shoes": "좌우 모두 20.5cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "신경 쓰이는 화제에는 귀를 기울인다.",
+      "tail": "마음을 허락한 친구가 아닌 사람이 만지면 발차기가 날아온다.",
+      "strong": "게임, 집안일",
+      "weak": "사람이 붐비는 곳",
+      "family": "엄마들끼리 BNW 결성 초읽기에 들어갔다는 소문이다.",
+      "secrets": [
+        "사실은 리듬 게임 전용 닉네임이 있다.",
+        "사실은 솔로 캠핑 동영상에 은근히 빠져 있다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "成田大進。就這樣。我只是想一直贏下去，讓曾經瞧不起我的人看到我的實力……不要管我。",
+      "tagline": "又酷又冷漠！靠嬌小個頭奪取勝利",
+      "weight": "拒絕測量",
+      "shoes": "左右都是20.5cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "只把耳朵轉去聽在意的話題",
+      "tail": "除了信任的朋友，其他人一碰就會被踢飛",
+      "strong": "遊戲、家事",
+      "weak": "人群",
+      "family": "據說媽媽們的BNW會已進入組成倒數階段",
+      "secrets": [
+        "其實她有音樂遊戲專用的玩家暱稱。",
+        "其實她最近默默地迷上了單人露營的影片。"
+      ]
+    },
+    "en": {
+      "self_intro": "The name's Narita Taishin. I'm in this to make all the people who doubted me look stupid. Now leave me alone.",
+      "tagline": "Cool and matter-of-fact! Her slight frame gives her an unexpected advantage.",
+      "weight": "Refused measurement",
+      "shoes": "Left and right: 20.5cm",
+      "dorm": "Ritto Dormitory",
+      "class": "Senior Division",
+      "ears": "Only pay attention to topics she's interested in",
+      "tail": "Unless you're a friend, touching it will earn you a swift kick",
+      "strong": "Games, housework",
+      "weak": "Crowds",
+      "family": "There's a rumor that a BNW mom group is about to form",
+      "secrets": [
+        "Did you know? She's a big deal in the rhythm game scene.",
+        "Did you know? She's really into watching solo camping vlogs."
+      ]
+    }
+  }
+}

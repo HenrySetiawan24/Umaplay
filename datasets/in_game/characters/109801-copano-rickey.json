@@ -1,0 +1,212 @@
+{
+  "charData": {
+    "url_name": "copano-rickey",
+    "tid": "1z",
+    "char_id": 1098,
+    "jp_name": "コパノリッキー",
+    "en_name": "Copano Rickey",
+    "name_ko": "코파노 리키",
+    "name_tw": "小林歷奇",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Konomi Inagaki",
+    "va_ja": "稲垣好",
+    "va_ko": "이나가키 코노미",
+    "va_zh_tw": "稲垣好",
+    "va_link": "https://myanimelist.net/people/57409/Konomi_Inagaki",
+    "three_sizes": {
+      "b": 83,
+      "w": 55,
+      "h": 87
+    },
+    "birth_day": 24,
+    "birth_month": 3,
+    "birth_year": 2010,
+    "height": 165,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": null,
+      "races": 33,
+      "wins": 16,
+      "record": "16-3-3-11",
+      "earnings": 995144000,
+      "active": "2012-2017"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1098_109801.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1098_109801.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 24,
+      "year": 1,
+      "month": 12,
+      "day": 2,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 3000
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Fukuryu Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 4,
+      "turn": 47,
+      "year": 2,
+      "month": 12,
+      "day": 1,
+      "race_name": "Champions Cup",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 5,
+      "turn": 52,
+      "year": 3,
+      "month": 2,
+      "day": 2,
+      "race_name": "February Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 57,
+      "year": 3,
+      "month": 5,
+      "day": 1,
+      "race_name": "Kashiwa Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Teio Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 67,
+      "year": 3,
+      "month": 10,
+      "day": 1,
+      "race_name": "Mile Championship Nambu Hai",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 69,
+      "year": 3,
+      "month": 11,
+      "day": 1,
+      "race_name": "JBC Classic",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 10,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Tokyo Daishoten",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "copano-rickey",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1098,
+    "ja": {
+      "self_intro": "リッキー☆ラッキー☆大吉祥☆コパノリッキーだよっ！風水の力でキミにもハッピーを呼び込んであげる♪",
+      "tagline": "リッキー☆ラッキー☆世話焼き系・風水娘☆",
+      "weight": "秘密☆",
+      "shoes": "左右ともに25.0cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "両耳のカバーはパパの手作り",
+      "tail": "その日の吉方位に向かってパタパタしがち",
+      "strong": "掃除、断捨離、植物の世話",
+      "weak": "ホコリっぽい場所",
+      "family": "きょうだいが多いから、とっても賑やか☆",
+      "secrets": [
+        "実は、かしわ餅は無限に食べられるくらい好き。",
+        "実は、ちびっこたちの初恋ハンター。"
+      ]
+    },
+    "ko": {
+      "self_intro": "리키☆ 럭키☆ 대길조☆ 코파노 리키야! 풍수의 힘으로 네게도 해피를 불러와 줄게♪",
+      "tagline": "리키☆럭키☆ 참견쟁이 스타일・풍수 아가씨☆",
+      "weight": "비밀☆",
+      "shoes": "좌우 모두 25.0cm",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "ears": "두 귀의 커버는 아빠가 직접 만든 것",
+      "tail": "그날의 길한 방향을 향해서 파닥대곤 한다",
+      "strong": "청소, 물건 정리, 식물 돌보기",
+      "weak": "먼지가 많은 장소",
+      "family": "형제가 많아서 무척 떠들썩☆",
+      "secrets": [
+        "사실은 카시와모찌는 무한히 먹을 수 있을 정도로 좋아한다.",
+        "사실은 어린이들의 첫사랑 헌터."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "Rickey☆Lucky☆大吉利☆我是小林歷奇喔！讓我用風水的力量帶給你happy吧♪",
+      "tagline": "Rickey☆Lucky☆樂於助人的風水女孩☆",
+      "weight": "祕密☆",
+      "shoes": "左右都是25.0cm",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "ears": "兩隻耳朵的護罩是爸爸手工做的",
+      "tail": "經常會對著當天的吉位擺動",
+      "strong": "打掃、斷捨離、照顧植物",
+      "weak": "灰塵很多的地方",
+      "family": "因為兄弟姊妹眾多，所以很熱鬧☆",
+      "secrets": [
+        "其實她對柏餅的喜歡幾乎到了可以無限吃的程度。",
+        "其實她是專門讓小朋友們陷入初戀的初戀獵人。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

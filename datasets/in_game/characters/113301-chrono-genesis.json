@@ -1,0 +1,172 @@
+{
+  "charData": {
+    "url_name": "chrono-genesis",
+    "tid": "24",
+    "char_id": 1133,
+    "jp_name": "クロノジェネシス",
+    "en_name": "Chrono Genesis",
+    "name_ko": "크로노 제네시스",
+    "name_tw": "時代創世",
+    "playable": true,
+    "active": true,
+    "va_en": "Hiyori Manase",
+    "va_ja": "真名瀬日和",
+    "va_ko": "마나세 히요리",
+    "va_zh_tw": "真名瀬日和",
+    "va_link": "https://myanimelist.net/people/84992/Hiyori_Manase",
+    "three_sizes": {
+      "b": 77,
+      "w": 54,
+      "h": 76
+    },
+    "birth_day": 6,
+    "birth_month": 3,
+    "birth_year": 2016,
+    "height": 152,
+    "sex": 2,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "races": 17,
+      "wins": 8,
+      "record": "17-8-3-4",
+      "earnings": 1101714000,
+      "active": "2018-2021"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1133_113301.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1133_113301.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "Hanshin Juvenile Fillies",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Oka Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Japanese Oaks",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Shuka Sho",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 6,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Osaka Hai",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "chrono-genesis",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true
+    }
+  },
+  "profileData": {
+    "char_id": 1133,
+    "ja": {
+      "self_intro": "クロノジェネシスです。レース史を探究するのが好きで…私も、刻みたいと思っています。自分の蹄跡を",
+      "tagline": "稀代のレース史好き。新時代の創生を！",
+      "weight": "歴史的",
+      "shoes": "左右ともに22.0cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "メモ用のペンが挟めるリングを考案中",
+      "tail": "ファンファーレが鳴るとリズムをとりだす",
+      "strong": "走り書き、タイムスケジュール管理",
+      "weak": "過度な湿気",
+      "family": "一家で書斎に籠り、最後は全員寝落ちする",
+      "secrets": [
+        "実は、年々髪の毛の色が淡くなってきている。",
+        "実は、改札を通る時つい脳内で『ゲートイン完了…』と言ってしまう。"
+      ]
+    },
+    "ko": {
+      "secrets": [
+        "사실은 갈수록 머리카락 색이 옅어지고 있다."
+      ]
+    },
+    "zh_tw": {
+      "secrets": [
+        "其實她的髮色正逐年變淡。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

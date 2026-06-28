@@ -1,0 +1,198 @@
+{
+  "charData": {
+    "url_name": "mejiro-mcqueen",
+    "tid": "c",
+    "char_id": 1013,
+    "jp_name": "メジロマックイーン",
+    "en_name": "Mejiro McQueen",
+    "name_ko": "메지로 맥퀸",
+    "name_tw": "目白麥昆",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Saori Oonishi",
+    "va_ja": "大西沙織",
+    "va_ko": "오오니시 사오리",
+    "va_zh_tw": "大西沙織",
+    "va_link": "https://myanimelist.net/people/19884/Saori_Oonishi",
+    "three_sizes": {
+      "b": 71,
+      "w": 54,
+      "h": 76
+    },
+    "birth_day": 3,
+    "birth_month": 4,
+    "birth_year": 1987,
+    "height": 159,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2006-04-03",
+      "races": 21,
+      "wins": 12,
+      "record": "12-6-1-2",
+      "earnings": 998100000,
+      "active": "1990-1993"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1013_101301.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1013_101301.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 24,
+      "year": 1,
+      "month": 12,
+      "day": 2,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 3000
+    },
+    {
+      "order": 3,
+      "turn": 42,
+      "year": 2,
+      "month": 9,
+      "day": 2,
+      "race_name": "Kobe Shimbun Hai",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 4,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 5,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 6,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 2
+    },
+    {
+      "order": 7,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "mejiro-mcqueen",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1013,
+    "ja": {
+      "self_intro": "メジロマックイーンと申します。我が生家、メジロ家の悲願である『天皇賞』の制覇――この両脚で、必ず果たしてみせますわ",
+      "tagline": "名門メジロ家の至宝。優雅で一途なお嬢様",
+      "weight": "微増（現在必死に調整中！）",
+      "shoes": "左右ともに22.5cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "人前ではツンと立ててしまいがち",
+      "tail": "スポーツの話をしていると振りが激しくなる",
+      "strong": "テーブルマナー",
+      "weak": "スイーツの誘惑に耐えること",
+      "family": "両親には「マックちゃん」と呼ばれている",
+      "secrets": [
+        "実は、『かっとばせー！』という自分の寝言で起きることがある。",
+        "実は、ミルクティーはミルクインファースト派。"
+      ]
+    },
+    "ko": {
+      "self_intro": "메지로 맥퀸이라고 합니다. 제가 태어난 메지로 가문의 비원인 『텐노상』 제패… 이 두 다리로 반드시 완수해 내겠어요",
+      "tagline": "명문 메지로 가문의 보물. 우아하고 품위 있는 우마무스메",
+      "weight": "약간 증가 (현재 필사적으로 다이어트 중!)",
+      "shoes": "좌우 모두 22.5cm",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "ears": "남 앞에서는 자꾸만 뾰족하게 서버린다.",
+      "tail": "스포츠 이야기를 하면 흔들림이 격렬해진다.",
+      "strong": "테이블 매너",
+      "weak": "디저트의 유혹을 거부하지 못한다.",
+      "family": "부모님은 「맥」이라고 부른다.",
+      "secrets": [
+        "사실은 『날려버려~!』라는 자신의 잠꼬대 때문에 깬 적이 있다.",
+        "사실은 밀크티는 우유를 먼저 넣는 파."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我叫做目白麥昆。目白家稱霸「天皇賞」的宿願──我一定會靠自己的雙腳達成。",
+      "tagline": "名門目白家的至寶。優雅又專注的大小姐",
+      "weight": "微增（目前拚命調整中！）",
+      "shoes": "左右都是22.5cm",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "ears": "容易在人前直直豎起",
+      "tail": "談論運動話題時會劇烈擺動",
+      "strong": "餐桌禮儀",
+      "weak": "抵抗點心誘惑",
+      "family": "父母叫她「小麥」",
+      "secrets": [
+        "其實她曾在睡夢中大喊「轟出去～！」而被自己的夢話給嚇醒。",
+        "其實在泡奶茶時她都會先加牛奶。"
+      ]
+    },
+    "en": {
+      "self_intro": "I am Mejiro McQueen. I shall surely fulfill my family's ambition to claim the Tenno Sho crown.",
+      "tagline": "The crown jewel of the prestigious Mejiro family. A classy and poised young lady.",
+      "weight": "Slight increase (making frantic adjustments!)",
+      "shoes": "Left and right: 22.5cm",
+      "dorm": "Ritto Dormitory",
+      "class": "Junior Division",
+      "ears": "Tend to stand very straight when she's around others",
+      "tail": "Swishes her tail excitedly when she talks about sports",
+      "strong": "Table manners",
+      "weak": "Resisting sweets",
+      "family": "Her parents call her \"Mackie\"",
+      "secrets": [
+        "Did you know? She sometime shouts \"Bring 'em home!\" in her sleep and wakes herself up.",
+        "Did you know? She prefers her milk tea poured milk-first."
+      ]
+    }
+  }
+}

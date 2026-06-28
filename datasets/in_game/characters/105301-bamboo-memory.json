@@ -1,0 +1,210 @@
+{
+  "charData": {
+    "url_name": "bamboo-memory",
+    "tid": "Q",
+    "char_id": 1053,
+    "jp_name": "バンブーメモリー",
+    "en_name": "Bamboo Memory",
+    "name_ko": "뱀부 메모리",
+    "name_tw": "青竹回憶",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Kotomi Aihara",
+    "va_ja": "藍原ことみ",
+    "va_ko": "아이하라 코토미",
+    "va_zh_tw": "藍原ことみ",
+    "va_link": "https://myanimelist.net/people/42445/Kotomi_Aihara",
+    "three_sizes": {
+      "b": 77,
+      "w": 57,
+      "h": 81
+    },
+    "birth_day": 14,
+    "birth_month": 5,
+    "birth_year": 1985,
+    "height": 157,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2014-08-07",
+      "races": 39,
+      "wins": 8,
+      "record": "8-7-5-19",
+      "earnings": 508108200,
+      "active": "1987-1991"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1053_105301.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1053_105301.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 24,
+      "year": 1,
+      "month": 12,
+      "day": 2,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 3000
+    },
+    {
+      "order": 3,
+      "turn": 29,
+      "year": 2,
+      "month": 3,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 6000
+    },
+    {
+      "order": 4,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Swan Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 5,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Takamatsunomiya Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 59,
+      "year": 3,
+      "month": 6,
+      "day": 1,
+      "race_name": "Yasuda Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 8,
+      "turn": 66,
+      "year": 3,
+      "month": 9,
+      "day": 2,
+      "race_name": "Sprinters Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Mile Championship",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "bamboo-memory",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1053,
+    "ja": {
+      "self_intro": "ちわっス！バンブーメモリーっス！鬼の風紀委員長の名にかけてビシバシ走るっスよー！！",
+      "tagline": "求ム真剣勝負ッス！熱血・風紀委員長！",
+      "weight": "増減なし",
+      "shoes": "左：22.5cm右：23.0cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "ハチマキを外すと垂れそうになる",
+      "tail": "とりあえず尻尾も毎日鍛えている",
+      "strong": "早寝早起き、即断即決！",
+      "weak": "よく噛んで食べること",
+      "family": "熱血体育教師の父は、師匠であり原点",
+      "secrets": [
+        "実は、学園一綺麗に前転ができる。",
+        "実は、歯がすごく丈夫。"
+      ]
+    },
+    "ko": {
+      "self_intro": "안녕하심까! 뱀부 메모리임다! 귀신 선도부장의 이름을 걸고 팍팍 달리겠슴다~!!",
+      "tagline": "원하는 건 정면승부임다! 열혈・선도부장!",
+      "weight": "변화 없음",
+      "shoes": "좌 : 22.5cm 우 : 23.0cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "머리띠를 풀면 축 늘어진다",
+      "tail": "일단 꼬리도 매일 단련하고 있다",
+      "strong": "일찍 자고 일찍 일어나기, 즉시 결단 즉시 결정!",
+      "weak": "꼭꼭 씹어 먹는 것",
+      "family": "열혈 체육교사인 아버지는 스승이자 기준점",
+      "secrets": [
+        "사실은 학원에서 가장 깔끔하게 앞구르기를 할 수 있다.",
+        "사실은 이가 아주 튼튼하다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "大家好！我是青竹回憶！我會賭上魔鬼糾察隊長的名號拚命跑下去──！！",
+      "tagline": "尋求認真對決！熱血糾察隊長！",
+      "weight": "無增減",
+      "shoes": "左：22.5cm右：23.0cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "拿掉一字巾，耳朵就會半垂下來",
+      "tail": "每天都有在鍛鍊尾巴",
+      "strong": "早睡早起、當機立斷！",
+      "weak": "細嚼慢嚥",
+      "family": "當熱血體育老師的父親，是她的師父也是原點",
+      "secrets": [
+        "其實她可以做出全學園最漂亮的前翻滾。",
+        "其實她的牙齒非常堅固。"
+      ]
+    },
+    "en": {
+      "self_intro": "Hey, sup! I'm Bamboo Memory. I'm just as tough running the race track as I am running the disciplinary committee, so watch out!",
+      "tagline": "Lookin' for some real competition! The hot-blooded disciplinary committee chair.",
+      "dorm": "Ritto Dormitory",
+      "class": "Senior Division",
+      "secrets": [
+        "Did you know? She's got the best forward somersault in the entire school.",
+        "Did you know? She has exceptionally strong teeth."
+      ]
+    }
+  }
+}

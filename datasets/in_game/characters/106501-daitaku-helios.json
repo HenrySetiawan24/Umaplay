@@ -1,0 +1,210 @@
+{
+  "charData": {
+    "url_name": "daitaku-helios",
+    "tid": "12",
+    "char_id": 1065,
+    "jp_name": "ダイタクヘリオス",
+    "en_name": "Daitaku Helios",
+    "name_ko": "다이타쿠 헬리오스",
+    "name_tw": "大德太陽",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Aya Yamane",
+    "va_ja": "山根綺",
+    "va_ko": "야마네 아야",
+    "va_zh_tw": "山根綺",
+    "va_link": "https://myanimelist.net/people/50037/Aya_Yamane",
+    "three_sizes": {
+      "b": 82,
+      "w": 53,
+      "h": 85
+    },
+    "birth_day": 10,
+    "birth_month": 4,
+    "birth_year": 1987,
+    "height": 156,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2008-12-12",
+      "races": 35,
+      "wins": 10,
+      "record": "10-6-1-18",
+      "earnings": 689952400,
+      "active": "1989-1992"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1065_106501.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1065_106501.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "Hanshin Juvenile Fillies",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Aoi Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 46,
+      "year": 2,
+      "month": 11,
+      "day": 2,
+      "race_name": "Mile Championship",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 5,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Takamatsunomiya Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Milers Cup",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 59,
+      "year": 3,
+      "month": 6,
+      "day": 1,
+      "race_name": "Yasuda Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Mile Championship",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 0
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "daitaku-helios",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1065,
+    "ja": {
+      "self_intro": "ウェーーイ！ダイタクヘリオスでぇーっす！テンアゲなレースブチかましてくんで、過去イチのコールよろしくー☆",
+      "tagline": "盛ってウケて神アゲ☆エヴリデイ・パリピ！",
+      "weight": "ウェーイ！",
+      "shoes": "左右ともに23.5cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "晴れの日はどちゃくそ動いてウケる",
+      "tail": "いつメンとハートマーク作って撮るのエモい",
+      "strong": "ババ抜きはレべチ、映える爆盛り",
+      "weak": "静かなのはぴえん、敬語はぱおん",
+      "family": "死んだフリにいつも騙されるパパママわら",
+      "secrets": [
+        "実は、とりまメンブレの時はズッ友にかまちょ、と思っている。",
+        "実は、ぶっちゃけ正座は10秒でキャパい。"
+      ]
+    },
+    "ko": {
+      "self_intro": "웨~~이! 다이타쿠 헬리오스임돠~! 기분 째지는 레이스 한 방 먹여 줄 테니까 역대급 콜 부탁해~☆",
+      "tagline": "시끌벅적 웃기게 신나게 에브리데이 파티피플!",
+      "weight": "웨~이!",
+      "shoes": "좌우 모두 23.5cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "맑은 날엔 장난 아니게 움직여서 웃김.",
+      "tail": "고멤과 하트 마크 만들어 찍는 거 감성 돋음.",
+      "strong": "엄청난 도둑잡기 게임 실력, 이쁜 사진 잔뜩 찍기",
+      "weak": "조용한 건 뿌엥, 존댓말은 뿌에엥",
+      "family": "죽은 척 하면 맨날 속는 엄빠 ㅋㅋ",
+      "secrets": [
+        "사실은 일단 멘붕했을 때 친구들아 관심 좀, 이라고 생각하고 있다.",
+        "사실은 솔까말 정좌는 10초가 한계."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "喔耶──！我是大德太陽──！我會在嗨翻天的競賽上猛衝，麻煩給我最高亢的歡呼聲☆",
+      "tagline": "鬧吧！笑吧！神嗨起來☆每天都是派對玩咖！",
+      "weight": "喔耶～！",
+      "shoes": "左右都是23.5cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "遇到晴天的話會動個不停，超好笑的",
+      "tail": "跟姐妹淘一起做出愛心拍的照片超有fu的",
+      "strong": "異於常人的抽鬼牌技術、超上相的浮誇打扮",
+      "weak": "安靜讓人哭哭，講敬語讓人怕怕",
+      "family": "爸媽每次都被自己裝死的樣子騙到，笑死",
+      "secrets": [
+        "其實她在桑心的時候，會想跟好麻吉討拍。",
+        "其實要她正座十秒就撐不住了。"
+      ]
+    },
+    "en": {
+      "self_intro": "Wahey! Daitaku Helios in the hooouse! My running will have you vibing in no time! Now let me hear you shout! ☆",
+      "tagline": "Good vibes only! For real, for real! No cap! ☆ Who's ready to party? This racer!",
+      "dorm": "Ritto Dormitory",
+      "class": "Senior Division",
+      "secrets": [
+        "Did you know? When she's bummed out, she gets clingy with her BFFs.",
+        "Did you know? The longest she can sit seiza-style on her knees is only ten seconds."
+      ]
+    }
+  }
+}

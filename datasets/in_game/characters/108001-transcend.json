@@ -1,0 +1,211 @@
+{
+  "charData": {
+    "url_name": "transcend",
+    "tid": "1h",
+    "char_id": 1080,
+    "jp_name": "トランセンド",
+    "en_name": "Transcend",
+    "name_ko": "트랜센드",
+    "name_tw": "創升",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Yui Tsukada",
+    "va_ja": "塚田悠衣",
+    "va_ko": "츠카다 유이",
+    "va_zh_tw": "塚田悠衣",
+    "va_link": "https://www.animenewsnetwork.com/encyclopedia/people.php?id=192424",
+    "three_sizes": {
+      "b": 86,
+      "w": 57,
+      "h": 84
+    },
+    "birth_day": 9,
+    "birth_month": 3,
+    "birth_year": 2006,
+    "height": 164,
+    "sex": 1,
+    "race": false,
+    "rl": {
+      "country": "jp",
+      "races": 24,
+      "wins": 10,
+      "record": "24-10-5-1",
+      "earnings": 633520000,
+      "active": "2009-2012"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1080_108001.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1080_108001.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 32,
+      "year": 2,
+      "month": 4,
+      "day": 2,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 5000
+    },
+    {
+      "order": 3,
+      "turn": 39,
+      "year": 2,
+      "month": 8,
+      "day": 1,
+      "race_name": "Leopard Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 45,
+      "year": 2,
+      "month": 11,
+      "day": 1,
+      "race_name": "Miyako Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 5,
+      "turn": 47,
+      "year": 2,
+      "month": 12,
+      "day": 1,
+      "race_name": "Champions Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 6,
+      "turn": 52,
+      "year": 3,
+      "month": 2,
+      "day": 2,
+      "race_name": "February Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Teio Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 67,
+      "year": 3,
+      "month": 10,
+      "day": 1,
+      "race_name": "Mile Championship Nambu Hai",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 69,
+      "year": 3,
+      "month": 11,
+      "day": 1,
+      "race_name": "JBC Classic",
+      "cond_type": 1,
+      "cond_value": 2
+    },
+    {
+      "order": 10,
+      "turn": 71,
+      "year": 3,
+      "month": 12,
+      "day": 1,
+      "race_name": "Champions Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "transcend",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1080,
+    "ja": {
+      "self_intro": "てワケで、よろしくね～トレちゃん♪ゾクゾクワクワクすること、いっしょに探しに行こーぜい",
+      "tagline": "ゾクゾクしたい！未知を求める情報屋さん",
+      "weight": "機密事項",
+      "shoes": "左右ともに25.5cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "地獄耳！",
+      "tail": "新作尻尾ケア用品の実験台にしがち",
+      "strong": "動画編集、箸づかい、あやとり",
+      "weak": "予定調和、フーセンガム",
+      "family": "両親のSNSはあえてフォローしていない",
+      "secrets": [
+        "実は、栗東寮にらめっこ大会の優勝者。",
+        "実は、ニューポリトラックの匂いはクセになって割と好き。"
+      ]
+    },
+    "ko": {
+      "self_intro": "그런고로, 잘 부탁해~ 트레짱♪ 짜릿하고 두근두근한 거, 같이 찾으러 가자구~",
+      "tagline": "짜릿한 게 좋아! 미지를 추구하는 정보상",
+      "weight": "기밀사항",
+      "shoes": "좌우 모두 25.5cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "귀신같이 밝다!",
+      "tail": "신상 꼬리 케어 용품 실험 대상으로 삼기 일쑤",
+      "strong": "동영상 편집, 젓가락질, 실뜨기",
+      "weak": "뻔한 전개, 풍선껌",
+      "family": "부모님 SNS는 굳이 팔로우하지 않는다",
+      "secrets": [
+        "사실은 릿토 생활관 눈싸움 대회 우승자.",
+        "사실은 개량형 올웨더 트랙의 냄새를 은근히 좋아한다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "那麼就請多多指教囉～阿訓♪一起去尋找那些無比刺激又令人期待的事物吧！",
+      "tagline": "就想體驗緊張刺激！追求未知事物的情報通！",
+      "weight": "機密事項",
+      "shoes": "左右都是25.5cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "聽覺異常靈敏！",
+      "tail": "經常成為尾巴保養新產品的實驗對象",
+      "strong": "編輯影片、使用筷子、翻花繩",
+      "weak": "前定和諧、口香糖",
+      "family": "刻意不追蹤父母的社交平台",
+      "secrets": [
+        "其實她是栗東宿舍比誰先笑大賽的冠軍。",
+        "其實新型合成賽道的氣味讓她有點上癮，還滿喜歡的。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

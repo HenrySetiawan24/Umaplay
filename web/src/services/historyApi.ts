@@ -23,6 +23,16 @@ export interface TurnLogEntry {
   energy?: number
   mood?: string
   skill_pts?: number
+  // Race outcome fields (set on to_race/raced entries)
+  race_name?: string
+  won?: boolean
+  fans_before?: number
+  fans_after?: number
+}
+
+export interface RunDetail {
+  turn_log: TurnLogEntry[]
+  active_periods: ActivePeriod[]
 }
 
 export interface RunRecord {
@@ -33,7 +43,6 @@ export interface RunRecord {
   start_date: string
   start_time: string
   active_seconds?: number
-  active_periods?: ActivePeriod[]
   end_time: string | null
   final_turn: number | null
   final_stats: Record<string, number> | null
@@ -43,7 +52,11 @@ export interface RunRecord {
   completed: boolean
   error: string | null
   races_attempted: RaceAttempt[]
-  turn_log?: TurnLogEntry[]
+  // Precomputed counts (derived from turn_log at write time)
+  race_count?: number
+  training_count?: number
+  rest_count?: number
+  recreation_count?: number
   char_id?: number | null
 }
 
@@ -57,6 +70,12 @@ export async function fetchHistory(): Promise<RunRecord[]> {
 export async function deleteHistory(recordId: string): Promise<void> {
   const res = await fetch(`/api/history/${encodeURIComponent(recordId)}`, { method: 'DELETE' })
   if (!res.ok) throw new Error('Failed to delete history record')
+}
+
+export async function fetchHistoryDetail(recordId: string): Promise<RunDetail> {
+  const res = await fetch(`/api/history/${encodeURIComponent(recordId)}/detail`, { cache: 'no-store' })
+  if (!res.ok) throw new Error('Failed to load history detail')
+  return res.json()
 }
 
 export async function fetchIncompleteHistory(): Promise<RunRecord[]> {

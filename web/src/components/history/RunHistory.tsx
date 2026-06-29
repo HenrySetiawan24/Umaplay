@@ -17,10 +17,8 @@ import {
 import Section from '@/components/common/Section'
 import DeleteIcon from '@mui/icons-material/Delete'
 import VisibilityIcon from '@mui/icons-material/Visibility'
-import TimelineIcon from '@mui/icons-material/Timeline'
-import { fetchHistory, deleteHistory, type RunRecord, type TurnLogEntry } from '@/services/historyApi'
+import { fetchHistory, deleteHistory, type RunRecord } from '@/services/historyApi'
 import RaceHistoryDialog from './RaceHistoryDialog'
-import TurnLogDialog from './TurnLogDialog'
 
 const statusChip = (record: RunRecord) => {
   if (record.completed) return <Chip label="Completed" color="success" size="small" variant="outlined" />
@@ -29,21 +27,11 @@ const statusChip = (record: RunRecord) => {
   return <Chip label="Running?" color="info" size="small" variant="outlined" />
 }
 
-const countTraining = (log: TurnLogEntry[] | undefined) =>
-  (log ?? []).filter(e => e.action === 'to_training' || e.action === 'training_ready').length
-
-const countRest = (log: TurnLogEntry[] | undefined) =>
-  (log ?? []).filter(e => e.action === 'rested' && e.training_type !== 'recreation').length
-
-const countRecreation = (log: TurnLogEntry[] | undefined) =>
-  (log ?? []).filter(e => e.action === 'rested' && e.training_type === 'recreation').length
-
 export default function RunHistory() {
   const [records, setRecords] = useState<RunRecord[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [dialogRecord, setDialogRecord] = useState<RunRecord | null>(null)
-  const [turnLogRecord, setTurnLogRecord] = useState<RunRecord | null>(null)
   const scrollRef = useRef<HTMLDivElement | null>(null)
   const scrollPosRef = useRef(0)
 
@@ -130,22 +118,6 @@ export default function RunHistory() {
       return `${sec}s`
     }
 
-    const periods = record.active_periods ?? []
-    if (periods.length > 0) {
-      let totalMs = 0
-      for (const period of periods) {
-        if (!period?.start_time) continue
-        const start = new Date(period.start_time).getTime()
-        if (Number.isNaN(start)) continue
-        const stop = period.stop_time
-          ? new Date(period.stop_time).getTime()
-          : (record.end_time ? new Date(record.end_time).getTime() : Date.now())
-        if (Number.isNaN(stop) || stop < start) continue
-        totalMs += stop - start
-      }
-      if (totalMs > 0) return formatSeconds(totalMs / 1000)
-    }
-
     if (record.active_seconds != null && record.active_seconds > 0) {
       return formatSeconds(record.active_seconds)
     }
@@ -206,27 +178,27 @@ export default function RunHistory() {
                 <TableCell>{statusChip(record)}</TableCell>
                 <TableCell align="center">
                   <Typography variant="body2">
-                    {record.races_attempted.length}
+                    {record.race_count ?? 0}
                   </Typography>
                 </TableCell>
                 <TableCell align="center">
                   <Box sx={{ display: 'flex', gap: 0.5, justifyContent: 'center' }}>
                     <Chip
-                      label={`T${countTraining(record.turn_log)}`}
+                      label={`T${record.training_count ?? 0}`}
                       size="small"
                       color="primary"
                       variant="outlined"
                       sx={{ height: 18, fontSize: '0.6rem' }}
                     />
                     <Chip
-                      label={`R${countRest(record.turn_log)}`}
+                      label={`R${record.rest_count ?? 0}`}
                       size="small"
                       color="warning"
                       variant="outlined"
                       sx={{ height: 18, fontSize: '0.6rem' }}
                     />
                     <Chip
-                      label={`C${countRecreation(record.turn_log)}`}
+                      label={`C${record.recreation_count ?? 0}`}
                       size="small"
                       color="secondary"
                       variant="outlined"
@@ -235,22 +207,13 @@ export default function RunHistory() {
                   </Box>
                 </TableCell>
                 <TableCell align="center" sx={{ whiteSpace: 'nowrap' }}>
-                  <Tooltip title="View races">
+                  <Tooltip title="View history">
                     <IconButton
                       size="small"
                       onClick={() => setDialogRecord(record)}
-                      disabled={record.races_attempted.length === 0}
+                      disabled={(record.race_count ?? 0) + (record.training_count ?? 0) + (record.rest_count ?? 0) + (record.recreation_count ?? 0) === 0}
                     >
                       <VisibilityIcon fontSize="small" />
-                    </IconButton>
-                  </Tooltip>
-                  <Tooltip title="View turn log">
-                    <IconButton
-                      size="small"
-                      onClick={() => setTurnLogRecord(record)}
-                      disabled={!record.turn_log || record.turn_log.length === 0}
-                    >
-                      <TimelineIcon fontSize="small" />
                     </IconButton>
                   </Tooltip>
                   <Tooltip title="Delete">
@@ -268,11 +231,6 @@ export default function RunHistory() {
         open={dialogRecord !== null}
         record={dialogRecord}
         onClose={() => setDialogRecord(null)}
-      />
-      <TurnLogDialog
-        open={turnLogRecord !== null}
-        record={turnLogRecord}
-        onClose={() => setTurnLogRecord(null)}
       />
     </Section>
   )

@@ -56,7 +56,7 @@ export default function ContinueRunDialog({
                 {r.final_rank && (
                   <Chip label={r.final_rank} size="small" color="primary" variant="outlined" />
                 )}
-                <Chip label={`${r.races_attempted.length} races`} size="small" variant="outlined" />
+                <Chip label={`${r.race_count ?? 0} races`} size="small" variant="outlined" />
               </Box>
             </Paper>
           ))}

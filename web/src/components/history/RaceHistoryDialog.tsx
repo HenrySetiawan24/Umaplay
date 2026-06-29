@@ -19,7 +19,8 @@ import { useQuery } from '@tanstack/react-query'
 import { fetchRaces } from '@/services/api'
 import { BADGE_ICON } from '@/constants/ui'
 import { monthHalfLabel, dateKeysForYear, toDateKey } from '@/utils/race'
-import type { RunRecord, RaceAttempt, TurnLogEntry } from '@/services/historyApi'
+import type { RunRecord, TurnLogEntry } from '@/services/historyApi'
+import { fetchHistoryDetail } from '@/services/historyApi'
 import { useCharactersData, getGoalForDateKey } from '@/hooks/useCharactersData'
 
 const surfaceColor: Record<string, string> = { Turf: '#2e7d32', Dirt: '#bf8f4a', Varies: '#757575' }
@@ -48,6 +49,13 @@ const actionColor: Record<string, string> = {
   training_ready: '#66bb6a',
 }
 
+type RaceInfo = {
+  race_name: string
+  won: boolean
+  fans_before?: number
+  fans_after?: number
+}
+
 type TurnCard = {
   turn: number
   date_key: string
@@ -58,7 +66,7 @@ type TurnCard = {
   energy?: number
   mood?: string
   skill_pts?: number
-  race?: RaceAttempt | null
+  race?: RaceInfo | null
   entry: TurnLogEntry
 }
 
@@ -93,6 +101,12 @@ export default function RaceHistoryDialog({
   onClose: () => void
 }) {
   const { data: races = {} } = useQuery({ queryKey: ['races'], queryFn: fetchRaces, enabled: open })
+  const { data: detail } = useQuery({
+    queryKey: ['history-detail', record?.id],
+    queryFn: () => fetchHistoryDetail(record!.id),
+    enabled: open && !!record,
+    staleTime: 30_000,
+  })
   const { data: charIndex } = useCharactersData()
   const charEntry = useMemo(() => {
     if (!charIndex) return undefined
@@ -142,83 +156,36 @@ export default function RaceHistoryDialog({
   const cards = useMemo(() => {
     if (!record) return [] as TurnCard[]
 
-    const attemptsByKey = new Map<string, RaceAttempt>()
-    for (const attempt of record.races_attempted ?? []) {
-      if (attempt.turn == null || !attempt.date_key) continue
-      attemptsByKey.set(`${attempt.turn}::${attempt.date_key}`, attempt)
-    }
-
-    const items: TurnCard[] = []
-    const seen = new Set<string>()
-
-    for (const entry of record.turn_log ?? []) {
-      const key = `${entry.turn}::${entry.date_key}`
-      const existingIndex = items.findIndex((item) => `${item.turn}::${item.date_key}` === key)
-      const race = attemptsByKey.get(key) ?? null
-
-      if (existingIndex >= 0) {
-        const current = items[existingIndex]
-        items[existingIndex] = {
-          ...current,
-          race: current.race ?? race,
-          action: current.action || entry.action,
-          training_type: current.training_type ?? entry.training_type,
-          reason: current.reason ?? entry.reason,
-          stats: current.stats ?? entry.stats,
-          energy: current.energy ?? entry.energy,
-          mood: current.mood ?? entry.mood,
-          skill_pts: current.skill_pts ?? entry.skill_pts,
-          entry: current.entry,
-        }
-      } else {
-        items.push({
-          turn: entry.turn,
-          date_key: entry.date_key,
-          action: entry.action,
-          training_type: entry.training_type,
-          reason: entry.reason,
-          stats: entry.stats,
-          energy: entry.energy,
-          mood: entry.mood,
-          skill_pts: entry.skill_pts,
-          race,
-          entry,
-        })
-      }
-      seen.add(key)
-    }
-
-    for (const attempt of record.races_attempted ?? []) {
-      if (attempt.turn == null || !attempt.date_key) continue
-      const key = `${attempt.turn}::${attempt.date_key}`
-      if (seen.has(key)) continue
-      items.push({
-        turn: attempt.turn,
-        date_key: attempt.date_key,
-        action: 'to_race',
-        race: attempt,
-        entry: {
-          turn: attempt.turn,
-          date_key: attempt.date_key,
-          action: 'to_race',
-        },
+    return (detail?.turn_log ?? [])
+      .map((entry): TurnCard => ({
+        turn: entry.turn,
+        date_key: entry.date_key,
+        action: entry.action,
+        training_type: entry.training_type,
+        reason: entry.reason,
+        stats: entry.stats,
+        energy: entry.energy,
+        mood: entry.mood,
+        skill_pts: entry.skill_pts,
+        race: entry.race_name != null
+          ? { race_name: entry.race_name, won: entry.won ?? false, fans_before: entry.fans_before, fans_after: entry.fans_after }
+          : null,
+        entry,
+      }))
+      .sort((a, b) => {
+        const da = parseDateKeySafe(a.date_key)
+        const db = parseDateKeySafe(b.date_key)
+        if (da.year !== db.year) return da.year - db.year
+        const ma = da.month ?? 99
+        const mb = db.month ?? 99
+        if (ma !== mb) return ma - mb
+        const ha = da.half ?? 99
+        const hb = db.half ?? 99
+        if (ha !== hb) return ha - hb
+        if (a.turn !== b.turn) return a.turn - b.turn
+        return a.date_key.localeCompare(b.date_key)
       })
-    }
-
-    return items.sort((a, b) => {
-      const da = parseDateKeySafe(a.date_key)
-      const db = parseDateKeySafe(b.date_key)
-      if (da.year !== db.year) return da.year - db.year
-      const ma = da.month ?? 99
-      const mb = db.month ?? 99
-      if (ma !== mb) return ma - mb
-      const ha = da.half ?? 99
-      const hb = db.half ?? 99
-      if (ha !== hb) return ha - hb
-      if (a.turn !== b.turn) return a.turn - b.turn
-      return a.date_key.localeCompare(b.date_key)
-    })
-  }, [record])
+  }, [record, detail?.turn_log])
 
   const cardsByDateKey = useMemo(() => {
     const map = new Map<string, TurnCard>()

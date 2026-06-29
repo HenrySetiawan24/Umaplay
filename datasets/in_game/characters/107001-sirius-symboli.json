@@ -1,0 +1,230 @@
+{
+  "charData": {
+    "url_name": "sirius-symboli",
+    "tid": "17",
+    "char_id": 1070,
+    "jp_name": "シリウスシンボリ",
+    "en_name": "Sirius Symboli",
+    "name_ko": "시리우스 심볼리",
+    "name_tw": "天狼星象徵",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Ai Fairouz",
+    "va_ja": "ファイルーズあい",
+    "va_ko": "파이루즈 아이",
+    "va_zh_tw": "ファイルーズあい",
+    "va_link": "https://myanimelist.net/people/49011/Ai_Fairouz",
+    "three_sizes": {
+      "b": 89,
+      "w": 55,
+      "h": 86
+    },
+    "birth_day": 26,
+    "birth_month": 3,
+    "birth_year": 1982,
+    "height": 167,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2012-04-08",
+      "races": 26,
+      "wins": 4,
+      "record": "4-4-2-16",
+      "earnings": 143100300,
+      "earnings_other": [
+        [
+          229000,
+          "FRF"
+        ],
+        [
+          16500,
+          "DEM"
+        ]
+      ],
+      "active": "1984-1988"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1070_107001.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1070_107001.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 19,
+      "year": 1,
+      "month": 10,
+      "day": 1,
+      "race_name": "Saudi Arabia Royal Cup",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 6,
+      "turn": 48,
+      "year": 2,
+      "month": 12,
+      "day": 2,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Osaka Hai",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "sirius-symboli",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1070,
+    "ja": {
+      "self_intro": "シリウスシンボリだ！レースに御託はいらねぇ。黙って見てな。世界を獲って“最強”を証明してやるよ",
+      "tagline": "世界一輝く星になる！カリスマ野心家ウマ娘",
+      "weight": "興味なし",
+      "shoes": "左右ともに25.0cm",
+      "dorm": "美浦寮",
+      "class": "高等部",
+      "ears": "耳栓がないと眠れない",
+      "tail": "イライラするとクシャクシャにする癖がある",
+      "strong": "サバット、犬のしつけ",
+      "weak": "無意味な話し合い、おべっか、ダジャレ",
+      "family": "父の意向で家庭教師が日替わりだった",
+      "secrets": [
+        "実は、小型飛行機の免許を持っている。",
+        "実は、行きつけのビリヤード場が国内外に複数ある。"
+      ]
+    },
+    "ko": {
+      "self_intro": "시리우스 심볼리다! 레이스에 장황한 말은 필요 없어. 잠자코 지켜봐. 세상을 쟁취해 '최강'을 증명해줄게",
+      "tagline": "세상에서 가장 밝은 별이 되겠어! 카리스마 야심가 우마무스메",
+      "weight": "흥미 없음",
+      "shoes": "좌우 모두 25.0cm",
+      "dorm": "미호 생활관",
+      "class": "고등부",
+      "ears": "귀마개가 없으면 잠을 못 잔다",
+      "tail": "짜증이 나면 꾸깃꾸깃하게 만드는 버릇이 있다",
+      "strong": "사바트, 개 훈련",
+      "weak": "무의미한 대화, 아부, 말장난",
+      "family": "아버지의 의향으로 가정교사가 매일 바뀌었다",
+      "secrets": [
+        "사실은 소형 비행기 면허를 갖고 있다.",
+        "사실은 자주 가는 당구장이 국내외에 여러 곳 있다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我是天狼星象徵！對於競賽沒有什麼想說的。你就默默看著吧。我會征服世界證明自己是最強的。",
+      "tagline": "成為全世界最耀眼之星！魅力超凡的野心勃勃賽馬娘",
+      "weight": "沒興趣",
+      "shoes": "左右都是25.0cm",
+      "dorm": "美浦宿舍",
+      "class": "高中部",
+      "ears": "沒戴耳塞睡不著",
+      "tail": "煩躁時會習慣把尾巴弄得亂七八糟",
+      "strong": "薩瓦特、馴狗",
+      "weak": "無意義的對話、諂媚、冷笑話",
+      "family": "在父親的意思下，一天換一個家教",
+      "secrets": [
+        "其實她有小型飛機的駕駛執照。",
+        "其實她在國內外各有好幾間常去的撞球場。"
+      ]
+    },
+    "en": {
+      "self_intro": "I'm Sirius Symboli. You can shut up and save the pretentious lectures for someone else. Now kick back and watch me prove that I'm on top of the world.",
+      "tagline": "She's gonna be the biggest star in the world! A charismatic Umamusume of great ambitions.",
+      "dorm": "Miho Dormitory",
+      "class": "Senior Division",
+      "secrets": [
+        "Did you know? She has a pilot license.",
+        "Did you know? She has several favorite pool halls, both inside and outside Japan."
+      ]
+    }
+  }
+}

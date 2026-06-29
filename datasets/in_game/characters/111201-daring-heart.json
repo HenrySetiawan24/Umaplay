@@ -1,0 +1,193 @@
+{
+  "charData": {
+    "url_name": "daring-heart",
+    "tid": "1M",
+    "char_id": 1112,
+    "jp_name": "デアリングハート",
+    "en_name": "Daring Heart",
+    "name_ko": "데어링 하트",
+    "name_tw": "勇敢之心",
+    "playable": true,
+    "active": true,
+    "va_en": "Shio Kisui",
+    "va_ja": "希水しお",
+    "va_ko": "키스이 시오",
+    "va_zh_tw": "希水しお",
+    "va_link": "https://myanimelist.net/people/64784/Shio_Kisui",
+    "three_sizes": {
+      "b": 82,
+      "w": 52,
+      "h": 84
+    },
+    "birth_day": 9,
+    "birth_month": 3,
+    "birth_year": 2002,
+    "height": 165,
+    "sex": 2,
+    "rl": {
+      "country": "jp",
+      "races": 26,
+      "wins": 4,
+      "record": "26-4-4-4",
+      "earnings": 274862000,
+      "active": "2004-2008"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1112_111201.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1112_111201.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "Hanshin Juvenile Fillies",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 29,
+      "year": 2,
+      "month": 3,
+      "day": 1,
+      "race_name": "Fillies' Revue",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Oka Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 33,
+      "year": 2,
+      "month": 5,
+      "day": 1,
+      "race_name": "NHK Mile Cup",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 6,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Shuka Sho",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 7,
+      "turn": 55,
+      "year": 3,
+      "month": 4,
+      "day": 1,
+      "race_name": "Hanshin Umamusume Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 57,
+      "year": 3,
+      "month": 5,
+      "day": 1,
+      "race_name": "Victoria Mile",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 62,
+      "year": 3,
+      "month": 7,
+      "day": 2,
+      "race_name": "Queen Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 67,
+      "year": 3,
+      "month": 10,
+      "day": 1,
+      "race_name": "Fuchu Umamusume Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 11,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Mile Championship",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "daring-heart",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1112,
+    "ja": {
+      "self_intro": "Follow my lead!　期待していてね。私には必ずティアラの輝きが降りそそぐ。未来のクイーン・デアリングハートにね！",
+      "tagline": "洗練された自信煌めくはクイーンハート！",
+      "weight": "大胆",
+      "shoes": "左：24.0cm 右：23.5cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "染め直す度に友人とお祝いパーティーをする",
+      "tail": "川水で洗ってもサラサラで、美しくまとまる",
+      "strong": "アコギで即興作曲、尻尾ブラッシング",
+      "weak": "新聞のインクの匂い",
+      "family": "兄直伝の、穴場の花見スポットがお気に入り",
+      "secrets": [
+        "実は、サメ映画マニア。",
+        "実は、爬虫類カフェの常連。"
+      ]
+    },
+    "ko": {
+      "secrets": [
+        "사실은 상어 영화 매니아.",
+        "사실은 파충류 카페 단골."
+      ]
+    },
+    "zh_tw": {
+      "secrets": [
+        "其實她很熱愛鯊魚電影。",
+        "其實她是爬蟲類咖啡廳的常客。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

@@ -1,0 +1,238 @@
+{
+  "charData": {
+    "url_name": "smart-falcon",
+    "tid": "J",
+    "char_id": 1046,
+    "jp_name": "スマートファルコン",
+    "en_name": "Smart Falcon",
+    "name_ko": "스마트 팔콘",
+    "name_tw": "醒目飛鷹",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Hitomi Oowada",
+    "va_ja": "大和田仁美",
+    "va_ko": "오오와다 히토미",
+    "va_zh_tw": "大和田仁美",
+    "va_link": "https://myanimelist.net/people/27839/Hitomi_Oowada",
+    "three_sizes": {
+      "b": 78,
+      "w": 55,
+      "h": 80
+    },
+    "birth_day": 4,
+    "birth_month": 4,
+    "birth_year": 2005,
+    "height": 156,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": null,
+      "races": 34,
+      "wins": 23,
+      "record": "23-4-1-6",
+      "earnings": 990730000,
+      "active": "2007-2012"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1046_104601.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1046_104601.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 25,
+      "year": 2,
+      "month": 1,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 2,
+      "cond_value": 1
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 4,
+      "turn": 37,
+      "year": 2,
+      "month": 7,
+      "day": 1,
+      "race_name": "Japan Dirt Derby",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 45,
+      "year": 2,
+      "month": 11,
+      "day": 1,
+      "race_name": "JBC Classic",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 48,
+      "year": 2,
+      "month": 12,
+      "day": 2,
+      "race_name": "Tokyo Daishoten",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 52,
+      "year": 3,
+      "month": 2,
+      "day": 2,
+      "race_name": "February Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Teio Sho",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 69,
+      "year": 3,
+      "month": 11,
+      "day": 1,
+      "race_name": "JBC Classic",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 71,
+      "year": 3,
+      "month": 12,
+      "day": 1,
+      "race_name": "Champions Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 11,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Tokyo Daishoten",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "smart-falcon",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1046,
+    "ja": {
+      "self_intro": "スマートファルコンでーっす！ファル子って呼んでね！私、ウマドルになるのが夢なの！サインはいつでも受付中だよっ☆",
+      "tagline": "ファンサなら任せて！未来のトップウマドル",
+      "weight": "微減（生活ちょっとキツい）",
+      "shoes": "左右ともに23.0cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "ファンの声は1人残らず拾う",
+      "tail": "癖がつかないよう、座り方にも注意している",
+      "strong": "名前と顔を覚えること",
+      "weak": "勉強",
+      "family": "髪飾りは、母お手製のアイドル衣装第1号",
+      "secrets": [
+        "実は、手書きPOPの腕がプロ級。",
+        "実は、どんな場所でもすぐに寝つける。"
+      ]
+    },
+    "ko": {
+      "self_intro": "스마트 팔콘입니다~! 팔코라고 불러줘! 나는 우마돌이 되는 게 꿈이야! 사인 요청은 언제나 접수 중이라굿☆",
+      "tagline": "팬 서비스라면 맡겨줘! 미래의 톱 우마돌",
+      "weight": "약간 감소(생활고로 인해)",
+      "shoes": "좌우 모두 23.0cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "팬들의 목소리는 1명도 남김없이 듣는다.",
+      "tail": "자국이 남지 않도록 앉는 방식에도 신경 쓴다.",
+      "strong": "얼굴과 이름 외우기",
+      "weak": "공부",
+      "family": "머리 장식은 어머니가 직접 만들어준 아이돌 의상 제1호",
+      "secrets": [
+        "사실은 손글씨 POP 실력이 프로급.",
+        "사실은 어떤 장소에서든 곧잘 잠든다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我是醒目飛鷹～！叫我飛飛吧！我的夢想是成為賽馬娘偶像！隨時都歡迎大家來找我簽名喔☆",
+      "tagline": "粉絲服務就交給我！未來的頂尖賽馬娘偶像",
+      "weight": "微減（生活有點辛苦）",
+      "shoes": "左右都是23.0cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "粉絲的聲音一個都不會漏掉",
+      "tail": "為了不把毛坐塌，連坐的方式都很注意",
+      "strong": "記人名和臉孔",
+      "weak": "唸書",
+      "family": "髮飾是母親親手做的第1件偶像服裝",
+      "secrets": [
+        "其實她有著職業級的手寫POP技巧。",
+        "其實她無論在什麼地方都能立刻睡著。"
+      ]
+    },
+    "en": {
+      "self_intro": "My name's Smart Falcon, but you can call me Falco! My dream is to become an Umadol! Just let me know if you want my autograph! ☆",
+      "tagline": "Leave the fanservice to her! Self-proclaimed future top Umadol.",
+      "weight": "Slight decrease (on a tight budget)",
+      "shoes": "Left and right: 23.0cm",
+      "dorm": "Ritto Dormitory",
+      "class": "Senior Division",
+      "ears": "Can hear every single one of her fans",
+      "tail": "She's mindful of how she sits so as not to mess up the hairs",
+      "strong": "Remembering names and faces",
+      "weak": "Studying",
+      "family": "Her hair ornament is the first idol costume part that her mother made",
+      "secrets": [
+        "Did you know? She's a pro at making hand-drawn signs.",
+        "Did you know? She can fall asleep absolutely anywhere."
+      ]
+    }
+  }
+}

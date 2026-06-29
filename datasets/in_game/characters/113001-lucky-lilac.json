@@ -1,0 +1,196 @@
+{
+  "charData": {
+    "url_name": "lucky-lilac",
+    "tid": "21",
+    "char_id": 1130,
+    "jp_name": "ラッキーライラック",
+    "en_name": "Lucky Lilac",
+    "name_ko": "럭키 라일락",
+    "name_tw": "幸運歐丁香",
+    "playable": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Yuki Nakashima",
+    "va_ja": "中島由貴",
+    "va_ko": "나카시마 유키",
+    "va_zh_tw": "中島由貴",
+    "va_link": "https://myanimelist.net/people/40511/Yuki_Nakashima",
+    "three_sizes": {
+      "b": 88,
+      "w": 57,
+      "h": 85
+    },
+    "birth_day": 3,
+    "birth_month": 4,
+    "birth_year": 2015,
+    "height": 162,
+    "sex": 2,
+    "rl": {
+      "country": "jp",
+      "races": 19,
+      "wins": 7,
+      "record": "19-7-4-3",
+      "earnings": 737467000,
+      "earnings_other": [
+        [
+          4400000,
+          "HKD"
+        ]
+      ],
+      "active": "2017-2020"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1130_113001.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1130_113001.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "Hanshin Juvenile Fillies",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Oka Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Japanese Oaks",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Shuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 52,
+      "year": 3,
+      "month": 2,
+      "day": 2,
+      "race_name": "Nakayama Kinen",
+      "cond_type": 1,
+      "cond_value": 2
+    },
+    {
+      "order": 7,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Osaka Hai",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 57,
+      "year": 3,
+      "month": 5,
+      "day": 1,
+      "race_name": "Victoria Mile",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 69,
+      "year": 3,
+      "month": 11,
+      "day": 1,
+      "race_name": "Queen Elizabeth Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 2
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "lucky-lilac",
+    "images": {
+      "uniform": true,
+      "racing": true
+    }
+  },
+  "profileData": {
+    "char_id": 1130,
+    "ja": {
+      "self_intro": "ラッキーライラックいいます。ターフの花形目指して、どんな試練にも耐えましょう。どうぞよろしゅう",
+      "tagline": "その花は長き冬を越え、必ず気高く咲き誇る",
+      "weight": "たおやかな推移",
+      "shoes": "左：24.0cm 右：24.5cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "自分の足音を聞いて歩き方を調整している",
+      "tail": "なるべく毎日椿油で手入れしている",
+      "strong": "オリジナルのお掃除グッズ作り",
+      "weak": "ナメクジ、廃墟、ヒトコワ系の怪談",
+      "family": "お笑いの劇場通いは家族の恒例行事",
+      "secrets": [
+        "実は、大喜利投稿用ペンネームは『ラララのねーちゃん』。",
+        "実は、入学時に大きめサイズで買った制服がすぐピッタリになった。"
+      ]
+    },
+    "ko": {
+      "self_intro": "럭키 라일락이라 합니더. 잔디에 피는 꽃이 되기 위해 어떠한 시련도 견뎌 내겠심더. 잘 부탁합니대이.",
+      "tagline": "그 꽃은 기나긴 겨울을 견뎌 기필코 고고하게 피어나리",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "secrets": [
+        "사실은 개그 투고용 필명은 『라라라 언니』다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我是幸運歐丁香。為了成為賽場焦點，我會忍過各種的試煉。還請多多指教。",
+      "tagline": "那朵花挺過漫長的凜冬，定將高潔地盛綻",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "secrets": [
+        "其實她投稿搞笑問答用的筆名是「幸幸幸姐姐」。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

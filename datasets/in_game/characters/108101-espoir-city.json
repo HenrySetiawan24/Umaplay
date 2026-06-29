@@ -1,0 +1,193 @@
+{
+  "charData": {
+    "url_name": "espoir-city",
+    "tid": "1i",
+    "char_id": 1081,
+    "jp_name": "エスポワールシチー",
+    "en_name": "Espoir City",
+    "name_ko": "에스푸아르 시티",
+    "name_tw": "希望城市",
+    "playable": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Asaka",
+    "va_ja": "亜咲花",
+    "va_ko": "아사카",
+    "va_zh_tw": "亜咲花",
+    "va_link": "https://myanimelist.net/people/41872/Asaka",
+    "three_sizes": {
+      "b": 79,
+      "w": 55,
+      "h": 79
+    },
+    "birth_day": 22,
+    "birth_month": 4,
+    "birth_year": 2005,
+    "height": 153,
+    "sex": 1,
+    "rl": {
+      "country": "jp",
+      "races": 40,
+      "wins": 17,
+      "record": "40-17-10-3",
+      "earnings": 1023197000,
+      "active": "2008-2013"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1081_108101.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1081_108101.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 26,
+      "year": 2,
+      "month": 1,
+      "day": 2,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 5000
+    },
+    {
+      "order": 3,
+      "turn": 38,
+      "year": 2,
+      "month": 7,
+      "day": 2,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 10000
+    },
+    {
+      "order": 4,
+      "turn": 43,
+      "year": 2,
+      "month": 10,
+      "day": 1,
+      "race_name": "Mile Championship Nambu Hai",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 5,
+      "turn": 47,
+      "year": 2,
+      "month": 12,
+      "day": 1,
+      "race_name": "Champions Cup",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 52,
+      "year": 3,
+      "month": 2,
+      "day": 2,
+      "race_name": "February Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 57,
+      "year": 3,
+      "month": 5,
+      "day": 1,
+      "race_name": "Kashiwa Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Teio Sho",
+      "cond_type": 1,
+      "cond_value": 2
+    },
+    {
+      "order": 9,
+      "turn": 67,
+      "year": 3,
+      "month": 10,
+      "day": 1,
+      "race_name": "Mile Championship Nambu Hai",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 69,
+      "year": 3,
+      "month": 11,
+      "day": 1,
+      "race_name": "JBC Sprint",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "espoir-city",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1081,
+    "ja": {
+      "self_intro": "あーしはエスポワールシチー！レース上等！全員ヒィヒィ言わせて…。おいゴラァ！撫でてんじゃねえぞっ！",
+      "tagline": "あーしをナメんな！キャンキャン反抗期娘",
+      "weight": "言わねえしっ！",
+      "shoes": "左右ともに23.0cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "最初のピアスを開ける決心に1か月を要した",
+      "tail": "リッキーの櫛で適当にケア※開運効果アリ☆",
+      "strong": "部屋の片づけ、ダイススタッキング",
+      "weak": "心理テスト、静電気",
+      "family": "弟の運動会はこの一家のかけ声が一番大きい",
+      "secrets": [
+        "実は、パチパチする飴は苦手。",
+        "実は、あたりくじ付きのお菓子を見るとついつい買ってしまう。"
+      ]
+    },
+    "ko": {
+      "self_intro": "난 에스푸아르 시티! 레이스해 보자고! 모두 혼쭐내 주고 말 테니…. 야, 인마! 쓰다듬지 말라고!",
+      "tagline": "날 얕보지 마! 시끄러운 반항기 소녀",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "secrets": [
+        "사실은 팝핑캔디는 좋아하지 않는다.",
+        "사실은 당첨 제비가 들어 있는 과자를 보면 습관적으로 사고 만다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我是希望城市！競賽正合我意！我會讓所有人輸到叫苦連天……喂住手！摸什麼摸啊！",
+      "tagline": "別小看我了！正值叛逆期的潑辣少女",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "secrets": [
+        "其實她不是很喜歡跳跳糖。",
+        "其實她看到附有中獎機會的零食時，總是忍不住買下來。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

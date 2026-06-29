@@ -19,6 +19,37 @@ def set(record: Optional[Dict[str, Any]]) -> None:
     _abs_turn = 0 if record is None else len(record.get("turn_log") or [])
 
 
+def start_active_interval() -> None:
+    """Append a new active interval for the current run."""
+    record = _current_run
+    if record is None or record.get("end_time"):
+        return
+    intervals = record.setdefault("active_periods", [])
+    if intervals and intervals[-1].get("stop_time") is None:
+        return
+    now = datetime.now().isoformat()
+    intervals.append({"start_time": now, "stop_time": None})
+    record["last_resume_at"] = now
+
+
+def _recompute_active_seconds(record: Dict[str, Any]) -> None:
+    total = 0.0
+    for interval in record.get("active_periods") or []:
+        start = interval.get("start_time")
+        stop = interval.get("stop_time")
+        if not start:
+            continue
+        try:
+            start_dt = datetime.fromisoformat(start)
+            stop_dt = datetime.fromisoformat(stop) if stop else datetime.now()
+            elapsed = (stop_dt - start_dt).total_seconds()
+            if elapsed > 0:
+                total += elapsed
+        except Exception:
+            continue
+    record["active_seconds"] = total
+
+
 def push_turn_log(
     turn: int,
     date_key: str,
@@ -69,10 +100,21 @@ def update_last_turn_log(**kwargs: Any) -> None:
 
 
 def tick_active_time() -> None:
-    """Add elapsed time since last_resume_at to active_seconds and reset the checkpoint."""
+    """Close the current active interval and refresh active_seconds."""
     record = _current_run
     if record is None or record.get("end_time"):
         return
+    intervals = record.get("active_periods") or []
+    if intervals:
+        current = intervals[-1]
+        if current.get("stop_time") is None:
+            current["stop_time"] = datetime.now().isoformat()
+            _recompute_active_seconds(record)
+            return
+        _recompute_active_seconds(record)
+        return
+
+    # Backward-compatible fallback for older records that only tracked a resume timestamp.
     last = record.get("last_resume_at")
     if last:
         try:

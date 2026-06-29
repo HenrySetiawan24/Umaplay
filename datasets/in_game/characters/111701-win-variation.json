@@ -1,0 +1,211 @@
+{
+  "charData": {
+    "url_name": "win-variation",
+    "tid": "1R",
+    "char_id": 1117,
+    "jp_name": "ウインバリアシオン",
+    "en_name": "Win Variation",
+    "name_ko": "윈 바리아시옹",
+    "name_tw": "凱旋芭蕾",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Hika Tsukishiro",
+    "va_ja": "月城日花",
+    "va_ko": "츠키시로 히카",
+    "va_zh_tw": "月城日花",
+    "va_link": "https://myanimelist.net/people/57932/Hika_Tsukishiro",
+    "three_sizes": {
+      "b": 76,
+      "w": 55,
+      "h": 80
+    },
+    "birth_day": 10,
+    "birth_month": 4,
+    "birth_year": 2008,
+    "height": 159,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "races": 23,
+      "wins": 4,
+      "record": "23-4-7-2",
+      "earnings": 579946000,
+      "active": "2010-2015"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1117_111701.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1117_111701.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 27,
+      "year": 2,
+      "month": 2,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 5000
+    },
+    {
+      "order": 3,
+      "turn": 32,
+      "year": 2,
+      "month": 4,
+      "day": 2,
+      "race_name": "Aoba Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 46,
+      "year": 2,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Nikkei Sho",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 2
+    },
+    {
+      "order": 10,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "win-variation",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1117,
+    "ja": {
+      "self_intro": "ウインバリアシオンっす。主役…プリンシパルになるには努力あるのみ！周りは強いヤツばっかだけど挫けないっす！",
+      "tagline": "七転八起。何度負けてもその心は砕けない！",
+      "weight": "増量中",
+      "shoes": "左右ともに23.5cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "クラシック音楽には反応しやすい",
+      "tail": "戸惑いはするけど、触られるのは嫌ではない",
+      "strong": "スイカ割り、柔軟体操",
+      "weak": "コンテンポラリーダンス、モデル歩き",
+      "family": "爪をケアする方法は、母親から教わった",
+      "secrets": [
+        "実は、慣れた場所なら目をつむっていても歩ける。",
+        "実は、しじみの身を残すのは許せない派。"
+      ]
+    },
+    "ko": {
+      "self_intro": "윈 바리아시옹임다. 주인공… 프린시펄이 되려면 노력만이 있을 뿐! 주위엔 강한 녀석들밖에 없지만 굴하지 않을 검다!",
+      "tagline": "7전8기. 몇 번을 지더라도 그 마음은 부서지지 않는다!",
+      "weight": "증량 중",
+      "shoes": "좌우 모두 23.5cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "클래식 음악에 쉽게 반응한다",
+      "tail": "당황스럽긴 해도, 남이 만지는 게 싫진 않다",
+      "strong": "수박 깨기, 스트레칭",
+      "weak": "현대 무용, 모델 워킹",
+      "family": "네일 케어는 어머니께 배웠다",
+      "secrets": [
+        "사실은 익숙한 장소라면 눈을 감고도 걸을 수 있다.",
+        "사실은 재첩 살을 남기는 걸 용서하지 못한다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我是凱旋芭蕾。要成為主角……要成為首席就只能努力不懈！雖然周圍都是強者，但我不會氣餒的！",
+      "tagline": "百折不撓，無論落敗幾次內心都絕不屈服！",
+      "weight": "增重中",
+      "shoes": "左右都是23.5cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "對古典音樂容易產生反應",
+      "tail": "雖然被觸碰時會有些遲疑，但並不討厭",
+      "strong": "劈西瓜、柔軟操",
+      "weak": "現代舞、走台步",
+      "family": "保養指甲的方法是母親教的",
+      "secrets": [
+        "其實她如果在待習慣的地方即使閉著眼睛也能行走。",
+        "其實她是主張不能留下蛤蠣肉的那一派。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

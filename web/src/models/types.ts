@@ -44,6 +44,7 @@ export interface GeneralConfig {
   adbDevice?: string
   fastMode: boolean
   fastModeEnergyThreshold?: number
+  detailedHistory: boolean
   tryAgainOnFailedGoal: boolean
   maxFailure: number
   acceptConsecutiveRace: boolean
@@ -84,6 +85,7 @@ export interface Preset {
   juniorMinimalMood?: MoodName | null
   goalRaceForceTurns?: number
   unityCupAdvanced?: UnityCupAdvancedSettings
+  charId?: number | null
 }
 
 export interface ScenarioConfig {

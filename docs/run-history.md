@@ -1,51 +1,26 @@
-# Run History Feature Plan
+# Run History
 
 ## Overview
 
-Persistent storage + UI for past scenario runs, capturing final stats, preset info, race attempts, timestamps, and the bot's launch date.
+Persistent storage and UI for past scenario runs, capturing final stats, preset info, per-turn actions, race outcomes, timestamps, and the bot's launch date.
 
 ---
 
 ## Storage
 
-**Location:** `prefs/run_history.json`
+**Summary index:** `prefs/run_history.json` — lightweight array of summary records, one entry per run. Loaded on every history page open; stays small regardless of run count.
 
-Simple JSON array alongside the other preference files (`config.json`, `nav.json`, `runtime_skill_memory.*.json`). Chosen because:
+**Per-run detail:** `prefs/run_detail/{id}.json` — `{ turn_log, active_periods }` for one run. Written incrementally as the run progresses; loaded on demand when the Race History dialog opens.
 
-- Follows existing persistence pattern in the project
-- No new dependencies (no SQLite, no database)
-- Easily accessible by backend (FastAPI), frontend (fetch API), and user (manual edit/delete)
-- Small data size — a few hundred entries is well under 1 MB
-- Easy to clear: delete the file or truncate to empty array
+Reasons for the split:
+- `turn_log` can exceed 70 entries per run, each with full stat snapshots — it dominates file size
+- The history table only needs summary fields (counts, final stats, fans, rank)
+- Lazy-loading the detail keeps the history page fast even with hundreds of runs
+- Follows the existing no-dependency JSON pattern (`config.json`, `nav.json`, etc.)
 
 ---
 
 ## Data Model
-
-```json
-[
-  {
-    "id": "a1b2c3d4-...",
-    "scenario": "ura",
-    "preset_name": "My Preset",
-    "uma_name": "Special Week",
-    "start_date": "2026-06-26",
-    "start_time": "2026-06-26T10:00:00",
-    "end_time": "2026-06-26T11:30:00",
-    "final_turn": 0,
-    "final_stats": {"SPD": 800, "STA": 600, "PWR": 700, "GUTS": 500, "WIT": 900},
-    "final_mood": "GOOD",
-    "final_fans": null,
-    "final_rank": null,
-    "completed": true,
-    "error": null,
-    "races_attempted": [
-      {"date_key": "Y1-07-1", "race_name": "Hokkaido Race", "won": true, "finish_pos": null, "fans_gained": null},
-      {"date_key": "Y2-11-2", "race_name": "Japan Cup", "won": false, "finish_pos": null, "fans_gained": null}
-    ]
-  }
-]
-```
 
 ### RunRecord
 
@@ -54,9 +29,10 @@ Simple JSON array alongside the other preference files (`config.json`, `nav.json
 | `id` | UUID | Generated at run start |
 | `scenario` | `"ura"` / `"unity_cup"` | `BotState.start()` |
 | `preset_name` | str | Active preset name at start |
-| `uma_name` | str \| null | OCR from final screen (Uma name text) |
-| `start_date` | str (YYYY-MM-DD) | Bot's local date at run start (`datetime.now().date()`) |
-| `start_time` | ISO 8601 | Bot's local time at run start (`datetime.now().isoformat()`) |
+| `uma_name` | str \| null | OCR from final screen |
+| `char_id` | int \| null | Resolved from trainee name via character index at run start |
+| `start_date` | str (YYYY-MM-DD) | Bot's local clock at run start |
+| `start_time` | ISO 8601 | Bot's local time at run start |
 | `end_time` | ISO 8601 | Bot's local time at scenario end |
 | `final_turn` | int | `LobbyState.turn` at FinalScreen |
 | `final_stats` | `{SPD,STA,PWR,GUTS,WIT: int}` | `LobbyState.stats` |
@@ -65,202 +41,195 @@ Simple JSON array alongside the other preference files (`config.json`, `nav.json
 | `final_rank` | str \| null | OCR from final screen |
 | `completed` | bool | True = FinalScreen hit, False = error/stop |
 | `error` | str \| null | Exception message if crashed |
-| `races_attempted` | `RaceAttempt[]` | Captured per-race |
+| `race_count` | int | Races run this session (precomputed from turn_log at write time) |
+| `training_count` | int | Training turns taken |
+| `rest_count` | int | Rest turns taken |
+| `recreation_count` | int | Recreation turns taken |
+| `races_attempted` | `RaceAttempt[]` | **Legacy only** — present on old records; empty `[]` on new runs |
 
-### RaceAttempt
+### TurnLogEntry
 
-| Field | Type | Source |
-|-------|------|--------|
-| `date_key` | str | `"Y2-07-1"` — in-game date from `_plan_race_today()` |
-| `race_name` | str | `"Hokkaido Race"` — canonical race name |
-| `won` | bool | True = no "TRY AGAIN" after race, False = loss/retry |
-| `finish_pos` | int \| null | OCR from results screen |
-| `fans_gained` | int \| null | OCR from results screen |
+The single source of truth for per-turn history. Race outcomes are stored directly on the entry for race turns.
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `turn` | int | In-game remaining-turn counter |
+| `abs_turn` | int | Monotonically incrementing counter for absolute position |
+| `date_key` | str | `"Y2-07-1"` — inferred in-game date |
+| `action` | str | `to_training`, `to_race`, `to_rest`, `to_recreation`, `raced`, `rested`, `infirmary`, `continue`, `training_ready` |
+| `training_type` | str \| null | `SPD`, `STA`, `PWR`, `GUTS`, `WIT` |
+| `reason` | str \| null | Agent's decision rationale (omitted in UI for non-race turns) |
+| `stats` | `{SPD,…: int}` \| null | Stat snapshot after training |
+| `energy` | int \| null | Energy % |
+| `mood` | str \| null | Mood string or `"UNKNOWN"` |
+| `skill_pts` | int \| null | Skill points |
+| `race_name` | str \| null | **Race turns only** — canonical race name |
+| `won` | bool \| null | **Race turns only** — True = win, False = loss |
+| `fans_before` | int \| null | **Race turns only** — fan count before race |
+| `fans_after` | int \| null | **Race turns only** — fan count after race |
+
+### RaceAttempt (legacy)
+
+Present on records written before the `turn_log` consolidation. New runs do not write this list.
+
+| Field | Type |
+|-------|------|
+| `turn` | int \| null |
+| `date_key` | str \| null |
+| `race_name` | str |
+| `won` | bool |
+| `fans_before` | int \| null |
+| `fans_after` | int \| null |
+| `timestamp` | ISO 8601 |
+
+### `date_key` format
+
+```text
+Y{year}-{MM}-{half}
+```
+
+Year buckets:
+
+```text
+Y1 = Junior Year
+Y2 = Classic Year
+Y3 = Senior Year
+Y4 = Final Season / URA finale
+```
+
+Examples:
+
+```text
+Y1-01-1  Early Jan, Junior Year
+Y1-01-2  Late Jan, Junior Year
+Y2-07-1  Early Jul, Classic Year
+Y3-12-2  Late Dec, Senior Year
+Y4       Final Season (no month/half)
+```
+
+Fallback rules:
+
+- Date is inferred from `lobby.state.turn` using character goal race dates as anchor points (seeded from `datasets/in_game/character_index.json`) and any prior turn_log entries with confirmed full date_keys.
+- If only the year is known, stores `Y1` / `Y2` / `Y3` rather than an empty string.
 
 ---
 
-## Capture Points (4 hooks)
+## Write Path
 
-### 1. Run start
+### Run start — `main.py → BotState.start()`
 
-**File:** `main.py` → `BotState.start()`
+Resolves `char_id` by checking `preset.charId` first (set by the UI character selector), then falling back to `character_data.search_characters(trainee_name)` as a best-effort guess. Then initialises the run record:
 
 ```python
-from datetime import datetime
-now = datetime.now()
-record = RunRecord(
-    id=str(uuid4()),
-    scenario=...,
-    preset_name=...,
-    start_date=now.strftime("%Y-%m-%d"),
-    start_time=now.isoformat(),
-    races_attempted=[],
+record = {
+    "id": str(uuid4()),
+    "scenario": ...,
+    "preset_name": ...,
+    "char_id": char_id,
+    "start_time": datetime.now().isoformat(),
+    "races_attempted": [],   # kept for schema compat; always empty on new runs
+    "turn_log": [],
+}
+```
+
+### Per-turn action — `core/run_context.py → push_turn_log()`
+
+Called each time the agent makes a decision:
+
+```python
+push_turn_log(
+    turn=lobby.state.turn,
+    date_key=self._turn_date_key(),
+    action="to_training",
+    training_type="SPD",
+    stats=..., energy=..., mood=..., skill_pts=...,
 )
-self._current_run = record
 ```
 
-`start_date` uses the **bot's local clock**, not OCR from the Android device.
+### Race outcome — `core/actions/race.py → _record_race_attempt()`
 
-### 2. Per-race attempt
-
-**File:** `core/actions/race.py` → `RaceFlow.lobby()` (after post-race flow, when win/loss is known)
-
-The win/loss is already determined in `lobby()` via the "TRY AGAIN" button check. After that check, push a `RaceAttempt` to the agent's run record list.
+After win/loss is confirmed, enriches the most recent `turn_log` entry (the `to_race` decision that was already written) instead of appending to a separate list:
 
 ```python
-attempt = RaceAttempt(
-    date_key=date_key,        # passed in from caller
-    race_name=race_name,      # canonical name from _plan_race_today()
-    won=not loss_detected,    # based on TRY AGAIN presence
+update_last_turn_log(
+    race_name=self._last_race_name,
+    won=won,
+    fans_before=fans_before,
+    fans_after=fans_after,
 )
-agent._current_run.races_attempted.append(attempt)
 ```
 
-The agent must hold a reference to `self._current_run`. This can be passed from `BotState` → `AgentScenario` → `LobbyFlow` → `RaceFlow` via a shared object or callback.
+`_current_date_key` is also re-synced here from `lobby.state` (after `process_turn()`) so the race outcome carries the same date as the `turn_log` entry.
 
-### 3. FinalScreen (scenario end)
-
-**Files:**
-- `core/actions/ura/agent.py` (~line 562)
-- `core/actions/unity_cup/agent.py` (~line 701)
-
-On the FinalScreen, OCR the following in addition to capturing state:
-- **Uma name** — visible in a prominent text label on the final results screen
-- **Final fans** — total fans display
-- **Final rank** — rank badge text (A+, S, UG, etc.)
+### FinalScreen — `core/actions/{ura,unity_cup}/agent.py`
 
 ```python
-if screen == "FinalScreen":
-    record = self._current_run
-    record.end_time = datetime.now().isoformat()
-    record.final_turn = self.lobby.state.turn
-    record.final_stats = dict(self.lobby.state.stats)
-    record.final_mood = self.lobby.state.mood[0] if self.lobby.state.mood else None
-    record.uma_name = ocr_uma_name(img)        # OCR from final screen region
-    record.final_fans = ocr_final_fans(img)      # OCR from final screen region
-    record.final_rank = ocr_final_rank(img)      # OCR from final screen region
-    record.completed = True
-    append_run_history(record)
+record["end_time"] = datetime.now().isoformat()
+record["final_stats"] = dict(lobby.state.stats)
+record["final_fans"] = ocr_final_fans(img)
+record["completed"] = True
+persist_run_record()
 ```
 
-### 4. Error / early stop
-
-**File:** `main.py` → `BotState._runner()` (or `NavState._runner()`)
+### Error / early stop — `main.py → BotState._runner()`
 
 ```python
-except Exception as e:
-    if self._current_run:
-        self._current_run.end_time = datetime.now().isoformat()
-        self._current_run.completed = False
-        self._current_run.error = str(e)
-        append_run_history(self._current_run)
+record["end_time"] = datetime.now().isoformat()
+record["completed"] = False
+record["error"] = str(e)
+persist_run_record()
 ```
 
 ---
 
-## Backend (server/main.py)
-
-Endpoints:
+## Backend API — `server/main.py`
 
 ```
-GET   /api/history          →  list[RunRecord]
-POST  /api/history          →  {"status": "ok"}  (append one record)
-DELETE /api/history/{id}    →  {"status": "ok"}  (delete one record by ID)
-```
+GET    /api/history                    →  list[RunRecord]   (summaries only)
+POST   /api/history                    →  {"status": "ok"}
+DELETE /api/history/{id}               →  {"status": "ok"}  (also deletes detail file)
+GET    /api/history/incomplete         →  list[RunRecord]
+GET    /api/history/{id}/detail        →  RunDetail { turn_log, active_periods }
 
-Returns entire history array (empty list if no file). Deletion splices the array by matching `id`.
+GET    /api/characters                 →  dict[char_id, CharacterEntry]
+GET    /api/characters/{char_id}       →  CharacterDetail
+GET    /api/characters/{char_id}/thumb →  image (proxied from Gametora)
+```
 
 ---
 
 ## Frontend
 
-### New component: `src/components/history/RunHistory.tsx`
+### Components
 
-- Fetches `/api/history` on mount
-- Renders a Material UI table:
+| File | Purpose |
+|------|---------|
+| `src/components/history/RunHistory.tsx` | Table of run records; uses precomputed count fields from summary |
+| `src/components/history/RaceHistoryDialog.tsx` | Read-only card grid; fetches `/api/history/{id}/detail` on open |
+| `src/services/historyApi.ts` | `fetchHistory()`, `fetchHistoryDetail(id)`, `deleteHistory(id)`, TypeScript interfaces |
+| `src/hooks/useCharactersData.ts` | React Query hook for `/api/characters`, 5-min cache |
 
-| Column | Content |
-|--------|---------|
-| Date | `start_date` formatted (e.g. "Jun 26, 2026") |
-| Scenario | Badge: "URA" / "Unity Cup" |
-| Preset | Preset name |
-| Uma | Uma name (if captured) |
-| Stats | Compact stat bar (SPD/STA/PWR/GUTS/WIT) |
-| Races | Count badge of races attempted |
-| Result | Completed checkmark, error icon, or rank (A+/S etc.) |
+### RaceHistoryDialog — data flow
 
-- Click row to expand → full stat values, mood, fans/rank, duration
-- Each row has a delete button (trash icon) to remove that entry
-- Rows sorted by `start_time` descending (newest first)
+On open, fetches `GET /api/history/{id}/detail` (cached 30 s via React Query). Iterates `detail.turn_log` directly; entries with `race_name` set are rendered as race cards with banner, win/loss, fans, etc. Non-race entries show training/rest/recreation summary chips.
 
-### Race History Dialog
+The card grid is ordered chronologically by year → month → half → turn.
 
-Clicking the races count badge (or a dedicated button) opens a **dialog** showing the race attempts in a **3-column or 4-column card grid** (same layout as the RaceScheduler):
+### Goal race display
 
-- Scrollable dialog, full-width, max-height 80vh
-- Cards follow the same pattern as RaceScheduler cards:
-  - **Banner image** — `public_banner_path` from race data, 2:1 aspect ratio
-  - **Rank badge** — G1/G2/OP/etc. badge icon
-  - **Race name** — canonical name
-  - **Surface chip** — colored: Turf=#2e7d32, Dirt=#bf8f4a
-  - **Distance chip** — outlined, e.g. "Mile", "Sprint"
-  - **Location + distance text** — e.g. "Nakayama — 2000m"
-  - **Win/Loss indicator** — green checkmark ✓ or red X ✗ overlaid on the card
-- No search, no editing, no auto-advance — read-only
-- Cards ordered chronologically by `date_key`
-
-### Home.tsx update
-
-Add a "History" tab alongside Scenario setup / Shop / Team Trials / Daily Races / Hotkeys.
+The history dialog loads character goal data via `useCharactersData` (keyed by `char_id` or `uma_name`). Date slots that are a character goal but have no recorded race turn show the goal race banner, rank badge, and surface/distance chips at reduced opacity.
 
 ---
 
-## Backend Files to Create/Modify
+## Pending: `races_attempted` consolidation
 
-### New file: `server/run_history.py`
+**Status:** Planned — not yet implemented.
 
-Helper functions for reading/writing `prefs/run_history.json`:
+**Scope:**
 
-```python
-HISTORY_PATH = PREFS_DIR / "run_history.json"
+1. `core/run_context.py` — extend `update_last_turn_log` to accept `race_name`, `won`, `fans_before`, `fans_after`.
+2. `core/actions/race.py` — change `_record_race_attempt` to call `update_last_turn_log` with race fields instead of appending to `races_attempted`. Leave `races_attempted: []` in the record for schema compat.
+3. `web/src/services/historyApi.ts` — add race fields to `TurnLogEntry`; keep `RaceAttempt` and `races_attempted` for legacy read path.
+4. `web/src/components/history/RaceHistoryDialog.tsx` — simplify `cards` memo to read race fields directly from `turn_log`; retain existing merge logic as legacy fallback for old records.
 
-def load_history() -> list[dict]: ...
-def append_history(record: dict) -> None: ...
-def delete_history(record_id: str) -> bool: ...
-```
-
-### Modify: `server/main.py`
-
-Add three new routes: `GET /api/history`, `POST /api/history`, `DELETE /api/history/{id}`.
-
----
-
-## Frontend Files to Create/Modify
-
-### New: `src/components/history/RunHistory.tsx`
-History table with expandable rows, race dialog, delete per entry.
-
-### New: `src/components/history/RaceHistoryDialog.tsx`
-Read-only card grid dialog for race attempts.
-
-### New: `src/services/historyApi.ts`
-API helpers: `fetchHistory()`, `saveHistory()`, `deleteHistory(id)`.
-
-### Modify: `src/pages/Home.tsx`
-Add "History" tab, import and render `RunHistory`.
-
----
-
-## Phasing
-
-### Phase 1 (this PR)
-- Data model + persistence (`prefs/run_history.json`)
-- Start / Per-race / FinalScreen / Error capture hooks
-- Uma name, fans, rank OCR from FinalScreen
-- Backend endpoints (CRUD)
-- Frontend table with stats + race count + timestamps + delete
-- Race history dialog (read-only grid with win/loss indicators)
-
-### Phase 2 (future)
-- OCR finish position and fans gained from post-race results screen
-- Add `finish_pos` + `fans_gained` to race history cards
+No data migration needed — old records are handled by the legacy fallback read path.

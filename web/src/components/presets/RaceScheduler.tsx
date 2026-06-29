@@ -26,6 +26,7 @@ import ClearIcon from '@mui/icons-material/Clear'
 import ChevronLeft from '@mui/icons-material/ChevronLeft'
 import ChevronRight from '@mui/icons-material/ChevronRight'
 import CloseIcon from '@mui/icons-material/Close'
+import StarIcon from '@mui/icons-material/Star'
 import { useQuery } from '@tanstack/react-query'
 import { useMemo, useState } from 'react'
 import { fetchRaces } from '@/services/api'
@@ -33,6 +34,7 @@ import type { RacesMap, RaceInstance } from '@/models/datasets'
 import { toDateKey, parseDateKey, monthHalfLabel, yearLabel, dateKeysForYear, nextDateKey } from '@/utils/race'
 import { useConfigStore } from '@/store/configStore'
 import { BADGE_ICON } from '@/constants/ui'
+import { useCharactersData, getGoals, getGoalForDateKey, isGoalRace } from '@/hooks/useCharactersData'
 
 type RaceRow = { raceName: string; instance: RaceInstance; dateKey: string }
 
@@ -46,6 +48,8 @@ export default function RaceScheduler({ presetId }: { presetId: string; compact?
   const preset = useConfigStore((s) => s.getSelectedPreset().preset)
   const patchPreset = useConfigStore((s) => s.patchPreset)
   const { data: races = {} as RacesMap } = useQuery({ queryKey: ['races'], queryFn: fetchRaces })
+  const { data: charIndex } = useCharactersData()
+  const goals = getGoals(charIndex, preset?.charId)
 
   const [activeYearTab, setActiveYearTab] = useState(1)
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -172,45 +176,93 @@ export default function RaceScheduler({ presetId }: { presetId: string; compact?
     }
   }
 
-  const currentIdx = allDateKeys.indexOf(dialogDateKey)
-  const canGoPrev = currentIdx > 0
-  const canGoNext = currentIdx >= 0 && currentIdx < allDateKeys.length - 1
-
   const getSelectedRace = (dk: string): { name: string; tentative: boolean } | null => {
     const name = preset.plannedRaces[dk]
     if (!name) return null
     return { name, tentative: !!preset.plannedRacesTentative?.[dk] }
   }
 
+  const isNavigable = (dk: string): boolean => {
+    const { year, month } = parseDateKey(dk)
+    if (year === 1 && month < 6) return false
+    const goal = getGoalForDateKey(goals, dk)
+    if (goal?.race_name && !getSelectedRace(dk)) return false
+    return true
+  }
+
+  const currentIdx = allDateKeys.indexOf(dialogDateKey)
+  const prevNavigableIdx = (() => { for (let i = currentIdx - 1; i >= 0; i--) { if (isNavigable(allDateKeys[i])) return i } return -1 })()
+  const nextNavigableIdx = (() => { for (let i = currentIdx + 1; i < allDateKeys.length; i++) { if (isNavigable(allDateKeys[i])) return i } return -1 })()
+  const canGoPrev = prevNavigableIdx >= 0
+  const canGoNext = nextNavigableIdx >= 0
+
   const renderCard = (dk: string) => {
     const { year, month, half } = parseDateKey(dk)
     const selected = getSelectedRace(dk)
-    const inst = selected ? instanceByDateKeyName.get(`${dk}::${selected.name}`) : null
     const isBeforeJune = year === 1 && month < 6
     const isDisabled = isBeforeJune
+    const goal = getGoalForDateKey(goals, dk)
+    const isGoal = !!goal
+    const plannedRaceIsGoal = selected && isGoalRace(goals, selected.name)
+    const autoGoalRaceName = isGoal && !selected && goal?.race_name ? goal.race_name : null
+    const isLocked = autoGoalRaceName !== null
+    const instKey = selected ? `${dk}::${selected.name}` : autoGoalRaceName ? `${dk}::${autoGoalRaceName}` : null
+    const inst = instKey ? instanceByDateKeyName.get(instKey) : undefined
     const badge = inst ? BADGE_ICON[inst.rank] : null
 
     return (
       <Box key={dk} sx={{ display: 'flex', flexDirection: 'column', gap: 0.25, width: '100%', minWidth: 0 }}>
         <Paper
-          onClick={() => !isDisabled && handleCellClick(year, month, half)}
+          onClick={() => !isDisabled && !isLocked && handleCellClick(year, month, half)}
           sx={{
             width: '100%',
-            minHeight: 160,
-            p: 0.75,
-            cursor: isDisabled ? 'default' : 'pointer',
+            minHeight: 180,
+            p: 1,
+            cursor: isDisabled || isLocked ? 'default' : 'pointer',
             opacity: isDisabled ? 0.25 : 1,
-            bgcolor: selected?.tentative ? 'warning.dark' : selected ? 'primary.dark' : 'background.paper',
-            border: selected ? 2 : 1,
-            borderColor: selected ? 'primary.main' : 'divider',
+            bgcolor: (theme) => {
+              if (selected?.tentative) return theme.palette.warning.dark
+              if (selected) return theme.palette.mode === 'dark' ? 'rgba(25,118,210,0.22)' : theme.palette.primary.dark
+              if (isGoal) return theme.palette.mode === 'dark' ? 'rgba(255,215,0,0.09)' : '#fff8e1'
+              return theme.palette.background.paper
+            },
+            border: selected || isGoal ? 2 : 1,
+            borderColor: selected ? (plannedRaceIsGoal ? '#ffd700' : 'primary.main') : isGoal ? '#ffd700' : 'divider',
             display: 'flex',
             flexDirection: 'column',
-            gap: 0.5,
-            '&:hover': isDisabled ? {} : { borderColor: selected ? 'primary.light' : 'text.secondary' },
+            gap: 0.75,
+            transition: 'border-color 120ms ease, transform 120ms ease',
+            '&:hover': isDisabled || isLocked ? {} : {
+              borderColor: selected ? 'primary.light' : 'text.secondary',
+              transform: 'translateY(-1px)',
+            },
           }}
         >
           {selected && inst ? (
             <>
+              <Box sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 0.5, minWidth: 0 }}>
+                <Chip
+                  label={monthHalfLabel(month, half)}
+                  size="small"
+                  variant="outlined"
+                  sx={{ height: 20, fontSize: '0.6rem', flexShrink: 0 }}
+                />
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+                  {selected.tentative ? (
+                    <Chip label="Tentative" size="small" color="warning" sx={{ height: 20, fontSize: '0.6rem', fontWeight: 700 }} />
+                  ) : !plannedRaceIsGoal ? (
+                    <Chip label="Planned" size="small" color="primary" sx={{ height: 20, fontSize: '0.6rem', fontWeight: 700 }} />
+                  ) : null}
+                  {plannedRaceIsGoal && (
+                    <Chip
+                      icon={<StarIcon sx={{ fontSize: 12 }} />}
+                      label="Goal"
+                      size="small"
+                      sx={{ height: 20, fontSize: '0.55rem', bgcolor: '#ffd700', color: '#7c5c00', fontWeight: 700 }}
+                    />
+                  )}
+                </Box>
+              </Box>
               {inst.public_banner_path && (
                 <Box
                   component="img"
@@ -231,6 +283,7 @@ export default function RaceScheduler({ presetId }: { presetId: string; compact?
                 {badge && (
                   <Box component="img" src={badge} alt={inst.rank} sx={{ height: 16, flexShrink: 0 }} />
                 )}
+                {plannedRaceIsGoal && <StarIcon sx={{ fontSize: 14, color: '#ffd700', flexShrink: 0 }} />}
                 <Typography variant="caption" noWrap sx={{ fontSize: '0.7rem', fontWeight: 600, lineHeight: 1.2 }}>
                   {selected.name}
                 </Typography>
@@ -260,12 +313,105 @@ export default function RaceScheduler({ presetId }: { presetId: string; compact?
                 {inst.location ? `${inst.location} — ` : ''}{inst.distance_text}
               </Typography>
             </>
+          ) : isLocked ? (
+            <>
+              <Box sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 0.5, minWidth: 0 }}>
+                <Chip
+                  label={monthHalfLabel(month, half)}
+                  size="small"
+                  variant="outlined"
+                  sx={{ height: 20, fontSize: '0.6rem', flexShrink: 0 }}
+                />
+                <Chip
+                  icon={<StarIcon sx={{ fontSize: 12 }} />}
+                  label="Goal"
+                  size="small"
+                  sx={{ height: 20, fontSize: '0.55rem', bgcolor: '#ffd700', color: '#7c5c00', fontWeight: 700 }}
+                />
+              </Box>
+              {inst?.public_banner_path && (
+                <Box
+                  component="img"
+                  src={imgEncoded(inst.public_banner_path)}
+                  alt=""
+                  sx={{
+                    width: '100%',
+                    aspectRatio: '2 / 1',
+                    objectFit: 'cover',
+                    borderRadius: '3px 3px 0 0',
+                    flexShrink: 0,
+                    display: 'block',
+                  }}
+                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+                />
+              )}
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, minWidth: 0 }}>
+                {badge && inst && (
+                  <Box component="img" src={badge} alt={inst.rank} sx={{ height: 16, flexShrink: 0 }} />
+                )}
+                <StarIcon sx={{ fontSize: 14, color: '#ffd700', flexShrink: 0 }} />
+                <Typography variant="caption" noWrap sx={{ fontSize: '0.7rem', fontWeight: 600, lineHeight: 1.2 }}>
+                  {autoGoalRaceName}
+                </Typography>
+              </Box>
+              {inst && (
+                <>
+                  <Box sx={{ display: 'flex', gap: 0.25, flexWrap: 'wrap' }}>
+                    <Chip
+                      size="small"
+                      label={inst.surface}
+                      sx={{
+                        height: 16,
+                        fontSize: '0.55rem',
+                        bgcolor: surfaceColor[inst.surface] ?? '#757575',
+                        color: '#fff',
+                      }}
+                    />
+                    <Chip
+                      size="small"
+                      label={inst.distance_category}
+                      variant="outlined"
+                      sx={{ height: 16, fontSize: '0.55rem' }}
+                    />
+                  </Box>
+                  <Typography variant="caption" noWrap sx={{ fontSize: '0.6rem', color: 'text.secondary', lineHeight: 1.1 }}>
+                    {inst.location ? `${inst.location} — ` : ''}{inst.distance_text}
+                  </Typography>
+                </>
+              )}
+            </>
           ) : !isDisabled ? (
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 1 }}>
-              <Typography variant="body1" sx={{ color: 'text.disabled', fontSize: '1.2rem', lineHeight: 1 }}>
-                +
-              </Typography>
-            </Box>
+            <>
+              <Box sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 0.5 }}>
+                <Chip
+                  label={monthHalfLabel(month, half)}
+                  size="small"
+                  variant="outlined"
+                  sx={{ height: 20, fontSize: '0.6rem', flexShrink: 0 }}
+                />
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+                  <Chip
+                    label="Add race"
+                    size="small"
+                    variant="outlined"
+                    sx={{ height: 20, fontSize: '0.6rem', fontWeight: 700 }}
+                  />
+                  {isGoal && (
+                    <Chip
+                      icon={<StarIcon sx={{ fontSize: 12 }} />}
+                      label="Goal"
+                      size="small"
+                      sx={{ height: 20, fontSize: '0.55rem', bgcolor: '#ffd700', color: '#7c5c00', fontWeight: 700 }}
+                    />
+                  )}
+                </Box>
+              </Box>
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 1, minHeight: 90 }}>
+                <Typography variant="body1" sx={{ color: 'text.disabled', fontSize: '1.2rem', lineHeight: 1 }}>
+                  +
+                </Typography>
+              </Box>
+            </>
           ) : null}
         </Paper>
         <Typography variant="caption" sx={{ fontSize: '0.6rem', color: 'text.secondary', whiteSpace: 'nowrap' }}>
@@ -291,8 +437,6 @@ export default function RaceScheduler({ presetId }: { presetId: string; compact?
   return (
     <Paper variant="outlined" sx={{ p: 1.5 }}>
       <Stack spacing={1}>
-        <Typography variant="subtitle2">Race Scheduler</Typography>
-
         <TextField
           size="small"
           fullWidth
@@ -392,7 +536,12 @@ export default function RaceScheduler({ presetId }: { presetId: string; compact?
             <Box
               sx={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(4, 1fr)',
+                gridTemplateColumns: {
+                  xs: '1fr',
+                  sm: 'repeat(2, minmax(0, 1fr))',
+                  md: 'repeat(3, minmax(0, 1fr))',
+                  lg: 'repeat(4, minmax(0, 1fr))',
+                },
                 gap: 1,
               }}
             >
@@ -410,7 +559,7 @@ export default function RaceScheduler({ presetId }: { presetId: string; compact?
       >
         <DialogTitle sx={{ pb: 1 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-            <IconButton size="small" disabled={!canGoPrev} onClick={() => navigateToDate(allDateKeys[currentIdx - 1])}>
+            <IconButton size="small" disabled={!canGoPrev} onClick={() => navigateToDate(allDateKeys[prevNavigableIdx])}>
               <ChevronLeft fontSize="small" />
             </IconButton>
             <Typography variant="body1" sx={{ flex: 1, textAlign: 'center', fontWeight: 600 }}>
@@ -418,7 +567,7 @@ export default function RaceScheduler({ presetId }: { presetId: string; compact?
                 ? `Change — ${yearLabel(parseDateKey(dialogDateKey).year)}, ${monthHalfLabel(dialogMonth, dialogHalf)}`
                 : `Select Race — ${yearLabel(parseDateKey(dialogDateKey).year)}, ${monthHalfLabel(dialogMonth, dialogHalf)}`}
             </Typography>
-            <IconButton size="small" disabled={!canGoNext} onClick={() => navigateToDate(allDateKeys[currentIdx + 1])}>
+            <IconButton size="small" disabled={!canGoNext} onClick={() => navigateToDate(allDateKeys[nextNavigableIdx])}>
               <ChevronRight fontSize="small" />
             </IconButton>
             <IconButton size="small" onClick={() => setDialogOpen(false)}>
@@ -542,6 +691,7 @@ export default function RaceScheduler({ presetId }: { presetId: string; compact?
                   />
                   <Box sx={{ flex: 1, minWidth: 0 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75, flexWrap: 'wrap' }}>
+                      {isGoalRace(goals, r.raceName) && <StarIcon sx={{ fontSize: 14, color: '#ffd700', flexShrink: 0 }} />}
                       <Typography variant="body2" noWrap sx={{ fontWeight: 600 }}>{r.raceName}</Typography>
                       {badge && <Box component="img" src={badge} alt={r.instance.rank} sx={{ height: 20, flexShrink: 0 }} />}
                       <Chip

@@ -1,0 +1,224 @@
+{
+  "charData": {
+    "url_name": "curren-chan",
+    "tid": "B",
+    "char_id": 1038,
+    "jp_name": "カレンチャン",
+    "en_name": "Curren Chan",
+    "name_ko": "카렌짱",
+    "name_tw": "真機伶",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Yuu Sasahara",
+    "va_ja": "篠原侑",
+    "va_ko": "사사하라 유우",
+    "va_zh_tw": "篠原侑",
+    "va_link": "https://myanimelist.net/people/47327/Yuu_Sasahara",
+    "three_sizes": {
+      "b": 83,
+      "w": 55,
+      "h": 79
+    },
+    "birth_day": 31,
+    "birth_month": 3,
+    "birth_year": 2007,
+    "height": 155,
+    "sex": 2,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": null,
+      "races": 18,
+      "wins": 9,
+      "record": "9-3-1-5",
+      "earnings": 401801000,
+      "earnings_other": [
+        [
+          46000,
+          "HKD"
+        ]
+      ],
+      "active": "2009-2013"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1038_103801.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1038_103801.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 3000
+    },
+    {
+      "order": 3,
+      "turn": 29,
+      "year": 2,
+      "month": 3,
+      "day": 1,
+      "race_name": "Fillies' Revue",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Aoi Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 36,
+      "year": 2,
+      "month": 6,
+      "day": 2,
+      "race_name": "Hakodate Sprint Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 42,
+      "year": 2,
+      "month": 9,
+      "day": 2,
+      "race_name": "Sprinters Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 53,
+      "year": 3,
+      "month": 3,
+      "day": 1,
+      "race_name": "Ocean Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Takamatsunomiya Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 66,
+      "year": 3,
+      "month": 9,
+      "day": 2,
+      "race_name": "Sprinters Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "curren-chan",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1038,
+    "ja": {
+      "self_intro": "Currenこと、カレンチャンでーす！世界を“カワイイ”で包んじゃいます☆よそ見はめっ。カレンだけを見ててね♪",
+      "tagline": "カワイイの閃光走る！たくさん愛してね♪",
+      "weight": "ひ・み・つ",
+      "shoes": "左右ともに22.0cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "手招きするように動いたら、甘えたい時",
+      "tail": "触れればトリコになるふわサラの手触り",
+      "strong": "自撮り、ピアノ",
+      "weak": "飲茶",
+      "family": "娘ロスの家族が、学園スタッフの求人に応募",
+      "secrets": [
+        "実は、好きな映画のベスト10のうち半分がホラー。",
+        "実は、合気道の有段者。"
+      ]
+    },
+    "ko": {
+      "self_intro": "Curren인 카렌짱입니다~! 세상을 '귀여움'으로 감쌀게요☆ 한눈 팔면 못 써. 카렌만 봐♪",
+      "tagline": "귀여운 섬광이 달린다! 많이 사랑해줘♪",
+      "weight": "비~밀~",
+      "shoes": "좌우 모두 22.0cm",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "ears": "손짓하듯 움직이면 어리광 부리고 싶을 때",
+      "tail": "만지면 포로가 될 정도로 푹신하고 찰랑거리는 촉감.",
+      "strong": "셀카, 피아노",
+      "weak": "차를 곁들인 간단한 식사",
+      "family": "딸 상실 증후군이던 가족이 교내 직원 구인에 지원했다.",
+      "secrets": [
+        "사실은 좋아하는 영화 베스트 10 중  반이 호러다.",
+        "사실은 합기도 유단자."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "Curren就是我，我叫真機伶！想用「可愛」把全世界包起來☆不可以看其他地方，只能看著我喔♪",
+      "tagline": "可愛的閃光奔馳！盡量愛她唷♪",
+      "weight": "祕．密",
+      "shoes": "左右都是22.0cm",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "ears": "出現招手般舉動時，代表想撒嬌",
+      "tail": "觸摸後會有令人上癮的絲滑觸感",
+      "strong": "自拍、彈鋼琴",
+      "weak": "喝茶",
+      "family": "喪失女兒症候群的家人，有來應徵學園工作人員",
+      "secrets": [
+        "其實她心目中最佳電影前十名當中，有一半是恐怖片。",
+        "其實她擁有合氣道的段位。"
+      ]
+    },
+    "en": {
+      "self_intro": "Here comes Curren Chan, ready to make the whooole world a cuter place! ☆ Curren's the only girl you need to keep your eyes on! Okay? ♪",
+      "tagline": "A shining star of pure cuteness! I need lots of love and attention, okay?",
+      "weight": "Secret ♥",
+      "shoes": "Left and right: 22.0cm",
+      "dorm": "Ritto Dormitory",
+      "class": "Junior Division",
+      "ears": "If she beckons you, it's because she wants to be spoiled",
+      "tail": "Ultra-soft and fluffy—almost captivatingly so",
+      "strong": "Selfies, piano",
+      "weak": "Eating snacks with tea",
+      "family": "They miss their daughter so much, they've applied for positions at Tracen Academy",
+      "secrets": [
+        "Did you know? Half of her top ten favorite movies are horror films.",
+        "Did you know? She's a black belt in aikido."
+      ]
+    }
+  }
+}

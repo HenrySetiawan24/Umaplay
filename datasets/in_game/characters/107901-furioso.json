@@ -1,0 +1,221 @@
+{
+  "charData": {
+    "url_name": "furioso",
+    "tid": "1g",
+    "char_id": 1079,
+    "jp_name": "フリオーソ",
+    "en_name": "Furioso",
+    "name_ko": "푸리오소",
+    "name_tw": "狂熱激昂",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Aki Sairenji",
+    "va_ja": "西連寺亜希",
+    "va_ko": "사이렌지 아키",
+    "va_zh_tw": "西連寺亜希",
+    "va_link": "https://myanimelist.net/people/46867/Aki_Sairenji",
+    "three_sizes": {
+      "b": 81,
+      "w": 53,
+      "h": 78
+    },
+    "birth_day": 1,
+    "birth_month": 5,
+    "birth_year": 2004,
+    "height": 161,
+    "sex": 1,
+    "race": false,
+    "rl": {
+      "country": "jp",
+      "races": 39,
+      "wins": 11,
+      "record": "39-11-14-2",
+      "earnings": 845446000,
+      "active": "2006-2012"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1079_107901.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1079_107901.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 24,
+      "year": 1,
+      "month": 12,
+      "day": 2,
+      "race_name": "Zen-Nippon Junior Yushun",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 37,
+      "year": 2,
+      "month": 7,
+      "day": 1,
+      "race_name": "Japan Dirt Derby",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 45,
+      "year": 2,
+      "month": 11,
+      "day": 1,
+      "race_name": "JBC Classic",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 5,
+      "turn": 47,
+      "year": 2,
+      "month": 12,
+      "day": 1,
+      "race_name": "Champions Cup",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 48,
+      "year": 2,
+      "month": 12,
+      "day": 2,
+      "race_name": "Tokyo Daishoten",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 52,
+      "year": 3,
+      "month": 2,
+      "day": 2,
+      "race_name": "February Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Diolite Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 57,
+      "year": 3,
+      "month": 5,
+      "day": 1,
+      "race_name": "Kashiwa Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Teio Sho",
+      "cond_type": 1,
+      "cond_value": 2
+    },
+    {
+      "order": 11,
+      "turn": 69,
+      "year": 3,
+      "month": 11,
+      "day": 1,
+      "race_name": "JBC Classic",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "furioso",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1079,
+    "ja": {
+      "self_intro": "フリオーソです。中央所属ではありません。船橋からの特別留学生です。必ず示してみせます…船橋の強さを",
+      "tagline": "揺るがぬ船橋愛。地方からの物静かな留学生",
+      "weight": "きっちり",
+      "shoes": "左：24.5cm 右：24.0cm",
+      "dorm": "一人暮らし",
+      "class": "高等部",
+      "ears": "波の音や潮風を感じるとご機嫌に揺れる",
+      "tail": "絆されそうな時、脚を叩き自分を叱咤する",
+      "strong": "船橋の観光案内（自作マップつき）",
+      "weak": "クラゲ",
+      "family": "家族のバースデーケーキは必ず梨タルト",
+      "secrets": [
+        "実は、にんじんはひと口かじれば船橋産かそれ以外かわかる。",
+        "実は、ひとり暮らしを始めてから飼いザリガニに話しかける回数が増えた。"
+      ]
+    },
+    "ko": {
+      "self_intro": "푸리오소입니다. 중앙 소속은 아닙니다. 후나바시에서 온 특별 유학생입니다. 반드시 보여 드리겠습니다… 후나바시의 강함을.",
+      "tagline": "흔들림 없는 후나바시 사랑. 지방에서 온 조용한 유학생",
+      "weight": "딱 맞음",
+      "shoes": "좌 : 24.5cm 우 : 24.0cm",
+      "dorm": "자취",
+      "class": "고등부",
+      "ears": "파도 소리나 바닷바람을 느끼면 기분 좋게 흔들린다",
+      "tail": "유대감이 생길 것 같을 때, 다리를 때리며 스스로를 질타한다",
+      "strong": "후나바시 관광 안내(직접 만든 지도 지참)",
+      "weak": "해파리",
+      "family": "가족 생일 케이크는 언제나 배 타르트",
+      "secrets": [
+        "사실은 당근을 한입 먹어 보면 후나바시산인지 아닌지 알 수 있다.",
+        "사실은 자취를 시작하면서 반려 가재에게 더 자주 말을 걸게 됐다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我是狂熱激昂，不隸屬中央。我是來自船橋的特別留學生。一定會讓大家見識……船橋的強大",
+      "tagline": "對船橋的愛無可動搖。來自地方的文靜留學生",
+      "weight": "毫無偏差",
+      "shoes": "左：24.5cm 右：24.0cm",
+      "dorm": "獨居",
+      "class": "高中部",
+      "ears": "聽見海浪聲或感受到海風時會愉快地搖晃",
+      "tail": "情緒快動搖時，會拍打雙腿喝斥自己",
+      "strong": "船橋觀光指南（附自製地圖）",
+      "weak": "水母",
+      "family": "家人的生日蛋糕一定是梨子塔",
+      "secrets": [
+        "其實她只要咬一口胡蘿蔔，就能知道是不是船橋產的。",
+        "其實她自從開始一個人生活後，和自己養的螯蝦說話的次數就變多了。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

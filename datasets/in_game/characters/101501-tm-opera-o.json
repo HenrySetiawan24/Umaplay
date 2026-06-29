@@ -1,0 +1,218 @@
+{
+  "charData": {
+    "url_name": "tm-opera-o",
+    "tid": "e",
+    "char_id": 1015,
+    "jp_name": "テイエムオペラオー",
+    "en_name": "TM Opera O",
+    "name_ko": "티엠 오페라 오",
+    "name_tw": "好歌劇",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Sora Tokui",
+    "va_ja": "徳井青空",
+    "va_ko": "토쿠이 소라",
+    "va_zh_tw": "徳井青空",
+    "va_link": "https://myanimelist.net/people/11361/Sora_Tokui",
+    "three_sizes": {
+      "b": 76,
+      "w": 55,
+      "h": 80
+    },
+    "birth_day": 13,
+    "birth_month": 3,
+    "birth_year": 1996,
+    "height": 156,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2018-05-17",
+      "races": 26,
+      "wins": 14,
+      "record": "14-6-3-3",
+      "earnings": 1835189000,
+      "active": "1998-2002"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1015_101501.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1015_101501.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 28,
+      "year": 2,
+      "month": 2,
+      "day": 2,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 5000
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 48,
+      "year": 2,
+      "month": 12,
+      "day": 2,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 2
+    },
+    {
+      "order": 9,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "tm-opera-o",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1015,
+    "ja": {
+      "self_intro": "はーっはっはっは！ボクこそが最も強く美しい“覇王”テイエムオペラオーさ！いざ、伝説を始めようじゃないか！",
+      "tagline": "尊大なる歌劇王。その哄笑は高らかに！",
+      "weight": "常に完璧（自称）",
+      "shoes": "左右ともに23.0cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "どんな言葉も賞賛に聞こえる",
+      "tail": "光を当てると煌めいてみえる",
+      "strong": "即興のオペラを披露すること",
+      "weak": "地味な作業",
+      "family": "美しい自分を生み育てた親を尊敬している",
+      "secrets": [
+        "実は、耳飾りのデザインを、1度だけ大きく変更したことがある。",
+        "実は、愛用の手鏡は小学生の頃から使い続けているもの。"
+      ]
+    },
+    "ko": {
+      "self_intro": "핫~핫핫하! 나야말로 가장 강하고도 아름다운 '패왕' 티엠 오페라 오다! 자, 전설을 시작해 보도록 할까!",
+      "tagline": "위대한 가극왕. 그 웃음소리 드높이!",
+      "weight": "(자칭) 항상 완벽",
+      "shoes": "좌우 모두 23.0cm",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "ears": "어떤 말이든 칭찬으로 듣는다.",
+      "tail": "빛을 비추면 빛나는 것처럼 보인다.",
+      "strong": "오페라 연기를 즉흥적으로 보여주는 것",
+      "weak": "눈에 띄지 않는 작업",
+      "family": "아름다운 자신을 낳고 키워주신 부모님을 존경한다.",
+      "secrets": [
+        "사실은 귀걸이 디자인을 한 번 크게 변경한 적이 있다.",
+        "사실은 애용하는 손거울은 초등학생일 때부터 계속 쓰던 것."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "哈～哈哈哈！我就是最強、最美的「霸王」好歌劇！來吧，讓我們開拓新的傳說！",
+      "tagline": "驕傲自大的歌劇王。大笑聲響徹雲霄！",
+      "weight": "總是完美（自稱）",
+      "shoes": "左右都是23.0cm",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "ears": "無論什麼話都能當成讚美",
+      "tail": "被光線照到會看起來閃閃發亮",
+      "strong": "表演即興歌劇",
+      "weak": "不起眼的工作",
+      "family": "尊敬著把自己生育地如此美麗的父母",
+      "secrets": [
+        "其實她曾大幅變更過一次耳飾的設計。",
+        "其實她常用的手持鏡是從小學時就一直用到現在。"
+      ]
+    },
+    "en": {
+      "self_intro": "Muahahaha! Feast your eyes upon your beautiful and powerful Overlord, T.M. Opera O! My legend... begins now!",
+      "tagline": "The pompous star of the stage. Her laugh fills the room!",
+      "weight": "Perpetually perfect (according to herself)",
+      "shoes": "Left and right: 23.0cm",
+      "dorm": "Ritto Dormitory",
+      "class": "Junior Division",
+      "ears": "Hear everything as a compliment",
+      "tail": "Seems to glisten when light hits it",
+      "strong": "Impromptu opera performances",
+      "weak": "Boring tasks",
+      "family": "She's thankful to her parents for making a beautiful daughter like her",
+      "secrets": [
+        "Did you know? She's made just one huge change to her ear decoration in the past.",
+        "Did you know? She's been using the same hand mirror daily since elementary school."
+      ]
+    }
+  }
+}

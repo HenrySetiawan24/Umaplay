@@ -1,0 +1,192 @@
+{
+  "charData": {
+    "url_name": "aston-machan",
+    "tid": "1o",
+    "char_id": 1087,
+    "jp_name": "アストンマーチャン",
+    "en_name": "Aston Machan",
+    "name_ko": "애스턴 마짱",
+    "name_tw": "奧斯頓真弓",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Honoka Inoue",
+    "va_ja": "井上ほの花",
+    "va_ko": "이노우에 호노카",
+    "va_zh_tw": "井上ほの花",
+    "va_link": "https://myanimelist.net/people/42268/Honoka_Inoue",
+    "three_sizes": {
+      "b": 86,
+      "w": 55,
+      "h": 80
+    },
+    "birth_day": 5,
+    "birth_month": 3,
+    "birth_year": 2004,
+    "height": 152,
+    "sex": 2,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2008-04-21",
+      "races": 11,
+      "wins": 5,
+      "record": "5-2-0-4",
+      "earnings": 248997000,
+      "active": "2006-2008"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1087_108701.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1087_108701.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 21,
+      "year": 1,
+      "month": 11,
+      "day": 1,
+      "race_name": "Fantasy Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "Hanshin Juvenile Fillies",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 29,
+      "year": 2,
+      "month": 3,
+      "day": 1,
+      "race_name": "Fillies' Revue",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Oka Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 6,
+      "turn": 42,
+      "year": 2,
+      "month": 9,
+      "day": 2,
+      "race_name": "Sprinters Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 7,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Takamatsunomiya Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 66,
+      "year": 3,
+      "month": 9,
+      "day": 2,
+      "race_name": "Sprinters Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "aston-machan",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1087,
+    "ja": {
+      "self_intro": "マーちゃんです。アストンマーチャン。いずれ世界のマスコットになります。その瞳でまっすぐ見ていてくださいね",
+      "tagline": "目指せマスコット。どこか儚い不思議ちゃん",
+      "weight": "にんじん〇本分",
+      "shoes": "左右ともに22.0cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "イヤリングをよくなくし、今ので9代目",
+      "tail": "グッズ化したときに映えるアレンジを模索中",
+      "strong": "生物観察、ダーツ",
+      "weak": "口笛を吹くこと",
+      "family": "ソファで眠る母をベッドまで運ぶ係だった",
+      "secrets": [
+        "実は、モノマネが得意だけどあまり見せてくれない。",
+        "実は、妹のおませな恋バナを聞いてあげるのが密かな楽しみ。"
+      ]
+    },
+    "ko": {
+      "self_intro": "마짱이에요. 애스턴 마짱. 언젠가 온 세상의 마스코트가 될 거예요. 그 눈동자로 똑바로 지켜봐 주세요.",
+      "tagline": "목표는 마스코트. 왠지 모르게 덧없어서 지켜 주고 싶어지는 사차원 소녀",
+      "weight": "당근 〇개 만큼",
+      "shoes": "좌우 모두 22.0cm",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "ears": "귀걸이를 잘 잃어버려서 지금 것이 아홉 번째",
+      "tail": "상품화됐을 때를 대비해 예뻐 보이는 어레인지를 모색 중",
+      "strong": "생물 관찰, 다트",
+      "weak": "휘파람 불기",
+      "family": "소파에서 자는 어머니를 침대까지 옮기는 담당이었다",
+      "secrets": [
+        "사실은 성대모사가 특기지만 잘 보여 주지는 않는다.",
+        "사실은 여동생의 조숙한 연애 이야기를 들어 주는 것이 남모를 취미다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我是小真──奧斯頓真弓。有一天將變成世界的吉祥物。請你一定要親眼見證喔。",
+      "tagline": "目標是成為吉祥物。有點虛幻的奇妙女孩",
+      "weight": "〇根胡蘿蔔的重量",
+      "shoes": "左右都是22.0cm",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "ears": "經常弄丟耳環，現在戴的是第九代",
+      "tail": "正在摸索商品化時該怎麼做才更上相",
+      "strong": "觀察生物、射飛鏢",
+      "weak": "吹口哨",
+      "family": "是負責把在沙發睡著的母親抱回床上的人",
+      "secrets": [
+        "其實她很會模仿，卻不太表演給人看。",
+        "其實聽妹妹商量早熟的戀愛話題，是她私底下的小樂趣。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

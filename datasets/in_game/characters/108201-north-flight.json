@@ -1,0 +1,200 @@
+{
+  "charData": {
+    "url_name": "north-flight",
+    "tid": "1j",
+    "char_id": 1082,
+    "jp_name": "ノースフライト",
+    "en_name": "North Flight",
+    "name_ko": "노스 플라이트",
+    "name_tw": "北方飛翔",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Maria Sashide",
+    "va_ja": "指出毬亜",
+    "va_ko": "사시데 마리아",
+    "va_zh_tw": "指出毬亜",
+    "va_link": "https://myanimelist.net/people/44059/Maria_Sashide",
+    "three_sizes": {
+      "b": 82,
+      "w": 51,
+      "h": 80
+    },
+    "birth_day": 12,
+    "birth_month": 4,
+    "birth_year": 1990,
+    "height": 156,
+    "sex": 2,
+    "rl": {
+      "country": "jp",
+      "races": 11,
+      "wins": 8,
+      "record": "11-8-2-0",
+      "earnings": 458094000,
+      "active": "1993-1994"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1082_108201.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1082_108201.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 33,
+      "year": 2,
+      "month": 5,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 7000
+    },
+    {
+      "order": 3,
+      "turn": 43,
+      "year": 2,
+      "month": 10,
+      "day": 1,
+      "race_name": "Fuchu Umamusume Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 4,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Shuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 5,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Takamatsunomiya Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Milers Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 7,
+      "turn": 59,
+      "year": 3,
+      "month": 6,
+      "day": 1,
+      "race_name": "Yasuda Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Swan Stakes",
+      "cond_type": 1,
+      "cond_value": 2
+    },
+    {
+      "order": 9,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Mile Championship",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "north-flight",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1082,
+    "ja": {
+      "self_intro": "はい、ノースフライトです！衣装とメイクとアクセサリーと、そしてたゆまぬ努力と。全てで磨いたわたしの輝き、見てください！",
+      "tagline": "輝きは磨くもの！きらめくファッショニスタ",
+      "weight": "成長中",
+      "shoes": "左右ともに24.5cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "丁寧な耳マッサージで血行をよくしている",
+      "tail": "アレンジパターンがいくつもある",
+      "strong": "コーディネート、ヨガ、神経衰弱",
+      "weak": "足裏マッサージ",
+      "family": "家族ぐるみで、お姉さんと付き合いがある",
+      "secrets": [
+        "実は、ガラス工芸家にも興味アリ。",
+        "実は、『お姉ちゃん』と出会う前はかなり甘え下手だった。"
+      ]
+    },
+    "ko": {
+      "self_intro": "네, 노스 플라이트예요! 의상과 메이크업과 액세서리와 꾸준한 노력. 전부 갈고닦은 저의 반짝임을 봐 주세요!",
+      "tagline": "매력은 갈고 닦는 것! 반짝이는 패셔니스타",
+      "weight": "성장 중",
+      "shoes": "좌우 모두 24.5cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "꼼꼼한 귀 마사지로 혈액 순환을 좋게 한다",
+      "tail": "어레인지 패턴이 여럿 있다",
+      "strong": "코디, 요가, 카드 짝맞추기",
+      "weak": "발바닥 마사지",
+      "family": "친한 언니와 가족 단위로 교류하고 있다",
+      "secrets": [
+        "사실은 유리 공예가에도 흥미가 있다.",
+        "사실은 『언니』와 만나기 전에는 어리광 부리는 게 상당히 서툴렀다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "嗨，我是北方飛翔！我喜歡服裝搭配、彩妝、飾品，以及堅持不懈的努力。還請看著我藉由這一切所琢磨出來的光芒！",
+      "tagline": "經過琢磨才能綻放光芒！閃耀的時尚達人",
+      "weight": "成長中",
+      "shoes": "左右都是24.5cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "仔細按摩耳部促進血液暢通",
+      "tail": "有多種造型變化模式",
+      "strong": "服飾穿搭、瑜珈、翻牌遊戲",
+      "weak": "腳底按摩",
+      "family": "全家人都與姐姐有過交流",
+      "secrets": [
+        "其實她也對成為玻璃藝術家很感興趣。",
+        "其實她在遇到「姐姐」前，非常不會撒嬌。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

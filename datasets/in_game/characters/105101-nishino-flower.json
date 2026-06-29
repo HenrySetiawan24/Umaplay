@@ -1,0 +1,218 @@
+{
+  "charData": {
+    "url_name": "nishino-flower",
+    "tid": "O",
+    "char_id": 1051,
+    "jp_name": "ニシノフラワー",
+    "en_name": "Nishino Flower",
+    "name_ko": "니시노 플라워",
+    "name_tw": "西野花",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Haruna Kawai",
+    "va_ja": "河井晴菜",
+    "va_ko": "카와이 하루나",
+    "va_zh_tw": "河井晴菜",
+    "va_link": "https://www.animenewsnetwork.com/encyclopedia/people.php?id=134667",
+    "three_sizes": {
+      "b": 67,
+      "w": 48,
+      "h": 70
+    },
+    "birth_day": 19,
+    "birth_month": 4,
+    "birth_year": 1989,
+    "height": 135,
+    "sex": 2,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2020-02-05",
+      "races": 16,
+      "wins": 7,
+      "record": "7-1-3-5",
+      "earnings": 469706600,
+      "active": "1991-1993"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1051_105101.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1051_105101.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "Hanshin Juvenile Fillies",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Oka Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Japanese Oaks",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 5,
+      "turn": 42,
+      "year": 2,
+      "month": 9,
+      "day": 2,
+      "race_name": "Sprinters Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Takamatsunomiya Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Milers Cup",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 59,
+      "year": 3,
+      "month": 6,
+      "day": 1,
+      "race_name": "Yasuda Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 66,
+      "year": 3,
+      "month": 9,
+      "day": 2,
+      "race_name": "Sprinters Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "nishino-flower",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1051,
+    "ja": {
+      "self_intro": "こんにちは、ニシノフラワーです。みなさんに頼ってもらえるくらい、素敵なおねえさんウマ娘になりたいです…！",
+      "tagline": "花咲く笑顔♪気配り上手なウマ娘",
+      "weight": "増減なし",
+      "shoes": "左右ともに18.5cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "さわると安心感に包まれ、癒されると評判",
+      "tail": "太陽と、四季折々の花の香りがする",
+      "strong": "家事全般、園芸",
+      "weak": "炭酸ジュース",
+      "family": "両親からもらったじょうろは今も宝物",
+      "secrets": [
+        "実は、お手玉なら永遠に続けられる。",
+        "実は、いい香りの消しゴムを何個もコレクションしている。"
+      ]
+    },
+    "ko": {
+      "self_intro": "안녕하세요, 니시노 플라워입니다. 여러분이 의지할 수 있을 만큼, 멋진 언니 우마무스메가 되고 싶어요…!",
+      "tagline": "꽃피는 미소♪ 사려 깊은 우마무스메",
+      "weight": "변화 없음",
+      "shoes": "좌우 모두 18.5cm",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "ears": "만지면 안도감에 휩싸이며 힐링 받을 수 있다고 한다",
+      "tail": "햇살내음과 사계절 다양한 꽃의 향기가 난다",
+      "strong": "대부분의 집안일, 원예",
+      "weak": "탄산 주스",
+      "family": "부모님이 주신 물뿌리개는 지금도 보물",
+      "secrets": [
+        "사실은 저글링을 영원히 계속할 수 있다.",
+        "사실은 향이 좋은 지우개를 여러 개 수집하고 있다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "你好，我是西野花。我希望能成為受大家依賴又完美的大姐姐賽馬娘……！",
+      "tagline": "如花盛開的笑容♪體貼入微的賽馬娘",
+      "weight": "無增減",
+      "shoes": "左右都是18.5cm",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "ears": "大家都說摸了後會充滿安心感並被療癒",
+      "tail": "散發出太陽與四季的花香",
+      "strong": "所有家事、園藝",
+      "weak": "氣泡果汁",
+      "family": "雙親送的澆花器至今仍是寶物",
+      "secrets": [
+        "其實她可以一直拋接沙包不會掉下來。",
+        "其實她收藏了好幾個有香味的橡皮擦。"
+      ]
+    },
+    "en": {
+      "self_intro": "Hello. My name is Nishino Flower. My dream is to become the kind of Umamusume that everyone can depend on!",
+      "tagline": "Her smile brightens the room. She's a very thoughtful and kind Umamusume.",
+      "weight": "No change",
+      "shoes": "Left and right: 18.5cm",
+      "dorm": "Ritto Dormitory",
+      "class": "Junior Division",
+      "ears": "Known to be comforting to those who touch them",
+      "tail": "Smells like the sun and the flowers from each season",
+      "strong": "Housework, gardening",
+      "weak": "Carbonated drinks",
+      "family": "Still treasures the watering can her parents gave her",
+      "secrets": [
+        "Did you know? She can juggle forever.",
+        "Did you know? She has a collection of the finest-smelling erasers."
+      ]
+    }
+  }
+}

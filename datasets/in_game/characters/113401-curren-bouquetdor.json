@@ -1,0 +1,180 @@
+{
+  "charData": {
+    "url_name": "curren-bouquetdor",
+    "tid": "25",
+    "char_id": 1134,
+    "jp_name": "カレンブーケドール",
+    "en_name": "Curren Bouquetd'or",
+    "name_ko": "카렌 부케도르",
+    "name_tw": "機伶金花",
+    "playable": true,
+    "active": true,
+    "va_en": "Anju Oda",
+    "va_ja": "小田杏樹",
+    "va_ko": "오다 안쥬",
+    "va_zh_tw": "小田杏樹",
+    "va_link": "https://www.animenewsnetwork.com/encyclopedia/people.php?id=281597",
+    "three_sizes": {
+      "b": 78,
+      "w": 53,
+      "h": 77
+    },
+    "birth_day": 23,
+    "birth_month": 4,
+    "birth_year": 2016,
+    "height": 153,
+    "sex": 2,
+    "rl": {
+      "country": "jp",
+      "races": 17,
+      "wins": 2,
+      "record": "17-2-7-3",
+      "earnings": 458057000,
+      "active": "2018-2021"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1134_113401.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1134_113401.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 3000
+    },
+    {
+      "order": 3,
+      "turn": 32,
+      "year": 2,
+      "month": 4,
+      "day": 2,
+      "race_name": "Sweetpea Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Japanese Oaks",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Shuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Kyoto Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 66,
+      "year": 3,
+      "month": 9,
+      "day": 2,
+      "race_name": "All Comers",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 3
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "curren-bouquetdor",
+    "images": {
+      "uniform": true,
+      "racing": true
+    }
+  },
+  "profileData": {
+    "char_id": 1134,
+    "ja": {
+      "self_intro": "カレンブーケドールです。好きなことは、お花を綺麗に飾ること。あと、そうですね…争いごとは――少し、苦手かもしれません",
+      "tagline": "願いと優しさを束ねて駆ける可憐なる華",
+      "weight": "調和のとれた推移",
+      "shoes": "左右ともに23.0cm",
+      "dorm": "美浦寮",
+      "class": "中等部",
+      "ears": "耳先には花の香りのオイルをすこし",
+      "tail": "近くの人と動きがシンクロしがち",
+      "strong": "バームづくり、しっぽや髪の編みこみ",
+      "weak": "ぱりぱりのポテトチップス、ハウリング",
+      "family": "母とおでかけの日はいつも快晴",
+      "secrets": [
+        "実は、しいたけの裏側が苦手。",
+        "実は、バランスゲームが異様に得意。"
+      ]
+    },
+    "ko": {
+      "secrets": [
+        "사실은 표고버섯 뒷면을 싫어한다."
+      ]
+    },
+    "zh_tw": {
+      "secrets": [
+        "其實她很怕香菇傘背的模樣。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

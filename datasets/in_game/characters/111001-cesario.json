@@ -1,0 +1,197 @@
+{
+  "charData": {
+    "url_name": "cesario",
+    "tid": "1K",
+    "char_id": 1110,
+    "jp_name": "シーザリオ",
+    "en_name": "Cesario",
+    "name_ko": "세자리오",
+    "name_tw": "西薩里奧",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Haruka Satou",
+    "va_ja": "佐藤榛夏",
+    "va_ko": "사토 하루카",
+    "va_zh_tw": "佐藤榛夏",
+    "va_link": "https://myanimelist.net/people/81829/Haruka_Satou",
+    "three_sizes": {
+      "b": 80,
+      "w": 53,
+      "h": 84
+    },
+    "birth_day": 31,
+    "birth_month": 3,
+    "birth_year": 2002,
+    "height": 167,
+    "sex": 2,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2021-02-27",
+      "races": 6,
+      "wins": 5,
+      "record": "6-5-1-0",
+      "earnings": 228296000,
+      "earnings_other": [
+        [
+          450000,
+          "USD"
+        ]
+      ],
+      "active": "2004-2005"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1110_111001.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1110_111001.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 30,
+      "year": 2,
+      "month": 3,
+      "day": 2,
+      "race_name": "Flower Cup",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Oka Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Japanese Oaks",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Shuka Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 6,
+      "turn": 57,
+      "year": 3,
+      "month": 5,
+      "day": 1,
+      "race_name": "Victoria Mile",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 69,
+      "year": 3,
+      "month": 11,
+      "day": 1,
+      "race_name": "Queen Elizabeth II Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "cesario",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1110,
+    "ja": {
+      "self_intro": "我が宿願は、ティアラを戴冠し輝かしき未来の礎となることです。――どうぞ、よろしくお願いしますね♪",
+      "tagline": "峻厳の士にして聖母――2つの顔を持つウマ娘",
+      "weight": "微減（レース前で節制気味）",
+      "shoes": "左右ともに24.5cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "甘えてもらえないと、時折イカ耳になる",
+      "tail": "海洋深層水のシャンプーを使っている",
+      "strong": "歌、手分量、変装",
+      "weak": "悲恋物語、冬の朝",
+      "family": "にんじんグラッセは母直伝のレシピ",
+      "secrets": [
+        "実は、コメディ劇が結構好き。",
+        "実は、フェーヴ集めが密かな趣味。"
+      ]
+    },
+    "ko": {
+      "self_intro": "저의 숙원은 티아라를 대관하여 빛나는 미래의 초석이 되는 것입니다. …앞으로 잘 부탁드려요♪",
+      "tagline": "준엄한 무인이자 성모… 두 얼굴의 우마무스메",
+      "weight": "약간 감소(레이스 전이라서 절제 중)",
+      "shoes": "좌우 모두 24.5cm",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "ears": "어리광을 받아 주지 않으면 가끔 귀를 뒤로 젖힌다",
+      "tail": "해양 심층수 샴푸를 사용한다",
+      "strong": "노래, 손대중, 변장",
+      "weak": "비련의 이야기, 겨울 아침",
+      "family": "당근 글라세는 어머니께 직접 배운 레시피",
+      "secrets": [
+        "사실은 코미디 연극을 꽤 좋아한다.",
+        "사실은 페브 수집이 은밀한 취미."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我的宿願，是戴上后冠，成為光輝未來的基礎。──還請多多指教囉♪",
+      "tagline": "既為嚴肅之士，又如慈愛的聖母――擁有兩副面孔的賽馬娘",
+      "weight": "微減（競賽前略顯節制）",
+      "shoes": "左右都是24.5cm",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "ears": "若無法被人依賴，偶爾會垂下耳朵",
+      "tail": "使用添加了海洋深層水的洗髮精",
+      "strong": "演唱、用手掂量、變裝",
+      "weak": "結局淒美的愛情故事、冬天的早晨",
+      "family": "糖漬胡蘿蔔是母親親自傳授的食譜",
+      "secrets": [
+        "其實她相當喜歡喜劇。",
+        "其實她不為人知的興趣是收集國王餅的瓷偶。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

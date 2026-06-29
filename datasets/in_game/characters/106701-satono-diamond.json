@@ -1,0 +1,234 @@
+{
+  "charData": {
+    "url_name": "satono-diamond",
+    "tid": "14",
+    "char_id": 1067,
+    "jp_name": "サトノダイヤモンド",
+    "en_name": "Satono Diamond",
+    "name_ko": "사토노 다이아몬드",
+    "name_tw": "里見光鑽",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Hina Tachibana",
+    "va_ja": "立花日菜",
+    "va_ko": "타치바나 히나",
+    "va_zh_tw": "立花日菜",
+    "va_link": "https://myanimelist.net/people/49788/Hina_Tachibana",
+    "three_sizes": {
+      "b": 87,
+      "w": 54,
+      "h": 84
+    },
+    "birth_day": 30,
+    "birth_month": 1,
+    "birth_year": 2013,
+    "height": 158,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": null,
+      "races": 18,
+      "wins": 8,
+      "record": "8-1-3-6",
+      "earnings": 865124000,
+      "earnings_other": [
+        [
+          9100,
+          "EUR"
+        ]
+      ],
+      "active": "2015-2018"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1067_106701.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1067_106701.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 5,
+      "turn": 48,
+      "year": 2,
+      "month": 12,
+      "day": 2,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Osaka Hai",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 67,
+      "year": 3,
+      "month": 10,
+      "day": 1,
+      "race_name": "Kyoto Daishoten",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "satono-diamond",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1067,
+    "ja": {
+      "self_intro": "サトノダイヤモンドと申します。最初から決まった運命なんてありません。未来は、私の走りで輝かせてみせます！",
+      "tagline": "芯の強さはダイヤ級！ジンクスに挑むお嬢様",
+      "weight": "増減なしですよ？",
+      "shoes": "左右ともに21.0㎝",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "透明感のあるツヤを常に纏っている",
+      "tail": "至高の触り心地（キタサンブラック・談）",
+      "strong": "約束を忘れないこと、クレーンゲーム",
+      "weak": "雨、人混みを歩くこと",
+      "family": "父は名士であり、ウマ娘界の慈善家でもある",
+      "secrets": [
+        "実は、お父さまからもらったジュークボックスが宝物。",
+        "実は、ラーメンが上手くすすれない。"
+      ]
+    },
+    "ko": {
+      "self_intro": "사토노 다이아몬드라고 합니다. 운명은 처음부터 정해지는 것이 아니에요. 저의 달리기로 미래를 빛나게 하겠습니다!",
+      "tagline": "강한 심지는 다이아급! 징크스에 도전하는 소녀",
+      "weight": "그대로예요~",
+      "shoes": "좌우 모두 21.0cm",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "ears": "항상 투명한 윤기가 난다",
+      "tail": "촉감이 매우 좋다 (키타산 블랙 왈)",
+      "strong": "약속을 잘 기억하는 것, 인형 뽑기",
+      "weak": "비, 인파 속을 다니기",
+      "family": "아버지는 유명인이며 우마무스메 계의 자선가이기도 하다",
+      "secrets": [
+        "사실은 아버지한테 받은 주크박스가 보물이다.",
+        "사실은 라멘 면치기를 잘 못한다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我叫里見光鑽。沒有命運是一開始就決定好的，未來會被我奔馳的光輝所照亮！",
+      "tagline": "內心的強度是鑽石等級！挑戰魔咒的大小姐",
+      "weight": "沒有增減吧？",
+      "shoes": "左右都是21.0cm",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "ears": "總是帶著具透明感的光澤",
+      "tail": "有著最棒的觸感（北部玄駒經驗談）",
+      "strong": "不會忘記約定、夾娃娃機",
+      "weak": "下雨、在擁擠人群中行走",
+      "family": "父親是賽馬娘界的知名慈善人士",
+      "secrets": [
+        "其實她把父親給的點唱機當成寶物。",
+        "其實她無法一氣呵成地把拉麵吸進嘴裡。"
+      ]
+    },
+    "en": {
+      "self_intro": "My name is Satono Diamond. There's no such thing as fate. I intend to race my way into a bright shining future of my own making!",
+      "tagline": "Possesses a will harder than diamonds! She can handle any jinx!",
+      "weight": "Same as before, okay?",
+      "shoes": "Left and right: 21.0cm",
+      "dorm": "Ritto Dormitory",
+      "class": "Junior Division",
+      "ears": "Always have a glossy sheen to them",
+      "tail": "Perfect to the touch (according to Kitasan Black)",
+      "strong": "Never forgetting plans, claw machines",
+      "weak": "Rain, walking through crowds",
+      "family": "Her father is a prominent businessman known for his philanthropic contributions to the racing world",
+      "secrets": [
+        "Did you know? Her most prized possession is the jukebox her father gave her.",
+        "Did you know? She's not very good at slurping up ramen noodles."
+      ]
+    }
+  }
+}

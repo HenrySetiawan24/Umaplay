@@ -1,0 +1,205 @@
+{
+  "charData": {
+    "url_name": "gran-alegria",
+    "tid": "22",
+    "char_id": 1131,
+    "jp_name": "グランアレグリア",
+    "en_name": "Gran Alegria",
+    "name_ko": "그란 알레그리아",
+    "name_tw": "放聲歡呼",
+    "playable": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Hina Natsume",
+    "va_ja": "夏目妃菜",
+    "va_ko": "나츠메 히나",
+    "va_zh_tw": "夏目妃菜",
+    "va_link": "https://myanimelist.net/people/58350/Hina_Natsume",
+    "three_sizes": {
+      "b": 84,
+      "w": 55,
+      "h": 85
+    },
+    "birth_day": 24,
+    "birth_month": 1,
+    "birth_year": 2016,
+    "height": 160,
+    "sex": 2,
+    "rl": {
+      "country": "jp",
+      "races": 15,
+      "wins": 9,
+      "record": "15-9-2-2",
+      "earnings": 1073813000,
+      "active": "2018-2021"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1131_113101.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1131_113101.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "Asahi Hai Futurity Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Oka Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 33,
+      "year": 2,
+      "month": 5,
+      "day": 1,
+      "race_name": "NHK Mile Cup",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 48,
+      "year": 2,
+      "month": 12,
+      "day": 2,
+      "race_name": "Hanshin Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 6,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Takamatsunomiya Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 59,
+      "year": 3,
+      "month": 6,
+      "day": 1,
+      "race_name": "Yasuda Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 66,
+      "year": 3,
+      "month": 9,
+      "day": 2,
+      "race_name": "Sprinters Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Mile Championship",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "gran-alegria",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true
+    }
+  },
+  "profileData": {
+    "char_id": 1131,
+    "ja": {
+      "self_intro": "はいっ、グランアレグリアです！0.75マイルでも1.25マイルでも未来のマイル女王は負けませんっ！",
+      "tagline": "可能性は無限大マイル！最強マイルウマ娘",
+      "weight": "10マイルくらい成長中！",
+      "shoes": "左：24.0cm 右：24.5cm",
+      "dorm": "美浦寮",
+      "class": "中等部",
+      "ears": "マッサージされると爆速で眠くなる",
+      "tail": "眠る前は赤いリボンで毛先までまとめる",
+      "strong": "運動全般、ソフトクリームを綺麗に巻くこと",
+      "weak": "深海魚、静かな場所、かくれんぼ",
+      "family": "家族全員が英語で話す『英語の日』がある",
+      "secrets": [
+        "実は、一番かっこいいと思っている漢字は『哩』。",
+        "実は、マイルだと思ったら海里だったときちょっとがっかりする。"
+      ]
+    },
+    "ko": {
+      "self_intro": "네, 그란 알레그리아예요! 0.75마일이든 1.25마일이든 미래의 마일 여왕은 지지 않아요!",
+      "tagline": "가능성은 무한대 마일! 최강 마일 우마무스메",
+      "weight": "10마일 정도 성장 중!",
+      "shoes": "좌 : 24.0cm 우 : 24.5cm",
+      "dorm": "미호 생활관",
+      "class": "중등부",
+      "ears": "마시지를 받으면 엄청 빨리 잠든다",
+      "tail": "잠자기 전에는 빨간 리본으로 털끝까지 모아 정리한다",
+      "strong": "운동 전반, 소프트 아이스크림을 예쁘게 쌓는 것",
+      "weak": "심해어, 조용한 장소, 숨바꼭질",
+      "family": "가족 모두가 영어로 말하는 『영어의 날』이 있다",
+      "secrets": [
+        "사실은 가장 멋지다고 생각하는 한자는 『哩』."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "嗨，我是放聲歡呼！不論是0.75哩或是1.25哩，未來的一哩女王是不會輸的！",
+      "tagline": "可能性無限多哩！最強一哩賽馬娘",
+      "weight": "10哩左右成長中！",
+      "shoes": "左：24.0cm 右：24.5cm",
+      "dorm": "美浦宿舍",
+      "class": "國中部",
+      "ears": "一被按摩就會以驚人的速度睡著",
+      "tail": "睡前會用紅色緞帶將尾巴的毛髮全部綁起來",
+      "strong": "各種運動、擠出漂亮的霜淇淋",
+      "weak": "深海魚、安靜的地方、捉迷藏",
+      "family": "家裡有「英語日」，全家人都會用英語交談",
+      "secrets": [
+        "其實她認為最帥氣的漢字是「哩」。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

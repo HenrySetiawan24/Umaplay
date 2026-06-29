@@ -1,0 +1,191 @@
+{
+  "charData": {
+    "url_name": "air-messiah",
+    "tid": "1L",
+    "char_id": 1111,
+    "jp_name": "エアメサイア",
+    "en_name": "Air Messiah",
+    "name_ko": "에어 메사이어",
+    "name_tw": "空中彌賽亞",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Yuuna Nemoto",
+    "va_ja": "根本優奈",
+    "va_ko": "네모토 유나",
+    "va_zh_tw": "根本優奈",
+    "va_link": "https://myanimelist.net/people/55048/Yuuna_Nemoto",
+    "three_sizes": {
+      "b": 83,
+      "w": 56,
+      "h": 81
+    },
+    "birth_day": 4,
+    "birth_month": 2,
+    "birth_year": 2002,
+    "height": 162,
+    "sex": 2,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2014-09-12",
+      "races": 12,
+      "wins": 4,
+      "record": "12-4-4-2",
+      "earnings": 335538000,
+      "active": "2004-2006"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1111_111101.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1111_111101.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 27,
+      "year": 2,
+      "month": 2,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 5000
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Oka Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Japanese Oaks",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Shuka Sho",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 6,
+      "turn": 45,
+      "year": 2,
+      "month": 11,
+      "day": 1,
+      "race_name": "Queen Elizabeth II Cup",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 57,
+      "year": 3,
+      "month": 5,
+      "day": 1,
+      "race_name": "Victoria Mile",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 69,
+      "year": 3,
+      "month": 11,
+      "day": 1,
+      "race_name": "Queen Elizabeth II Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "air-messiah",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1111,
+    "ja": {
+      "self_intro": "目指すは強くて華麗な…母のようなウマ娘。エアメサイア――継がれたものの偉大さを、繋がる未来の尊さを、私が証明してみせます",
+      "tagline": "母への想いを背負い、着実に…悲願達成へ",
+      "weight": "規則正しく",
+      "shoes": "左：24.0cm 右：24.5cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "心を許している時ほど実は柔らかい",
+      "tail": "母譲りの毛並みのよさ",
+      "strong": "黒板掃除の際、チョーク跡を一切残さず消す",
+      "weak": "とっさのウインク",
+      "family": "全員、何らかの形で日記を書き留めている",
+      "secrets": [
+        "実は、水を入れたバケツを頭に乗せてもスタスタ歩ける。",
+        "実は、ピザにパイナップルなら、まあアリ。"
+      ]
+    },
+    "ko": {
+      "self_intro": "목표는 강하고 화려한… 어머니와 같은 우마무스메. 에어 메사이어… 계승의 위대함을, 이어지는 미래의 고귀함을, 제가 증명해 내겠어요.",
+      "tagline": "어머니를 향한 마음을 품고, 착실하게…염원을 이루기 위해.",
+      "weight": "규칙적",
+      "shoes": "좌 : 24.0cm 우 : 24.5cm",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "ears": "마음을 허락할수록 부드러워진다",
+      "tail": "어머니에게 물려받은 부드러운 모질",
+      "strong": "분필 자국을 전혀 남기지 않고 칠판 지우기",
+      "weak": "순간적인 윙크",
+      "family": "가족 전원이 어떤 형태로든 일기를 쓰고 있다",
+      "secrets": [
+        "사실은 물이 담긴 양동이를 머리에 얹어도 빠르게 걸을 수 있다.",
+        "사실은 파인애플 피자도 뭐, 괜찮다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "目標是像母親那樣……強大又華麗的賽馬娘。我是空中彌賽亞──我將親自證明那份傳承的偉大與延續未來的可貴",
+      "tagline": "背負著對母親的崇敬，一步一腳印……朝著實現宿願邁進",
+      "weight": "循規蹈矩",
+      "shoes": "左：24.0cm 右：24.5cm",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "ears": "越是敞開心扉的時候越柔軟",
+      "tail": "繼承了母親的柔順毛髮",
+      "strong": "在擦黑板時，能將粉筆痕跡擦得一乾二淨",
+      "weak": "即興拋媚眼",
+      "family": "每個人都會以某種方式寫日記",
+      "secrets": [
+        "其實她就算頂著裝滿水的水桶也能走得很輕快。",
+        "其實她覺得披薩有鳳梨可以給過。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

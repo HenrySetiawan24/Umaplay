@@ -1,0 +1,201 @@
+{
+  "charData": {
+    "url_name": "sakura-laurel",
+    "tid": "1d",
+    "char_id": 1076,
+    "jp_name": "サクラローレル",
+    "en_name": "Sakura Laurel",
+    "name_ko": "사쿠라 로렐",
+    "name_tw": "櫻花桂冠",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Mizuki Mano",
+    "va_ja": "真野美月",
+    "va_ko": "마노 미즈키",
+    "va_zh_tw": "真野美月",
+    "va_link": "https://www.animenewsnetwork.com/encyclopedia/people.php?id=212111",
+    "three_sizes": {
+      "b": 78,
+      "w": 54,
+      "h": 80
+    },
+    "birth_day": 8,
+    "birth_month": 5,
+    "birth_year": 1991,
+    "height": 162,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2020-01-24",
+      "races": 22,
+      "wins": 9,
+      "record": "9-5-4-4",
+      "earnings": 626890000,
+      "active": "1994-1997"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1076_107601.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1076_107601.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 25,
+      "year": 2,
+      "month": 1,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 3000
+    },
+    {
+      "order": 3,
+      "turn": 32,
+      "year": 2,
+      "month": 4,
+      "day": 2,
+      "race_name": "",
+      "cond_type": 2,
+      "cond_value": 3
+    },
+    {
+      "order": 4,
+      "turn": 46,
+      "year": 2,
+      "month": 11,
+      "day": 2,
+      "race_name": "",
+      "cond_type": 2,
+      "cond_value": 3
+    },
+    {
+      "order": 5,
+      "turn": 49,
+      "year": 3,
+      "month": 1,
+      "day": 1,
+      "race_name": "Nakayama Kimpai",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 6,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "sakura-laurel",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1076,
+    "ja": {
+      "self_intro": "サクラローレルです。目指すのは、世界。凱旋門賞です！――ふふ、今はただの『夢』ですけど…いつか必ず実現してみせます",
+      "tagline": "穏やかにして不屈。冬を越えて咲くサクラ",
+      "weight": "文句なし",
+      "shoes": "左右ともに23.0cm",
+      "dorm": "美浦寮",
+      "class": "高等部",
+      "ears": "ラッパの音が聞こえるとピンと背筋が伸びる",
+      "tail": "母そっくりの毛質で、とてもふわふわ",
+      "strong": "サラダはわんこそばのように食べられる",
+      "weak": "飛行機の離陸の瞬間（それ以外は平気）",
+      "family": "オムレツとガレットは父直伝のレシピがある",
+      "secrets": [
+        "実は、ひとりで観光できる程度にはフランス語を勉強している。",
+        "実は、けっこう焼肉奉行。"
+      ]
+    },
+    "ko": {
+      "self_intro": "사쿠라 로렐입니다. 목표는 세계. 개선문상이에요! …후후, 지금은 그저 『꿈』 이지만요… 언젠가 반드시 실현시키겠어요.",
+      "tagline": "온화하면서도 불굴. 겨울을 넘어서 피는 벚꽃",
+      "weight": "딱 좋음",
+      "shoes": "좌우 모두 23.0cm",
+      "dorm": "미호 생활관",
+      "class": "고등부",
+      "ears": "나팔 소리가 들리면 등이 팟하고 쭉 펴진다",
+      "tail": "어머니와 똑 닮은 모질로, 무척이나 폭신폭신",
+      "strong": "샐러드는 얼마든지 계속 먹을 수 있다",
+      "weak": "비행기가 이륙하는 순간(그때 말고는 괜찮음)",
+      "family": "오믈렛과 갈레트는 아버지가 직접 전수한 레시피가 있다",
+      "secrets": [
+        "사실은 혼자서 관광할 수 있는 수준의 프랑스어를 습득했다.",
+        "사실은 고기 구울 때 상당히 진심인 편."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我是櫻花桂冠。我的目標是世界，也就是凱旋門賞！──呵呵，雖然現在還只是「夢想」……但總有一天我一定會實現。",
+      "tagline": "穩重且絕不屈服，猶如寒冬過後綻放的櫻花",
+      "weight": "無可挑剔",
+      "shoes": "左右都是23.0cm",
+      "dorm": "美浦宿舍",
+      "class": "高中部",
+      "ears": "聽見喇叭的聲音時會豎起來",
+      "tail": "毛質跟母親一樣，柔軟又蓬鬆",
+      "strong": "可以用吃碗子蕎麥麵的方式吃沙拉",
+      "weak": "飛機起飛的瞬間（其他時候沒問題）",
+      "family": "有父親親自傳授的歐姆蛋與鹹可麗餅食譜",
+      "secrets": [
+        "其實她法文的程度已經到了可以獨自觀光的水準。",
+        "其實她一上烤肉桌就會變成烤肉大隊長。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

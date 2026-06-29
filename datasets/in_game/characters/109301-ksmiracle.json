@@ -1,0 +1,242 @@
+{
+  "charData": {
+    "url_name": "ksmiracle",
+    "tid": "1u",
+    "char_id": 1093,
+    "jp_name": "ケイエスミラクル",
+    "en_name": "K.S.Miracle",
+    "name_ko": "케이에스 미라클",
+    "name_tw": "喜嘉奇蹟",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Hinata Satou",
+    "va_ja": "佐藤日向",
+    "va_ko": "사토 히나타",
+    "va_zh_tw": "佐藤日向",
+    "va_link": "https://myanimelist.net/people/30917/Hinata_Satou",
+    "three_sizes": {
+      "b": 79,
+      "w": 51,
+      "h": 77
+    },
+    "birth_day": 16,
+    "birth_month": 3,
+    "birth_year": 1988,
+    "height": 156,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "1991-12-15",
+      "races": 10,
+      "wins": 5,
+      "record": "5-2-1-2",
+      "earnings": 134226000,
+      "active": "1991-1991"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1093_109301.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1093_109301.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 32,
+      "year": 2,
+      "month": 4,
+      "day": 2,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 5000
+    },
+    {
+      "order": 3,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Aoi Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 36,
+      "year": 2,
+      "month": 6,
+      "day": 2,
+      "race_name": "Hakodate Sprint Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 5,
+      "turn": 40,
+      "year": 2,
+      "month": 8,
+      "day": 2,
+      "race_name": "Keeneland Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 6,
+      "turn": 41,
+      "year": 2,
+      "month": 9,
+      "day": 1,
+      "race_name": "Centaur Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 7,
+      "turn": 42,
+      "year": 2,
+      "month": 9,
+      "day": 2,
+      "race_name": "Sprinters Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 42,
+      "year": 2,
+      "month": 9,
+      "day": 2,
+      "race_name": "",
+      "cond_type": 12,
+      "cond_value": 0
+    },
+    {
+      "order": 9,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Swan Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 46,
+      "year": 2,
+      "month": 11,
+      "day": 2,
+      "race_name": "Mile Championship",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 11,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Takamatsunomiya Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 12,
+      "turn": 59,
+      "year": 3,
+      "month": 6,
+      "day": 1,
+      "race_name": "Yasuda Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 13,
+      "turn": 66,
+      "year": 3,
+      "month": 9,
+      "day": 2,
+      "race_name": "Sprinters Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "ksmiracle",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1093,
+    "ja": {
+      "self_intro": "…おれは、ケイエスミラクルです。この命をくれた、みんなに報いて…必ず、奇跡を起こします",
+      "tagline": "感謝のしるしに奇跡を。優しく穏やかなウマ娘",
+      "weight": "スマート",
+      "shoes": "左：22.5cm右：22.0cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "笑い声が聞こえると少しだけ揺れる",
+      "tail": "せっけんの香りがする",
+      "strong": "道案内、耳コピ",
+      "weak": "濃すぎる味付け、サイレンの音",
+      "family": "両親と話す際は少しだけ言葉数が多くなる",
+      "secrets": [
+        "実は、好きな絵本の影響で白鳥モチーフの持ち物が多い。",
+        "実は、寝言がけっこう大きい。"
+      ]
+    },
+    "ko": {
+      "self_intro": "…저는 케이에스 미라클입니다. 이 목숨을 주신 모두에게 보답해서… 반드시, 기적을 일으키겠습니다.",
+      "tagline": "감사의 증표로 기적을.  다정하고 온화한 우마무스메",
+      "weight": "스마트하게 관리",
+      "shoes": "좌 : 22.5cm 우 : 22.0cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "웃음소리가 들리면 살짝 흔들린다.",
+      "tail": "비누 향이 난다.",
+      "strong": "길 안내, 들었던 곡을 악보 없이 연주하기",
+      "weak": "너무 짠 음식, 사이렌 소리",
+      "family": "부모님과 이야기할 때는 살짝 말이 많아진다.",
+      "secrets": [
+        "사실은 좋아하는 그림책의 영향을 받아서 백조를 형상화한 소지품이 많다.",
+        "사실은 잠꼬대 소리가 꽤 크다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "……我是喜嘉奇蹟。為了回報各位給我的生命……我一定會，創造奇蹟。",
+      "tagline": "為表感謝而獻上奇蹟。溫柔又穩重的賽馬娘",
+      "weight": "苗條",
+      "shoes": "左：22.5cm右：22.0cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "一聽見笑聲就會微微搖晃",
+      "tail": "散發出肥皂的香氣",
+      "strong": "帶路、聽過音樂後便可完美演奏",
+      "weak": "過重的調味、警報聲",
+      "family": "與雙親聊天時，話會變得稍微多一些",
+      "secrets": [
+        "其實她因為受到喜歡的繪本影響，擁有很多以天鵝為靈感的東西。",
+        "其實她說夢話的聲音挺大聲的。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

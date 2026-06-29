@@ -6,6 +6,7 @@ from fastapi import HTTPException, Request
 from fastapi.staticfiles import StaticFiles
 import os
 from typing import Any, Dict
+from fastapi.responses import RedirectResponse, Response
 from server.utils import (
     load_dataset_json,
     load_config,
@@ -17,7 +18,7 @@ from server.utils import (
     ensure_nav_exists,
     load_event_setup_defaults,
 )
-from server.run_history import load_history, append_history, delete_history, get_record, find_incomplete
+from server.run_history import load_history, append_history, delete_history, get_record, get_full_record, find_incomplete
 from server.bot_bridge import start_bot, stop_bot, is_running
 from core.version import __version__
 
@@ -79,6 +80,13 @@ def remove_history(record_id: str):
 @app.get("/api/history/incomplete")
 def get_incomplete_history():
     return find_incomplete()
+
+
+@app.get("/api/history/{record_id}/detail")
+def get_history_detail(record_id: str):
+    from server.run_history import load_detail
+    detail = load_detail(record_id)
+    return detail if detail is not None else {"turn_log": [], "active_periods": []}
 
 
 # -----------------------------------------------------------------------------
@@ -219,6 +227,62 @@ def api_events():
     if isinstance(data, list):
         return data
     return []
+
+
+@app.get("/api/characters")
+def api_characters():
+    """Returns: dict[str, CharacterEntry]
+    Source: datasets/in_game/character_index.json
+    """
+    data = load_dataset_json("character_index.json")
+    if data is None:
+        return {}
+    if isinstance(data, dict):
+        return data
+    return {}
+
+
+@app.get("/api/characters/{char_id}")
+def api_character_detail(char_id: int):
+    """Returns full detail for one character (characters/{slug}.json)."""
+    index = load_dataset_json("character_index.json")
+    entry = (index or {}).get(str(char_id))
+    if not entry:
+        raise HTTPException(status_code=404, detail="Character not found")
+    slug = entry.get("slug", "")
+    detail = load_dataset_json("characters", f"{slug}.json")
+    if detail is None:
+        raise HTTPException(status_code=404, detail="Character detail not found")
+    return detail
+
+
+_CHAR_IMAGE_CACHE: dict[str, tuple[str, bytes]] = {}
+
+
+@app.get("/api/characters/{char_id}/thumb")
+def api_character_thumb(char_id: int):
+    """Proxy character thumb image from Gametora (avoid CORS)."""
+    index = load_dataset_json("character_index.json")
+    entry = (index or {}).get(str(char_id))
+    if not entry:
+        raise HTTPException(status_code=404, detail="Character not found")
+    url = entry.get("thumb_url") or entry.get("image_url", "")
+    if not url:
+        raise HTTPException(status_code=404, detail="No image URL")
+
+    cached = _CHAR_IMAGE_CACHE.get(url)
+    if cached:
+        return Response(content=cached[1], media_type=cached[0])
+
+    try:
+        import requests
+        r = requests.get(url, timeout=10)
+        r.raise_for_status()
+        ct = r.headers.get("content-type", "image/png")
+        _CHAR_IMAGE_CACHE[url] = (ct, r.content)
+        return Response(content=r.content, media_type=ct)
+    except Exception:
+        return RedirectResponse(url)
 
 
 # -----------------------------

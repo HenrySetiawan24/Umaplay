@@ -1,0 +1,206 @@
+{
+  "charData": {
+    "url_name": "nakayama-festa",
+    "tid": "M",
+    "char_id": 1049,
+    "jp_name": "ナカヤマフェスタ",
+    "en_name": "Nakayama Festa",
+    "name_ko": "나카야마 페스타",
+    "name_tw": "中山慶典",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Shino Shimoji",
+    "va_ja": "下地紫野",
+    "va_ko": "시모지 시노",
+    "va_zh_tw": "下地紫野",
+    "va_link": "https://myanimelist.net/people/29957/Shino_Shimoji",
+    "three_sizes": {
+      "b": 78,
+      "w": 54,
+      "h": 79
+    },
+    "birth_day": 5,
+    "birth_month": 4,
+    "birth_year": 2006,
+    "height": 159,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": null,
+      "races": 15,
+      "wins": 5,
+      "record": "5-3-0-7",
+      "earnings": 293243000,
+      "earnings_other": [
+        [
+          839000,
+          "EUR"
+        ]
+      ],
+      "active": "2008-2011"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1049_104901.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1049_104901.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 25,
+      "year": 2,
+      "month": 1,
+      "day": 1,
+      "race_name": "Keisei Hai",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 47,
+      "year": 2,
+      "month": 12,
+      "day": 1,
+      "race_name": "Chunichi Shimbun Hai",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 7,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "nakayama-festa",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1049,
+    "ja": {
+      "self_intro": "ナカヤマフェスタだ。生ぬるいレースじゃ、スリルを感じねぇ。なァ…もっとアツくヒリつかせてくれよ…！",
+      "tagline": "一か八か！ギリギリ攻めるアウトロー勝負師",
+      "weight": "レースに支障なし",
+      "shoes": "左右ともに24.0cm",
+      "dorm": "美浦寮",
+      "class": "高等部",
+      "ears": "帽子の耳用の穴は、自分で切って縫った",
+      "tail": "賭け事の際は尻尾の動きをブラフに使う",
+      "strong": "植物と小動物の世話",
+      "weak": "するめ",
+      "family": "家族全員、寝相が悪い",
+      "secrets": [
+        "実は、炭酸飲料が飲めない。",
+        "実は、歌劇にはほんのちょっと詳しい。"
+      ]
+    },
+    "ko": {
+      "self_intro": "나카야마 페스타다. 미적지근한 레이스에선 스릴을 느낄 수 없어. 이봐… 더욱 뜨거운 자극을 달라고…!",
+      "tagline": "모 아니면 도! 아슬아슬하게 밀어붙이는 무법 도박꾼",
+      "weight": "레이스에 지장 없음",
+      "shoes": "좌우 모두 24.0cm",
+      "dorm": "미호 생활관",
+      "class": "고등부",
+      "ears": "모자의 귀가 나오는 구멍은 직접 자르고 꿰맸다",
+      "tail": "내기를 할 때 꼬리 움직임으로 블러핑을 한다",
+      "strong": "식물과 작은 동물 돌보기",
+      "weak": "오징어채",
+      "family": "가족 모두가 잠버릇이 나쁘다",
+      "secrets": [
+        "사실은 탄산 음료를 못 마신다.",
+        "사실은 가극에 대해 아주 약간 박식하다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我是中山慶典。對於溫和的競賽感覺不到刺激。欸……再讓我感受更多熱血激情吧……！",
+      "tagline": "聽天由命！遊走危險邊緣的偏軌賭徒",
+      "weight": "不影響競賽",
+      "shoes": "左右都是24.0cm",
+      "dorm": "美浦宿舍",
+      "class": "高中部",
+      "ears": "帽子上讓耳朵穿過的洞是自己裁剪縫製的",
+      "tail": "跟人打賭的時候會用尾巴做障眼法",
+      "strong": "照顧植物跟小動物",
+      "weak": "魷魚乾",
+      "family": "全家人的睡相都不好",
+      "secrets": [
+        "其實她沒辦法喝碳酸飲料。",
+        "其實她對於歌劇算是有點研究。"
+      ]
+    },
+    "en": {
+      "self_intro": "The name's Nakayama Festa. I need a lot more than a lukewarm race to thrill me, get it? It's gotta be something hotter—hot enough to burn!",
+      "tagline": "The ultimate high roller. Lives on the edge and isn't afraid to skirt the law.",
+      "dorm": "Miho Dormitory",
+      "class": "Senior Division",
+      "secrets": [
+        "Did you know? She can't handle carbonated drinks.",
+        "Did you know? She knows a tiny bit about opera."
+      ]
+    }
+  }
+}

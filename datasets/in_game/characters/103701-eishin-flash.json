@@ -1,0 +1,228 @@
+{
+  "charData": {
+    "url_name": "eishin-flash",
+    "tid": "A",
+    "char_id": 1037,
+    "jp_name": "エイシンフラッシュ",
+    "en_name": "Eishin Flash",
+    "name_ko": "에이신 플래시",
+    "name_tw": "榮進閃耀",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Ayami Fujino",
+    "va_ja": "藤野彩水",
+    "va_ko": "후지노 아야미",
+    "va_zh_tw": "藤野彩水",
+    "va_link": "https://myanimelist.net/people/51467/Ayami_Fujino",
+    "three_sizes": {
+      "b": 88,
+      "w": 58,
+      "h": 86
+    },
+    "birth_day": 27,
+    "birth_month": 3,
+    "birth_year": 2007,
+    "height": 160,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": null,
+      "races": 27,
+      "wins": 6,
+      "record": "6-3-7-11",
+      "earnings": 756070000,
+      "active": "2009-2013"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1037_103701.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1037_103701.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 25,
+      "year": 2,
+      "month": 1,
+      "day": 1,
+      "race_name": "Keisei Hai",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 46,
+      "year": 2,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 6,
+      "turn": 48,
+      "year": 2,
+      "month": 12,
+      "day": 2,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 7,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Osaka Hai",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "eishin-flash",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1037,
+    "ja": {
+      "self_intro": "エイシンフラッシュと申します。ウマ娘の伝統を守る為、私は走り続けます。どんなレースも全てはスケジュール通りに",
+      "tagline": "すべては計画通りに。謹厳実直なメッチェン",
+      "weight": "増減なし（1gの誤差もなく）",
+      "shoes": "左右ともに23.0cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "メトロノームの音を聞くと癒される",
+      "tail": "コンマ数ミリのズレも許さず切り揃えている",
+      "strong": "模写",
+      "weak": "模写以外の絵",
+      "family": "ケーキ屋さん経営中。名物はバウムクーヘン",
+      "secrets": [
+        "実は、童話の語り聞かせが得意。",
+        "実は、ハッカ味はやや苦手だが我慢して食べている。"
+      ]
+    },
+    "ko": {
+      "self_intro": "에이신 플래시라고 합니다. 우마무스메의 전통을 지키기 위해, 저는 계속 달릴 거예요. 어떤 레이스든 모든 것은 스케줄 대로입니다",
+      "tagline": "모든 것은 계획대로. 근엄하고 성실한 메트헨",
+      "weight": "변화 없음(1g 오차도 없음)",
+      "shoes": "좌우 모두 23.0cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "메트로놈 소리를 들으면 치유된다.",
+      "tail": "소수점 밀리미터의 어긋남도 용서치 않고 가지런히 다듬는다.",
+      "strong": "소묘",
+      "weak": "소묘 외의 그림",
+      "family": "케이크 가게 경영 중. 바움쿠헨이 유명하다.",
+      "secrets": [
+        "사실은 구연동화를 아주 잘한다.",
+        "사실은 박하 맛은 별로 안 좋아하지만 참고 먹는 편."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我叫榮進閃耀。為了守護賽馬娘的傳統，我會持續奔跑下去。無論是什麼競賽，一切都照預定進行。",
+      "tagline": "一切照計畫進行。嚴謹耿直的少女",
+      "weight": "無增減（連1g的誤差也沒有）",
+      "shoes": "左右都是23.0cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "聽到節拍器的聲音會感到放鬆",
+      "tail": "力求剪齊，連一公釐以下的偏差都不能接受",
+      "strong": "臨摹",
+      "weak": "非臨摹的畫",
+      "family": "經營著蛋糕店，年輪蛋糕很出名",
+      "secrets": [
+        "其實她很會講童話故事。",
+        "其實她有點排斥薄荷口味，但會忍耐著吃下去。"
+      ]
+    },
+    "en": {
+      "self_intro": "My name is Eishin Flash. I run to preserve Umamusume tradition. I always run right on schedule.",
+      "tagline": "Everything she does is according to her plan. A solemn and diligent mädchen.",
+      "weight": "No change (without even 1g of error)",
+      "shoes": "Left and right: 23.0cm",
+      "dorm": "Ritto Dormitory",
+      "class": "Senior Division",
+      "ears": "Finds the sound of a metronome calming",
+      "tail": "She trims it to the most exact millimeter",
+      "strong": "Recreating Art",
+      "weak": "Art (Excluding Recreations)",
+      "family": "They run a cake shop famous for its baumkuchen",
+      "secrets": [
+        "Did you know? She's great at reading storybooks out loud.",
+        "Did you know? She doesn't like the taste of mint very much, but never refuses to eat it."
+      ]
+    }
+  }
+}

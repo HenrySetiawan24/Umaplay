@@ -27,10 +27,9 @@ export function scenarioImageCandidates(name: string) {
   ]
 }
 
-export function traineeImageCandidates(name?: string) {
-  const base = `/events/trainee`
-  return [
-    `${base}/${name}_profile.png`,
-  ]
+export function traineeImageCandidates(name?: string, thumbUrl?: string | null) {
+  const candidates: string[] = [`/events/trainee/${name}_profile.png`]
+  if (thumbUrl) candidates.push(thumbUrl)
+  return candidates
 }
 

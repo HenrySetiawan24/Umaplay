@@ -1,0 +1,200 @@
+{
+  "charData": {
+    "url_name": "twin-turbo",
+    "tid": "13",
+    "char_id": 1066,
+    "jp_name": "ツインターボ",
+    "en_name": "Twin Turbo",
+    "name_ko": "트윈 터보",
+    "name_tw": "雙渦輪",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Miharu Hanai",
+    "va_ja": "花井美春",
+    "va_ko": "하나이 미하루",
+    "va_zh_tw": "花井美春",
+    "va_link": "https://myanimelist.net/people/44312/Miharu_Hanai",
+    "three_sizes": {
+      "b": 72,
+      "w": 51,
+      "h": 74
+    },
+    "birth_day": 13,
+    "birth_month": 4,
+    "birth_year": 1988,
+    "height": 146,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "1998-01-15",
+      "races": 35,
+      "wins": 6,
+      "record": "6-2-0-25",
+      "earnings": 186708000,
+      "active": "1990-1996"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1066_106601.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1066_106601.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 29,
+      "year": 2,
+      "month": 3,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 5000
+    },
+    {
+      "order": 3,
+      "turn": 37,
+      "year": 2,
+      "month": 7,
+      "day": 1,
+      "race_name": "Radio Nikkei Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 42,
+      "year": 2,
+      "month": 9,
+      "day": 2,
+      "race_name": "St. Lite Kinen",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 57,
+      "year": 3,
+      "month": 5,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 2,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 61,
+      "year": 3,
+      "month": 7,
+      "day": 1,
+      "race_name": "Tanabata Sho",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 7,
+      "turn": 66,
+      "year": 3,
+      "month": 9,
+      "day": 2,
+      "race_name": "All Comers",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 0
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "twin-turbo",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1066,
+    "ja": {
+      "self_intro": "ツインターボだー！ターボ1番とるもん、ぜったいとるもんっ！いっくぞー、ターボぜんかーーーい！！",
+      "tagline": "ターボ全開！限界知らずの爆走ウマ娘！",
+      "weight": "計測不能",
+      "shoes": "左：20.0cm右：19.5cm",
+      "dorm": "美浦寮",
+      "class": "中等部",
+      "ears": "追い詰められるほど、嬉しそうにピクつく",
+      "tail": "落ち着きなく、あっちこっちフラフラ",
+      "strong": "限界突破",
+      "weak": "漢字",
+      "family": "虚弱だった娘の無茶は、親的には成長の証",
+      "secrets": [
+        "実は、ムーンウォークが得意。",
+        "実は、目薬をさす時なぜか口も開いてしまう。"
+      ]
+    },
+    "ko": {
+      "self_intro": "트윈 터보다~! 터보 1착할 거야, 반드시 할 거야! 간다~ 터보 전개~~~!",
+      "tagline": "터보 전개! 한계를 모르는 폭주 우마무스메!",
+      "weight": "측정 불가",
+      "shoes": "좌 : 20.0cm 우 : 19.5cm",
+      "dorm": "미호 생활관",
+      "class": "중등부",
+      "ears": "궁지에 몰릴수록 기쁜 듯이 움찔거린다",
+      "tail": "차분하게 있지 못하고 여기저기를 어슬렁어슬렁",
+      "strong": "한계 돌파",
+      "weak": "한자",
+      "family": "허약했던 딸의 무모함은, 부모에게는 성장의 증거",
+      "secrets": [
+        "사실은 문워크를 잘한다.",
+        "사실은 안약을 넣을 때 어째선지 입도 벌리게 된다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我是雙渦輪──！渦輪會拿到第一名，一定會拿到！要上囉──渦輪全開────！！",
+      "tagline": "渦輪全開！沒有極限的暴衝賽馬娘！",
+      "weight": "無法測量",
+      "shoes": "左：20.0cm右：19.5cm",
+      "dorm": "美浦宿舍",
+      "class": "國中部",
+      "ears": "越是被逼到絕境時，越會開心地抖動起來",
+      "tail": "靜不下來，一直晃來晃去",
+      "strong": "突破極限",
+      "weak": "漢字",
+      "family": "對父母而言，曾經體弱的女兒胡來也是種成長",
+      "secrets": [
+        "其實她很會跳月球漫步。",
+        "其實她在點眼藥水時，不知為何會張著嘴巴。"
+      ]
+    },
+    "en": {
+      "self_intro": "Twin Turbo here about to take first place! Let's go! Turbo booost!",
+      "tagline": "Turbo boost! This wild charger knows no limits!",
+      "dorm": "Miho Dormitory",
+      "class": "Junior Division",
+      "secrets": [
+        "Did you know? She's great at moonwalking.",
+        "Did you know? When she uses eye drops, she opens her mouth for some reason."
+      ]
+    }
+  }
+}

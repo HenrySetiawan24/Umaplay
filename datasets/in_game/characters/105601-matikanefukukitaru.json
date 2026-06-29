@@ -1,0 +1,208 @@
+{
+  "charData": {
+    "url_name": "matikanefukukitaru",
+    "tid": "T",
+    "char_id": 1056,
+    "jp_name": "マチカネフクキタル",
+    "en_name": "Matikanefukukitaru",
+    "name_ko": "마치카네 후쿠키타루",
+    "name_tw": "待兼福來",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Hiyori Nitta",
+    "va_ja": "新田ひより",
+    "va_ko": "닛타 히요리",
+    "va_zh_tw": "新田ひより",
+    "va_link": "https://myanimelist.net/people/32589/Hiyori_Nitta",
+    "three_sizes": {
+      "b": 84,
+      "w": 59,
+      "h": 83
+    },
+    "birth_day": 22,
+    "birth_month": 5,
+    "birth_year": 1994,
+    "height": 158,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2020-07-31",
+      "races": 22,
+      "wins": 6,
+      "record": "6-4-1-11",
+      "earnings": 370246000,
+      "active": "1996-2000"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1056_105601.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1056_105601.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 29,
+      "year": 2,
+      "month": 3,
+      "day": 1,
+      "race_name": "Yayoi Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 5,
+      "turn": 53,
+      "year": 3,
+      "month": 3,
+      "day": 1,
+      "race_name": "Kinko Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 61,
+      "year": 3,
+      "month": 7,
+      "day": 1,
+      "race_name": "Hakodate Kinen",
+      "cond_type": 1,
+      "cond_value": 2
+    },
+    {
+      "order": 8,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "matikanefukukitaru",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1056,
+    "ja": {
+      "self_intro": "どうも！マチカネフクキタルって言います！シラオキ様のお告げを信じて、福を掴む日を待ちかねつつ…日夜占いに励んでいます！",
+      "tagline": "福よ来い！占い大好きなハッピー祈願娘",
+      "weight": "本日は「凶」なので微減",
+      "shoes": "左右ともに23.5cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "たまに方位占いに使う",
+      "tail": "占いの最中はぴたりと止まる",
+      "strong": "占い",
+      "weak": "縁起の悪いもの",
+      "family": "優秀な姉は、妹の明るさに憧れている",
+      "secrets": [
+        "実は、書道の段位を持っている。",
+        "実は、招き猫の『にゃーさん』と髪留めの『だるまん』は、祖母からのプレゼント。"
+      ]
+    },
+    "ko": {
+      "self_intro": "안녕하세요! 마치카네 후쿠키타루입니다! 시라오키 님의 계시를 믿고, 복을 거머쥘 날을 학수고대하며… 밤낮으로 점술에 힘쓰고 있어요!",
+      "tagline": "복이여 와라! 점을 정말 좋아하는 행복 기원 소녀",
+      "weight": "오늘은 「흉」이므로 약간 감소",
+      "shoes": "좌우 모두 23.5cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "가끔은 방위로 점칠 때 활용한다.",
+      "tail": "한창 점을 보는 중에만 딱 멈춘다.",
+      "strong": "점술",
+      "weak": "운수가 나쁜 것",
+      "family": "우수한 언니는 동생의 밝은 면을 부러워한다.",
+      "secrets": [
+        "사실은 서예 자격증이 있다.",
+        "사실은 복고양이 『야옹 씨』와 머리장식 『다루만』은 할머니가 준 선물."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "你好，我叫待兼福來！我相信白興大人的神諭，一直期待著哪天能掌握幸福……同時每天也都很努力在占卜！",
+      "tagline": "福氣上門吧！最愛占卜的開心祈福女孩",
+      "weight": "因為今日運勢是「凶」而微減",
+      "shoes": "左右都是23.5cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "有時候用來進行風水占卜",
+      "tail": "占卜到一半時會突然停下來",
+      "strong": "占卜",
+      "weak": "不吉利的事物",
+      "family": "優秀的姊姊很憧憬妹妹的開朗",
+      "secrets": [
+        "其實她擁有書道的段位。",
+        "其實招財貓「喵喵」跟髮夾「達摩」是祖母送給她的禮物。"
+      ]
+    },
+    "en": {
+      "self_intro": "Greetings! They call me Matikanefukukitaru! My unwavering faith in the great Shiraoki will bring abundant blessings into our lives. Available for divination day and night!",
+      "tagline": "Fortune be with me! This charm-tastic Umamusume loves fortune-telling.",
+      "weight": "Slight decrease because today is an unlucky day",
+      "shoes": "Left and right: 23.5cm",
+      "dorm": "Ritto Dormitory",
+      "class": "Senior Division",
+      "ears": "Sometimes used as directional fortune-telling",
+      "tail": "Completely stops moving when she's fortune-telling",
+      "strong": "Fortune-telling",
+      "weak": "Unlucky things",
+      "family": "The talented older sister admires her little sister's bright personality",
+      "secrets": [
+        "Did you know? She holds an advanced rank in Japanese calligraphy.",
+        "Did you know? Miss Nya the lucky cat and Daruman the hair tie were gifts from her grandmother."
+      ]
+    }
+  }
+}

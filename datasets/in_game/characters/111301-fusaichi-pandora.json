@@ -1,0 +1,173 @@
+{
+  "charData": {
+    "url_name": "fusaichi-pandora",
+    "tid": "1N",
+    "char_id": 1113,
+    "jp_name": "フサイチパンドラ",
+    "en_name": "Fusaichi Pandora",
+    "name_ko": "후사이치 판도라",
+    "name_tw": "房一潘朵拉",
+    "playable": true,
+    "active": true,
+    "va_en": "Moe Kahara",
+    "va_ja": "佳原萌枝",
+    "va_ko": "카하라 모에",
+    "va_zh_tw": "佳原萌枝",
+    "va_link": "https://myanimelist.net/people/53530/Moe_Kahara",
+    "three_sizes": {
+      "b": 92,
+      "w": 61,
+      "h": 86
+    },
+    "birth_day": 27,
+    "birth_month": 2,
+    "birth_year": 2003,
+    "height": 165,
+    "sex": 2,
+    "race": false,
+    "rl": {
+      "country": "jp",
+      "death": "2017-10-28",
+      "races": 21,
+      "wins": 4,
+      "record": "21-4-4-4",
+      "earnings": 378113000,
+      "active": "2005-2007"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1113_111301.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1113_111301.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "Hanshin Juvenile Fillies",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Oka Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Japanese Oaks",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Shuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 45,
+      "year": 2,
+      "month": 11,
+      "day": 1,
+      "race_name": "Queen Elizabeth II Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 7,
+      "turn": 57,
+      "year": 3,
+      "month": 5,
+      "day": 1,
+      "race_name": "Victoria Mile",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 64,
+      "year": 3,
+      "month": 8,
+      "day": 2,
+      "race_name": "Sapporo Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 69,
+      "year": 3,
+      "month": 11,
+      "day": 1,
+      "race_name": "Queen Elizabeth II Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "fusaichi-pandora",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1113,
+    "ja": {
+      "self_intro": "フサイチパンドラちゃんで～す♡あたしまーじ天才だし、手かかんないよ♡だ～か～ら～、根性系とかナシ方向でよろ♡",
+      "tagline": "飛び出せ！無限の希望とマシュマロハート♡",
+      "weight": "いーかんじ♡",
+      "shoes": "左右ともに24.0cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "ガチおねだりのときは極限まで垂らす",
+      "tail": "寝ているときの荒ぶり方が恐れられている",
+      "strong": "だいたいぜ～んぶ♡（早着替え、口笛）",
+      "weak": "キツすぎちゃうのはイヤ",
+      "family": "家族全員、旅行前日は眠れないタイプ",
+      "secrets": [
+        "実は、自称くじ引き強者。（底から引くのがコ・ツ♡）",
+        "実は、なんかよさげな枕を見かけると即買いしてしまう。"
+      ]
+    },
+    "ko": {
+      "secrets": [
+        "사실은 자칭 제비뽑기 고수. (밑에서 뽑는 게 비・결♡)"
+      ]
+    },
+    "zh_tw": {
+      "secrets": [
+        "其實她自稱是抽籤高手。（從底部抽是訣・竅♡）"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

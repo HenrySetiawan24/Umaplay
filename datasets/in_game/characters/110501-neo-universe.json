@@ -1,0 +1,222 @@
+{
+  "charData": {
+    "url_name": "neo-universe",
+    "tid": "1F",
+    "char_id": 1105,
+    "jp_name": "ネオユニヴァース",
+    "en_name": "Neo Universe",
+    "name_ko": "네오 유니버스",
+    "name_tw": "新宇宙",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Haruka Shiraishi",
+    "va_ja": "白石晴香",
+    "va_ko": "시라이시 하루카",
+    "va_zh_tw": "白石晴香",
+    "va_link": "https://myanimelist.net/people/17629/Haruka_Shiraishi",
+    "three_sizes": {
+      "b": 79,
+      "w": 52,
+      "h": 77
+    },
+    "birth_day": 21,
+    "birth_month": 5,
+    "birth_year": 2000,
+    "height": 160,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2021-03-08",
+      "races": 13,
+      "wins": 7,
+      "record": "7-0-3-3",
+      "earnings": 613376000,
+      "active": "2002-2004"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1105_110501.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1105_110501.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 24,
+      "year": 1,
+      "month": 12,
+      "day": 2,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 3000
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 36,
+      "year": 2,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 6,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 7,
+      "turn": 46,
+      "year": 2,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Osaka Hai",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 10,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 11,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "neo-universe",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1105,
+    "ja": {
+      "self_intro": "ネオユニヴァースは、友好的“コンタクト”を提案。つまり――『よろしくね』",
+      "tagline": "すこし不思議？すごく不思議？宇宙的ウマ娘",
+      "weight": "宇宙の神秘",
+      "shoes": "左右ともに23.5cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "“シグナル”受信に最適なパラボラ形状",
+      "tail": "調子が悪いと“ダストテイル”になるらしい",
+      "strong": "天気予報、落ち物パズル",
+      "weak": "『ふつう』の会話、わさび",
+      "family": "パパとは54%くらいは会話が通じる",
+      "secrets": [
+        "実は、食べ物を半分こするのが好き。",
+        "実は、いつかのお泊まりのために、手作りプラネタリウムを用意している。"
+      ]
+    },
+    "ko": {
+      "self_intro": "네오 유니버스는 우호적 '콘택트'를 제안. 즉… 『잘 부탁해』",
+      "tagline": "조금 4차원? 많이 4차원? 우주적 우마무스메",
+      "weight": "우주의 신비",
+      "shoes": "좌우 모두 23.5cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "'시그널' 수신에 최적인 파라볼라 형태",
+      "tail": "컨디션이 안 좋을 때는 '더스트 테일'이 되는 모양이다",
+      "strong": "일기 예보, 테트리스",
+      "weak": "『평범』한 대화, 와사비",
+      "family": "아빠와는 54% 정도 말이 통한다",
+      "secrets": [
+        "사실은 음식을 나눠 먹는 걸 좋아한다.",
+        "사실은 언젠가 있을 합숙을 위해 직접 만든 플라네타륨을 준비하고 있다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "新宇宙提議進行友好的「接觸」。我的意思是──「請多指教囉」。",
+      "tagline": "有點不可思議？非常不可思議？散發宇宙神祕感的賽馬娘",
+      "weight": "如同宇宙般神祕",
+      "shoes": "左右都是23.5cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "最適合接收「訊號」的拋物線狀",
+      "tail": "狀況不好時似乎會變成「塵埃尾」",
+      "strong": "天氣預報、落下型益智遊戲",
+      "weak": "「普通」的對話、山葵",
+      "family": "跟爸爸的對話中大概有54%可以疏通意思",
+      "secrets": [
+        "其實她吃東西時喜歡跟人對半分。",
+        "其實她為了哪天若在外留宿時，特地準備了手工製做的星象儀。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

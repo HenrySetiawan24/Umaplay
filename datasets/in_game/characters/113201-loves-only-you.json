@@ -1,0 +1,192 @@
+{
+  "charData": {
+    "url_name": "loves-only-you",
+    "tid": "23",
+    "char_id": 1132,
+    "jp_name": "ラヴズオンリーユー",
+    "en_name": "Loves Only You",
+    "name_ko": "러브즈 온리 유",
+    "name_tw": "唯獨愛你",
+    "playable": true,
+    "active": true,
+    "va_en": "Miyu Kubota",
+    "va_ja": "久保田未夢",
+    "va_ko": "쿠보타 미유",
+    "va_zh_tw": "久保田未夢",
+    "va_link": "https://myanimelist.net/people/26535/Miyu_Kubota",
+    "three_sizes": {
+      "b": 88,
+      "w": 58,
+      "h": 88
+    },
+    "birth_day": 26,
+    "birth_month": 3,
+    "birth_year": 2016,
+    "height": 158,
+    "sex": 2,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "races": 16,
+      "wins": 8,
+      "record": "16-8-2-3",
+      "earnings": 338749000,
+      "earnings_other": [
+        [
+          1540000,
+          "USD"
+        ],
+        [
+          31350000,
+          "HKD"
+        ]
+      ],
+      "active": "2018-2021"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1132_113201.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1132_113201.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 24,
+      "year": 1,
+      "month": 12,
+      "day": 2,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 3000
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Oka Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Japanese Oaks",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Shuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 51,
+      "year": 3,
+      "month": 2,
+      "day": 1,
+      "race_name": "Kyoto Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 57,
+      "year": 3,
+      "month": 5,
+      "day": 1,
+      "race_name": "Victoria Mile",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 69,
+      "year": 3,
+      "month": 11,
+      "day": 1,
+      "race_name": "Queen Elizabeth Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 2
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "loves-only-you",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true
+    }
+  },
+  "profileData": {
+    "char_id": 1132,
+    "ja": {
+      "self_intro": "ラヴズオンリーユーです♪私の愛【ラヴ】は一方通行じゃなく双方向！配信で、世界中に広めていこうね♡",
+      "tagline": "ラヴミー♡ラヴユー♡愛あふれる配信者",
+      "weight": "メン限公開中",
+      "shoes": "左右ともに25.5cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "配信ノイズは360度、聞き逃さない",
+      "tail": "猫の注意を引き、配信に飛び入りはさせない",
+      "strong": "映像編集、いろんな人とコラボすること",
+      "weak": "お絵かき、ホラーゲーム、何もしない休み",
+      "family": "記念日の撮影は、写真ではなく動画",
+      "secrets": [
+        "実は、格闘ゲームの鬼。",
+        "実は、ラズベリーと間違えてかじって以来梅干しに苦手意識がある。"
+      ]
+    },
+    "ko": {
+      "secrets": [
+        "사실은 격투 게임 초고수."
+      ]
+    },
+    "zh_tw": {
+      "secrets": [
+        "其實她是格鬥遊戲高手。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

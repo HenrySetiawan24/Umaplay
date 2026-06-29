@@ -1,0 +1,228 @@
+{
+  "charData": {
+    "url_name": "seiun-sky",
+    "tid": "j",
+    "char_id": 1020,
+    "jp_name": "セイウンスカイ",
+    "en_name": "Seiun Sky",
+    "name_ko": "세이운 스카이",
+    "name_tw": "青雲天空",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Akari Kitou",
+    "va_ja": "鬼頭明里",
+    "va_ko": "키토 아카리",
+    "va_zh_tw": "鬼頭明里",
+    "va_link": "https://myanimelist.net/people/34951/Akari_Kitou",
+    "three_sizes": {
+      "b": 77,
+      "w": 55,
+      "h": 80
+    },
+    "birth_day": 26,
+    "birth_month": 4,
+    "birth_year": 1995,
+    "height": 155,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2011-08-16",
+      "races": 13,
+      "wins": 7,
+      "record": "7-1-1-4",
+      "earnings": 610280000,
+      "active": "1998-2001"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1020_102001.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1020_102001.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 25,
+      "year": 2,
+      "month": 1,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 3000
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 48,
+      "year": 2,
+      "month": 12,
+      "day": 2,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "seiun-sky",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1020,
+    "ja": {
+      "self_intro": "やっほー、セイウンスカイだよー。適度にテキトーにのーんびりしてこー。…大物を狙うなら、待つ時間も大事でしょ？",
+      "tagline": "マイペース、マイライフ。漂う雲のように…",
+      "weight": "申告漏れ",
+      "shoes": "左右ともに22.5cm",
+      "dorm": "美浦寮",
+      "class": "中等部",
+      "ears": "時折、意味深にピンと立っている",
+      "tail": "手入れしなくても自然とまとまる",
+      "strong": "昼寝、釣り",
+      "weak": "狭くて窮屈な場所（ゲートだよ、ゲート！）",
+      "family": "帰省時は、釣り仲間の祖父と船釣りをする",
+      "secrets": [
+        "実は、びっくりするほど猫舌。",
+        "実は、首がきゅっとなる服はニガテ。"
+      ]
+    },
+    "ko": {
+      "self_intro": "야호~ 세이운 스카이야~ 대충 적당히 느긋~하게 가보자구. …큰 걸 노릴 생각이라면 기다릴 줄도 알아야 하잖아?",
+      "tagline": "마이페이스, 마이 라이프. 흘러가는 구름 처럼…",
+      "weight": "신고 누락",
+      "shoes": "좌우 모두 22.5cm",
+      "dorm": "미호 생활관",
+      "class": "중등부",
+      "ears": "가끔 의미심장하게 우뚝 서 있다.",
+      "tail": "손질하지 않아도 자연스레 정돈된다.",
+      "strong": "낮잠, 낚시",
+      "weak": "좁고 답답한 장소 (게이트 말이야, 게이트!)",
+      "family": "고향으로 돌아갔을 때는 낚시 동료인 조부와 배낚시를 한다.",
+      "secrets": [
+        "사실은 놀라울 정도로 뜨거운 것을 잘 못 먹는다.",
+        "사실은 목이 꽉 끼는 옷은 좋아하지 않는다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "呀呼～我是青雲天空喔～適度又隨便地悠閒過生活吧～……要釣大魚的話，耐心等待也很重要對吧？",
+      "tagline": "我的人生就是要我行我素。漂泊如浮雲……",
+      "weight": "沒有申報",
+      "shoes": "左右都是22.5cm",
+      "dorm": "美浦宿舍",
+      "class": "國中部",
+      "ears": "不時會意味深長地伸直",
+      "tail": "不用保養，自然而然就能維持柔順",
+      "strong": "睡午覺、釣魚",
+      "weak": "狹窄又拘束的地方（就是閘門啦！）",
+      "family": "返鄉時會跟同樣喜歡釣魚的爺爺一起船釣",
+      "secrets": [
+        "其實她的舌頭非常非常怕燙。",
+        "其實她不喜歡會勒住脖子的衣服。"
+      ]
+    },
+    "en": {
+      "self_intro": "Hello. I'm Seiun Sky. I'm just taking things as they come. Good things come to those who wait, you know?",
+      "tagline": "Does what she wants, when she wants. As free as a drifting cloud...",
+      "weight": "Undeclared",
+      "shoes": "Left and right: 22.5cm",
+      "dorm": "Miho Dormitory",
+      "class": "Junior Division",
+      "ears": "Occasionally stand straight and still when she hears something",
+      "tail": "Just looks good without doing anything",
+      "strong": "Naps, fishing",
+      "weak": "Small, confined spaces (The gate, the gate!)",
+      "family": "Goes fishing with her grandpa every time she goes home",
+      "secrets": [
+        "Did you know? She really, really, really cannot handle hot food.",
+        "Did you know? She hates clothes that are tight around the neck."
+      ]
+    }
+  }
+}

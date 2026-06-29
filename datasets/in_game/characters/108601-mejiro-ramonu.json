@@ -1,0 +1,202 @@
+{
+  "charData": {
+    "url_name": "mejiro-ramonu",
+    "tid": "1n",
+    "char_id": 1086,
+    "jp_name": "メジロラモーヌ",
+    "en_name": "Mejiro Ramonu",
+    "name_ko": "메지로 라모누",
+    "name_tw": "目白拉茉奴",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Nao Touyama",
+    "va_ja": "東山奈央",
+    "va_ko": "토야마 나오",
+    "va_zh_tw": "東山奈央",
+    "va_link": "https://myanimelist.net/people/11184/Nao_Touyama",
+    "three_sizes": {
+      "b": 87,
+      "w": 57,
+      "h": 90
+    },
+    "birth_day": 9,
+    "birth_month": 4,
+    "birth_year": 1983,
+    "height": 165,
+    "sex": 2,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2005-09-22",
+      "races": 12,
+      "wins": 9,
+      "record": "9-0-0-3",
+      "earnings": 311920100,
+      "active": "1985-1986"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1086_108601.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1086_108601.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "Hanshin Juvenile Fillies",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Oka Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Japanese Oaks",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Shuka Sho",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 6,
+      "turn": 57,
+      "year": 3,
+      "month": 5,
+      "day": 1,
+      "race_name": "Victoria Mile",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 7,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 69,
+      "year": 3,
+      "month": 11,
+      "day": 1,
+      "race_name": "Queen Elizabeth II Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "mejiro-ramonu",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1086,
+    "ja": {
+      "self_intro": "私を知りたい？ならばターフへどうぞ。メジロラモーヌ…私の総てがそこに在るわ",
+      "tagline": "至上の愛をレースへ…絶世独立、頂点に咲く魔性の華",
+      "weight": "嫉妬する程に理想的",
+      "shoes": "左右ともに24.0cm",
+      "dorm": "美浦寮",
+      "class": "高等部",
+      "ears": "マッサージは耳の先までしてもらう",
+      "tail": "いつでも滑らかな流線形",
+      "strong": "油絵、ヨガ、撮られること",
+      "weak": "造花、電子レンジ",
+      "family": "庭に植えた蝋梅は家族のお気に入り",
+      "secrets": [
+        "実は、ヴィンテージの眼鏡を持ち歩いている。",
+        "実は、よくスマホを放って出かける。"
+      ]
+    },
+    "ko": {
+      "self_intro": "날 알고 싶어? 그렇다면 잔디로 와. 메지로 라모누… 내 모든 것이 거기에 있어",
+      "tagline": "최고의 사랑을 레이스에… 절세가인, 정점에 피는 마성의 꽃",
+      "weight": "질투 날 정도로 이상적",
+      "shoes": "좌우 모두 24.0cm",
+      "dorm": "미호 생활관",
+      "class": "고등부",
+      "ears": "마사지는 귀 끝까지 받는다.",
+      "tail": "언제나 매끄러운 유선형",
+      "strong": "유화, 요가, 사진 모델",
+      "weak": "조화, 전자레인지",
+      "family": "정원에 심은 납매는 가족들의 사랑을 받고 있다.",
+      "secrets": [
+        "사실은 빈티지 안경을 가지고 다닌다.",
+        "사실은 자주 핸드폰을 두고 외출한다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "你想瞭解我嗎？那就到賽場上來吧。目白拉茉奴的……我的一切就在那裡。",
+      "tagline": "將至高無上的愛獻給競賽……絕世獨立，綻放於頂點的魔性之花",
+      "weight": "符合理想到令人忌妒",
+      "shoes": "左右都是24.0cm",
+      "dorm": "美浦宿舍",
+      "class": "高中部",
+      "ears": "按摩時會要求按到耳尖",
+      "tail": "不論何時都是滑順的流線型",
+      "strong": "油畫、瑜珈、成為被拍攝的對象",
+      "weak": "假花、微波爐",
+      "family": "家人們都很喜歡種植在庭院裡的蠟梅",
+      "secrets": [
+        "其實她會隨身攜帶古董眼鏡。",
+        "其實她經常沒帶手機就出門。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

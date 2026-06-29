@@ -1,0 +1,230 @@
+{
+  "charData": {
+    "url_name": "biko-pegasus",
+    "tid": "R",
+    "char_id": 1054,
+    "jp_name": "ビコーペガサス",
+    "en_name": "Biko Pegasus",
+    "name_ko": "비코 페가수스",
+    "name_tw": "微光飛駒",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Aimi Tanaka",
+    "va_ja": "田中あいみ",
+    "va_ko": "타나카 아이미",
+    "va_zh_tw": "田中あいみ",
+    "va_link": "https://myanimelist.net/people/34525/Aimi_Tanaka",
+    "three_sizes": {
+      "b": 72,
+      "w": 54,
+      "h": 75
+    },
+    "birth_day": 8,
+    "birth_month": 2,
+    "birth_year": 1991,
+    "height": 144,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "us",
+      "death": "2019-06-11",
+      "races": 27,
+      "wins": 4,
+      "record": "4-6-2-15",
+      "earnings": 357854000,
+      "active": "1993-1998"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1054_105401.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1054_105401.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 25,
+      "year": 2,
+      "month": 1,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 5000
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "New Zealand Trophy",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 42,
+      "year": 2,
+      "month": 9,
+      "day": 2,
+      "race_name": "Sprinters Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 5,
+      "turn": 46,
+      "year": 2,
+      "month": 11,
+      "day": 2,
+      "race_name": "Mile Championship",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 52,
+      "year": 3,
+      "month": 2,
+      "day": 2,
+      "race_name": "February Stakes",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 7,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Takamatsunomiya Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 59,
+      "year": 3,
+      "month": 6,
+      "day": 1,
+      "race_name": "Yasuda Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 65,
+      "year": 3,
+      "month": 9,
+      "day": 1,
+      "race_name": "Centaur Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 66,
+      "year": 3,
+      "month": 9,
+      "day": 2,
+      "race_name": "Sprinters Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 11,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Mile Championship",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "biko-pegasus",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1054,
+    "ja": {
+      "self_intro": "正義のヒーロー、ビコーペガサス参上！アタシの走りはどんな強敵もバーンと倒してみんなを笑顔にするんだ！すごいだろ！",
+      "tagline": "正義の炎が燃え盛る！熱きヒーロー、見参！",
+      "weight": "微増（いっぱい食べて大きくなる！）",
+      "shoes": "左右ともに19.5cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "助けを求める声には必ず反応する",
+      "tail": "ヒーローポーズを取る時、踏みつけがち",
+      "strong": "木登り",
+      "weak": "いっぱい食べること（無自覚）",
+      "family": "日曜の朝は、家族みんなで特撮鑑賞タイム！",
+      "secrets": [
+        "実は、授業中に悪い奴が現れた時の対処法を10パターン以上考えている。",
+        "実は、お箸で絹ごし豆腐をきれいに掴める。"
+      ]
+    },
+    "ko": {
+      "self_intro": "정의의 히어로, 비코 페가수스 등장! 내 달리기는 어떤 강적이든 쾅~하고 쓰러뜨리고 모두를 웃게 만든다구! 대단하지!",
+      "tagline": "정의의 불꽃이 타오른다! 뜨거운 히어로, 등장!",
+      "weight": "약간 증가(많이 먹고 쑥쑥 클거야!)",
+      "shoes": "좌우 모두 19.5cm",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "ears": "도와 달라는 목소리에는 반드시 반응한다.",
+      "tail": "히어로 포즈를 취할 때 자주 밟아 버리곤 한다.",
+      "strong": "나무 오르기",
+      "weak": "실컷 먹는 것(자각 없음)",
+      "family": "일요일 아침에는 가족이 다 함께 특촬물 감상 타임!",
+      "secrets": [
+        "사실은 수업 중에 악당이 나타났을 때 대처법을 10가지 이상 생각한다.",
+        "사실은 젓가락으로 연두부를 깔끔하게 잡을 수 있다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "正義英雄，微光飛駒登場！不管怎麼樣的強敵，我的奔馳都能在一瞬間咻咻咻～地擊敗他們，讓大家露出笑容！厲害吧！",
+      "tagline": "正義火焰熊熊燃燒！熱血英雄登場！",
+      "weight": "微增（吃很多才會長大！）",
+      "shoes": "左右都是19.5cm",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "ears": "聽見呼救的聲音一定會有反應",
+      "tail": "擺出英雄姿勢時容易踩到",
+      "strong": "爬樹",
+      "weak": "大吃特吃（毫無自覺）",
+      "family": "會在星期天早上與家人們一起欣賞特攝片！",
+      "secrets": [
+        "其實她有思考過十種以上在上課時出現壞人的應對方法。",
+        "其實她能用筷子漂亮地夾起嫩豆腐。"
+      ]
+    },
+    "en": {
+      "self_intro": "Never fear! Biko Pegasus, defender of justice, is here! I leave my enemies in the dust with my blazing speed! I'm the true people's champion, putting a smile on every person's face!",
+      "tagline": "The flames of justice burn bright in her heart! Feel the heat of this hero!",
+      "dorm": "Ritto Dormitory",
+      "class": "Junior Division",
+      "secrets": [
+        "Did you know? She's concocted over ten different ways she'd deal with a bad guy entering her classroom.",
+        "Did you know? She can pick up soft tofu with chopsticks without breaking it."
+      ]
+    }
+  }
+}

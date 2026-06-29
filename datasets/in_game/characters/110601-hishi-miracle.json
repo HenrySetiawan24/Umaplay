@@ -1,0 +1,202 @@
+{
+  "charData": {
+    "url_name": "hishi-miracle",
+    "tid": "1G",
+    "char_id": 1106,
+    "jp_name": "ヒシミラクル",
+    "en_name": "Hishi Miracle",
+    "name_ko": "히시 미라클",
+    "name_tw": "菱奇蹟",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Sakura Kasuga",
+    "va_ja": "春日さくら",
+    "va_ko": "카스가 사쿠라",
+    "va_zh_tw": "春日さくら",
+    "va_link": "https://www.animenewsnetwork.com/encyclopedia/people.php?id=226421",
+    "three_sizes": {
+      "b": 85,
+      "w": 62,
+      "h": 88
+    },
+    "birth_day": 31,
+    "birth_month": 3,
+    "birth_year": 1999,
+    "height": 156,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": null,
+      "races": 28,
+      "wins": 6,
+      "record": "6-3-4-15",
+      "earnings": 514989000,
+      "active": "2001-2005"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1106_110601.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1106_110601.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 8000
+    },
+    {
+      "order": 3,
+      "turn": 42,
+      "year": 2,
+      "month": 9,
+      "day": 2,
+      "race_name": "Kobe Shimbun Hai",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 4,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 5,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 6,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 7,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "hishi-miracle",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1106,
+    "ja": {
+      "self_intro": "はい、ヒシミラクルです。そこはかとなく？いい感じで、がんばっていけたらいいなぁ、と思うので、よろしくお願いします～",
+      "tagline": "まったりウマ娘。今日もふつ～に平常運転",
+      "weight": "普通",
+      "shoes": "左右ともに22.0cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "寝起きから、ピンと立つまで時間がかかる",
+      "tail": "染めてみるか…と思ったことだけはある",
+      "strong": "森林浴スポット探し、授業中の指名回避",
+      "weak": "泳ぎが…………",
+      "family": "学園への願書は、親に先に出されてしまった",
+      "secrets": [
+        "実は、電車は絶対各駅派（座れるから）。",
+        "実は、輪っか型のスナックが指から抜けなくて困ったことがある。"
+      ]
+    },
+    "ko": {
+      "self_intro": "네, 히시 미라클이에요. 왠지 모르게? 잘, 열심히 할 수 있으면 좋겠다~ 뭐, 그렇게 생각하니, 잘 부탁드려요~",
+      "tagline": "느긋한 우마무스메 오늘도 평범~하게 평소대로",
+      "weight": "평범",
+      "shoes": "좌우 모두 22.0cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "잠에서 깬 다음 똑바로 서기까지 시간이 걸린다",
+      "tail": "염색해 볼까… 하고 생각해 본 적은 있다",
+      "strong": "삼림욕 명소 찾기, 수업 중에 지명 회피",
+      "weak": "수영이……",
+      "family": "입학 원서는 부모님이 먼저 제출해 버렸다",
+      "secrets": [
+        "사실은 전철은 무조건 급행보다 일반 열차파(앉을 수 있으니까).",
+        "사실은 고리 모양 과자가 손가락에서 빠지지 않아 고생한 적이 있다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "嗯，我是菱奇蹟。我會拿出還算過得去？的幹勁盡量努力一下～請多多指教～",
+      "tagline": "慢條斯理的賽馬娘。今天也非常普通～地正常發揮",
+      "weight": "普通",
+      "shoes": "左右都是22.0cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "從剛起床到耳朵整個豎起需要一段時間",
+      "tail": "曾經有想過要染色……但就只是想過而已",
+      "strong": "尋找森林浴景點、上課時迴避被點名",
+      "weak": "游泳…………",
+      "family": "入學志願書在當初被父母搶先交了出去",
+      "secrets": [
+        "其實她搭電車時絕對會挑每站都停的車（因為能坐著）。",
+        "其實她曾因為無法將圓圈餅乾從手指上拔下來而感到困擾。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

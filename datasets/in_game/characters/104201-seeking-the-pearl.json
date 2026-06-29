@@ -1,0 +1,240 @@
+{
+  "charData": {
+    "url_name": "seeking-the-pearl",
+    "tid": "F",
+    "char_id": 1042,
+    "jp_name": "シーキングザパール",
+    "en_name": "Seeking the Pearl",
+    "name_ko": "시킹 더 펄",
+    "name_tw": "採珠",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Ayaka Fukuhara",
+    "va_ja": "福原綾香",
+    "va_ko": "후쿠하라 아야카",
+    "va_zh_tw": "福原綾香",
+    "va_link": "https://myanimelist.net/people/22223/Ayaka_Fukuhara",
+    "three_sizes": {
+      "b": 91,
+      "w": 57,
+      "h": 87
+    },
+    "birth_day": 16,
+    "birth_month": 4,
+    "birth_year": 1994,
+    "height": 168,
+    "sex": 2,
+    "race": "uma",
+    "rl": {
+      "country": "us",
+      "death": "2005-06-10",
+      "races": 21,
+      "wins": 8,
+      "record": "8-2-3-8",
+      "earnings": 474140000,
+      "earnings_other": [
+        [
+          500000,
+          "FRF"
+        ],
+        [
+          18774,
+          "USD"
+        ]
+      ],
+      "active": "1996-1999"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1042_104201.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1042_104201.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 21,
+      "year": 1,
+      "month": 11,
+      "day": 1,
+      "race_name": "Daily Hai Junior Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "Hanshin Juvenile Fillies",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Oka Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 33,
+      "year": 2,
+      "month": 5,
+      "day": 1,
+      "race_name": "NHK Mile Cup",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 6,
+      "turn": 41,
+      "year": 2,
+      "month": 9,
+      "day": 1,
+      "race_name": "Rose Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 46,
+      "year": 2,
+      "month": 11,
+      "day": 2,
+      "race_name": "Mile Championship",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Takamatsunomiya Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 59,
+      "year": 3,
+      "month": 6,
+      "day": 1,
+      "race_name": "Yasuda Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 10,
+      "turn": 66,
+      "year": 3,
+      "month": 9,
+      "day": 2,
+      "race_name": "Sprinters Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 11,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Mile Championship",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "seeking-the-pearl",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1042,
+    "ja": {
+      "self_intro": "ほーっほっほっほ！シーキングザパールよ！知ってる？世界は可能性に満ちているの。私がそれを証明してみせるわ！",
+      "tagline": "挑めよ世界！不可能をパールにするお姉さん",
+      "weight": "世界的に完璧",
+      "shoes": "左右ともに24.5cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "様々な言語の意味を感覚で理解できる",
+      "tail": "海外で披露できるよう尻尾習字を習得済み",
+      "strong": "パントマイム、プレゼン",
+      "weak": "うがい",
+      "family": "家族でお揃いのサングラスを持っている",
+      "secrets": [
+        "実は、天気が悪いとちょっとだけ声が小さくなる。",
+        "実は、駅弁の中身を見ただけでどこのものか当てられる。"
+      ]
+    },
+    "ko": {
+      "self_intro": "호~호호호! 시킹 더 펄이야! 그거 아니? 세계는 가능성으로 가득 차 있어. 내가 그것을 증명해보이겠어!",
+      "tagline": "덤벼라 세상이여! 불가능을 진주로 바꾸는 언니!",
+      "weight": "전 세계를 통틀어 완벽",
+      "shoes": "좌우 모두 24.5cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "다양한 언어의 의미를 감각으로 이해할 수 있다",
+      "tail": "해외에서 선보일 수 있도록 꼬리로 서예하는 법을 배움",
+      "strong": "팬터마임, 프레젠테이션",
+      "weak": "가글",
+      "family": "가족끼리 똑같은 선글라스를 갖고 있다",
+      "secrets": [
+        "사실은 날씨가 안 좋으면 목소리가 조금 작아진다.",
+        "사실은 에키벤의 내용물을 보면 어디서 파는 건지 맞힐 수 있다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "呵呵呵呵！我叫採珠！你知道嗎？這世界充滿了可能性。我會證明這點給你看！",
+      "tagline": "挑戰世界！將不可能化為珍珠的大姐姐",
+      "weight": "世界級完美",
+      "shoes": "左右都是24.5cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "可以憑直覺理解各種語言",
+      "tail": "為了在國外表演而練就了尾巴書法",
+      "strong": "默劇、演說",
+      "weak": "漱口",
+      "family": "全家人都有一樣的太陽眼鏡",
+      "secrets": [
+        "其實她在天氣不好時，講話會變得小聲一點點。",
+        "其實她只要看一眼鐵路便當的菜色，就能猜得到是哪個地方的便當。"
+      ]
+    },
+    "en": {
+      "self_intro": "Hohoho! Seeking the Pearl here! You know the world's your oyster, don't you? I'm here to prove it!",
+      "tagline": "She's taking on the whole world, ready to make the impossible look easy.",
+      "dorm": "Ritto Dormitory",
+      "class": "Senior Division",
+      "secrets": [
+        "Did you know? Her voice gets slightly quieter when the weather is bad.",
+        "Did you know? She can tell what shop a bento lunch is from just by looking at its contents."
+      ]
+    }
+  }
+}

@@ -1,0 +1,214 @@
+{
+  "charData": {
+    "url_name": "silence-suzuka",
+    "tid": "1",
+    "char_id": 1002,
+    "jp_name": "サイレンススズカ",
+    "en_name": "Silence Suzuka",
+    "name_ko": "사일런스 스즈카",
+    "name_tw": "無聲鈴鹿",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Marika Kouno",
+    "va_ja": "高野麻里佳",
+    "va_ko": "코노 마리카",
+    "va_zh_tw": "高野麻里佳",
+    "va_link": "https://myanimelist.net/people/35441/Marika_Kouno",
+    "three_sizes": {
+      "b": 70,
+      "w": 53,
+      "h": 79
+    },
+    "birth_day": 1,
+    "birth_month": 5,
+    "birth_year": 1994,
+    "height": 161,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "1998-11-01",
+      "races": 16,
+      "wins": 9,
+      "record": "9-1-0-6",
+      "earnings": 455980000,
+      "earnings_other": [
+        [
+          231000,
+          "HKD"
+        ]
+      ],
+      "active": "1997-1998"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1002_100201.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1002_100201.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 27,
+      "year": 2,
+      "month": 2,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 5000
+    },
+    {
+      "order": 3,
+      "turn": 29,
+      "year": 2,
+      "month": 3,
+      "day": 1,
+      "race_name": "Yayoi Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 42,
+      "year": 2,
+      "month": 9,
+      "day": 2,
+      "race_name": "Kobe Shimbun Hai",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 5,
+      "turn": 53,
+      "year": 3,
+      "month": 3,
+      "day": 1,
+      "race_name": "Kinko Sho",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 6,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 67,
+      "year": 3,
+      "month": 10,
+      "day": 1,
+      "race_name": "Mainichi Okan",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "silence-suzuka",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1002,
+    "ja": {
+      "self_intro": "サイレンススズカです。走るのが好きです。先頭は、誰にも譲りません。えっと…………その、以上です",
+      "tagline": "静かなる疾走者。音速の先をめざして",
+      "weight": "増減なし",
+      "shoes": "左：23.5cm 右：23.0cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "走る事を考えてると、たまに何も聞いてない",
+      "tail": "空気抵抗を減らすため手入れを欠かさない",
+      "strong": "走り続けること",
+      "weak": "人の多い場所",
+      "family": "シューズ用にとお小遣いを増やしてくれた",
+      "secrets": [
+        "実は、ペン回しが得意。",
+        "実は、同じシューズを何足もストックしている。"
+      ]
+    },
+    "ko": {
+      "self_intro": "사일런스 스즈카입니다. 달리는 걸 좋아해요. 선두는 누구에게도 양보할 수 없어요. 그러니까…… 그, 이상입니다",
+      "tagline": "조용한 질주자. 음속 너머를 향해",
+      "weight": "변화 없음",
+      "shoes": "좌 : 23.5cm 우 : 23.0cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "달리기 생각을 하다보면 가끔 다른 소리를 못 듣는다.",
+      "tail": "공기 저항을 줄이기 위해 꾸준히 손질한다.",
+      "strong": "계속 달리기",
+      "weak": "사람이 많은 장소",
+      "family": "운동화 살 때 쓰라며 용돈을 올려 주었다.",
+      "secrets": [
+        "사실은 펜 돌리기를 잘한다.",
+        "사실은 같은 슈즈를 몇 켤레씩 쌓아두고 있다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我是無聲鈴鹿。喜歡跑步。領先位置絕不會讓給任何人。那個……我說完了。",
+      "tagline": "寂靜的疾馳者。追求超越音速的境界",
+      "weight": "無增減",
+      "shoes": "左：23.5cm 右：23.0cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "只要一想到跑步的事，有時候會什麼都聽不進去",
+      "tail": "為了減少空氣阻力，非常用心保養",
+      "strong": "持續跑步",
+      "weak": "人多的地方",
+      "family": "給她加零用錢讓她買鞋子",
+      "secrets": [
+        "其實她很擅長轉筆。",
+        "其實她預備了好幾雙相同的運動鞋。"
+      ]
+    },
+    "en": {
+      "self_intro": "I'm Silence Suzuka. I love to run, and I won't give up my lead to anyone. Uh... that's about it.",
+      "tagline": "The silent runner aiming to break the sound barrier.",
+      "weight": "No change",
+      "shoes": "Left: 23.5cm Right: 23.0cm",
+      "dorm": "Ritto Dormitory",
+      "class": "Senior Division",
+      "ears": "Sometimes doesn't hear anything when she thinks about running",
+      "tail": "She always makes efforts to reduce her wind resistance",
+      "strong": "Running long distances",
+      "weak": "Crowded places",
+      "family": "Gave her more pocket money for shoes",
+      "secrets": [
+        "Did you know? She's skilled at spinning pens.",
+        "Did you know? She keeps several identical pairs of shoes just in case."
+      ]
+    }
+  }
+}

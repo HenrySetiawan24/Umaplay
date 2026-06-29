@@ -1,0 +1,199 @@
+{
+  "charData": {
+    "url_name": "bubble-gum-fellow",
+    "tid": "1W",
+    "char_id": 1124,
+    "jp_name": "バブルガムフェロー",
+    "en_name": "Bubble Gum Fellow",
+    "name_ko": "버블검 펠로",
+    "name_tw": "泡泡糖小子",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Sayaka Kamitani",
+    "va_ja": "神谷早矢佳",
+    "va_ko": "카미타니 사야카",
+    "va_zh_tw": "神谷早矢佳",
+    "va_link": "https://www.animenewsnetwork.com/encyclopedia/people.php?id=199735",
+    "three_sizes": {
+      "b": 82,
+      "w": 58,
+      "h": 84
+    },
+    "birth_day": 11,
+    "birth_month": 4,
+    "birth_year": 1993,
+    "height": 166,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2010-04-26",
+      "races": 13,
+      "wins": 7,
+      "record": "13-7-2-3",
+      "earnings": 554430000,
+      "active": "1995-1997"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1124_112401.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1124_112401.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "Asahi Hai Futurity Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 6,
+      "turn": 46,
+      "year": 2,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 7,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 2
+    },
+    {
+      "order": 9,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "bubble-gum-fellow",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true
+    }
+  },
+  "profileData": {
+    "char_id": 1124,
+    "ja": {
+      "self_intro": "私は宣言する。『切り込み隊長として、四天王旋風を巻き起こす！』一緒に夢、膨らませていこう！",
+      "tagline": "膨らむ夢、ハジける闘志の切り込み隊長！",
+      "weight": "宣言通りの仕上がり",
+      "shoes": "左：25.5cm 右：25.0cm",
+      "dorm": "美浦寮",
+      "class": "高等部",
+      "ears": "『四天王』の中で1番、聴覚が鋭い",
+      "tail": "パステル調のアクセでアレンジするのが好き",
+      "strong": "バルーンアート、洋楽のアカペラ",
+      "weak": "ハムスター",
+      "family": "みんな、どこか甘くて上品な香りがする",
+      "secrets": [
+        "実は、ゆめかわキャラブランド発行の月刊新聞を定期購読している。",
+        "実は、ドイツ語の歌だけは聴いているとどうにも眠くなってしまう。"
+      ]
+    },
+    "ko": {
+      "self_intro": "나는 선언한다. 『돌격대장으로서, 사천왕의 바람을 일으키겠다!』 함께 꿈을 부풀려 보자!",
+      "tagline": "부풀어 오르는 꿈, 폭발하는 투지를 품은 돌격대장!",
+      "weight": "선언한 그대로",
+      "shoes": "좌 : 25.5cm 우 : 25.0cm",
+      "dorm": "미호 생활관",
+      "class": "고등부",
+      "ears": "『사천왕』 중 청각이 제일 예민하다",
+      "tail": "파스텔 컬러 액세서리로 꾸미는 걸 좋아한다",
+      "strong": "풍선 아트, 서양 음악 아카펠라",
+      "weak": "햄스터",
+      "family": "다들 어딘가에서 달콤하고 고급스러운 향기가 난다",
+      "secrets": [
+        "사실은 귀여운 캐릭터 브랜드에서 발행한 월간 신문을 정기 구독하고 있다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我宣告。「身為先鋒隊長，將會掀起四大天王旋風！」我們一起讓夢想膨脹得更大吧！",
+      "tagline": "膨脹的夢想，迸發鬥志的先鋒隊長！",
+      "weight": "如宣言般的完美狀態",
+      "shoes": "左：25.5cm 右：25.0cm",
+      "dorm": "美浦宿舍",
+      "class": "高中部",
+      "ears": "「四大天王」之中聽覺最為敏銳",
+      "tail": "喜歡用粉彩色調的飾品來搭配",
+      "strong": "氣球藝術、清唱西洋歌曲",
+      "weak": "倉鼠",
+      "family": "每個人身上都散發著一股甜美高雅的香氣",
+      "secrets": [
+        "其實她訂閱了夢幻又可愛的角色品牌發行的月刊報紙。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

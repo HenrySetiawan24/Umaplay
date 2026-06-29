@@ -1,0 +1,184 @@
+{
+  "charData": {
+    "url_name": "no-reason",
+    "tid": "1x",
+    "char_id": 1096,
+    "jp_name": "ノーリーズン",
+    "en_name": "No Reason",
+    "name_ko": "노 리즌",
+    "name_tw": "無需理由",
+    "playable": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Hiyori Kouno",
+    "va_ja": "河野ひより",
+    "va_ko": "코노 히요리",
+    "va_zh_tw": "河野ひより",
+    "va_link": "https://myanimelist.net/people/46817/Hiyori_Kouno",
+    "three_sizes": {
+      "b": 80,
+      "w": 56,
+      "h": 85
+    },
+    "birth_day": 4,
+    "birth_month": 6,
+    "birth_year": 1999,
+    "height": 160,
+    "sex": 1,
+    "rl": {
+      "country": "jp",
+      "death": "2024-05-07",
+      "races": 12,
+      "wins": 3,
+      "record": "12-3-1-0",
+      "earnings": 186017000,
+      "active": "2002-2004"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1096_109601.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1096_109601.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 27,
+      "year": 2,
+      "month": 2,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 3000
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 6,
+      "turn": 48,
+      "year": 2,
+      "month": 12,
+      "day": 2,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 7,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "no-reason",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1096,
+    "ja": {
+      "self_intro": "にゃーっはっは、ワシこそはノーリーズン！天下を統べるためなら、手段など選ばん。いざ下剋上～！",
+      "tagline": "天下統一！夢を追うのに理由はいらない",
+      "weight": "乱れ気味？",
+      "shoes": "左右ともに24.0cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "形に合わせた兜を発注している",
+      "tail": "炭酸シャンプーで洗うのが好き",
+      "strong": "茶器の鑑定、漢文読解",
+      "weak": "うす～い枕、花の蜜の香り",
+      "family": "父は自宅でも陣太鼓で娘のレースを応援",
+      "secrets": [
+        "実は、砂浜で策を練ると捗るらしい。",
+        "実は、目覚ましアラームは法螺貝の音にしている。"
+      ]
+    },
+    "ko": {
+      "self_intro": "냣~핫하, 이 몸이 바로 노 리즌! 천하를 손에 넣기 위해서라면 수단을 가리지 않는다. 시작하노라, 하극상~!",
+      "tagline": "천하통일! 꿈을 쫓는 데 이유는 필요 없다",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "secrets": [
+        "사실은 모래사장에서 좋은 계책이 잘 나온다.",
+        "사실은 모닝콜 알람을 소라고둥 소리로 설정해 뒀다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "呀～哈哈，我正是無需理由！為了統一天下，我將不擇手段。來吧下剋上～！",
+      "tagline": "統一天下！追逐夢想才不需要理由",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "secrets": [
+        "其實她在沙灘上制定計畫似乎就會很順利。",
+        "其實她把法螺貝的聲音當成自己的鬧鈴聲。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

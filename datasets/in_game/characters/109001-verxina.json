@@ -1,0 +1,183 @@
+{
+  "charData": {
+    "url_name": "verxina",
+    "tid": "1r",
+    "char_id": 1090,
+    "jp_name": "ヴィルシーナ",
+    "en_name": "Verxina",
+    "name_ko": "베르시나",
+    "name_tw": "極峰",
+    "playable": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Kaya Okuno",
+    "va_ja": "奥野香耶",
+    "va_ko": "오쿠노 카야",
+    "va_zh_tw": "奥野香耶",
+    "va_link": "https://myanimelist.net/people/24267/Kaya_Okuno",
+    "three_sizes": {
+      "b": 83,
+      "w": 53,
+      "h": 78
+    },
+    "birth_day": 5,
+    "birth_month": 3,
+    "birth_year": 2009,
+    "height": 158,
+    "sex": 2,
+    "rl": {
+      "country": "jp",
+      "races": 21,
+      "wins": 5,
+      "record": "21-5-5-2",
+      "earnings": 460795000,
+      "active": "2011-2014"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1090_109001.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1090_109001.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 3000
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Oka Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Japanese Oaks",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Shuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Osaka Hai",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 57,
+      "year": 3,
+      "month": 5,
+      "day": 1,
+      "race_name": "Victoria Mile",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 69,
+      "year": 3,
+      "month": 11,
+      "day": 1,
+      "race_name": "Queen Elizabeth II Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "verxina",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1090,
+    "ja": {
+      "self_intro": "私はヴィルシーナ。全てを打破し女王となるその日までくじけてなんて、あげないわ",
+      "tagline": "己に相応しき『女王』の座へ。勝気にふるまうセレブリティウマ娘",
+      "weight": "精密",
+      "shoes": "左右ともに23.5cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "捕球音だけで家族の誰が投げた球かわかる",
+      "tail": "小さい頃は、母がよく梳かしてくれた",
+      "strong": "キックボクシング、野球、バク転",
+      "weak": "アラザン、固ゆで卵",
+      "family": "相談話はキャッチボール中にしがち",
+      "secrets": [
+        "実は、虫退治マスター。",
+        "実は、パサパサした食べ物は苦手。"
+      ]
+    },
+    "ko": {
+      "self_intro": "나는 베르시나. 모든 것을 타파하고 여왕이 되는 그날까지 굴하지 않겠어.",
+      "tagline": "나에게 합당한 『여왕』의 자리로. 승리를 고집하는 셀럽 우마무스메",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "secrets": [
+        "사실은 벌레 퇴치 마스터.",
+        "사실은 퍼석퍼석한 음식을 싫어한다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我是極峰。直到突破所有難關成為女王的那一天，我絕不會被挫折打敗！",
+      "tagline": "邁向實至名歸的「女王」寶座。好勝心強盛的名流賽馬娘",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "secrets": [
+        "其實她是除蟲大師。",
+        "其實她不喜歡太乾的食物。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

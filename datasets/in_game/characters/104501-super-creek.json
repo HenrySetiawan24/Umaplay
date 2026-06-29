@@ -1,0 +1,208 @@
+{
+  "charData": {
+    "url_name": "super-creek",
+    "tid": "I",
+    "char_id": 1045,
+    "jp_name": "スーパークリーク",
+    "en_name": "Super Creek",
+    "name_ko": "슈퍼 크릭",
+    "name_tw": "超級小溪",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Kana Yuuki",
+    "va_ja": "優木かな",
+    "va_ko": "유우키 카나",
+    "va_zh_tw": "優木かな",
+    "va_link": "https://myanimelist.net/people/30613/Kana_Yuuki",
+    "three_sizes": {
+      "b": 97,
+      "w": 61,
+      "h": 91
+    },
+    "birth_day": 27,
+    "birth_month": 5,
+    "birth_year": 1985,
+    "height": 168,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2010-08-29",
+      "races": 16,
+      "wins": 8,
+      "record": "8-2-2-4",
+      "earnings": 556100000,
+      "active": "1987-1990"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1045_104501.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1045_104501.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 28,
+      "year": 2,
+      "month": 2,
+      "day": 2,
+      "race_name": "Sumire Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 3,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 4,
+      "turn": 48,
+      "year": 2,
+      "month": 12,
+      "day": 2,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 5,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Osaka Hai",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "super-creek",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1045,
+    "ja": {
+      "self_intro": "うふふっ、スーパークリークですよ～。みんなの笑顔のためなら、う～んと頑張っちゃいます。お任せください♪",
+      "tagline": "おっとり母性で癒してくれる優しいお姉さん",
+      "weight": "微増（理由はナイショ）",
+      "shoes": "左右ともに25.5cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "耳かきをするのは得意だが、されるのは苦手",
+      "tail": "小さい子を器用にあやす",
+      "strong": "お世話",
+      "weak": "お絵描き",
+      "family": "実家の託児所は、アットホームさが評判",
+      "secrets": [
+        "実は、おもちを丸めるのが上手。",
+        "実は、父の影響でゴルフに詳しい。"
+      ]
+    },
+    "ko": {
+      "self_intro": "우후후, 슈퍼 크릭이에요~ 모두의 미소를 위해서라면 열~심히 노력할 거예요. 맡겨만 주세요♪",
+      "tagline": "포근한 모성으로 치유해주는 상냥한 언니",
+      "weight": "약간 증가 (이유는 비밀)",
+      "shoes": "좌우 모두 25.5cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "귀 청소가 특기지만 남에게 받는 것은 어렵다.",
+      "tail": "어린 아이를 잘 달랜다.",
+      "strong": "다른 사람 돌보기",
+      "weak": "그림 그리기",
+      "family": "집에서 운영하는 탁아소는 가정적인 분위기로 호평이다.",
+      "secrets": [
+        "사실은 떡을 둥글게 잘 빚는다.",
+        "사실은 아버지 영향을 받아 골프에 대해 잘 안다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "呵呵呵，我是超級小溪唷～為了讓大家都能充滿笑容，我會盡全～力好好加油。包在我身上♪",
+      "tagline": "用溫和母性療癒人心的溫柔大姐姐",
+      "weight": "微增（理由保密）",
+      "shoes": "左右都是25.5cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "擅長幫別人挖耳朵，卻很怕別人幫自己挖",
+      "tail": "很熟練地用來哄小孩",
+      "strong": "照顧人",
+      "weak": "畫圖",
+      "family": "老家是托兒所，因為帶給人如同在自己家般的感覺而大受好評",
+      "secrets": [
+        "其實她很擅長將麻糬揉成圓形。",
+        "其實她在父親的影響之下，很了解高爾夫球。"
+      ]
+    },
+    "en": {
+      "self_intro": "Hehe. ♪ I'm Super Creek. I'll work hard to make everyone around me smile. Just leave it to me. ♪",
+      "tagline": "Motherly and kind, her presence is soothing.",
+      "weight": "Slight increase (the reason is a secret)",
+      "shoes": "Left and right: 25.5cm",
+      "dorm": "Ritto Dormitory",
+      "class": "Senior Division",
+      "ears": "Likes cleaning out people's ears. Does not like having her ears cleaned",
+      "tail": "Great at calming children",
+      "strong": "Taking care of others",
+      "weak": "Drawing",
+      "family": "Her family runs a daycare with a reputation for warmth",
+      "secrets": [
+        "Did you know? She's great at rolling perfectly round rice cakes.",
+        "Did you know? She learned quite a lot about golfing from her father."
+      ]
+    }
+  }
+}

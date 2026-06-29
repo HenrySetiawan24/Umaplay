@@ -1,0 +1,234 @@
+{
+  "charData": {
+    "url_name": "air-shakur",
+    "tid": "z",
+    "char_id": 1036,
+    "jp_name": "エアシャカール",
+    "en_name": "Air Shakur",
+    "name_ko": "에어 샤커",
+    "name_tw": "空中神宮",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Minami Tsuda",
+    "va_ja": "津田美波",
+    "va_ko": "츠다 미나미",
+    "va_zh_tw": "津田美波",
+    "va_link": "https://myanimelist.net/people/11492/Minami_Tsuda",
+    "three_sizes": {
+      "b": 77,
+      "w": 56,
+      "h": 85
+    },
+    "birth_day": 26,
+    "birth_month": 2,
+    "birth_year": 1997,
+    "height": 168,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2003-03-13",
+      "races": 20,
+      "wins": 4,
+      "record": "4-6-1-9",
+      "earnings": 545050000,
+      "earnings_other": [
+        [
+          12000,
+          "GBP"
+        ]
+      ],
+      "active": "1999-2002"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1036_103601.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1036_103601.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 24,
+      "year": 1,
+      "month": 12,
+      "day": 2,
+      "race_name": "Hopeful Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 46,
+      "year": 2,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 7,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 8,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 10,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "air-shakur",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1036,
+    "ja": {
+      "self_intro": "エアシャカールだ。どんな勝負でもデータがものをいう。シミュレーションに問題はねェねじ伏せてやるよ、ロジカルにな",
+      "tagline": "ロジカルにいこうぜ！常識外れの天才ガール",
+      "weight": "計測不可能",
+      "shoes": "左：26.0cm右：25.5cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "ロジカルな思考中は直立する",
+      "tail": "走りに適した長さと毛量を計算し、維持中",
+      "strong": "プログラミング",
+      "weak": "アブラゼミ",
+      "family": "母からの仕送りの箱は、開けたことがない",
+      "secrets": [
+        "実は、右クリックの時だけ体が右に傾くクセがある。",
+        "実は、イタリアのプロサッカー中継をちょくちょく見ている。"
+      ]
+    },
+    "ko": {
+      "self_intro": "에어 샤커다. 어떤 승부든 데이터가 곧 결과로 이어지지. 시뮬레이션에 문제 따윈 없어. 꺾어주겠다고, 로지컬하게 말이야",
+      "tagline": "로지컬하게 가자고! 상식을 벗어난 천재 걸",
+      "weight": "측정 불가능",
+      "shoes": "좌 : 26.0cm 우 : 25.5cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "로지컬한 사고 중일 때엔 똑바로 선다",
+      "tail": "달리기에 적합한 길이와 모량을 계산해서 유지 중",
+      "strong": "프로그래밍",
+      "weak": "유지매미",
+      "family": "어머니가 보내 주신 상자는 열어 본 적이 없다",
+      "secrets": [
+        "사실은 우클릭할 때만 몸을 오른쪽으로 기울이는 버릇이 있다.",
+        "사실은 이탈리아의 프로 축구 중계방송을 가끔씩 보고 있다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我是空中神宮。不管是怎樣的比賽，數據都能說明一切。模擬數值沒有任何問題。所有人都會屈服在我的邏輯之下。",
+      "tagline": "照邏輯來吧！脫離常識的天才女孩",
+      "weight": "沒辦法測量",
+      "shoes": "左：26.0cm右：25.5cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "進行邏輯思考時姿勢會直挺挺的",
+      "tail": "會計算並維持在適合奔跑的長度和毛量",
+      "strong": "寫程式",
+      "weak": "油蟬",
+      "family": "從沒打開過母親寄來資助生活的箱子",
+      "secrets": [
+        "其實她有在點擊右鍵時身體會向右傾的習慣。",
+        "其實她不時會觀看義大利職業足球的實況轉播。"
+      ]
+    },
+    "en": {
+      "self_intro": "The name's Air Shakur. The data always tells the true story, and I've got my simulations on point. Hope everyone's ready to get crushed by my logic.",
+      "tagline": "Always takes the logical approach! A brilliant but eccentric racer.",
+      "weight": "Could not be measured",
+      "shoes": "Left: 26.0cm Right: 25.5cm",
+      "dorm": "Ritto Dormitory",
+      "class": "Senior Division",
+      "ears": "Stand straight up when she's deep in logical thought",
+      "tail": "Maintained at the perfect length and volume for running",
+      "strong": "Programming",
+      "weak": "Cicadas",
+      "family": "Doesn't open any of the care packages her mother sends",
+      "secrets": [
+        "Did you know? She has a habit of leaning to the right whenever she right-clicks her mouse.",
+        "Did you know? She frequently watches broadcasts of Italian soccer games."
+      ]
+    }
+  }
+}

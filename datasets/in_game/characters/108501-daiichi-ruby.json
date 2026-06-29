@@ -1,0 +1,202 @@
+{
+  "charData": {
+    "url_name": "daiichi-ruby",
+    "tid": "1m",
+    "char_id": 1085,
+    "jp_name": "ダイイチルビー",
+    "en_name": "Daiichi Ruby",
+    "name_ko": "다이이치 루비",
+    "name_tw": "第一紅寶",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Karin Isobe",
+    "va_ja": "礒部花凜",
+    "va_ko": "이소베 카린",
+    "va_zh_tw": "礒部花凜",
+    "va_link": "https://myanimelist.net/people/37014/Karin_Isobe",
+    "three_sizes": {
+      "b": 77,
+      "w": 53,
+      "h": 76
+    },
+    "birth_day": 15,
+    "birth_month": 4,
+    "birth_year": 1987,
+    "height": 141,
+    "sex": 2,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2007-04-26",
+      "races": 18,
+      "wins": 6,
+      "record": "6-6-1-5",
+      "earnings": 431711600,
+      "active": "1990-1993"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1085_108501.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1085_108501.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 29,
+      "year": 2,
+      "month": 3,
+      "day": 1,
+      "race_name": "Fillies' Revue",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Oka Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Japanese Oaks",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 5,
+      "turn": 41,
+      "year": 2,
+      "month": 9,
+      "day": 1,
+      "race_name": "Rose Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Takamatsunomiya Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 59,
+      "year": 3,
+      "month": 6,
+      "day": 1,
+      "race_name": "Yasuda Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 66,
+      "year": 3,
+      "month": 9,
+      "day": 2,
+      "race_name": "Sprinters Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Mile Championship",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "daiichi-ruby",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1085,
+    "ja": {
+      "self_intro": "ダイイチルビーと申します。至上であることこそ、我が一族の務め。己の責務を果たすべく、邁進して参ります",
+      "tagline": "勝利は必定。華麗なる一族のウマ娘",
+      "weight": "華麗なる推移",
+      "shoes": "左：19.0cm右：18.5cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "音楽が聞こえると耳を澄ますこともある",
+      "tail": "毛先は自然と高貴な形に巻いている",
+      "strong": "万年筆の扱い、チェス",
+      "weak": "天気雨、サイズの合わない服",
+      "family": "母や祖母との家族写真を自室に飾っている",
+      "secrets": [
+        "実は、『お嬢ん家のわんこ、サフィーちゃんってゆーんだけど超絶カワイイ』らしい。",
+        "実は、髪飾りのリボンは1枚で学園の制服が一式買えるお値段。"
+      ]
+    },
+    "ko": {
+      "self_intro": "다이이치 루비라고 합니다. 최상이어야 함이 저희 일족의 의무. 자신의 책무를 다할 수 있도록 매진하겠습니다.",
+      "tagline": "승리는 확정.  화려한 일족의 우마무스메.",
+      "weight": "화려한 변화",
+      "shoes": "좌 : 19.0cm 우 : 18.5cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "음악이 들려오면 귀를 기울이기도 한다",
+      "tail": "털끝은 자연스럽게 고귀한 형태로 말려 있다",
+      "strong": "만년필 다루기, 체스",
+      "weak": "여우비, 사이즈가 맞지 않는 옷",
+      "family": "어머니, 할머니와의 가족사진을 방에 장식해 두고 있다",
+      "secrets": [
+        "사실은 『아가씨네 댕댕이, 이름이 서피짱이라는데 짱 커여워』라고 한다.",
+        "사실은 머리에 단 리본은 하나에 학원 교복 한 벌을 살 수 있을 정도의 가격."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我叫第一紅寶。展現極致的表現，正是我一族的職責所在。我會貫徹己身應盡的責任，向前邁進。",
+      "tagline": "勝利是必然的結果。出身於華麗一族的賽馬娘",
+      "weight": "華麗地變動",
+      "shoes": "左：19.0cm右：18.5cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "聽到音樂時，有時會仔細聆聽",
+      "tail": "毛髮尾端自然地捲成了高貴的形狀",
+      "strong": "用鋼筆寫字、西洋棋",
+      "weak": "太陽雨、不合身的衣服",
+      "family": "自己的房間裡擺放著與母親、祖母的家族照片",
+      "secrets": [
+        "其實「大小姐家的狗狗叫做莎菲，超級無敵可愛喔」的樣子。",
+        "其實她的蝴蝶結髮飾，一個的價格就足以買下整套學園制服。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

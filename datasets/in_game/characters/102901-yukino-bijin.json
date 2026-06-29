@@ -1,0 +1,220 @@
+{
+  "charData": {
+    "url_name": "yukino-bijin",
+    "tid": "s",
+    "char_id": 1029,
+    "jp_name": "ユキノビジン",
+    "en_name": "Yukino Bijin",
+    "name_ko": "유키노 비진",
+    "name_tw": "雪之美人",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Nozomi Yamamoto",
+    "va_ja": "山本希望",
+    "va_ko": "야마모토 노조미",
+    "va_zh_tw": "山本希望",
+    "va_link": "https://myanimelist.net/people/12490/Nozomi_Yamamoto",
+    "three_sizes": {
+      "b": 80,
+      "w": 55,
+      "h": 80
+    },
+    "birth_day": 10,
+    "birth_month": 3,
+    "birth_year": 1990,
+    "height": 156,
+    "sex": 2,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2016-07-22",
+      "races": 10,
+      "wins": 6,
+      "record": "6-2-0-2",
+      "earnings": 165850000,
+      "active": "1992-1993"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1029_102901.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1029_102901.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "Hanshin Juvenile Fillies",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Oka Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Japanese Oaks",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 38,
+      "year": 2,
+      "month": 7,
+      "day": 2,
+      "race_name": "Queen Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 6,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Shuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Osaka Hai",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 57,
+      "year": 3,
+      "month": 5,
+      "day": 1,
+      "race_name": "Victoria Mile",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 69,
+      "year": 3,
+      "month": 11,
+      "day": 1,
+      "race_name": "Queen Elizabeth II Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "yukino-bijin",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1029,
+    "ja": {
+      "self_intro": "あ、あたしはユキノビジン言います！チンクルシリーズでイケてるシチーガールになるのが夢です！ふぅ…ちゃんと言えたぁ…",
+      "tagline": "目指せシチーガール！地方出身の頑張り屋",
+      "weight": "増減なし",
+      "shoes": "左右ともに22.5cm",
+      "dorm": "美浦寮",
+      "class": "中等部",
+      "ears": "めんこい耳当てをたくさん持っている",
+      "tail": "プチプラお手入れグッズに挑戦中",
+      "strong": "鍋料理、雪合戦",
+      "weak": "暑さ",
+      "family": "上京後も方言が残る娘に、少し安心している",
+      "secrets": [
+        "実は、編み込みの腕だけはプロのヘアスタイリスト並み。",
+        "実は、ひとりで川魚を釣れるし捌けるし焼ける。"
+      ]
+    },
+    "ko": {
+      "self_intro": "저, 저는 유키노 비진입니다! 띵클 시리즈에서 잘나가는 시티 걸이 되는 게 꿈이에요! 후우… 제대로 말했다…",
+      "tagline": "목표는 시티 걸! 지방 출신 노력가",
+      "weight": "변화 없음",
+      "shoes": "좌우 모두 22.5cm",
+      "dorm": "미호 생활관",
+      "class": "중등부",
+      "ears": "귀여운 귀마개를 많이 갖고 있다",
+      "tail": "저렴한 손질 용품에 도전 중",
+      "strong": "전골 요리, 눈싸움",
+      "weak": "더위",
+      "family": "상경 후에도 사투리가 남아있는 딸에게 약간 안심하고 있다",
+      "secrets": [
+        "사실은 머리 땋기 실력 만큼은 프로 헤어스타일리스트 수준.",
+        "사실은 혼자서 민물고기를 잡고 손질하고 구울 수 있다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我、我叫做雪之美人！我的夢想是成為在散耀系列賽大為活躍的都市女孩！呼……好好說出來了……",
+      "tagline": "目標是成為都市女孩！來自地方的拚命賽馬娘",
+      "weight": "無增減",
+      "shoes": "左右都是22.5cm",
+      "dorm": "美浦宿舍",
+      "class": "國中部",
+      "ears": "有很多可愛的耳罩",
+      "tail": "正在嘗試平價保養用品",
+      "strong": "火鍋、打雪仗",
+      "weak": "高氣溫",
+      "family": "對來東京後仍會說方言的人，會感到些許安心",
+      "secrets": [
+        "其實她編髮的技巧足以與專業的美髮師媲美。",
+        "其實她會自己去溪釣，還會將釣到的魚處理好並烤來吃。"
+      ]
+    },
+    "en": {
+      "self_intro": "My name's, uh, Yukino Bijin! My dream's to run in the Twinkly Series and shine like a real city girl! Whew... I think I managed t' say it all without mess'n up...",
+      "tagline": "She's gonna be a real city girl! Just a hardwork'n girl from the country.",
+      "dorm": "Miho Dormitory",
+      "class": "Junior Division",
+      "secrets": [
+        "Did you know? Her braiding skills are on par with that of a professional hairstylist.",
+        "Did you know? She can catch, clean, and cook river fish all by herself."
+      ]
+    }
+  }
+}

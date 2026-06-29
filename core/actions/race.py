@@ -35,7 +35,7 @@ from core.utils.text import _normalize_ocr, fuzzy_ratio
 from core.utils.yolo_objects import collect, find, bottom_most, inside
 from core.utils.pointer import smart_scroll_small
 from core.utils.abort import abort_requested, request_abort
-from core.run_context import get as get_run_record
+from core.run_context import get as get_run_record, update_last_turn_log
 from server.run_history import append_history
 
 
@@ -66,12 +66,16 @@ class RaceFlow:
     """
 
     def __init__(
-        self, ctrl: IController, ocr, yolo_engine: IDetector, waiter: Waiter
+        self, ctrl: IController, ocr, yolo_engine: IDetector, waiter: Waiter,
+        plan_races: Optional[Dict[str, str]] = None,
+        goal_races: Optional[Dict[str, str]] = None,
     ) -> None:
         self.ctrl = ctrl
         self.ocr = ocr
         self.yolo_engine = yolo_engine
         self.waiter = waiter
+        self.plan_races: Dict[str, str] = plan_races or {}
+        self.goal_races: Dict[str, str] = goal_races or {}
         self._banner_matcher = get_race_banner_matcher()
         self._race_result_counters = {
             "loss_indicators": 0,
@@ -763,23 +767,38 @@ class RaceFlow:
             record = get_run_record()
             if record is None or record.get("end_time"):
                 return
-            from datetime import datetime
-            entry: Dict[str, Any] = {
-                "race_name": self._last_race_name or "unknown",
-                "won": won,
-                "timestamp": datetime.now().isoformat(),
-            }
-            t = turn if turn is not None else self._current_turn
+
+            # If date_key is incomplete (year-only or empty), try to resolve from
+            # plan_races using the OCR'd race name as a reverse-lookup key.
             dk = date_key if date_key is not None else self._current_date_key
-            if t is not None:
-                entry["turn"] = t
-            if dk is not None:
-                entry["date_key"] = dk
+            if dk is None or "-" not in dk:
+                race_name = self._last_race_name or ""
+                if race_name:
+                    for pdk, pname in self.plan_races.items():
+                        if pname.strip().lower() == race_name.strip().lower():
+                            dk = pdk
+                            self._current_date_key = dk
+                            break
+
+            # Resolve race name: plan_races (canonical) → goal_races → OCR last resort.
+            canonical = (
+                (dk and self.plan_races.get(dk))
+                or (dk and self.goal_races.get(dk))
+                or self._last_race_name
+                or "unknown"
+            )
+
+            # Enrich the most recent turn_log entry (the to_race decision) with
+            # race outcome fields rather than writing a separate races_attempted entry.
+            race_fields: Dict[str, Any] = {
+                "race_name": canonical,
+                "won": won,
+            }
             if fans_before is not None:
-                entry["fans_before"] = fans_before
+                race_fields["fans_before"] = fans_before
             if fans_after is not None:
-                entry["fans_after"] = fans_after
-            record.setdefault("races_attempted", []).append(entry)
+                race_fields["fans_after"] = fans_after
+            update_last_turn_log(**race_fields)
             append_history(record)
         except Exception:
             logger_uma.debug("[run_history] _record_race_attempt failed", exc_info=True)
@@ -836,15 +855,22 @@ class RaceFlow:
         if is_view_active and view_btn is not None:
             # Tap 'View Results' a couple times to clear residual screens
             self.ctrl.click_xyxy_center(view_btn["xyxy"], clicks=random.randint(1, 2))
-            time.sleep(random.uniform(3, 3.5))
-            self.ctrl.click_xyxy_center(view_btn["xyxy"], clicks=random.randint(3, 3))
-            time.sleep(random.uniform(0.3, 0.5))
-            # -- Placement OCR on leaderboard after View Results --
-            time.sleep(1.5)
-            img_vr, _ = self._collect("race_placement_vr")
-            raw = self.ocr.text(img_vr, min_conf=0.1)
-            self._last_placement = RaceFlow._parse_placement(raw)
-            RaceFlow._save_placement_debug(img_vr, raw, self._last_placement, "view_results")
+            if Settings.DETAILED_HISTORY:
+                time.sleep(random.uniform(3, 3.5))
+                self.ctrl.click_xyxy_center(view_btn["xyxy"], clicks=random.randint(3, 3))
+                time.sleep(random.uniform(0.3, 0.5))
+                # -- Placement OCR on leaderboard after View Results --
+                time.sleep(1.5)
+                img_vr, _ = self._collect("race_placement_vr")
+                raw = self.ocr.text(img_vr, min_conf=0.1)
+                self._last_placement = RaceFlow._parse_placement(raw)
+                RaceFlow._save_placement_debug(img_vr, raw, self._last_placement, "view_results")
+            else:
+                time.sleep(random.uniform(3, 3.5))
+                self.ctrl.click_xyxy_center(view_btn["xyxy"], clicks=random.randint(3, 3))
+                time.sleep(random.uniform(0.3, 0.5))
+                time.sleep(0.4)
+                self._last_placement = None
         else:
             # Click green 'RACE' (prefer bottom-most; OCR disambiguation if needed)
             if not self.waiter.click_when(
@@ -944,7 +970,7 @@ class RaceFlow:
                 time.sleep(0.12)
 
             # -- Placement OCR on leaderboard (only if we broke on NEXT, not CLOSE) --
-            if not closed_early:
+            if Settings.DETAILED_HISTORY and not closed_early:
                 img_pl, _ = self._collect("race_placement")
                 raw = self.ocr.text(img_pl, min_conf=0.1)
                 self._last_placement = RaceFlow._parse_placement(raw)
@@ -966,16 +992,17 @@ class RaceFlow:
         # Check if we loss — poll with retries to catch the button reliably
         clicked_try_again = False
         loss_indicator_seen = False
-        for _ in range(6):
-            if self.waiter.seen(
-                classes=("button_green",),
-                texts=("TRY AGAIN",),
-                tag="race_try_again_probe",
-                threshold=0.3,
-            ):
-                loss_indicator_seen = True
-                break
-            time.sleep(0.5)
+        if Settings.DETAILED_HISTORY:
+            for _ in range(6):
+                if self.waiter.seen(
+                    classes=("button_green",),
+                    texts=("TRY AGAIN",),
+                    tag="race_try_again_probe",
+                    threshold=0.3,
+                ):
+                    loss_indicator_seen = True
+                    break
+                time.sleep(0.5)
         if loss_indicator_seen:
             self._race_result_counters["loss_indicators"] += 1
             logger_uma.info(

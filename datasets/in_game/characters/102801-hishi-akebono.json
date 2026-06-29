@@ -1,0 +1,228 @@
+{
+  "charData": {
+    "url_name": "hishi-akebono",
+    "tid": "r",
+    "char_id": 1028,
+    "jp_name": "ヒシアケボノ",
+    "en_name": "Hishi Akebono",
+    "name_ko": "히시 아케보노",
+    "name_tw": "菱曙",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Rei Matsuzaki",
+    "va_ja": "松嵜麗",
+    "va_ko": "마츠자키 레이",
+    "va_zh_tw": "松嵜麗",
+    "va_link": "https://myanimelist.net/people/11844/Rei_Matsuzaki",
+    "three_sizes": {
+      "b": 99,
+      "w": 64,
+      "h": 88
+    },
+    "birth_day": 27,
+    "birth_month": 2,
+    "birth_year": 1992,
+    "height": 180,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "us",
+      "death": "2008-11-19",
+      "races": 30,
+      "wins": 6,
+      "record": "6-1-6-17",
+      "earnings": 324260000,
+      "active": "1994-1998"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1028_102801.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1028_102801.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 3000
+    },
+    {
+      "order": 3,
+      "turn": 37,
+      "year": 2,
+      "month": 7,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 10000
+    },
+    {
+      "order": 4,
+      "turn": 42,
+      "year": 2,
+      "month": 9,
+      "day": 2,
+      "race_name": "Sprinters Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Swan Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 46,
+      "year": 2,
+      "month": 11,
+      "day": 2,
+      "race_name": "Mile Championship",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Takamatsunomiya Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 59,
+      "year": 3,
+      "month": 6,
+      "day": 1,
+      "race_name": "Yasuda Kinen",
+      "cond_type": 1,
+      "cond_value": 2
+    },
+    {
+      "order": 9,
+      "turn": 66,
+      "year": 3,
+      "month": 9,
+      "day": 2,
+      "race_name": "Sprinters Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Mile Championship",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "hishi-akebono",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1028,
+    "ja": {
+      "self_intro": "ボノボーノ♪ヒシアケボノだよ～☆料理も走りも、大っっきな愛情込めてみんなに届けるから！よろしくね～♪",
+      "tagline": "大きい！大らか！大…皿？ボーノをどうぞ♪",
+      "weight": "超大幅増",
+      "shoes": "左右ともに28.0cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "どんなに微かな空腹音も必ずキャッチする",
+      "tail": "泡立てている時は、一緒にクルクル回る",
+      "strong": "お菓子作り、相撲",
+      "weak": "鍋奉行",
+      "family": "父は料理の師匠で、母はお菓子作りの先生",
+      "secrets": [
+        "実は、ノートを使い切るのがやたら早い。",
+        "実は、注射の時は目をつぶってしまう。"
+      ]
+    },
+    "ko": {
+      "self_intro": "보노보노~♪ 히시 아케보노야~☆ 요리도 달리기도, 커~~~다란 애정을 담아서 모두에게 전할 테니까! 잘 부탁해~♪",
+      "tagline": "크다! 대범하다! 큰… 접시? 보노하게 어때요♪",
+      "weight": "초대폭 증가",
+      "shoes": "좌우 모두 28.0cm",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "ears": "꼬르륵 소리라면 아무리 작아도 반드시 포착한다",
+      "tail": "머랭을 칠 때는 같이 뱅글뱅글 돈다",
+      "strong": "과자 만들기, 스모",
+      "weak": "참견하기",
+      "family": "아버지는 요리 스승님, 어머니는 제과 선생님",
+      "secrets": [
+        "사실은 노트를 다 쓰는 속도가 무척 빠르다.",
+        "사실은 주사 맞을 때는 눈을 감아버린다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "Buono～♪我是菱曙～☆不論是料理還是跑步，都會注入滿～滿的愛意獻給大家！請多指教囉～♪",
+      "tagline": "大尺碼！大方！大……盤子？請享用美食♪",
+      "weight": "超大幅增加",
+      "shoes": "左右都是28.0cm",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "ears": "肚子餓的聲音再細微都絕不會放過",
+      "tail": "在起泡時，會跟著一起旋轉",
+      "strong": "製作甜點、相撲",
+      "weak": "吃火鍋規矩多",
+      "family": "父親是料理師傅，母親是甜點老師",
+      "secrets": [
+        "其實她消耗筆記本的速度相當快。",
+        "其實她在打針時會忍不住閉起眼睛。"
+      ]
+    },
+    "en": {
+      "self_intro": "Buono, buono! ♪ Hishi Akebono here! ☆ Whether it's cooking or racing, I put a little bit of love into everything I do!",
+      "tagline": "Big and generous... portions? Get some more buono in your life! ♪",
+      "weight": "Supersized",
+      "shoes": "Left and right: 28.0cm",
+      "dorm": "Ritto Dormitory",
+      "class": "Junior Division",
+      "ears": "Can hear the faintest rumble of an empty stomach",
+      "tail": "Twirls around whenever she whisks ingredients",
+      "strong": "Making sweets, sumo wrestling",
+      "weak": "Hot-pot control freaks",
+      "family": "Her father is a master chef, and her mother is a confectionary teacher",
+      "secrets": [
+        "Did you know? She burns through notebooks at an extremely fast rate.",
+        "Did you know? She keeps her eyes shut tight when getting a shot at the doctor's."
+      ]
+    }
+  }
+}

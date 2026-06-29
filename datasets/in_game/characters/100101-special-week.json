@@ -1,0 +1,198 @@
+{
+  "charData": {
+    "url_name": "special-week",
+    "tid": "0",
+    "char_id": 1001,
+    "jp_name": "スペシャルウィーク",
+    "en_name": "Special Week",
+    "name_ko": "스페셜 위크",
+    "name_tw": "特別週",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Azumi Waki",
+    "va_ja": "和氣あず未",
+    "va_ko": "와키 아즈미",
+    "va_zh_tw": "和氣あず未",
+    "va_link": "https://myanimelist.net/people/36812/Azumi_Waki",
+    "three_sizes": {
+      "b": 81,
+      "w": 56,
+      "h": 81
+    },
+    "birth_day": 2,
+    "birth_month": 5,
+    "birth_year": 1995,
+    "height": 158,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2018-04-27",
+      "races": 17,
+      "wins": 10,
+      "record": "10-4-2-1",
+      "earnings": 1092620000,
+      "active": "1997-1999"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1001_100101.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1001_100101.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 27,
+      "year": 2,
+      "month": 2,
+      "day": 1,
+      "race_name": "Kisaragi Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 5,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 2
+    },
+    {
+      "order": 7,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "special-week",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1001,
+    "ja": {
+      "self_intro": "私、スペシャルウィークって言います！夢は日本一のウマ娘です！お母ちゃんたちに喜んでもらうため…私、けっぱります！",
+      "tagline": "けっぱるべー！夢一直線の純心どさん娘",
+      "weight": "微減（レース前で緊張気味）",
+      "shoes": "左：23.5cm 右：23.0cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "料理の音に敏感で、ついそばだててしまう",
+      "tail": "感情のまま動いてしまうのでポーカーは苦手",
+      "strong": "臨場感のある食レポ",
+      "weak": "改札のタッチ＆ゴー",
+      "family": "瞳の色は、産んでくれた母親譲り",
+      "secrets": [
+        "実は、利き牛乳ができる。",
+        "実は、おんぶが上手で背負われた人はすぐ眠くなる。"
+      ]
+    },
+    "ko": {
+      "self_intro": "저는 스페셜 위크라고 해요! 꿈은 일본 최고의 우마무스메예요! 엄마들에게 기쁨을 주기 위해… 저, 힘낼게유!",
+      "tagline": "힘내는 겨! 꿈을 향해 직진하는 순진무구한 시골 소녀",
+      "weight": "(레이스 전 긴장으로 인해) 약간 감소",
+      "shoes": "좌 : 23.5cm 우 : 23.0cm",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "ears": "요리하는 소리에 민감해서 무심코 귀를 기울인다.",
+      "tail": "감정대로 움직이기 때문에 포커는 잘 못 한다.",
+      "strong": "생생하게 현장감 넘치는 음식 리뷰",
+      "weak": "개찰구 Touch & Go",
+      "family": "눈동자 색깔은 낳아 준 어머니에게 물려 받았다.",
+      "secrets": [
+        "사실은 어디 우유인지 마셔만 봐도 알 수 있다.",
+        "사실은 어부바가 특기라서 등에 업은 사람은 금방 졸음이 온다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我叫做特別週！夢想是成為日本第一賽馬娘！為了讓兩個媽媽開心……我會加油唄！",
+      "tagline": "好好加油唄～！朝夢想一路猛衝的單純北海道女孩",
+      "weight": "微減（競賽前略顯緊張）",
+      "shoes": "左：23.5cm 右：23.0cm",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "ears": "對於料理的聲音很敏感，忍不住會仔細聆聽",
+      "tail": "容易順著感情晃動，因此不擅長撲克牌",
+      "strong": "有臨場感的美食報導",
+      "weak": "通過剪票口＆感應卡片",
+      "family": "眼睛的顏色是遺傳自生母",
+      "secrets": [
+        "其實她一喝就能分辨出是哪種牛奶。",
+        "其實她很擅長揹人，被她揹的人一下子就會睡著。"
+      ]
+    },
+    "en": {
+      "self_intro": "My name's Special Week! My dream is to be the top Umamusume in all of Japan! I gotta work hard to make my moms proud!",
+      "tagline": "Rar'n to go! A pure-hearted girl focused on her dream.",
+      "weight": "Slight decrease (pre-race nerves)",
+      "shoes": "Left: 23.5cm Right: 23.0cm",
+      "dorm": "Ritto Dormitory",
+      "class": "Junior Division",
+      "ears": "Perks up and teleports to the kitchen when she hears the sounds of cooking",
+      "tail": "Moves along with her emotions, making her a terrible poker player",
+      "strong": "Detailed food reports",
+      "weak": "Using her train pass",
+      "family": "She gets her eye color from her birth mother",
+      "secrets": [
+        "Did you know? She can tell different brands of milk apart from taste alone.",
+        "Did you know? She's great at giving piggyback rides. Whoever she carries quickly falls asleep."
+      ]
+    }
+  }
+}

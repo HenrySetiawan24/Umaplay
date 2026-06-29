@@ -119,6 +119,7 @@ export const generalSchema = z.object({
   adbDevice: z.string().default('localhost:5555'),
   fastMode: z.boolean().default(false),
   fastModeEnergyThreshold: z.number().int().min(0).max(100).default(35),
+  detailedHistory: z.boolean().default(true),
   tryAgainOnFailedGoal: z.boolean().default(true),
   maxFailure: z.number().int().min(0).max(99).default(20),
   acceptConsecutiveRace: z.boolean().default(true),
@@ -152,6 +153,7 @@ export const generalSchema = z.object({
   adbDevice: 'localhost:5555',
   fastMode: false,
   fastModeEnergyThreshold: 35,
+  detailedHistory: true,
   tryAgainOnFailedGoal: true,
   maxFailure: 20,
   acceptConsecutiveRace: true,
@@ -194,6 +196,7 @@ export const presetSchema = z.object({
   lobbyPrecheckEnable: z.boolean().default(false),
   juniorMinimalMood: z.enum(['AWFUL', 'BAD', 'NORMAL', 'GOOD', 'GREAT']).nullable().default(null),
   goalRaceForceTurns: z.number().int().min(0).max(12).default(5),
+  charId: z.number().int().positive().nullable().optional(),
   unityCupAdvanced: unityCupAdvancedSchema.optional().default(() => defaultUnityCupAdvanced()),
   // Make optional on input, but always present on output via default()
   event_setup: (() => {

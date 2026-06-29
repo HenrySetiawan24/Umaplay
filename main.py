@@ -45,8 +45,8 @@ from core.utils.abort import request_abort, clear_abort
 from core.utils.event_processor import UserPrefs
 from core.utils.preset_overlay import show_preset_overlay
 from core.ui.scenario_prompt import choose_active_scenario, ScenarioSelectionCancelled
-from core.run_context import set as set_run_record, get as get_run_record, tick_active_time
-from server.run_history import append_history, get_record
+from core.run_context import set as set_run_record, get as get_run_record, start_active_interval, tick_active_time
+from server.run_history import append_history, get_full_record
 from server.bot_bridge import register as register_bot_bridge
 
 # Controllers & perception interfaces
@@ -310,17 +310,29 @@ class BotState:
                 preset_name = "Unnamed"
                 trainee_name = None
 
+            # Resolve char_id: prefer the preset's explicit charId field (set by the UI
+            # character selector), fall back to a name search as a best-effort guess.
+            char_id = full_preset.get("charId") if full_preset else None
+            if not char_id and trainee_name:
+                try:
+                    from core.utils.character_data import search_characters
+                    results = search_characters(trainee_name)
+                    if results:
+                        char_id = results[0]["char_id"]
+                except Exception:
+                    pass
+
             # 5) Build event prefs from config (active preset). If malformed/missing,
             #    UserPrefs.from_config() returns safe defaults and EventFlow will still
             #    pick the top option if a pick is invalid at runtime.
             event_prefs = UserPrefs.from_config(cfg or {})
 
             # 6) Create (or continue) run record for history tracking
-            from datetime import datetime
+            from datetime import datetime, timedelta
             now = datetime.now()
 
             if continue_id:
-                run_record = get_record(continue_id)
+                run_record = get_full_record(continue_id)
                 if run_record is None:
                     logger_uma.warning("[run_history] continue_id '%s' not found, starting fresh", continue_id)
                     run_record = None
@@ -329,7 +341,21 @@ class BotState:
                     run_record["uma_name"] = f"{preset_name} / {trainee_name}" if trainee_name else preset_name
                     run_record["error"] = None
                     run_record["end_time"] = None
-                    tick_active_time()
+                    if char_id and not run_record.get("char_id"):
+                        run_record["char_id"] = char_id
+                    if not run_record.get("active_periods") and (run_record.get("active_seconds") or 0) > 0:
+                        try:
+                            start_iso = run_record.get("start_time")
+                            start_dt = datetime.fromisoformat(start_iso) if start_iso else now
+                            resume_seconds = float(run_record.get("active_seconds") or 0)
+                            run_record["active_periods"] = [
+                                {
+                                    "start_time": start_dt.isoformat(),
+                                    "stop_time": (start_dt + timedelta(seconds=resume_seconds)).isoformat(),
+                                }
+                            ]
+                        except Exception:
+                            run_record["active_periods"] = []
                     logger_uma.info("[run_history] Continuing run %s (started %s)", continue_id, run_record.get("start_time"))
             if not continue_id or run_record is None:
                 run_record = {
@@ -349,49 +375,36 @@ class BotState:
                     "completed": False,
                     "error": None,
                     "races_attempted": [],
+                    "active_periods": [],
+                    "char_id": char_id,
                 }
-                run_record["last_resume_at"] = now.isoformat()
             set_run_record(run_record)
+            start_active_interval()
             try:
                 append_history(run_record)
             except Exception:
                 logger_uma.debug("[run_history] start persist failed", exc_info=True)
             
 
+            agent_kwargs = dict(
+                ctrl=ctrl,
+                ocr=ocr,
+                yolo_engine=yolo_engine,
+                interval_stats_refresh=1,
+                minimum_skill_pts=preset_opts.get("minimum_skill_pts", Settings.MINIMUM_SKILL_PTS),
+                prioritize_g1=False,
+                auto_rest_minimum=Settings.AUTO_REST_MINIMUM,
+                plan_races=preset_opts["plan_races"],
+                skill_list=preset_opts["skill_list"],
+                select_style=preset_opts["select_style"],
+                event_prefs=event_prefs,
+                char_id=char_id,
+            )
+
             if Settings.ACTIVE_SCENARIO == "unity_cup":
-                # Instantiate Player with runtime knobs from Settings + presets + event prefs
-                self.agent_scenario = AgentUnityCup(
-                    ctrl=ctrl,
-                    ocr=ocr,
-                    yolo_engine=yolo_engine,
-                    interval_stats_refresh=1,
-                    minimum_skill_pts=preset_opts.get("minimum_skill_pts", Settings.MINIMUM_SKILL_PTS),
-                    prioritize_g1=False,
-                    auto_rest_minimum=Settings.AUTO_REST_MINIMUM,
-                    plan_races=preset_opts["plan_races"],
-                    skill_list=preset_opts["skill_list"],
-                    select_style=preset_opts[
-                        "select_style"
-                    ],  # "end"|"late"|"pace"|"front"|None
-                    event_prefs=event_prefs,
-                )
+                self.agent_scenario = AgentUnityCup(**agent_kwargs)
             else:
-                # Instantiate Player with runtime knobs from Settings + presets + event prefs
-                self.agent_scenario = AgentURA(
-                    ctrl=ctrl,
-                    ocr=ocr,
-                    yolo_engine=yolo_engine,
-                    interval_stats_refresh=1,
-                    minimum_skill_pts=preset_opts.get("minimum_skill_pts", Settings.MINIMUM_SKILL_PTS),
-                    prioritize_g1=False,
-                    auto_rest_minimum=Settings.AUTO_REST_MINIMUM,
-                    plan_races=preset_opts["plan_races"],
-                    skill_list=preset_opts["skill_list"],
-                    select_style=preset_opts[
-                        "select_style"
-                    ],  # "end"|"late"|"pace"|"front"|None
-                    event_prefs=event_prefs,
-                )
+                self.agent_scenario = AgentURA(**agent_kwargs)
 
             def _runner():
                 re_init = False
@@ -454,6 +467,7 @@ class BotState:
                 logger_uma.info("[BOT] Not running.")
                 return
             logger_uma.info("[BOT] Stopping… (signal loop to exit)")
+            tick_active_time()
             request_abort()
             self.agent_scenario.is_running = False
             try:

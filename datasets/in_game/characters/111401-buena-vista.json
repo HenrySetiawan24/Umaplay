@@ -1,0 +1,209 @@
+{
+  "charData": {
+    "url_name": "buena-vista",
+    "tid": "1O",
+    "char_id": 1114,
+    "jp_name": "ブエナビスタ",
+    "en_name": "Buena Vista",
+    "name_ko": "부에나 비스타",
+    "name_tw": "迷人景致",
+    "playable": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Fuuka Izumi",
+    "va_ja": "和泉風花",
+    "va_ko": "이즈미 후카",
+    "va_zh_tw": "和泉風花",
+    "va_link": "https://myanimelist.net/people/64390/Fuuka_Izumi",
+    "three_sizes": {
+      "b": 81,
+      "w": 56,
+      "h": 81
+    },
+    "birth_day": 14,
+    "birth_month": 3,
+    "birth_year": 2006,
+    "height": 159,
+    "sex": 2,
+    "rl": {
+      "country": "jp",
+      "races": 23,
+      "wins": 9,
+      "record": "23-9-8-3",
+      "earnings": 1386433000,
+      "earnings_other": [
+        [
+          1000000,
+          "AED"
+        ]
+      ],
+      "active": "2008-2011"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1114_111401.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1114_111401.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "Hanshin Juvenile Fillies",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Oka Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Japanese Oaks",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Shuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 48,
+      "year": 2,
+      "month": 12,
+      "day": 2,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 57,
+      "year": 3,
+      "month": 5,
+      "day": 1,
+      "race_name": "Victoria Mile",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 11,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "buena-vista",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1114,
+    "ja": {
+      "self_intro": "ブエナビスタですっ。私の夢は、約束を果たすこと。――絶景に、辿り着くこと。よろしく、トレーナーさん！…ふふっ",
+      "tagline": "いつか“絶景”へ。ひたむき愛されウマ娘",
+      "weight": "微減（レース前で調整中）",
+      "shoes": "左右ともに23.0cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "ファンの声を聴き分ける精度はかなりのもの",
+      "tail": "一緒に歩く人の方に、少しだけ傾く",
+      "strong": "お弁当作り、弓道",
+      "weak": "渋滞、サスペンス映画",
+      "family": "なんでも母親の真似をしていた時期がある",
+      "secrets": [
+        "実は、自家製ドレッシングを研究中。",
+        "実は、デーツがちょっぴり苦手。"
+      ]
+    },
+    "ko": {
+      "self_intro": "부에나 비스타입니다. 제 꿈은 약속을 지키는 것. …절경에 도달하는 것. 잘 부탁해요, 트레이너 선생님! …후훗.",
+      "tagline": "언젠가 보았던 '절경'으로. 한결같이 사랑받는 우마무스메",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "secrets": [
+        "사실은 홈메이드 드레싱을 연구 중.",
+        "사실은 대추야자를 그다지 좋아하지 않는다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我是迷人景致。我的夢想是實現約定──抵達絕景。還請多多指教，訓練員……呵呵！",
+      "tagline": "有朝一日將奔向「絕景」。一心逐夢的受寵賽馬娘",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "secrets": [
+        "其實她正在研究自製沙拉醬。",
+        "其實她有點不太敢吃椰棗。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

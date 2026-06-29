@@ -1,0 +1,228 @@
+{
+  "charData": {
+    "url_name": "sweep-tosho",
+    "tid": "H",
+    "char_id": 1044,
+    "jp_name": "スイープトウショウ",
+    "en_name": "Sweep Tosho",
+    "name_ko": "스윕 토쇼",
+    "name_tw": "東商變革",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Shiori Sugiura",
+    "va_ja": "杉浦しおり",
+    "va_ko": "스기우라 시오리",
+    "va_zh_tw": "杉浦しおり",
+    "va_link": "https://myanimelist.net/people/39282/Shiori_Sugiura",
+    "three_sizes": {
+      "b": 72,
+      "w": 53,
+      "h": 73
+    },
+    "birth_day": 9,
+    "birth_month": 5,
+    "birth_year": 2001,
+    "height": 139,
+    "sex": 2,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2020-12-05",
+      "races": 24,
+      "wins": 8,
+      "record": "8-4-2-10",
+      "earnings": 744820000,
+      "active": "2003-2007"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1044_104401.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1044_104401.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "Hanshin Juvenile Fillies",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Oka Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Japanese Oaks",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Shuka Sho",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 6,
+      "turn": 45,
+      "year": 2,
+      "month": 11,
+      "day": 1,
+      "race_name": "Queen Elizabeth II Cup",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 59,
+      "year": 3,
+      "month": 6,
+      "day": 1,
+      "race_name": "Yasuda Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 10,
+      "turn": 69,
+      "year": 3,
+      "month": 11,
+      "day": 1,
+      "race_name": "Queen Elizabeth II Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "sweep-tosho",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1044,
+    "ja": {
+      "self_intro": "スイープトウショウは変身前の名前！アタシは魔法少女スイーピーなの！これが魔法よ！えいっ！！（ゴンッ）",
+      "tagline": "ピュアにダダっ子！絶対魔女になるもん！",
+      "weight": "計測断固拒否",
+      "shoes": "左右ともに19.0cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "知らない単語はすべて呪文に聞こえる",
+      "tail": "手懐けようとした黒猫に玩具扱いされている",
+      "strong": "草花の名前当て（たまにオリジナル）",
+      "weak": "箒以外の乗り物",
+      "family": "父親と電話すると、切る前に必ず泣かれる",
+      "secrets": [
+        "実は、パパの言うことだけは絶対に聞かない。",
+        "実は、自分が持っているぬいぐるみ全員に名前を付けている。"
+      ]
+    },
+    "ko": {
+      "self_intro": "스윕 토쇼는 변신 전 이름! 나는 마법 소녀 스위피라니까! 이게 마법이고! 에잇!! (퍽)",
+      "tagline": "퓨어한 응석받이! 반드시 마녀가 될 거야!",
+      "weight": "단호한 측정 거부",
+      "shoes": "좌우 모두 19.0cm",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "ears": "모르는 단어는 전부 주문처럼 들린다",
+      "tail": "길들이려 한 검은 고양이에게 장난감 취급을 받고 있다",
+      "strong": "화초 이름 맞추기 (가끔 오리지널)",
+      "weak": "빗자루 이외의 탈 것",
+      "family": "아버지와 전화하면 끊기 전에 꼭 우신다",
+      "secrets": [
+        "사실은 아빠가 말하는 것만은 절대 듣지 않는다.",
+        "사실은 자신이 갖고 있는 봉제인형 모두에게 이름을 붙였다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "東商變革是變身前的名字！我是魔法少女Sweepy！這就是魔法！看我的！！（碰）",
+      "tagline": "純真的耍任性女孩！絕對要成為魔女！",
+      "weight": "堅決拒絕測量",
+      "shoes": "左右都是19.0cm",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "ears": "不知道的詞彙聽起來全都像咒語",
+      "tail": "目前被想親近的黑貓當成玩具中",
+      "strong": "猜花草的名字（偶爾會自創）",
+      "weak": "掃把以外的交通工具",
+      "family": "與父親講電話時，父親掛電話前一定會哭",
+      "secrets": [
+        "其實她唯獨絕對不聽爸爸說的話。",
+        "其實她把自己有的玩偶，一個個都取了各自的名字。"
+      ]
+    },
+    "en": {
+      "self_intro": "Sweep Tosho is just an alias! My true identity is Magical Girl Sweepy! Don't make me cast a spell on you! Hey! Thunk!",
+      "tagline": "A totally spoiled brat! She swears she'll be a witch someday!",
+      "weight": "Refuses to be weighed",
+      "shoes": "Left and right: 19.0cm",
+      "dorm": "Ritto Dormitory",
+      "class": "Junior Division",
+      "ears": "To them, unknown words sound like some sort of spell",
+      "tail": "Treated like a toy by the black cat she tried to befriend",
+      "strong": "Guessing plant names (and sometimes making them up)",
+      "weak": "Vehicles other than a broom",
+      "family": "Every time she calls her father, he starts crying before hanging up",
+      "secrets": [
+        "Did you know? Her father is the only person she'll never listen to.",
+        "Did you know? She names each and every one of her plushies."
+      ]
+    }
+  }
+}

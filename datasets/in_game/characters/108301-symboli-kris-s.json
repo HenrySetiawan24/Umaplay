@@ -1,0 +1,212 @@
+{
+  "charData": {
+    "url_name": "symboli-kris-s",
+    "tid": "1k",
+    "char_id": 1083,
+    "jp_name": "シンボリクリスエス",
+    "en_name": "Symboli Kris S",
+    "name_ko": "심볼리 크리스 에스",
+    "name_tw": "克莉斯耶絲象徵",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Meiku Harukawa",
+    "va_ja": "春川芽生",
+    "va_ko": "하루카와 메이쿠",
+    "va_zh_tw": "春川芽生",
+    "va_link": "https://myanimelist.net/people/61691/Meiku_Harukawa",
+    "three_sizes": {
+      "b": 91,
+      "w": 58,
+      "h": 88
+    },
+    "birth_day": 21,
+    "birth_month": 1,
+    "birth_year": 1999,
+    "height": 170,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "us",
+      "death": "2020-12-08",
+      "races": 15,
+      "wins": 8,
+      "record": "8-2-4-1",
+      "earnings": 984724000,
+      "active": "2001-2003"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1083_108301.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1083_108301.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 26,
+      "year": 2,
+      "month": 1,
+      "day": 2,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 5000
+    },
+    {
+      "order": 3,
+      "turn": 32,
+      "year": 2,
+      "month": 4,
+      "day": 2,
+      "race_name": "Aoba Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 6,
+      "turn": 48,
+      "year": 2,
+      "month": 12,
+      "day": 2,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 10,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "symboli-kris-s",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1083,
+    "ja": {
+      "self_intro": "――シンボリクリスエスだ。シンボリ家には恩がある。その1人として、掲げた目的も与えられたmissionも――遂行するのみ",
+      "tagline": "海外生まれの、寡黙な任務遂行者",
+      "weight": "圧巻",
+      "shoes": "左右ともに27.5cm",
+      "dorm": "美浦寮",
+      "class": "高等部",
+      "ears": "自分と似た耳のウマ娘は目で追ってしまう",
+      "tail": "専用シャンプーでゴシゴシ洗っている",
+      "strong": "プロテインドリンクを作ること",
+      "weak": "裸足でいること",
+      "family": "朝は家族全員、ブラックコーヒー",
+      "secrets": [
+        "実は、写真を撮られる時よく半目になってしまう。",
+        "実は、日本語のオノマトペが好き。"
+      ]
+    },
+    "ko": {
+      "self_intro": "…심볼리 크리스 에스다. 심볼리 가에게는 은혜를 입었지. 그 한 명으로서, 내세운 목적도 주어진 mission도… 수행할 뿐.",
+      "tagline": "해외 출신의 과묵한 임무수행자",
+      "weight": "압권",
+      "shoes": "좌우 모두 27.5cm",
+      "dorm": "미호 생활관",
+      "class": "고등부",
+      "ears": "자신과 비슷한 귀를 지닌 우마무스메를 눈으로 좇고 만다",
+      "tail": "전용 샴푸로 쓱쓱 씻는다",
+      "strong": "프로틴 드링크를 만드는 것",
+      "weak": "맨발로 있는 것",
+      "family": "아침은 가족 전원이 블랙커피",
+      "secrets": [
+        "사실은 사진을 찍을 때 자주 눈을 반쯤 감아 버리고 만다.",
+        "사실은 일본어 의성어와 의태어를 좋아한다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "──我是克莉斯耶絲象徵。象徵家對我有恩。身為其一員，無論是樹立的目標還是被賦予的mission──都必得達成。",
+      "tagline": "出生於國外，沉默寡言的任務執行者",
+      "weight": "出色",
+      "shoes": "左右都是27.5cm",
+      "dorm": "美浦宿舍",
+      "class": "高中部",
+      "ears": "會忍不住盯著耳朵和自己很像的賽馬娘看",
+      "tail": "會用專用的洗潔劑用力洗刷",
+      "strong": "製作乳清蛋白飲料",
+      "weak": "打赤腳",
+      "family": "全家人早上都喝黑咖啡",
+      "secrets": [
+        "其實她在拍照時，常常被拍到眼睛半開的樣子。",
+        "其實她很喜歡日文中的狀聲詞。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

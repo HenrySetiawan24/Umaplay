@@ -1,0 +1,194 @@
+{
+  "charData": {
+    "url_name": "still-in-love",
+    "tid": "1y",
+    "char_id": 1097,
+    "jp_name": "スティルインラブ",
+    "en_name": "Still in Love",
+    "name_ko": "스틸 인 러브",
+    "name_tw": "愛如往昔",
+    "playable": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "va_en": "Saki Miyashita",
+    "va_ja": "宮下早紀",
+    "va_ko": "미야시타 사키",
+    "va_zh_tw": "宮下早紀",
+    "va_link": "https://myanimelist.net/people/47669/Saki_Miyashita",
+    "three_sizes": {
+      "b": 72,
+      "w": 50,
+      "h": 76
+    },
+    "birth_day": 2,
+    "birth_month": 5,
+    "birth_year": 2000,
+    "height": 153,
+    "sex": 2,
+    "rl": {
+      "country": "jp",
+      "death": "2007-08-02",
+      "races": 16,
+      "wins": 5,
+      "record": "16-5-2-1",
+      "earnings": 437778000,
+      "active": "2002-2005"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1097_109701.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1097_109701.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 25,
+      "year": 2,
+      "month": 1,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 5000
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Oka Sho",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Japanese Oaks",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Shuka Sho",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 6,
+      "turn": 45,
+      "year": 2,
+      "month": 11,
+      "day": 1,
+      "race_name": "Queen Elizabeth II Cup",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 53,
+      "year": 3,
+      "month": 3,
+      "day": 1,
+      "race_name": "Kinko Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 69,
+      "year": 3,
+      "month": 11,
+      "day": 1,
+      "race_name": "Queen Elizabeth II Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "still-in-love",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1097,
+    "ja": {
+      "self_intro": "スティルインラブです…。私は…いえ。取り立てて、語るべきことなどありません…あるのは、ええ…秘すべきこと、だけ…",
+      "tagline": "良識と本能の板挟み。渇きを抱く妖艶の君",
+      "weight": "魅惑的",
+      "shoes": "左右ともに23.0cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "ひたむきにトレーナーの方を向く",
+      "tail": "揺れるとほのかにいい香りがする",
+      "strong": "ボビンレース、赤い果実のジャムづくり",
+      "weak": "大きな姿見、香りの強い食べ物、満月",
+      "family": "父とはよく歴史談義をする",
+      "secrets": [
+        "実は、お菓子があると幸せ。コーヒーもあると、もっと幸せ。",
+        "実は、よく鏡の前で笑顔を練習している。"
+      ]
+    },
+    "ko": {
+      "self_intro": "스틸 인 러브입니다…. 저는… 아뇨. 딱히, 할 말은 없어요… 있는 건, 네… 감춰야 할 것, 뿐…",
+      "tagline": "이성과 본능의 딜레마. 갈증에 시달리는 요염한 그대.",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "secrets": [
+        "사실은 과자가 있으면 행복해 한다. 커피를 곁들이면 더욱 그렇다.",
+        "사실은 거울 앞에서 웃는 연습을 자주 한다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我是愛如往昔……我……沒什麼。沒有什麼特別要說的事……真要說的話，就只有……得保密的事……",
+      "tagline": "在理智與本能之間左右為難。內心充滿渴望的妖豔少女",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "secrets": [
+        "其實她有點心就會覺得很幸福，還有咖啡的話會更幸福。",
+        "其實她經常在鏡子前練習微笑。"
+      ]
+    },
+    "en": {
+      "secrets": []
+    }
+  }
+}

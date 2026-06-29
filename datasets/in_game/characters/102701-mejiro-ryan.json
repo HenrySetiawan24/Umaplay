@@ -1,0 +1,218 @@
+{
+  "charData": {
+    "url_name": "mejiro-ryan",
+    "tid": "q",
+    "char_id": 1027,
+    "jp_name": "メジロライアン",
+    "en_name": "Mejiro Ryan",
+    "name_ko": "메지로 라이언",
+    "name_tw": "目白雷恩",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Afumi Hashi",
+    "va_ja": "土師亜文",
+    "va_ko": "하시 아후미",
+    "va_zh_tw": "土師亜文",
+    "va_link": "https://myanimelist.net/people/30125/Afumi_Hashi",
+    "three_sizes": {
+      "b": 87,
+      "w": 57,
+      "h": 86
+    },
+    "birth_day": 11,
+    "birth_month": 4,
+    "birth_year": 1987,
+    "height": 163,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2016-03-17",
+      "races": 19,
+      "wins": 7,
+      "record": "7-4-3-5",
+      "earnings": 486930000,
+      "active": "1989-1992"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1027_102701.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1027_102701.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 25,
+      "year": 2,
+      "month": 1,
+      "day": 1,
+      "race_name": "Junior Cup",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 48,
+      "year": 2,
+      "month": 12,
+      "day": 2,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 9,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "mejiro-ryan",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1027,
+    "ja": {
+      "self_intro": "メジロライアンって言います！体を鍛えて元気よく！筋肉育てて健やかに！張り切って行きましょう！",
+      "tagline": "気分は爽快スポーティ！輝く汗も純粋に",
+      "weight": "微増（筋トレ効果）",
+      "shoes": "左右ともに24.5cm",
+      "dorm": "美浦寮",
+      "class": "高等部",
+      "ears": "少女漫画を読んでいる時はくるくるよく動く",
+      "tail": "汗をよく掻くので尻尾用タオルを常備してる",
+      "strong": "筋トレ",
+      "weak": "コレステロール",
+      "family": "父はとても若々しく、よく兄妹に間違われる",
+      "secrets": [
+        "実は、汗拭きシート選びにたくさん時間をかけている。",
+        "実は、服は必ず試着してから買う。"
+      ]
+    },
+    "ko": {
+      "self_intro": "메지로 라이언이라고 합니다! 몸을 단련해서 기운차게! 근육을 키워서 튼튼하게! 힘차게 가봐요!",
+      "tagline": "기분은 상쾌 스포티! 반짝이는 땀도 순수하게",
+      "weight": "약간 증가 (근력 운동 효과)",
+      "shoes": "좌우 모두 24.5cm",
+      "dorm": "미호 생활관",
+      "class": "고등부",
+      "ears": "순정만화를 읽을 때면 빙글빙글 움직인다.",
+      "tail": "땀을 자주 흘려서 꼬리용 수건을 늘 챙겨둔다.",
+      "strong": "근력 운동",
+      "weak": "콜레스테롤",
+      "family": "아버지가 매우 동안이라서 자주 남매로 오해 받는다.",
+      "secrets": [
+        "사실은 땀 닦는 시트를 고르는 데 많은 시간을 들인다.",
+        "사실은 옷은 반드시 시착해본 후에 구입한다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我叫目白雷恩！鍛鍊身體充滿活力！培養肌肉，身體健康！拿出幹勁加油吧！",
+      "tagline": "爽快動感的心情！純粹揮灑閃亮汗水",
+      "weight": "微增（重訓效果）",
+      "shoes": "左右都是24.5cm",
+      "dorm": "美浦宿舍",
+      "class": "高中部",
+      "ears": "看少女漫畫時會動個不停",
+      "tail": "由於很會流汗，總是帶著尾巴專用毛巾",
+      "strong": "重訓",
+      "weak": "膽固醇",
+      "family": "父親非常年輕，因此兩人常會被誤認為兄妹",
+      "secrets": [
+        "其實她老是花很多時間在選擇擦汗紙巾。",
+        "其實她買衣服時堅持一定要試穿後再買。"
+      ]
+    },
+    "en": {
+      "self_intro": "Sup! Mejiro Ryan here! I'm real big into fitness and lifting. It's all 'bout keeping yourself swole! See you at the gym!",
+      "tagline": "Nothing beats a good workout! Even the sweat of her brow is earnest and pure.",
+      "weight": "Slight increase (the weightlifting's working!)",
+      "shoes": "Left and right: 24.5cm",
+      "dorm": "Miho Dormitory",
+      "class": "Senior Division",
+      "ears": "Change positions a lot when she's reading romance manga",
+      "tail": "She really works up a sweat, so she has a separate towel for her tail",
+      "strong": "Resistance Training",
+      "weak": "Cholesterol",
+      "family": "Her dad looks so young that he's often mistaken for her brother",
+      "secrets": [
+        "Did you know? It takes her a long time to decide what body cleansing wipes to buy.",
+        "Did you know? She never buys an article of clothing unless she's tried it on first."
+      ]
+    }
+  }
+}

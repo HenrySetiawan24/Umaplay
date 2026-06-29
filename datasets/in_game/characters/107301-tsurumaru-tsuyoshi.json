@@ -1,0 +1,197 @@
+{
+  "charData": {
+    "url_name": "tsurumaru-tsuyoshi",
+    "tid": "1a",
+    "char_id": 1073,
+    "jp_name": "ツルマルツヨシ",
+    "en_name": "Tsurumaru Tsuyoshi",
+    "name_ko": "츠루마루 츠요시",
+    "name_tw": "鶴丸強志",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Yoshino Aoyama",
+    "va_ja": "青山吉能",
+    "va_ko": "아오야마 요시노",
+    "va_zh_tw": "青山吉能",
+    "va_link": "https://myanimelist.net/people/24269/Yoshino_Aoyama",
+    "three_sizes": {
+      "b": 85,
+      "w": 58,
+      "h": 86
+    },
+    "birth_day": 6,
+    "birth_month": 4,
+    "birth_year": 1995,
+    "height": 160,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": null,
+      "races": 11,
+      "wins": 5,
+      "record": "5-0-1-5",
+      "earnings": 174282000,
+      "active": "1997-2001"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1073_107301.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1073_107301.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 33,
+      "year": 2,
+      "month": 5,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 5000
+    },
+    {
+      "order": 3,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 4,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 67,
+      "year": 3,
+      "month": 10,
+      "day": 1,
+      "race_name": "Kyoto Daishoten",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 7,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "tsurumaru-tsuyoshi",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1073,
+    "ja": {
+      "self_intro": "ツルマルツヨシ！憧れの『三冠ウマ娘』目指して！とにかく全力をっ――…ゲホッ！…む、むせただけです！超元気です大丈夫！",
+      "tagline": "夢は三冠！！常に全力！！限界超えがち！？",
+      "weight": "増量中",
+      "shoes": "左右ともに22.5cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "人に頼られると嬉しそうにぴよぴよ揺れる",
+      "tail": "洗ったらすぐ乾かさないと風邪をひく",
+      "strong": "オリジナルスムージー開発",
+      "weak": "湿布のにおい、低気圧、『絶対安静』",
+      "family": "よく果物を仕送りしてくれている",
+      "secrets": [
+        "実は、人によく道をたずねられることがひそかな自慢。",
+        "実は、前髪の白い部分のセットには毎朝じっくり時間をかけている。"
+      ]
+    },
+    "ko": {
+      "self_intro": "츠루마루 츠요시! 동경하는 『3관 우마무스메』를 목표로! 하여간 있는 힘껏…… 쿨럭! …사, 사레가 들렸을 뿐이에요! 엄청 건강해요, 괜찮아요!",
+      "tagline": "꿈은 3관!! 언제나 전력!! 자주 한계를 무시!?",
+      "weight": "늘리는 중",
+      "shoes": "좌우 모두 22.5cm",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "ears": "인간이 의지하면 기뻐하며 소리 내며 흔들린다",
+      "tail": "씻은 후 바로 말리지 않으면 감기에 걸린다",
+      "strong": "오리지널 스무디 개발",
+      "weak": "파스 냄새, 저기압, 『절대 안정』",
+      "family": "본가에서 자주 과일을 보내 준다",
+      "secrets": [
+        "사실은 사람들이 자주 길을 물어보는 것이 은밀한 자랑.",
+        "사실은 앞머리의 하얀 부분을 매일 아침 공들여 세팅하고 있다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "鶴丸強志！目標是成為自己憧憬的「三冠賽馬娘」！總之盡全力──咳咳！……只、只是嗆到而已！我很好別擔心！",
+      "tagline": "夢想獲得三冠！！總是全力以赴！！經常超越極限！？",
+      "weight": "增重中",
+      "shoes": "左右都是22.5cm",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "ears": "被人依賴時會開心地輕輕搖晃",
+      "tail": "洗完尾巴不立即吹乾就會感冒",
+      "strong": "開發原創蔬果昔",
+      "weak": "貼布的味道、低氣壓、「徹底靜養禁止亂動」",
+      "family": "經常寄水果過來",
+      "secrets": [
+        "其實常常被人問路是她默默自豪的事情。",
+        "其實她每天早上都會花時間仔細打理瀏海白色的部分。"
+      ]
+    },
+    "en": {
+      "self_intro": "Tsurumaru Tsuyoshi here! I've always dreamed of winning the Triple Crown, and now I'm going all out to—cough, cough! I-I'm all right, just choked on air. Really, never felt better!",
+      "tagline": "Dreams of the Triple Crown! Always gives 110%! Knows no limits!",
+      "dorm": "Ritto Dormitory",
+      "class": "Junior Division",
+      "secrets": []
+    }
+  }
+}

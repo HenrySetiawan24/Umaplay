@@ -1,0 +1,218 @@
+{
+  "charData": {
+    "url_name": "mihono-bourbon",
+    "tid": "p",
+    "char_id": 1026,
+    "jp_name": "ミホノブルボン",
+    "en_name": "Mihono Bourbon",
+    "name_ko": "미호노 부르봉",
+    "name_tw": "美浦波旁",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Ikumi Hasegawa",
+    "va_ja": "長谷川育美",
+    "va_ko": "하세가와 이쿠미",
+    "va_zh_tw": "長谷川育美",
+    "va_link": "https://myanimelist.net/people/48048/Ikumi_Hasegawa",
+    "three_sizes": {
+      "b": 86,
+      "w": 54,
+      "h": 87
+    },
+    "birth_day": 25,
+    "birth_month": 4,
+    "birth_year": 1989,
+    "height": 160,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2017-02-22",
+      "races": 8,
+      "wins": 7,
+      "record": "7-1-0-0",
+      "earnings": 437300000,
+      "active": "1991-1992"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1026_102601.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1026_102601.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "Asahi Hai Futurity Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 30,
+      "year": 2,
+      "month": 3,
+      "day": 2,
+      "race_name": "Spring Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 6,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 2
+    },
+    {
+      "order": 9,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "mihono-bourbon",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1026,
+    "ja": {
+      "self_intro": "私の名はミホノブルボン。目標は三冠ウマ娘に設定されています。脚質などは別データをご参照ください",
+      "tagline": "指示は絶対厳守！サイボーグ・ウマ娘",
+      "weight": "増減なし",
+      "shoes": "左右ともに24.0cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "眠っていても命令が耳に入ると即座に起きる",
+      "tail": "尻尾で立てるほどの筋力がある…との噂アリ",
+      "strong": "にらめっこ",
+      "weak": "電化製品の操作",
+      "family": "家電がよく壊れるため一家でアナログ生活中",
+      "secrets": [
+        "実は、父親の冗談のせいで雷が鳴ったら尻尾をとられると思っている。",
+        "実は、おんぶしてもらった人からは『とっても背中が大きく感じた』と評判。"
+      ]
+    },
+    "ko": {
+      "self_intro": "제 이름은 미호노 부르봉. 목표는 3관 우마무스메로 설정되어 있습니다. 각질 등은 별도의 데이터를 참조해 주십시오",
+      "tagline": "지시는 절대 엄수! 사이보그 우마무스메",
+      "weight": "변화 없음",
+      "shoes": "좌우 모두 24.0cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "자는 중에도 명령을 들으면 바로 일어난다.",
+      "tail": "꼬리로 설 수 있을 정도의 근력이 있다…는 소문이 있다.",
+      "strong": "눈싸움",
+      "weak": "전자제품 조작",
+      "family": "가전제품을 잘 망가트려서 가족 전체가 아날로그 생활 중.",
+      "secrets": [
+        "사실은 아버지의 농담 때문에 천둥이 치면 꼬리를 빼앗긴다고 생각한다.",
+        "사실은 업힌 사람한테 『등이 무척 크게 느껴졌다』는 말을 듣는다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我的名字是美浦波旁。目標設定為三冠賽馬娘。關於我的腳質等資訊，請參閱相關資料。",
+      "tagline": "絕對遵守指示！改造人賽馬娘",
+      "weight": "無增減",
+      "shoes": "左右都是24.0cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "即使在睡覺，只要一聽到命令就會立刻醒來",
+      "tail": "據說……肌力強到能用尾巴舉起全身",
+      "strong": "比誰先笑",
+      "weak": "操作電器用品",
+      "family": "由於家電常壞，一家人過著返璞歸真的生活",
+      "secrets": [
+        "其實她因為父親的一句玩笑話，以為天空打雷就會被拔掉尾巴。",
+        "其實被她揹過的人都聲稱「感覺她的後背非常寬廣」。"
+      ]
+    },
+    "en": {
+      "self_intro": "My name is Mihono Bourbon. My objective is to win the Triple Crown. Please refer to my specs for information regarding my capabilities.",
+      "tagline": "Always follows commands! The cyborg Umamusume.",
+      "weight": "No change",
+      "shoes": "Left and right: 24.0cm",
+      "dorm": "Ritto Dormitory",
+      "class": "Senior Division",
+      "ears": "Perk right up when they hear a command, even if she's dead asleep",
+      "tail": "Her tail's strong enough that she can stand on it... according to rumors",
+      "strong": "Staring contests",
+      "weak": "Using electronic appliances",
+      "family": "Her family lives an analog lifestyle now because their appliances kept breaking",
+      "secrets": [
+        "Did you know? Thanks to her father, she still thinks something might steal her tail when thunder strikes.",
+        "Did you know? Those who have experienced her piggyback rides say her back is comfortingly spacious."
+      ]
+    }
+  }
+}

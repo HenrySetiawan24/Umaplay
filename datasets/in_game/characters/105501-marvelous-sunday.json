@@ -1,0 +1,210 @@
+{
+  "charData": {
+    "url_name": "marvelous-sunday",
+    "tid": "S",
+    "char_id": 1055,
+    "jp_name": "マーベラスサンデー",
+    "en_name": "Marvelous Sunday",
+    "name_ko": "마블러스 선데이",
+    "name_tw": "美麗週日",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Marie Miyake",
+    "va_ja": "三宅麻理恵",
+    "va_ko": "미야케 마리에",
+    "va_zh_tw": "三宅麻理恵",
+    "va_link": "https://myanimelist.net/people/12588/Marie_Miyake",
+    "three_sizes": {
+      "b": 87,
+      "w": 52,
+      "h": 77
+    },
+    "birth_day": 31,
+    "birth_month": 5,
+    "birth_year": 1992,
+    "height": 145,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2016-06-30",
+      "races": 15,
+      "wins": 10,
+      "record": "10-2-1-2",
+      "earnings": 606865000,
+      "active": "1995-1997"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1055_105501.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1055_105501.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 27,
+      "year": 2,
+      "month": 2,
+      "day": 1,
+      "race_name": "",
+      "cond_type": 3,
+      "cond_value": 5000
+    },
+    {
+      "order": 3,
+      "turn": 47,
+      "year": 2,
+      "month": 12,
+      "day": 1,
+      "race_name": "Challenge Cup",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 4,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Osaka Hai",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 5,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 60,
+      "year": 3,
+      "month": 6,
+      "day": 2,
+      "race_name": "Takarazuka Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 7,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "marvelous-sunday",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1055,
+    "ja": {
+      "self_intro": "ハイハーイ、マーベラスサンデーでーす！全世界に、マーベラスな気持ちを届けるよ！さぁ、みんなも一緒にマーベラース！",
+      "tagline": "マーベラース！元気に無敵に世界を変える！",
+      "weight": "マーベラス！",
+      "shoes": "左右ともに22.0cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "マーベラスな音を聞き分けられる☆",
+      "tail": "マーベラスな物を発見するアンテナ☆らしい",
+      "strong": "多くの人の話を一度に聞くこと",
+      "weak": "お茶やコーヒー",
+      "family": "お婆ちゃん子で、秋には共に紅葉狩りをする",
+      "secrets": [
+        "実は、古代遺跡に詳しい。",
+        "実は、太陽か星さえ見れば大体の時刻がわかる。"
+      ]
+    },
+    "ko": {
+      "self_intro": "네네~ 마블러스 선데이입니다~! 전 세계에 마블러스한 마음을 전할거야! 자, 모두 다 함께 마블러스!",
+      "tagline": "Marvelous! 기운차게 무적으로 세상을 바꾼다!",
+      "weight": "마블러스!",
+      "shoes": "좌우 모두 22.0cm",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "ears": "마블러스한 소리를 구별할 수 있다☆",
+      "tail": "마블러스한 물건을 발견하는 안테나☆인 모양이다",
+      "strong": "많은 사람들의 이야기를 한 번에 듣는 것",
+      "weak": "차와 커피",
+      "family": "할머니를 좋아해서, 가을에는 함께 단풍놀이를 한다",
+      "secrets": [
+        "사실은 고대 유적에 대해 정통하다.",
+        "사실은 태양이나 별만 봐도 대략적인 시각을 알 수 있다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "嗨嗨～我是美麗週日～！要把美麗的心情送給全世界喔！來吧，大家也一起美麗～！",
+      "tagline": "美麗～！活力無敵改變世界！",
+      "weight": "非常美麗！",
+      "shoes": "左右都是22.0cm",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "ears": "可以分辨出美麗的聲音☆",
+      "tail": "似乎是用來發現美麗事物的天線☆",
+      "strong": "一次聽很多人說話",
+      "weak": "茶與咖啡",
+      "family": "很黏奶奶，秋天會跟奶奶一起去賞楓",
+      "secrets": [
+        "其實她很熟悉古代遺跡。",
+        "其實她只要觀察太陽跟星象，就能大致掌握當下的時刻。"
+      ]
+    },
+    "en": {
+      "self_intro": "Hey, hey! It's Marvelous Sunday! I hope you'll join me on my mission to make the world just a little more marvelous wherever I go!",
+      "tagline": "Marvelous! She'll change the world with her unbeatable spirit!",
+      "dorm": "Ritto Dormitory",
+      "class": "Junior Division",
+      "secrets": [
+        "Did you know? She's super knowledgeable about ancient ruins.",
+        "Did you know? She can tell the approximate time just by looking at the sun or stars."
+      ]
+    }
+  }
+}

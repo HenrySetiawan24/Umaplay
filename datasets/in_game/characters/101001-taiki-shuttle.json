@@ -1,0 +1,208 @@
+{
+  "charData": {
+    "url_name": "taiki-shuttle",
+    "tid": "9",
+    "char_id": 1010,
+    "jp_name": "タイキシャトル",
+    "en_name": "Taiki Shuttle",
+    "name_ko": "타이키 셔틀",
+    "name_tw": "大樹快車",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Yuka Ootsubo",
+    "va_ja": "大坪由佳",
+    "va_ko": "오오츠보 유카",
+    "va_zh_tw": "大坪由佳",
+    "va_link": "https://myanimelist.net/people/12452/Yuka_Ootsubo",
+    "three_sizes": {
+      "b": 94,
+      "w": 59,
+      "h": 90
+    },
+    "birth_day": 23,
+    "birth_month": 3,
+    "birth_year": 1994,
+    "height": 172,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "us",
+      "death": "2022-08-17",
+      "races": 13,
+      "wins": 11,
+      "record": "11-1-1-0",
+      "earnings": 615480000,
+      "active": "1997-1998"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1010_101001.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1010_101001.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 25,
+      "year": 2,
+      "month": 1,
+      "day": 1,
+      "race_name": "Shinzan Kinen",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 33,
+      "year": 2,
+      "month": 5,
+      "day": 1,
+      "race_name": "NHK Mile Cup",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 36,
+      "year": 2,
+      "month": 6,
+      "day": 2,
+      "race_name": "Unicorn Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 46,
+      "year": 2,
+      "month": 11,
+      "day": 2,
+      "race_name": "Mile Championship",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 59,
+      "year": 3,
+      "month": 6,
+      "day": 1,
+      "race_name": "Yasuda Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 7,
+      "turn": 66,
+      "year": 3,
+      "month": 9,
+      "day": 2,
+      "race_name": "Sprinters Stakes",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 8,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Mile Championship",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "taiki-shuttle",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1010,
+    "ja": {
+      "self_intro": "ハウディ！タイキシャトルです！ワタシのパワフルな走りでみんなをハッピーにしちゃいマスよー！",
+      "tagline": "アメリカ生まれのフレンドリーガール",
+      "weight": "微増（「でもノープロブレム！」）",
+      "shoes": "左右ともに25.0cm（特注)",
+      "dorm": "美浦寮",
+      "class": "高等部",
+      "ears": "パーティーと聞けばどこへでも駆けつける",
+      "tail": "整尾スプレーは仕送りしてもらっている",
+      "strong": "ポジティブシンキング",
+      "weak": "一人でいること",
+      "family": "実家にはウェルカム花火が常備されている",
+      "secrets": [
+        "実は、ファストドローの大会で優勝したことがある。",
+        "実は、バーベキューのシメはハンバーガー派。"
+      ]
+    },
+    "ko": {
+      "self_intro": "Howdy! 타이키 셔틀입니다! 저의 Powerful한 달리기로 모두를 Happy하게 만들겠어YO~!",
+      "tagline": "미국 출신의 프렌들리 걸",
+      "weight": "약간 증가 (but No problem!)",
+      "shoes": "좌우 모두 25.0cm (특별 주문)",
+      "dorm": "미호 생활관",
+      "class": "고등부",
+      "ears": "파티라는 말을 들으면 어디든지 달려간다.",
+      "tail": "꼬리 관리 스프레이는 고향에서 보내준다.",
+      "strong": "긍정적인 마인드",
+      "weak": "혼자있는 것",
+      "family": "고향 집은 항상 환영용 불꽃놀이가 상비 중이다.",
+      "secrets": [
+        "사실은 패스트 드로우 대회에서 우승한 적이 있다.",
+        "사실은 바비큐의 마무리로 햄버거를 먹는 파."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "Howdy！我是大樹快車！我會用我充滿力量的奔跑，讓大家都Happy喔～！",
+      "tagline": "出生於美國的友善少女",
+      "weight": "微增（「不過no problem！」）",
+      "shoes": "左右都是25.0cm（訂做款）",
+      "dorm": "美浦宿舍",
+      "class": "高中部",
+      "ears": "只要聽說有派對，不管地點在哪她都會趕過去",
+      "tail": "整理尾巴所使用的噴霧是有人贊助的",
+      "strong": "正面思考",
+      "weak": "獨處",
+      "family": "老家隨時都準備好歡迎煙火",
+      "secrets": [
+        "其實她曾在較量拔槍射擊速度的大賽中獲得過冠軍。",
+        "其實烤肉時她都會選漢堡排當最後一道料理。"
+      ]
+    },
+    "en": {
+      "self_intro": "Howdy! Taiki Shuttle here! I'm aimin' to put smiles on some faces with some hard runnin'!",
+      "tagline": "A friendly girl born in the U.S.",
+      "weight": "Slight increase (but it's no problem!)",
+      "shoes": "Left and right: 25.0cm (Custom)",
+      "dorm": "Miho Dormitory",
+      "class": "Senior Division",
+      "ears": "She comes running the second she hears \"party\"",
+      "tail": "She uses a tail spray sent by the folks back home",
+      "strong": "Positive thinking",
+      "weak": "Being alone",
+      "family": "Welcome-home fireworks are always at the ready for her",
+      "secrets": [
+        "Did you know? She's the reigning quick draw competition champion.",
+        "Did you know? At barbecues, she likes to eat the hamburger last."
+      ]
+    }
+  }
+}

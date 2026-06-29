@@ -1,0 +1,208 @@
+{
+  "charData": {
+    "url_name": "tokai-teio",
+    "tid": "2",
+    "char_id": 1003,
+    "jp_name": "トウカイテイオー",
+    "en_name": "Tokai Teio",
+    "name_ko": "토카이 테이오",
+    "name_tw": "東海帝皇",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Machico",
+    "va_ja": "Machico",
+    "va_ko": "Machico",
+    "va_zh_tw": "Machico",
+    "va_link": "https://myanimelist.net/people/36141/Machico",
+    "three_sizes": {
+      "b": 77,
+      "w": 54,
+      "h": 76
+    },
+    "birth_day": 20,
+    "birth_month": 4,
+    "birth_year": 1988,
+    "height": 150,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2013-08-30",
+      "races": 12,
+      "wins": 9,
+      "record": "9-0-0-3",
+      "earnings": 604700000,
+      "active": "1990-1993"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1003_100301.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1003_100301.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 26,
+      "year": 2,
+      "month": 1,
+      "day": 2,
+      "race_name": "Wakagoma Stakes",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 3,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 34,
+      "year": 2,
+      "month": 5,
+      "day": 2,
+      "race_name": "Tokyo Yushun (Japanese Derby)",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 6,
+      "turn": 56,
+      "year": 3,
+      "month": 4,
+      "day": 2,
+      "race_name": "Tenno Sho (Spring)",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 7,
+      "turn": 70,
+      "year": 3,
+      "month": 11,
+      "day": 2,
+      "race_name": "Japan Cup",
+      "cond_type": 1,
+      "cond_value": 2
+    },
+    {
+      "order": 8,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 1
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "tokai-teio",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1003,
+    "ja": {
+      "self_intro": "やっほー、トウカイテイオーだよ！無敗の三冠ウマ娘になるボクのこと、ぜーったい見逃さないでよねっ！",
+      "tagline": "無敵でキュート！天真爛漫ホッピン少女 ",
+      "weight": "増減なし",
+      "shoes": "左右ともに22.0cm",
+      "dorm": "栗東寮",
+      "class": "中等部",
+      "ears": "称賛と会長の声は絶対に聴き逃さない",
+      "tail": "注目されると、興奮してふぁさふぁさ振る",
+      "strong": "誰とでも友達になること",
+      "weak": "お医者さん",
+      "family": "試しにパパママ呼びをやめたら泣かれた",
+      "secrets": [
+        "実は、歴代トップの前屈記録保持者。",
+        "実は、小さい頃は海辺でよく遊んでおりみんなから『浜の帝王』と呼ばれていた。"
+      ]
+    },
+    "ko": {
+      "self_intro": "야호~ 토카이 테이오야! 무패의 3관 우마무스메가 될 나를 절~대로 놓치지 말라구!",
+      "tagline": "무적&큐트! 천진난만한 상큼발랄 소녀",
+      "weight": "변화 없음",
+      "shoes": "좌우 모두 22.0cm",
+      "dorm": "릿토 생활관",
+      "class": "중등부",
+      "ears": "칭찬과 회장 목소리는 절대로 놓치지 않는다.",
+      "tail": "주목받으면 흥분해서 휙휙 흔든다.",
+      "strong": "상대를 가리지 않고 친구되기",
+      "weak": "의사",
+      "family": "장난 삼아 파파, 마마라고 부르지 못하게 했더니 울었다.",
+      "secrets": [
+        "사실은 윗몸 앞으로 굽히기 역대 최고 기록 보유자.",
+        "사실은 어릴 적에는 해변에서 자주 놀았으며 모두가 『해변의 제왕』이라고 불렀다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "呀吼～我是東海帝皇喔！我會成為全勝的三冠賽馬娘，絕～對不要錯過我的表現喔！",
+      "tagline": "無敵又可愛！天真爛漫的蹦跳少女",
+      "weight": "無增減",
+      "shoes": "左右都是22.0cm",
+      "dorm": "栗東宿舍",
+      "class": "國中部",
+      "ears": "絕不會漏聽稱讚和會長的聲音",
+      "tail": "一受到矚目，就會興奮地甩動",
+      "strong": "跟誰都能交朋友",
+      "weak": "醫生",
+      "family": "試著不用把拔馬麻稱呼父母，結果把他們弄哭了",
+      "secrets": [
+        "其實她是歷代柔軟度測驗的紀錄保持者。",
+        "其實她小時候常常在海邊遊玩，還被大家稱為「海灘的帝王」。"
+      ]
+    },
+    "en": {
+      "self_intro": "Hey hey! It's Tokai Teio! You might wanna keep an eye on me! Because there's gonna be a new undefeated Triple Crown champion in town!",
+      "tagline": "Unbeatable and adorable! A happy hoppin' racer.",
+      "weight": "No change",
+      "shoes": "Left and right: 22.0cm",
+      "dorm": "Ritto Dormitory",
+      "class": "Junior Division",
+      "ears": "Never fails to hear praise or the Prez's voice",
+      "tail": "Wags with excitement when she's receiving attention",
+      "strong": "Making friends",
+      "weak": "Doctors",
+      "family": "They cried when she stopped calling them \"Mama\" and \"Papa\"",
+      "secrets": [
+        "Did you know? She holds the record for her forward bend.",
+        "Did you know? She played at the seaside a lot when she was a kid, and everyone called her the \"Beach Monarch.\""
+      ]
+    }
+  }
+}

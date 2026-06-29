@@ -1,0 +1,228 @@
+{
+  "charData": {
+    "url_name": "fuji-kiseki",
+    "tid": "4",
+    "char_id": 1005,
+    "jp_name": "フジキセキ",
+    "en_name": "Fuji Kiseki",
+    "name_ko": "후지 키세키",
+    "name_tw": "富士奇石",
+    "playable": true,
+    "playable_ko": true,
+    "playable_zh_tw": true,
+    "playable_en": true,
+    "active": true,
+    "active_ko": true,
+    "active_zh_tw": true,
+    "active_en": true,
+    "va_en": "Eriko Matsui",
+    "va_ja": "松井恵理子",
+    "va_ko": "마츠이 에리코",
+    "va_zh_tw": "松井恵理子",
+    "va_link": "https://myanimelist.net/people/20835/Eriko_Matsui",
+    "three_sizes": {
+      "b": 84,
+      "w": 58,
+      "h": 82
+    },
+    "birth_day": 15,
+    "birth_month": 4,
+    "birth_year": 1992,
+    "height": 168,
+    "sex": 1,
+    "race": "uma",
+    "rl": {
+      "country": "jp",
+      "death": "2015-12-28",
+      "races": 4,
+      "wins": 4,
+      "record": "4-0-0-0",
+      "earnings": 129650000,
+      "active": "1994-1995"
+    }
+  },
+  "image_url": "https://gametora.com/images/umamusume/characters/chara_stand_1005_100501.png",
+  "thumb_url": "https://gametora.com/images/umamusume/characters/thumb/chara_stand_1005_100501.png",
+  "objectiveData_transformed": [
+    {
+      "order": 1,
+      "turn": 12,
+      "year": 1,
+      "month": 6,
+      "day": 2,
+      "race_name": "Junior Make Debut",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 2,
+      "turn": 23,
+      "year": 1,
+      "month": 12,
+      "day": 1,
+      "race_name": "Asahi Hai Futurity Stakes",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 3,
+      "turn": 29,
+      "year": 2,
+      "month": 3,
+      "day": 1,
+      "race_name": "Yayoi Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 4,
+      "turn": 31,
+      "year": 2,
+      "month": 4,
+      "day": 1,
+      "race_name": "Satsuki Sho",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 5,
+      "turn": 33,
+      "year": 2,
+      "month": 5,
+      "day": 1,
+      "race_name": "NHK Mile Cup",
+      "cond_type": 1,
+      "cond_value": 5
+    },
+    {
+      "order": 6,
+      "turn": 44,
+      "year": 2,
+      "month": 10,
+      "day": 2,
+      "race_name": "Kikuka Sho",
+      "cond_type": 1,
+      "cond_value": 0
+    },
+    {
+      "order": 7,
+      "turn": 54,
+      "year": 3,
+      "month": 3,
+      "day": 2,
+      "race_name": "Takamatsunomiya Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 8,
+      "turn": 59,
+      "year": 3,
+      "month": 6,
+      "day": 1,
+      "race_name": "Yasuda Kinen",
+      "cond_type": 1,
+      "cond_value": 3
+    },
+    {
+      "order": 9,
+      "turn": 68,
+      "year": 3,
+      "month": 10,
+      "day": 2,
+      "race_name": "Tenno Sho (Autumn)",
+      "cond_type": 1,
+      "cond_value": 1
+    },
+    {
+      "order": 10,
+      "turn": 72,
+      "year": 4,
+      "month": 0,
+      "day": 0,
+      "race_name": "Arima Kinen",
+      "cond_type": 1,
+      "cond_value": 0
+    }
+  ],
+  "profileArtMeta": {
+    "url_name": "fuji-kiseki",
+    "images": {
+      "uniform": true,
+      "racing": true,
+      "concept": true,
+      "starting-future": true
+    }
+  },
+  "profileData": {
+    "char_id": 1005,
+    "ja": {
+      "self_intro": "みんなを楽しませる漆黒のエンターテイナーフジキセキだよ！最高の“キセキ”で、君を必ず笑顔にしてみせるからね！",
+      "tagline": "エスコートはお任せ！華麗なジェントル娘",
+      "weight": "増減なし",
+      "shoes": "左右ともに26.0cm",
+      "dorm": "栗東寮",
+      "class": "高等部",
+      "ears": "絶対音感の持ち主",
+      "tail": "歌劇の大羽根のように優雅に揺れる",
+      "strong": "誰かをあっと驚かせること",
+      "weak": "甘いもの",
+      "family": "舞台一家で、両親は全国を飛び回っている",
+      "secrets": [
+        "実は、シルクハットから鳩が出せるし、何もないところからシルクハットが出せる。",
+        "実は、自分のファンクラブが主催するお茶会によく参加している。"
+      ]
+    },
+    "ko": {
+      "self_intro": "모두에게 즐거움을 주는 칠흑의 엔터테이너 후지 키세키다! 최고의 '기적'으로 반드시 너에게서 웃음꽃을 피워 보일게!",
+      "tagline": "에스코트는 맡겨 줘! 화려한 젠틀 소녀",
+      "weight": "변화 없음",
+      "shoes": "좌우 모두 26.0cm",
+      "dorm": "릿토 생활관",
+      "class": "고등부",
+      "ears": "절대 음감의 소유자",
+      "tail": "오페라의 커다란 깃털처럼 우아하게 흔들린다.",
+      "strong": "누군가를 깜짝 놀라게 하기",
+      "weak": "달달한 것",
+      "family": "무대 일가로서 부모님은 전국을 누비고 있다.",
+      "secrets": [
+        "사실은 실크햇에서 비둘기를 꺼낼 수 있고 아무것도 없는 곳에서 실크햇을 꺼낼 수 있다.",
+        "사실은 자신의 팬클럽이 주최하는 다과회에 자주 참가한다."
+      ]
+    },
+    "zh_tw": {
+      "self_intro": "我是逗大家開心的漆黑表演者，富士奇石！我一定會用最棒的「奇蹟」讓你露出笑容！",
+      "tagline": "護送工作非我莫屬！華麗的紳士女孩",
+      "weight": "無增減",
+      "shoes": "左右都是26.0cm",
+      "dorm": "栗東宿舍",
+      "class": "高中部",
+      "ears": "擁有絕對音感",
+      "tail": "像歌劇的大羽毛一樣優雅搖擺",
+      "strong": "讓人感到驚訝",
+      "weak": "甜食",
+      "family": "出身表演世家，雙親都在全國各地奔波",
+      "secrets": [
+        "其實她能從魔術帽裡變出鴿子，還能憑空變出魔術帽。",
+        "其實她常常參加自己的粉絲俱樂部所舉辦的茶會。"
+      ]
+    },
+    "en": {
+      "self_intro": "It's everyone's favorite jet-black entertainer, Fuji Kiseki! I'm a modern miracle! I put smiles on faces wherever I go, you know? ♪",
+      "tagline": "Always at your service. The classiest racer around.",
+      "weight": "No change",
+      "shoes": "Left and right: 26.0cm",
+      "dorm": "Ritto Dormitory",
+      "class": "Senior Division",
+      "ears": "Has perfect pitch",
+      "tail": "Sway gracefully like magnificent feather accessories of the stage",
+      "strong": "Surprising people",
+      "weak": "Sweets",
+      "family": "Coming from a theater family, her parents travel all over the country",
+      "secrets": [
+        "Did you know? She can make a dove appear out of a top hat, and she can make a top hat appear out of nothing.",
+        "Did you know? She often goes to tea parties organized by her fan club."
+      ]
+    }
+  }
+}

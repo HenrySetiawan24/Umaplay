@@ -40,24 +40,42 @@ poll loops that follow.
 
 ## 2. Part A — OCR reduction
 
-### A1. Crop the placement OCR to the result emblem (biggest win)
+### A1. Replace full-screen placement OCR with a row-1 highlight color check (no OCR)
 
-Replace the two full-screen `self.ocr.text(img, min_conf=0.1)` placement reads
-with OCR of a small crop around the **trainee's placement emblem** (the large
-"1st/2nd/…/16th" badge top-left of the result screen — confirmed location in
-`debug/race/placement/`).
+**We only need win/not-win, not the exact placement.** The result leaderboard
+highlights the *trainee's* row cream/yellow; every other row is white. When the
+trainee wins they are 1st, so **row 1 is highlighted ⟺ win**. This needs a single
+small color sample — no OCR, no trainee name.
 
-- Add a `_placement_roi(img)` helper, **content-aware** (reuse the letterbox-bounds
-  approach proven in the skills SP fix) so it survives phone letterboxing. Approx.
-  region: x `0.10–0.45`, y `0.13–0.30` of game content.
-- Upscale the crop before OCR (small ornate gold digits), same as the skills digit fix.
-- Validate against the saved `debug/race/placement/*.png` (filenames carry the
-  expected placement) before trusting it.
+Replace the two `self.ocr.text(img, min_conf=0.1)` full-screen reads at
+[race.py:865](../core/actions/race.py#L865) and [race.py:975](../core/actions/race.py#L975)
+with `_row1_is_win(img)`:
 
-**Effect:** the single most expensive OCR in the flow drops from a full
-1220×2712 detect+recognize to a tiny crop. Also more *accurate* — it isolates the
-trainee's own placement instead of regex-grabbing the first `Nst` among 5+
-leaderboard rows.
+- Content-aware bounds (reuse the letterbox detection from the skills SP fix), then
+  sample the median color of row 1's name-band: content-relative
+  x `0.34–0.60`, y `0.415–0.485`.
+- Convert to HSV; **win = saturation ≥ 0.10** (highlight) vs ~0 (white).
+
+**Validation (already done):** across all 145 `debug/race/placement/*.png`
+captures the signal is perfectly bimodal — wins land at `sat=0.220, hue=49`,
+losses at `sat=0.000`. One borderline at `0.046`, still clearly a loss. A `0.10`
+threshold separates every sample.
+
+**Effect:**
+- Eliminates the single most expensive OCR in the whole race flow (a full
+  1220×2712 detect+recognize, run once per race) — replaced by one median-color
+  read of a tiny crop.
+- **Fixes a correctness bug:** the current OCR regex grabs the first `Nst` among
+  the 5+ leaderboard rows, so it mislabels wins as losses — e.g.
+  `view_results_..._2.png` is actually a *win* (trainee 1st) misread as placement 2.
+- Replaces `_last_placement: Optional[int]` with a `_last_won: Optional[bool]`;
+  `_record_race_attempt` only consumes `won` anyway, so nothing downstream needs
+  the exact number.
+
+**Fallback:** if the highlight ever proves theme-dependent, fall back to OCR'ing
+just row 1's name band (content x `0.30–0.62`) and fuzzy-matching the trainee name
+(would require passing the uma name into `RaceFlow`, which it doesn't currently
+hold). The color check avoids that plumbing entirely.
 
 ### A2. Batch the race-name OCR in selection
 
@@ -131,7 +149,7 @@ For beats that can't be polled away (animation grace periods), introduce a singl
 
 ## 5. Status
 
-- [ ] A1 — crop placement OCR to result emblem (content-aware ROI + upscale)
+- [ ] A1 — replace full-screen placement OCR with row-1 highlight color check (no OCR; validated on 145 captures)
 - [ ] A2 — batch + cache race-name OCR in selection
 - [ ] A3 — reduce View-Results button OCR
 - [ ] B1 — convert blind sleeps (esp. `run()` `sleep(7)`) to poll-until-ready

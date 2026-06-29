@@ -85,6 +85,10 @@ class Settings:
     # Multiplier on the race-flow animation grace waits. 1.0 = current pacing;
     # <1 speeds up (fast devices/emulators), >1 slows down (slow phones).
     RACE_AWAIT_SCALE: float = _env_float("RACE_AWAIT_SCALE", default=1.0)
+    # Skills shop: max scroll passes per buy session.
+    SKILLS_MAX_SCROLLS: int = _env_int("SKILLS_MAX_SCROLLS", default=15)
+    # Skills shop: consecutive unchanged-view passes tolerated before early-stop.
+    SKILLS_SCAN_PATIENCE: int = _env_int("SKILLS_SCAN_PATIENCE", default=3)
     # Race if no good training options are available (default: False = skip race if no good training)
     RACE_IF_NO_GOOD_VALUE: bool = _env_bool("RACE_IF_NO_GOOD_VALUE", default=False)
 
@@ -565,6 +569,18 @@ class Settings:
         except Exception:
             race_scale = cls.RACE_AWAIT_SCALE
         cls.RACE_AWAIT_SCALE = max(0.4, min(2.0, race_scale))
+
+        # Skills shop scroll tuning
+        try:
+            sk_scrolls = int(adv.get("skillsMaxScrolls", cls.SKILLS_MAX_SCROLLS))
+        except Exception:
+            sk_scrolls = cls.SKILLS_MAX_SCROLLS
+        cls.SKILLS_MAX_SCROLLS = max(1, min(60, sk_scrolls))
+        try:
+            sk_patience = int(adv.get("skillsScanPatience", cls.SKILLS_SCAN_PATIENCE))
+        except Exception:
+            sk_patience = cls.SKILLS_SCAN_PATIENCE
+        cls.SKILLS_SCAN_PATIENCE = max(1, min(10, sk_patience))
 
         # Skills optimization gates
         try:

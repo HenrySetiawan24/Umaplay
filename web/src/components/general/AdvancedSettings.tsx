@@ -19,6 +19,8 @@ export default function AdvancedSettings() {
   const [settleTimeout, setSettleTimeout] = useState(a.trainingSettleTimeoutMs ?? 400)
   const [settleDiff, setSettleDiff] = useState(a.trainingSettleDiffThreshold ?? 2)
   const [raceScale, setRaceScale] = useState(a.raceAwaitScale ?? 1)
+  const [skillsScrolls, setSkillsScrolls] = useState(a.skillsMaxScrolls ?? 15)
+  const [skillsPatience, setSkillsPatience] = useState(a.skillsScanPatience ?? 3)
 
   const autoRestMarks = useMemo(() => {
     const marks = [{ value: 1 }]
@@ -40,6 +42,8 @@ export default function AdvancedSettings() {
     setSettleTimeout(a.trainingSettleTimeoutMs ?? 400)
     setSettleDiff(a.trainingSettleDiffThreshold ?? 2)
     setRaceScale(a.raceAwaitScale ?? 1)
+    setSkillsScrolls(a.skillsMaxScrolls ?? 15)
+    setSkillsPatience(a.skillsScanPatience ?? 3)
   }, [
     a.autoRestMinimum,
     a.skillCheckInterval,
@@ -50,6 +54,8 @@ export default function AdvancedSettings() {
     a.trainingSettleTimeoutMs,
     a.trainingSettleDiffThreshold,
     a.raceAwaitScale,
+    a.skillsMaxScrolls,
+    a.skillsScanPatience,
   ])
 
   const commitAdvanced = <K extends keyof typeof a>(key: K, value: (typeof a)[K]) => {
@@ -453,6 +459,50 @@ export default function AdvancedSettings() {
               const next = Math.max(0.4, Math.min(2, Math.round(toNumber(v) * 10) / 10))
               setRaceScale(next)
               commitAdvanced('raceAwaitScale', next)
+            },
+          })}
+          sx={{ mt: 2 }}
+        />
+
+        <FieldRow
+          label="Skills: max scrolls"
+          info="How many times the bot scrolls the skill shop while buying before giving up. Higher reaches skills further down a long list; lower ends the buy session sooner."
+          control={renderSliderControl({
+            id: 'skillsMaxScrolls',
+            value: skillsScrolls,
+            min: 1,
+            max: 60,
+            step: 1,
+            onChange: (_, v) => {
+              const next = Math.max(1, Math.min(60, Math.round(toNumber(v))))
+              setSkillsScrolls(next)
+            },
+            onCommit: (_, v) => {
+              const next = Math.max(1, Math.min(60, Math.round(toNumber(v))))
+              setSkillsScrolls(next)
+              commitAdvanced('skillsMaxScrolls', next)
+            },
+          })}
+          sx={{ mt: 2 }}
+        />
+
+        <FieldRow
+          label="Skills: stop after repeats"
+          info="Stop scrolling the skill shop after this many consecutive scrolls show the same screen with nothing bought (i.e. you've reached the bottom). Lower stops sooner; higher is more tolerant of scroll/animation hiccups."
+          control={renderSliderControl({
+            id: 'skillsScanPatience',
+            value: skillsPatience,
+            min: 1,
+            max: 10,
+            step: 1,
+            onChange: (_, v) => {
+              const next = Math.max(1, Math.min(10, Math.round(toNumber(v))))
+              setSkillsPatience(next)
+            },
+            onCommit: (_, v) => {
+              const next = Math.max(1, Math.min(10, Math.round(toNumber(v))))
+              setSkillsPatience(next)
+              commitAdvanced('skillsScanPatience', next)
             },
           })}
           sx={{ mt: 2 }}

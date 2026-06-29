@@ -96,7 +96,7 @@ class SkillsFlow:
         self,
         skill_list: Sequence[str],
         *,
-        max_scrolls: int = 15,
+        max_scrolls: Optional[int] = None,
         ocr_threshold: float = 0.85,  # experimental, upgraded to 0.82 for the sake of avoiding false positives
         scroll_time_range: Tuple[int, int] = (6, 7),
         early_stop: bool = True,
@@ -134,7 +134,13 @@ class SkillsFlow:
                     continue
             purchases_made[t] = 0
 
-        patience = 3
+        # Resolve scroll budget + early-stop patience from Settings when not
+        # explicitly overridden, so both are tunable from Advanced settings.
+        if max_scrolls is None:
+            max_scrolls = int(Settings.SKILLS_MAX_SCROLLS)
+        patience_max = max(1, int(Settings.SKILLS_SCAN_PATIENCE))
+
+        patience = patience_max
         running_sp: Optional[int] = None
         for i in range(max_scrolls):
             clicked, game_img, dets, cur_ocr_sig, min_visible_cost, purchased_cost = (
@@ -194,7 +200,7 @@ class SkillsFlow:
                     logger_uma.info("[skills] Early stop buying.")
                     break
             else:
-                patience = 3
+                patience = patience_max
             prev_sig = cur_sig
             prev_ocr_sig = cur_ocr_sig
 

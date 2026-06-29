@@ -60,6 +60,7 @@ prefs/runtime_pal_memory.json
 prefs/runtime_skill_memory.unity_cup.json
 prefs/runtime_skill_memory.ura.json
 prefs/run_history.json
+prefs/run_detail/**
 build
 /dist/
 tests/outputs/*

@@ -18,7 +18,7 @@ from server.utils import (
     ensure_nav_exists,
     load_event_setup_defaults,
 )
-from server.run_history import load_history, append_history, delete_history, get_record, find_incomplete
+from server.run_history import load_history, append_history, delete_history, get_record, get_full_record, find_incomplete
 from server.bot_bridge import start_bot, stop_bot, is_running
 from core.version import __version__
 
@@ -80,6 +80,13 @@ def remove_history(record_id: str):
 @app.get("/api/history/incomplete")
 def get_incomplete_history():
     return find_incomplete()
+
+
+@app.get("/api/history/{record_id}/detail")
+def get_history_detail(record_id: str):
+    from server.run_history import load_detail
+    detail = load_detail(record_id)
+    return detail if detail is not None else {"turn_log": [], "active_periods": []}
 
 
 # -----------------------------------------------------------------------------

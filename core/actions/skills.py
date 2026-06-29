@@ -462,6 +462,11 @@ class SkillsFlow:
         Single pass: find all skills_square + their BUY button; OCR title-band and
         click BUY if matches a target.
         Returns (clicked_any, img, dets, ocr_title_signature, min_visible_cost, purchased_cost).
+
+        OCR is batched: after gating cards by the local active-buy classifier (no
+        OCR), all candidate titles and costs are read in two `batch_*` calls rather
+        than two sequential OCR calls per card. This keeps a pass at ~2 OCR calls
+        regardless of how many cards are visible.
         """
         game_img, dets = self._collect("skills_scan")
 
@@ -474,34 +479,44 @@ class SkillsFlow:
         min_visible_cost = 9999
         purchased_cost = 0
 
+        # --- Phase 1: gather active candidates using the local classifier (no OCR).
+        # Greyed/inactive cards never reach OCR.
+        candidates: List[Tuple[DetectionDict, DetectionDict, Image.Image, Image.Image]] = []
         for sq in squares:
             buy = self._find_buy_inside(sq, buys)
             if buy is None:
                 continue
-
-            # OCR SP cost from bottom-left of the skill card
+            crop_buy = crop_pil(game_img, buy["xyxy"], pad=0)
+            if float(self._clf.predict_proba(crop_buy)) < 0.55:
+                continue
+            title_crop = crop_pil(game_img, self._skill_title_roi(sq["xyxy"]), pad=2)
             cost_crop = crop_pil(game_img, self._skill_cost_roi(sq["xyxy"]), pad=0)
-            cost = self.ocr.digits(cost_crop)  # returns int, 0 if none found
-            if cost > 0 and (min_visible_cost == 0 or cost < min_visible_cost):
+            candidates.append((sq, buy, title_crop, cost_crop))
+
+        if not candidates:
+            return clicked_any, game_img, dets, ocr_titles_sig, 0, purchased_cost
+
+        # --- Phase 2: batch OCR all candidate titles + costs (2 calls total).
+        title_texts = self.ocr.batch_text([c[2] for c in candidates])
+        cost_strs = self.ocr.batch_digits([c[3] for c in candidates])
+        costs = [int(s) if s else 0 for s in cost_strs]
+
+        # --- Phase 3: decide + click per candidate.
+        for (sq, buy, _title_crop, _cost_crop), raw_text, cost in zip(
+            candidates, title_texts, costs
+        ):
+            raw_text = raw_text or ""
+            if cost > 0 and cost < min_visible_cost:
                 min_visible_cost = cost
 
             # Affordability guard: skip if we can't afford this skill
             if running_sp is not None and cost > 0 and running_sp < cost:
                 logger_uma.debug(
-                    "[skills] skipping '%s' (cost %d > running SP %d)",
-                    self.ocr.text(cost_crop) or "?", cost, running_sp,
+                    "[skills] skipping unaffordable card (cost %d > running SP %d)",
+                    cost, running_sp,
                 )
                 continue
 
-            # BUY must be active
-            crop_buy = crop_pil(game_img, buy["xyxy"], pad=0)
-            p = float(self._clf.predict_proba(crop_buy))
-            if p < 0.55:
-                continue
-
-            # OCR only the title band for accuracy/speed
-            title_crop = crop_pil(game_img, self._skill_title_roi(sq["xyxy"]), pad=2)
-            raw_text = self.ocr.text(title_crop) or ""
             norm_text = self._norm_title(raw_text)
             tokens = tokenize_ocr_text(norm_text)
             # Record OCR title signature with coarse position buckets.

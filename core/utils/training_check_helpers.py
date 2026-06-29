@@ -120,6 +120,87 @@ def save_recognition_fail_debug(
     except Exception as e:
         logger_uma.debug("failed saving recognition-fail debug: %s", e)
 
+
+def wait_until_settled(
+    ctrl,
+    *,
+    region_xywh=None,
+    pre_delay: float = 0.08,
+    poll_interval: float = 0.04,
+    min_stable_frames: int = 2,
+    diff_threshold: Optional[float] = None,
+    timeout: Optional[float] = None,
+    downscale: float = 0.25,
+    slow_grab_s: float = 0.06,
+) -> bool:
+    """
+    Poll cheap screenshots until the frame stops changing, instead of a fixed
+    post-click sleep. Returns True if the scene settled, False on timeout / slow
+    grabs — in which case the caller proceeds to YOLO anyway (the fallback).
+
+    `timeout` is the TOTAL budget (including `pre_delay`), so this can never wait
+    longer than the fixed sleep it replaces. On controllers whose grab is too slow
+    to poll (e.g. ADB screencap), it falls back to waiting out the remaining budget.
+
+    `timeout` and `diff_threshold` default to the user-tunable Settings values
+    (TRAINING_SETTLE_TIMEOUT_MS / TRAINING_SETTLE_DIFF_THRESHOLD) when not passed.
+    """
+    if timeout is None:
+        timeout = max(0.05, Settings.TRAINING_SETTLE_TIMEOUT_MS / 1000.0)
+    if diff_threshold is None:
+        diff_threshold = float(Settings.TRAINING_SETTLE_DIFF_THRESHOLD)
+
+    start = time.monotonic()
+    deadline = start + timeout
+
+    # Let the click register and the animation actually START before sampling,
+    # otherwise two identical pre-animation frames read as a false "settled".
+    time.sleep(min(max(0.0, pre_delay), max(0.0, timeout)))
+
+    prev = None
+    stable = 0
+    first = True
+    while time.monotonic() < deadline:
+        t0 = time.monotonic()
+        try:
+            img = ctrl.screenshot(region=region_xywh)
+        except Exception as e:
+            logger_uma.debug("[settle] grab failed (%s); proceeding", e)
+            return False
+
+        if first and (time.monotonic() - t0) > slow_grab_s:
+            # Grabs cost more than a poll step is worth (ADB). Don't busy-poll;
+            # wait out the remaining budget like the old fixed sleep and move on.
+            remaining = deadline - time.monotonic()
+            if remaining > 0:
+                time.sleep(remaining)
+            return False
+        first = False
+
+        w, h = img.size
+        small = img.resize(
+            (max(1, int(w * downscale)), max(1, int(h * downscale)))
+        )
+        arr = np.asarray(small.convert("L"), dtype=np.float32)
+        if prev is not None:
+            if float(np.mean(np.abs(arr - prev))) <= diff_threshold:
+                stable += 1
+                if stable >= min_stable_frames:
+                    return True
+            else:
+                stable = 0
+        prev = arr
+
+        # Pace the loop, but never sleep past the deadline (keeps total <= timeout).
+        sleep_left = min(
+            (t0 + poll_interval) - time.monotonic(),
+            deadline - time.monotonic(),
+        )
+        if sleep_left > 0:
+            time.sleep(sleep_left)
+
+    return False
+
 def _classify_flame_pose(flx1, fly1, flx2, fly2, geom) -> str:
     """
     Decide 'filling_up' (left badge by portrait) vs 'exploded' (bottom-right bubble).

@@ -74,6 +74,14 @@ class Settings:
     UNDERTRAIN_THRESHOLD: float = _env_float("UNDERTRAIN_THRESHOLD", default=6.0)
     # Number of top stats to focus on for undertraining
     TOP_STATS_FOCUS: int = _env_int("TOP_STATS_FOCUS", default=3)
+    # Max time (ms) to wait for the training animation to settle after clicking a
+    # tile before scanning. The scan polls and exits early once the frame is stable.
+    TRAINING_SETTLE_TIMEOUT_MS: int = _env_int("TRAINING_SETTLE_TIMEOUT_MS", default=400)
+    # Mean per-pixel frame diff (0-255) below which the screen counts as "settled".
+    # Higher = less sensitive (settles sooner); lower = stricter (waits longer).
+    TRAINING_SETTLE_DIFF_THRESHOLD: float = _env_float(
+        "TRAINING_SETTLE_DIFF_THRESHOLD", default=2.0
+    )
     # Race if no good training options are available (default: False = skip race if no good training)
     RACE_IF_NO_GOOD_VALUE: bool = _env_bool("RACE_IF_NO_GOOD_VALUE", default=False)
 
@@ -533,6 +541,20 @@ class Settings:
         # Update top stats focus setting
         top_stats_focus = int(adv.get("topStatsFocus", cls.TOP_STATS_FOCUS))
         cls.TOP_STATS_FOCUS = max(1, min(5, top_stats_focus))  # Clamp between 1 and 5
+
+        # Training scan: settle-wait tuning (click tile -> scan)
+        try:
+            settle_ms = int(adv.get("trainingSettleTimeoutMs", cls.TRAINING_SETTLE_TIMEOUT_MS))
+        except Exception:
+            settle_ms = cls.TRAINING_SETTLE_TIMEOUT_MS
+        cls.TRAINING_SETTLE_TIMEOUT_MS = max(50, min(2000, settle_ms))  # 50ms..2s
+        try:
+            settle_diff = float(
+                adv.get("trainingSettleDiffThreshold", cls.TRAINING_SETTLE_DIFF_THRESHOLD)
+            )
+        except Exception:
+            settle_diff = cls.TRAINING_SETTLE_DIFF_THRESHOLD
+        cls.TRAINING_SETTLE_DIFF_THRESHOLD = max(0.1, min(30.0, settle_diff))
 
         # Skills optimization gates
         try:

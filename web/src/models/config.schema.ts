@@ -135,6 +135,8 @@ export const generalSchema = z.object({
     topStatsFocus: z.number().int().min(1).max(5).default(3),
     skillCheckInterval: z.number().int().min(1).max(12).default(3),
     skillPtsDelta: z.number().int().min(0).max(1000).default(60),
+    trainingSettleTimeoutMs: z.number().int().min(50).max(2000).default(400),
+    trainingSettleDiffThreshold: z.number().min(0.1).max(30).default(2),
   }).default({
     hotkey: 'F2',
     debugMode: true,
@@ -145,6 +147,8 @@ export const generalSchema = z.object({
     topStatsFocus: 3,
     skillCheckInterval: 3,
     skillPtsDelta: 60,
+    trainingSettleTimeoutMs: 400,
+    trainingSettleDiffThreshold: 2,
   }),
 }).default({
   mode: 'steam',
@@ -169,6 +173,8 @@ export const generalSchema = z.object({
     topStatsFocus: 3,
     skillCheckInterval: 3,
     skillPtsDelta: 60,
+    trainingSettleTimeoutMs: 400,
+    trainingSettleDiffThreshold: 2,
   },
 })
 

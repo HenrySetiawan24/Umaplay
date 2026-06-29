@@ -16,6 +16,8 @@ export default function AdvancedSettings() {
   const [undertrain, setUndertrain] = useState(a.undertrainThreshold)
   const [topStats, setTopStats] = useState(a.topStatsFocus)
   const [externalUrl, setExternalUrl] = useState(a.externalProcessorUrl)
+  const [settleTimeout, setSettleTimeout] = useState(a.trainingSettleTimeoutMs ?? 400)
+  const [settleDiff, setSettleDiff] = useState(a.trainingSettleDiffThreshold ?? 2)
 
   const autoRestMarks = useMemo(() => {
     const marks = [{ value: 1 }]
@@ -34,6 +36,8 @@ export default function AdvancedSettings() {
     setUndertrain(a.undertrainThreshold)
     setTopStats(a.topStatsFocus)
     setExternalUrl(a.externalProcessorUrl)
+    setSettleTimeout(a.trainingSettleTimeoutMs ?? 400)
+    setSettleDiff(a.trainingSettleDiffThreshold ?? 2)
   }, [
     a.autoRestMinimum,
     a.skillCheckInterval,
@@ -41,6 +45,8 @@ export default function AdvancedSettings() {
     a.undertrainThreshold,
     a.topStatsFocus,
     a.externalProcessorUrl,
+    a.trainingSettleTimeoutMs,
+    a.trainingSettleDiffThreshold,
   ])
 
   const commitAdvanced = <K extends keyof typeof a>(key: K, value: (typeof a)[K]) => {
@@ -376,6 +382,51 @@ export default function AdvancedSettings() {
               const next = Math.max(1, Math.min(5, Math.round(toNumber(v))))
               setTopStats(next)
               commitAdvanced('topStatsFocus', next)
+            },
+          })}
+          sx={{ mt: 2 }}
+        />
+
+        <FieldRow
+          label="Training settle: max wait"
+          info="After clicking a training tile, the bot polls the screen and scans as soon as the raise/support animation stops moving. This is the upper bound on that wait — it almost always finishes earlier. Raise it if the game animates slowly; lower it for snappier scanning."
+          control={renderSliderControl({
+            id: 'trainingSettleTimeoutMs',
+            value: settleTimeout,
+            min: 100,
+            max: 1000,
+            step: 50,
+            format: (v) => `${v}ms`,
+            onChange: (_, v) => {
+              const next = Math.max(100, Math.min(1000, Math.round(toNumber(v) / 50) * 50))
+              setSettleTimeout(next)
+            },
+            onCommit: (_, v) => {
+              const next = Math.max(100, Math.min(1000, Math.round(toNumber(v) / 50) * 50))
+              setSettleTimeout(next)
+              commitAdvanced('trainingSettleTimeoutMs', next)
+            },
+          })}
+          sx={{ mt: 2 }}
+        />
+
+        <FieldRow
+          label="Training settle: sensitivity"
+          info="How still the screen must be before the bot considers the animation finished (mean per-pixel frame difference). Higher = less sensitive, so it settles and scans sooner; lower = stricter, so it waits longer for the screen to fully stop. Raise this if looping sparkle/rainbow effects keep it waiting the full time."
+          control={renderSliderControl({
+            id: 'trainingSettleDiffThreshold',
+            value: settleDiff,
+            min: 0.5,
+            max: 10,
+            step: 0.5,
+            onChange: (_, v) => {
+              const next = Math.max(0.5, Math.min(10, Math.round(toNumber(v) * 2) / 2))
+              setSettleDiff(next)
+            },
+            onCommit: (_, v) => {
+              const next = Math.max(0.5, Math.min(10, Math.round(toNumber(v) * 2) / 2))
+              setSettleDiff(next)
+              commitAdvanced('trainingSettleDiffThreshold', next)
             },
           })}
           sx={{ mt: 2 }}

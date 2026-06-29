@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import time
 from typing import Dict, List, Optional, Tuple, Union
-import random
 
 import cv2
 import numpy as np
@@ -26,6 +25,7 @@ from core.utils.training_check_helpers import (
     failure_pct,
     reindex_left_to_right,
     save_recognition_fail_debug,
+    wait_until_settled,
 )
 from core.constants import DEFAULT_TILE_TO_TYPE
 from core.scenarios.registry import registry
@@ -58,13 +58,6 @@ def scan_training_screen(
     param_imgsz = 832
     param_conf = 0.60  # lower than 0.8 so we don't miss support cards
     param_iou = 0.45
-
-    def _jitter_delay():
-        if pause_after_click_range and len(pause_after_click_range) >= 2:
-            a, b = float(pause_after_click_range[0]), float(pause_after_click_range[1])
-            lo, hi = (a, b) if a <= b else (b, a)
-            return max(0.0, random.uniform(lo, hi))
-        return 0.6
 
     def _to_bgr(img):
         # Single RGB->BGR conversion per capture, shared by collect_supports_enriched
@@ -155,7 +148,7 @@ def scan_training_screen(
                     clicks=1,
                     jitter=calculate_jitter(tile["tile_xyxy"], percentage_offset=0.20),
                 )
-                time.sleep(_jitter_delay())
+                wait_until_settled(ctrl)
                 cur_img, _, cur_parsed = yolo_engine.recognize(
                     imgsz=param_imgsz, conf=param_conf, iou=param_iou, tag="training"
                 )
@@ -282,7 +275,7 @@ def scan_training_screen(
             jitter=calculate_jitter(tile["tile_xyxy"], percentage_offset=0.20),
         )
 
-        time.sleep(_jitter_delay())
+        wait_until_settled(ctrl)
 
         cur_img, _, cur_parsed = yolo_engine.recognize(
             imgsz=param_imgsz, conf=param_conf, iou=param_iou, tag="training"

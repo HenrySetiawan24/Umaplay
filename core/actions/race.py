@@ -252,6 +252,35 @@ class RaceFlow:
         """
         time.sleep(max(0.0, seconds * float(Settings.RACE_AWAIT_SCALE)))
 
+    def _wait_for_results_screen(self, *, timeout_s: float = 6.0) -> Optional[Image.Image]:
+        """
+        Poll until the post-race result leaderboard is actually on screen, so the
+        win-check and NEXT click don't fire on a mid-transition frame.
+
+        Confirmation is **YOLO-only (no OCR)**: a `race_badge` (the grade badge on
+        the result banner) AND a `button_green` (NEXT) both detected. One snapshot
+        per poll. Nudges through any lingering skip button. Returns the confirming
+        frame (reused for the win-check to save a recognize), or None on timeout —
+        in which case the caller proceeds as before (never worse than today).
+        """
+        deadline = time.time() + timeout_s
+        while time.time() < deadline:
+            if abort_requested():
+                return None
+            img, dets = self._collect("race_results_gate")
+            names = {d["name"] for d in dets if float(d.get("conf", 0.0)) >= 0.5}
+            if "race_badge" in names and "button_green" in names:
+                logger_uma.debug("[race] Results screen confirmed (race_badge + NEXT).")
+                return img
+            # Still mid-skip? push the skip button through and keep polling.
+            if "button_skip" in names:
+                skip = next((d for d in dets if d["name"] == "button_skip"), None)
+                if skip and skip.get("xyxy"):
+                    self.ctrl.click_xyxy_center(skip["xyxy"], clicks=2)
+            time.sleep(0.2)
+        logger_uma.debug("[race] Results screen not confirmed before timeout; proceeding.")
+        return None
+
     def _attempt_try_again_retry(self) -> bool:
         """Click the 'TRY AGAIN' button once loss was confirmed."""
         t0 = time.time()
@@ -1018,9 +1047,16 @@ class RaceFlow:
                     continue
                 time.sleep(0.12)
 
+            # Confirm the result leaderboard is actually up before reading it / NEXT
+            # (YOLO-only; retries through lingering skip). Skipped on the trophy
+            # CLOSE path, which doesn't show the leaderboard.
+            results_img = None
+            if not closed_early:
+                results_img = self._wait_for_results_screen()
+
             # -- Win check on leaderboard (only if we broke on NEXT, not CLOSE) --
             if Settings.DETAILED_HISTORY and not closed_early:
-                img_pl, _ = self._collect("race_placement")
+                img_pl = results_img if results_img is not None else self._collect("race_placement")[0]
                 self._last_won = self._row1_is_win(img_pl)
                 RaceFlow._save_placement_debug(img_pl, self._last_won, "skip_loop")
             else:

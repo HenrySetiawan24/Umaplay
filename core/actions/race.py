@@ -35,7 +35,7 @@ from core.utils.text import _normalize_ocr, fuzzy_ratio
 from core.utils.yolo_objects import collect, find, bottom_most, inside
 from core.utils.pointer import smart_scroll_small
 from core.utils.abort import abort_requested, request_abort
-from core.run_context import get as get_run_record
+from core.run_context import get as get_run_record, update_last_turn_log
 from server.run_history import append_history
 
 
@@ -68,12 +68,14 @@ class RaceFlow:
     def __init__(
         self, ctrl: IController, ocr, yolo_engine: IDetector, waiter: Waiter,
         plan_races: Optional[Dict[str, str]] = None,
+        goal_races: Optional[Dict[str, str]] = None,
     ) -> None:
         self.ctrl = ctrl
         self.ocr = ocr
         self.yolo_engine = yolo_engine
         self.waiter = waiter
         self.plan_races: Dict[str, str] = plan_races or {}
+        self.goal_races: Dict[str, str] = goal_races or {}
         self._banner_matcher = get_race_banner_matcher()
         self._race_result_counters = {
             "loss_indicators": 0,
@@ -765,7 +767,6 @@ class RaceFlow:
             record = get_run_record()
             if record is None or record.get("end_time"):
                 return
-            from datetime import datetime
 
             # If date_key is incomplete (year-only or empty), try to resolve from
             # plan_races using the OCR'd race name as a reverse-lookup key.
@@ -779,21 +780,25 @@ class RaceFlow:
                             self._current_date_key = dk
                             break
 
-            entry: Dict[str, Any] = {
-                "race_name": self._last_race_name or "unknown",
+            # Resolve race name: plan_races (canonical) → goal_races → OCR last resort.
+            canonical = (
+                (dk and self.plan_races.get(dk))
+                or (dk and self.goal_races.get(dk))
+                or self._last_race_name
+                or "unknown"
+            )
+
+            # Enrich the most recent turn_log entry (the to_race decision) with
+            # race outcome fields rather than writing a separate races_attempted entry.
+            race_fields: Dict[str, Any] = {
+                "race_name": canonical,
                 "won": won,
-                "timestamp": datetime.now().isoformat(),
             }
-            t = turn if turn is not None else self._current_turn
-            if t is not None:
-                entry["turn"] = t
-            if dk is not None:
-                entry["date_key"] = dk
             if fans_before is not None:
-                entry["fans_before"] = fans_before
+                race_fields["fans_before"] = fans_before
             if fans_after is not None:
-                entry["fans_after"] = fans_after
-            record.setdefault("races_attempted", []).append(entry)
+                race_fields["fans_after"] = fans_after
+            update_last_turn_log(**race_fields)
             append_history(record)
         except Exception:
             logger_uma.debug("[run_history] _record_race_attempt failed", exc_info=True)

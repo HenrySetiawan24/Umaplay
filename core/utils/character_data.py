@@ -46,6 +46,21 @@ def get_goal_anchors(char_id: int) -> List[Tuple[int, int, int, int]]:
     return [(g["turn"], g["year"], g["month"], g["day"]) for g in (c.get("goals") or [])]
 
 
+def get_goal_races(char_id: int) -> Dict[str, str]:
+    """Return {date_key: race_name} for all goal races of a character."""
+    c = get_character(char_id)
+    if not c:
+        return {}
+    result: Dict[str, str] = {}
+    for g in (c.get("goals") or []):
+        race_name = g.get("race_name")
+        if not race_name:
+            continue
+        dk = goal_turn_to_date_key(g["turn"])
+        result[dk] = race_name
+    return result
+
+
 def search_characters(query: str) -> List[Dict[str, Any]]:
     """Search characters by name (English or Japanese)."""
     q = query.lower().strip()

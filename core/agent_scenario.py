@@ -94,7 +94,8 @@ class AgentScenario(ABC):
         self.skill_memory = SkillMemoryManager(
             self.skill_memory_path, scenario=self.scenario
         )
-        self.race = RaceFlow(self.ctrl, self.ocr, self.yolo_engine, self.waiter, plan_races=self.plan_races)
+        goal_races = character_data.get_goal_races(self.char_id) if self.char_id else {}
+        self.race = RaceFlow(self.ctrl, self.ocr, self.yolo_engine, self.waiter, plan_races=self.plan_races, goal_races=goal_races)
 
         self.lobby = lobby_flow
         self.skills_flow = SkillsFlow(

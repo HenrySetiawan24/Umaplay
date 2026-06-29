@@ -399,6 +399,15 @@ export default function AdvancedSettings() {
           sx={{ mt: 2 }}
         />
 
+        <Divider sx={{ my: 2 }} />
+        <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 0.5 }}>
+          Performance &amp; timing
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+          Tune how long the bot waits for animations and how far it scans. Lower
+          values are faster but less tolerant of slow devices.
+        </Typography>
+
         <FieldRow
           label="Training settle: max wait"
           info="After clicking a training tile, the bot polls the screen and scans as soon as the raise/support animation stops moving. This is the upper bound on that wait — it almost always finishes earlier. Raise it if the game animates slowly; lower it for snappier scanning."

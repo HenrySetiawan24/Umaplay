@@ -1,169 +1,162 @@
-# Race Flow — OCR & Await Optimization Plan
+# Race Flow — Execution, OCR & Await Optimization
 
-**Status:** Planned — not yet implemented.
-
-Covers the race-day routine in [`core/actions/race.py`](../core/actions/race.py):
-`run()` (selection → confirm → pre-race lobby) → `lobby()` (RACE → skip race →
-skip win/trophy screen → placement → NEXT → NEXT).
-
----
-
-## 1. Current cost inventory
-
-### OCR calls (cost, highest first)
-
-| Site | Where | Cost |
-|------|-------|------|
-| **Placement read** | `lobby()` [race.py:865](../core/actions/race.py#L865) & [race.py:975](../core/actions/race.py#L975): `self.ocr.text(img_pl, min_conf=0.1)` | **Full-screen OCR of the entire 1220×2712 leaderboard** — by far the most expensive single OCR in the flow, run once per race. |
-| Race-name match | `_pick_race_square` [race.py:556](../core/actions/race.py#L556), [race.py:617](../core/actions/race.py#L617): per-square `self.ocr.text(...)` | N squares × OCR, repeated across up to 3 scrolls during selection. |
-| View-Results button | `_pick_view_results_button` [race.py:339](../core/actions/race.py#L339): OCR per candidate white button | A few small OCRs per lobby entry. |
-| Strategy labels | `set_strategy` [race.py:1176](../core/actions/race.py#L1176): OCR per style button | Only when `select_style` is set. |
-
-### Blind fixed sleeps (wall-clock, highest first)
-
-| Sleep | Where | Note |
-|-------|-------|------|
-| `sleep(7)` | `run()` [race.py:1319](../core/actions/race.py#L1319) | Blind pre-wait **before** the `button_change` poll loop (which itself waits up to 14s). Pure dead time — the poll already handles arrival. |
-| `sleep(5)` | `lobby()` [race.py:886](../core/actions/race.py#L886) | After first RACE click, before re-confirm. |
-| `sleep(4)` | `lobby()` [race.py:930](../core/actions/race.py#L930) | Before the skip loop. |
-| `sleep(3)` | `run()` [race.py:1346](../core/actions/race.py#L1346) | After strategy select ("wait for white buttons to disappear"). |
-| `sleep(2)` | `run()` [race.py:1256](../core/actions/race.py#L1256) | After nav into raceday list. |
-| `sleep(1.2)` | `run()` [race.py:1290](../core/actions/race.py#L1290) | Let RACE popup grow. |
-| `~3s` | `lobby()` [race.py:996-1005](../core/actions/race.py#L996-L1005) | Try-again probe: 6 × `sleep(0.5)`. |
-
-Plus loop budgets: confirm loop 12s, skip loop 12s+2s/skip, NEXT click timeouts 4.6s + 6s.
-
-**Blind fixed sleeps alone total ≈ 22s per race**, much of it redundant with the
-poll loops that follow.
+**Status:** Implemented (2026-06). This doc describes the race-day execution flow
+in [`core/actions/race.py`](../core/actions/race.py) and records the OCR/await
+optimizations applied to it. Line numbers drift — methods are named so they stay
+findable.
 
 ---
 
-## 2. Part A — OCR reduction
+## 1. Race-day flow
 
-### A1. Replace full-screen placement OCR with a row-1 highlight color check (no OCR)
+Entry point is `RaceFlow.run(...)`, which drives selection → pre-race lobby, then
+hands off to `RaceFlow.lobby()` for the race + result handling.
+
+```
+run():
+  _ensure_in_raceday()         # click RACES; confirm race_square visible (handles consecutive-race popup)
+  _pick_race_square()          # pick the target/best race card (scroll up to max_scrolls)
+  click green RACE (list)      # + reactive popup confirm
+  wait for pre-race lobby      # poll for button_change (no blind sleep)
+  set_strategy()               # optional, if select_style
+  lobby():
+    _pick_view_results_button()           # already-raced? → View Results path
+    else: click green RACE → skip loop    # screen 1: skip the race animation
+      → results gate (_wait_for_results_screen)   # confirm leaderboard up
+      → win check (_row1_is_win)                  # screen 2: result leaderboard
+      → CLOSE (trophy)                            # screen 3, wins/G1 only
+      → TRY AGAIN probe / retry                   # loss handling
+      → NEXT / NEXT                               # screen 4
+```
+
+### Post-skip screens
+
+| # | Screen | Detect / handle |
+|---|--------|-----------------|
+| 1 | **Skip** the race animation | greedy skip loop clicks `button_skip` (`random.randint(3,5)` per press; `skip_clicks > 2` floor before it may break on NEXT) |
+| 2 | **Result leaderboard** — placement emblem + race banner + rows + NEXT | win/loss via `_row1_is_win` (color sample, no OCR); debug saved to `debug/race/placement/*_win.png` / `*_loss.png` |
+| 3 | **Trophy** (wins, esp. G1) | `CLOSE` button (`tag="race_trophy"`); if the skip loop breaks here, `closed_early=True` and the win-check is skipped |
+| 4 | **NEXT** screens | `race_after_flow_next`, then `race_after_next` |
+
+### Results-screen gate (`_wait_for_results_screen`)
+
+Before reading the result and pressing NEXT (non-trophy path), the bot **confirms
+the leaderboard is actually on screen** instead of firing on a mid-transition
+frame:
+
+- Poll, one `_collect()` per iteration, **YOLO-only (no OCR)**: confirmed when a
+  `race_badge` (result-banner grade badge) **and** a `button_green` (NEXT) are both
+  detected (≥0.5 conf).
+- Nudges through any lingering `button_skip`.
+- Capped by `timeout_s` (6s) → falls back to prior behavior, so never worse / can't hang.
+- Returns the confirming frame, **reused for the win-check** to save a recognize.
+
+Why no extra OCR: `Waiter.seen(classes=…)` without `texts=` is a class-presence
+check (fast path, zero OCR); OCR only happens when `texts=` is passed. The gate
+confirms via `race_badge`/`button_green` classes, so the only OCR in the proceed
+path is the actual text-matched NEXT click — unchanged from before.
+
+> Caveat: uses `race_badge` as the leaderboard signal. A debut/maiden result
+> screen without a grade badge will time out and fall back (safe, no extra
+> robustness there). Watch for `Results screen not confirmed before timeout` in
+> debug logs on debut races.
+
+### Retry conditions
+
+The bot only **re-races** in one case — a confirmed loss of a goal race:
+
+- After the race it probes for **TRY AGAIN** (loss indicator), **skipped entirely
+  when `_last_won is True`** (A1 already confirmed a win — saves ~3s + 6 detections
+  on every winning race).
+- Re-races iff `loss_indicator_seen` **and** `Settings.TRY_AGAIN_ON_FAILED_GOAL`:
+  `_attempt_try_again_retry()` clicks TRY AGAIN → `_handle_retry_transition()`
+  clears interstitials and waits for the lobby/View-Results to reappear → recursive
+  `lobby()`.
+- Lost but retry disabled → the bot **stops** for a manual decision.
+
+All other "retries" (`_pick_view_results_button` progressive retries, the skip
+loop, the reactive confirm loops, the results gate) are navigation robustness, not
+re-racing. Background: [`docs/ai/features/try-again-bug/`](ai/features/try-again-bug/).
+
+---
+
+## 2. OCR reduction (Part A)
+
+### A1 — row-1 highlight win check replaces full-screen placement OCR
 
 **We only need win/not-win, not the exact placement.** The result leaderboard
-highlights the *trainee's* row cream/yellow; every other row is white. When the
-trainee wins they are 1st, so **row 1 is highlighted ⟺ win**. This needs a single
-small color sample — no OCR, no trainee name.
+highlights the *trainee's* row cream/yellow; every other row is white. The trainee
+wins ⟺ they are 1st ⟺ **row 1 is highlighted** — a single color sample, no OCR, no
+trainee name.
 
-Replace the two `self.ocr.text(img, min_conf=0.1)` full-screen reads at
-[race.py:865](../core/actions/race.py#L865) and [race.py:975](../core/actions/race.py#L975)
-with `_row1_is_win(img)`:
+`_row1_is_win(img)`: content-aware bounds (letterbox-safe, same trick as the skills
+SP fix), sample the median color of row 1's name band (content-relative
+x `0.34–0.60`, y `0.415–0.485`), convert to HSV, **win = saturation ≥ 0.10**
+(highlight) vs ~0 (white). `_last_placement: int` became `_last_won: bool`
+(`_record_race_attempt` only needs the boolean).
 
-- Content-aware bounds (reuse the letterbox detection from the skills SP fix), then
-  sample the median color of row 1's name-band: content-relative
-  x `0.34–0.60`, y `0.415–0.485`.
-- Convert to HSV; **win = saturation ≥ 0.10** (highlight) vs ~0 (white).
+- **Validated** across all 145 `debug/race/placement/*.png`: perfectly bimodal —
+  wins `sat≈0.22 hue≈49`, losses `sat≈0.00`; `0.10` threshold separates every one.
+- **Fixed a correctness bug:** the old full-screen OCR regex grabbed the first
+  `Nst` among the 5+ rows, mislabeling wins as losses (e.g. a 1st-place win read as
+  placement 2). Replaced the two full-screen `ocr.text(img, min_conf=0.1)` reads in
+  `lobby()` (View-Results path and skip-loop path).
 
-**Validation (already done):** across all 145 `debug/race/placement/*.png`
-captures the signal is perfectly bimodal — wins land at `sat=0.220, hue=49`,
-losses at `sat=0.000`. One borderline at `0.046`, still clearly a loss. A `0.10`
-threshold separates every sample.
+### A2 — batch the race-name OCR in selection
 
-**Effect:**
-- Eliminates the single most expensive OCR in the whole race flow (a full
-  1220×2712 detect+recognize, run once per race) — replaced by one median-color
-  read of a tiny crop.
-- **Fixes a correctness bug:** the current OCR regex grabs the first `Nst` among
-  the 5+ leaderboard rows, so it mislabels wins as losses — e.g.
-  `view_results_..._2.png` is actually a *win* (trainee 1st) misread as placement 2.
-- Replaces `_last_placement: Optional[int]` with a `_last_won: Optional[bool]`;
-  `_record_race_attempt` only consumes `won` anyway, so nothing downstream needs
-  the exact number.
+`_pick_race_square`'s desired-race loop builds every candidate square's title crop
+first (pass 1), then OCRs them all in one `ocr.batch_text` (pass 2 matches). Replaces
+N sequential per-square OCRs with one batch call; matching logic is byte-identical.
+(`batch_text` was verified to return identical output to per-image `text()`.)
 
-**Fallback:** if the highlight ever proves theme-dependent, fall back to OCR'ing
-just row 1's name band (content x `0.30–0.62`) and fuzzy-matching the trainee name
-(would require passing the uma name into `RaceFlow`, which it doesn't currently
-hold). The color check avoids that plumbing entirely.
+### A3 — batch the View-Results button OCR
 
-### A2. Batch the race-name OCR in selection
-
-`_pick_race_square` OCRs each candidate square's name-band sequentially, per
-scroll. Collect the visible name crops and issue one `batch_text`, and **skip
-re-OCR of squares already seen** across scrolls (key by YOLO box signature) — same
-pattern as the skills-buy batching.
-
-### A3. Drop OCR where YOLO + position suffice
-
-`_pick_view_results_button` OCRs candidate buttons to disambiguate. The active-state
-classifier + bottom-most position usually identify it without OCR; keep OCR only as
-a tie-breaker.
+`_pick_view_results_button` OCRs all `button_white` candidates in one `batch_text`
+instead of one call each.
 
 ---
 
-## 3. Part B — await reduction & configurability
+## 3. Await reduction & configurability (Part B)
 
-### B1. Convert blind sleeps to poll-until-ready
+### B1 — drop the blind pre-lobby sleep
 
-Several big fixed sleeps are immediately followed by a poll for the next element —
-the sleep is redundant. Highest value:
+The blind `sleep(7)` before the `button_change` poll in `run()` is gone (now a short
+`_beat` + the existing poll, capped at 14s) — reclaims up to ~6s/race.
 
-- **`run()` `sleep(7)` [race.py:1319](../core/actions/race.py#L1319):** delete it and
-  let the existing `button_change` poll loop (already capped at 14s) start
-  immediately. Saves up to 7s/race with no behavior change.
-- **`lobby()` `sleep(5)` / `sleep(4)`:** replace with a short poll for the expected
-  next state (RACE-confirm popup / skip buttons) capped at the same budget.
-- **`sleep(3)` after strategy:** poll for the white buttons to disappear (or the
-  green proceed button to appear) instead of a flat 3s.
+### B2 — `RACE_AWAIT_SCALE` pacing multiplier
 
-This mirrors the training-scan settle-loop already shipped: poll cheaply, proceed
-on the first valid frame, cap with a timeout so it's never slower.
+`RaceFlow._beat(seconds)` wraps every race animation grace wait and multiplies by
+`Settings.RACE_AWAIT_SCALE` (default `1.0`, clamp `0.4–2.0`). Surfaced as the **Race
+pacing** slider under **General → Advanced settings → Performance & timing**, wired
+through `config.schema.ts` / `types.ts` / `Settings.apply_config`. The entry-path
+waits (`_ensure_in_raceday`, `_pick_race_square` per-page settle, `set_strategy`) are
+all `_beat`-wrapped, so the slider scales the whole select→confirm→skip flow; the
+post-nav settle was trimmed `2s → 0.6s` (redundant with the squares-visible check).
 
-### B2. Make the residual awaits configurable
+### B3 — skip the TRY-AGAIN probe on confirmed wins
 
-For beats that can't be polled away (animation grace periods), introduce a single
-**race pacing multiplier** plus optionally per-phase overrides:
-
-- `Settings.RACE_AWAIT_SCALE` (float, default `1.0`, clamp ~`0.4–2.0`). Wrap the
-  remaining race sleeps in a tiny `self._beat(seconds)` helper that multiplies by
-  the scale. Fast devices/emulators → `0.5`; slow phones → `1.5`.
-- Surface it in **General → Advanced settings** as a "Race pacing" slider, wired
-  through `config.schema.ts` / `types.ts` / `Settings.apply_config`, exactly like
-  the new `trainingSettle*` knobs.
-- Optionally expose the two poll caps (`pre-lobby wait`, `skip-loop budget`) as
-  advanced numbers for power users, defaulting to current values.
-
-### B3. Tighten the skip & NEXT loops
-
-- The skip loop extends its own budget (`total_time += 2` per skip) and polls every
-  0.12s — fine, but gate the placement OCR (A1) to run only once and only on the
-  NEXT branch (already conditional on `DETAILED_HISTORY and not closed_early`).
-- NEXT click timeouts (4.6s + 6s) can be reduced once the preceding waits are
-  poll-driven, since the buttons are typically present immediately.
+When `_last_won is True`, the ~3s / 6-detection TRY-AGAIN loss probe is skipped
+entirely (every winning race). NEXT click timeouts are left as-is — already
+poll-bounded by `click_when`.
 
 ---
 
-## 4. Risks & validation
+## 4. Status
 
-- **Placement ROI** must be validated against the full `debug/race/placement/`
-  corpus (placements 1–18) before replacing the full-screen read; keep the
-  full-screen OCR as a one-shot fallback when the cropped read returns `None`.
-- **Removing blind sleeps** risks polling a mid-animation frame; mitigated by the
-  poll loops already present and their timeout caps (never slower than today).
-- **Pacing multiplier** lower bounds must stay safe — clamp so users can't set it so
-  low that animations are routinely cut off. The poll-driven waits are
-  self-correcting; only the irreducible beats scale.
+- [x] A1 — row-1 highlight win check (`_row1_is_win` / `_content_bounds`; `_last_won:bool`)
+- [x] A2 — batched race-name OCR in `_pick_race_square`
+- [x] A3 — batched View-Results button OCR
+- [x] B1 — removed blind pre-lobby `sleep(7)`
+- [x] B2 — `RACE_AWAIT_SCALE` + `_beat()` + "Race pacing" slider; entry-path waits scaled
+- [x] B3 — skip TRY-AGAIN probe on confirmed wins
+- [x] Results gate — `_wait_for_results_screen` (YOLO-only) before win-check / NEXT
 
----
-
-## 5. Status — implemented
-
-- [x] A1 — row-1 highlight win check replaces full-screen placement OCR
-  (`_row1_is_win`/`_content_bounds`; `_last_placement:int` → `_last_won:bool`).
-- [x] A2 — `_pick_race_square` desired-race loop batches all title crops into one
-  `ocr.batch_text` (pass-1 build crops → batch → pass-2 match).
-- [x] A3 — `_pick_view_results_button` batches white-button OCR into one call.
-- [x] B1 — removed the blind `run()` `sleep(7)` (now a short beat + the existing
-  `button_change` poll).
-- [x] B2 — `Settings.RACE_AWAIT_SCALE` + `RaceFlow._beat()` wraps the animation
-  grace waits; surfaced as the "Race pacing" slider in Advanced settings.
-- [x] B3 — skip the ~3s TRY-AGAIN probe when `_last_won is True` (every winning
-  race). NEXT click timeouts left as-is (already poll-bounded by `click_when`).
-
-**Notes / follow-ups:**
-- The post-strategy `sleep(3)` is scaled via `_beat` rather than polled (no clean
-  ready-signal vs lobby's own white buttons).
-- The banner tie-breaker OCR (top-4 candidates) is left per-call; limited fan-out.
-- Validated: A1 win/loss on real captures, B2 setting maps+clamps, web build +
-  settings/schema/skills tests green. Live on-device run still recommended.
+**Notes / known trade-offs:**
+- Post-strategy beat is scaled via `_beat`, not polled (no clean ready-signal vs
+  lobby's own white buttons).
+- The banner tie-breaker OCR (top-4 candidates in `_pick_race_square`) is left
+  per-call; limited fan-out.
+- Results gate relies on `race_badge`; debut races without a grade badge fall back
+  to prior behavior.
+- Validated: A1 win/loss on real captures (incl. a live 16th-place loss), `batch_text`
+  ≡ `text`, settings map+clamp, web build + settings/schema/skills tests green.

@@ -416,22 +416,28 @@ class SkillsFlow:
         return (left, top, right, bot)
 
     @staticmethod
-    def _skill_cost_roi(
-        square_xyxy: Tuple[int, int, int, int],
+    def _skill_cost_roi_from_buy(
+        buy_xyxy: Tuple[int, int, int, int],
     ) -> Tuple[int, int, int, int]:
-        """Crop region for the SP cost number in the bottom-left of a skill card."""
-        x1, y1, x2, y2 = square_xyxy
-        w = max(1, x2 - x1)
-        h = max(1, y2 - y1)
-        left = x1 + int(w * 0.02)
-        right = x1 + int(w * 0.45)
-        top = y2 - int(h * 0.32)
-        bot = y2 - int(h * 0.02)
+        """
+        Crop region for the SP cost number, anchored to the BUY (+) button. The cost
+        sits immediately left of the +, on the same line. Anchoring to the button
+        (rather than the full-row square) keeps the band tight so a 'NN% OFF!'
+        discount badge above the number doesn't corrupt the read, and naturally
+        captures the discounted price the player actually pays.
+        """
+        bx1, by1, bx2, by2 = buy_xyxy
+        bw = max(1, bx2 - bx1)
+        bh = max(1, by2 - by1)
+        left = bx1 - bw * 2.6
+        right = bx1 - bw * 0.4
+        top = by1 - bh * 0.10
+        bot = by2 + bh * 0.10
         if right <= left:
             right = left + 1
         if bot <= top:
             bot = top + 1
-        return (left, top, right, bot)
+        return (int(left), int(top), int(right), int(bot))
 
     @staticmethod
     def _content_bounds(img: Image.Image, thr: int = 25) -> Tuple[int, int, int, int]:
@@ -554,7 +560,7 @@ class SkillsFlow:
             if float(self._clf.predict_proba(crop_buy)) < 0.55:
                 continue
             title_crop = crop_pil(game_img, self._skill_title_roi(sq["xyxy"]), pad=2)
-            cost_crop = crop_pil(game_img, self._skill_cost_roi(sq["xyxy"]), pad=0)
+            cost_crop = crop_pil(game_img, self._skill_cost_roi_from_buy(buy["xyxy"]), pad=0)
             candidates.append((sq, buy, title_crop, cost_crop))
 
         if not candidates:

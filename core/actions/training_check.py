@@ -5,6 +5,7 @@ import time
 from typing import Dict, List, Optional, Tuple, Union
 import random
 
+import cv2
 import numpy as np
 from PIL import Image
 
@@ -23,7 +24,8 @@ from core.utils.training_check_helpers import (
     raised_training_ltr_index,
     collect_supports_enriched,
     failure_pct,
-    reindex_left_to_right
+    reindex_left_to_right,
+    save_recognition_fail_debug,
 )
 from core.constants import DEFAULT_TILE_TO_TYPE
 from core.scenarios.registry import registry
@@ -64,6 +66,11 @@ def scan_training_screen(
             return max(0.0, random.uniform(lo, hi))
         return 0.6
 
+    def _to_bgr(img):
+        # Single RGB->BGR conversion per capture, shared by collect_supports_enriched
+        # and failure_pct so we don't convert the same full frame twice per tile.
+        return cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
+
     # -------- 1) Initial capture, wait for button training animations --------
     time.sleep(0.3)
     cur_img, _, cur_parsed = yolo_engine.recognize(
@@ -80,9 +87,19 @@ def scan_training_screen(
         )
 
         btns = get_buttons_ltr(cur_parsed)
+        if btns and len(btns) != 5:
+            logger_uma.warning(
+                "Training buttons incomplete after retry: got %d, expected 5", len(btns)
+            )
+            save_recognition_fail_debug(
+                cur_img, tag="training", reason=f"buttons_{len(btns)}"
+            )
     if not btns:
         logger_uma.warning("No training buttons detected.")
+        save_recognition_fail_debug(cur_img, tag="training", reason="no_buttons")
         return [], cur_img, cur_parsed
+
+    cur_bgr = _to_bgr(cur_img)
 
     # Fixed LTR scaffold
     scan = [
@@ -116,14 +133,17 @@ def scan_training_screen(
         for tag_kind, idx in wanted:
             tile = scan[idx]
             if tag_kind == "raised":
-                supps, any_rainbow = collect_supports_enriched(cur_img, cur_parsed)
+                supps, any_rainbow = collect_supports_enriched(
+                    cur_img, cur_parsed, frame_bgr=cur_bgr
+                )
                 results.append(
                     {
                         **tile,
                         "supports": supps,
                         "has_any_rainbow": any_rainbow,
                         "failure_pct": failure_pct(
-                            cur_img, cur_parsed, tile["tile_xyxy"], energy, ocr
+                            cur_img, cur_parsed, tile["tile_xyxy"], energy, ocr,
+                            frame_bgr=cur_bgr,
                         ),
                         "skipped_click": True,
                     }
@@ -139,6 +159,7 @@ def scan_training_screen(
                 cur_img, _, cur_parsed = yolo_engine.recognize(
                     imgsz=param_imgsz, conf=param_conf, iou=param_iou, tag="training"
                 )
+                cur_bgr = _to_bgr(cur_img)
                 # Refresh LTR geometry
                 btns_now = [d for d in cur_parsed if d["name"] == "training_button"]
                 btns_now.sort(key=lambda d: _center_x(d["xyxy"]))
@@ -154,14 +175,17 @@ def scan_training_screen(
                     else idx
                 )
                 eff_tile = scan[eff_idx]
-                supps, any_rainbow = collect_supports_enriched(cur_img, cur_parsed)
+                supps, any_rainbow = collect_supports_enriched(
+                    cur_img, cur_parsed, frame_bgr=cur_bgr
+                )
                 results.append(
                     {
                         **eff_tile,
                         "supports": supps,
                         "has_any_rainbow": any_rainbow,
                         "failure_pct": failure_pct(
-                            cur_img, cur_parsed, eff_tile["tile_xyxy"], energy, ocr
+                            cur_img, cur_parsed, eff_tile["tile_xyxy"], energy, ocr,
+                            frame_bgr=cur_bgr,
                         ),
                         "skipped_click": False,
                     }
@@ -178,12 +202,16 @@ def scan_training_screen(
     ridx = raised_training_ltr_index(cur_parsed)
     if ridx is not None and 0 <= ridx < len(scan):
         tile = scan[ridx]
-        supps, any_rainbow = collect_supports_enriched(cur_img, cur_parsed)
+        supps, any_rainbow = collect_supports_enriched(
+            cur_img, cur_parsed, frame_bgr=cur_bgr
+        )
         tile_record = {
             **tile,
             "supports": supps,
             "has_any_rainbow": any_rainbow,
-            "failure_pct": failure_pct(cur_img, cur_parsed, tile["tile_xyxy"], energy, ocr),
+            "failure_pct": failure_pct(
+                cur_img, cur_parsed, tile["tile_xyxy"], energy, ocr, frame_bgr=cur_bgr
+            ),
             "skipped_click": True,  # we did not click for the already-raised tile
         }
         results.append(tile_record)
@@ -259,6 +287,7 @@ def scan_training_screen(
         cur_img, _, cur_parsed = yolo_engine.recognize(
             imgsz=param_imgsz, conf=param_conf, iou=param_iou, tag="training"
         )
+        cur_bgr = _to_bgr(cur_img)
 
         btns_now = get_buttons_ltr(cur_parsed)
         if len(btns_now) == len(scan):
@@ -276,13 +305,17 @@ def scan_training_screen(
         eff_idx = ridx if (ridx is not None and 0 <= ridx < len(scan)) else idx
         eff_tile = scan[eff_idx]
 
-        supps, any_rainbow = collect_supports_enriched(cur_img, cur_parsed)
+        supps, any_rainbow = collect_supports_enriched(
+            cur_img, cur_parsed, frame_bgr=cur_bgr
+        )
 
         tile_record = {
             **eff_tile,
             "supports": supps,
             "has_any_rainbow": any_rainbow,
-            "failure_pct": failure_pct(cur_img, cur_parsed, eff_tile["tile_xyxy"], energy, ocr),
+            "failure_pct": failure_pct(
+                cur_img, cur_parsed, eff_tile["tile_xyxy"], energy, ocr, frame_bgr=cur_bgr
+            ),
             "skipped_click": False,
         }
         results.append(tile_record)

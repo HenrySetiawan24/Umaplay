@@ -85,6 +85,7 @@ def extract_failure_pct_for_tile(
     ocr: OCRInterface,
     conf_btn_min: float = 0.65,
     conf_stats_min: float = 0.50,
+    frame_bgr: Optional[np.ndarray] = None,
 ) -> int:
     # TODO
     #  def _parse_failure_from_text(text: str) -> Optional[int]:
@@ -141,7 +142,10 @@ def extract_failure_pct_for_tile(
         logger_uma.debug("[failure] missing btn/stats for failure calculation")
         return -1
 
-    frame_bgr = cv2.cvtColor(np.array(left_img), cv2.COLOR_RGB2BGR)
+    # Reuse a pre-converted frame when the caller already has one (avoids a second
+    # full-frame np.array copy + RGB->BGR convert per tile).
+    if frame_bgr is None:
+        frame_bgr = cv2.cvtColor(np.array(left_img), cv2.COLOR_RGB2BGR)
 
     # band between ui_stats (bottom) and button (top), same width as button
     band_xyxy = _failure_band_xyxy(frame_bgr.shape, btn["xyxy"], stats["xyxy"])

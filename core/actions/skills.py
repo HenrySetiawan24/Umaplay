@@ -7,6 +7,7 @@ from typing import List, Optional, Sequence, Tuple, Dict
 from collections import Counter
 from dataclasses import dataclass
 from enum import Enum
+import numpy as np
 from PIL import Image
 
 from core.controllers.android import ScrcpyController
@@ -153,13 +154,21 @@ class SkillsFlow:
             # NOT permanently disable affordability tracking (the old code fell back
             # to a 9999 sentinel here, which silently defeated the SP early-exit).
             if running_sp is None:
-                sp_crop = crop_pil(game_img, self._sp_region(game_img.size), pad=0)
-                sp_val = self.ocr.digits(sp_crop)
+                sp_val = 0
+                first_crop: Optional[Image.Image] = None
+                for region in self._sp_regions(game_img):
+                    sp_crop = crop_pil(game_img, region, pad=0)
+                    if first_crop is None:
+                        first_crop = sp_crop
+                    sp_val = self._ocr_digits_big(sp_crop)
+                    if sp_val > 0:
+                        break
                 if sp_val > 0:
                     running_sp = sp_val
                     logger_uma.info("[skills] SP total: %d", running_sp)
                 else:
                     logger_uma.debug("[skills] SP read failed this pass; will retry.")
+                    self._save_digit_debug(first_crop, "sp_read")
 
             # Track remaining SP. purchased_cost is the total spent this pass
             # (sum of cost x clicks across every BUY), so the subtraction stays
@@ -425,16 +434,71 @@ class SkillsFlow:
         return (left, top, right, bot)
 
     @staticmethod
-    def _sp_region(
-        img_size: Tuple[int, int],
-    ) -> Tuple[int, int, int, int]:
-        """Fixed crop region for the total SP text in the top-right of the skills screen."""
-        W, H = img_size
-        left = int(W * 0.78)
-        right = int(W * 0.96)
-        top = int(H * 0.010)
-        bot = int(H * 0.055)
-        return (left, top, right, bot)
+    def _content_bounds(img: Image.Image, thr: int = 25) -> Tuple[int, int, int, int]:
+        """
+        Bounding box of the non-letterbox (non-black) game content. On tall phones
+        the screenshot has black bars, so screen-fraction crops miss the UI; anchor
+        to the detected content instead.
+        """
+        arr = np.asarray(img.convert("L"))
+        H, W = arr.shape
+        rows = np.where(arr.max(axis=1) > thr)[0]
+        cols = np.where(arr.max(axis=0) > thr)[0]
+        if rows.size == 0 or cols.size == 0:
+            return (0, 0, W, H)
+        return (int(cols[0]), int(rows[0]), int(cols[-1]) + 1, int(rows[-1]) + 1)
+
+    @classmethod
+    def _sp_regions(cls, img: Image.Image) -> List[Tuple[int, int, int, int]]:
+        """
+        Candidate crops for the 'Skill Points NNN' total, most-likely first.
+        Primary is anchored to the detected game content (the banner sits ~30% down
+        the content, right-of-centre — verified across letterboxed phone captures);
+        the legacy top-right screen-fraction crop is kept as a fallback.
+        """
+        W, H = img.size
+        x0, y0, x1, y1 = cls._content_bounds(img)
+        cw, ch = max(1, x1 - x0), max(1, y1 - y0)
+        primary = (
+            x0 + int(cw * 0.67), y0 + int(ch * 0.25),
+            x0 + int(cw * 0.94), y0 + int(ch * 0.35),
+        )
+        legacy = (int(W * 0.78), int(H * 0.010), int(W * 0.96), int(H * 0.055))
+        return [primary, legacy]
+
+    @staticmethod
+    def _upscale_for_digits(img: Image.Image, scale: int = 3) -> Image.Image:
+        """
+        Upscale a small numeric crop before OCR. PP-OCRv5 mobile frequently misses
+        tiny digits (e.g. SP totals / skill costs on high-res phone screenshots);
+        a 3x bicubic enlarge makes them legible without changing the source frame.
+        """
+        try:
+            w, h = img.size
+            if w <= 0 or h <= 0:
+                return img
+            return img.resize((w * scale, h * scale), Image.BICUBIC)
+        except Exception:
+            return img
+
+    def _ocr_digits_big(self, img: Image.Image) -> int:
+        """digits() with an upscaled crop for robustness on small numbers."""
+        return self.ocr.digits(self._upscale_for_digits(img))
+
+    @staticmethod
+    def _save_digit_debug(img: Image.Image, reason: str) -> None:
+        """Persist a failing numeric crop so the SP/cost region can be verified."""
+        if not Settings.STORE_FOR_TRAINING or img is None:
+            return
+        try:
+            import os, time as _t
+            out_dir = Settings.DEBUG_DIR / "skills" / "fail"
+            os.makedirs(out_dir, exist_ok=True)
+            ts = _t.strftime("%Y%m%d-%H%M%S") + f"_{int((_t.time() % 1) * 1000):03d}"
+            safe = "".join(c if c.isalnum() or c in "-_" else "-" for c in reason) or "fail"
+            img.save(out_dir / f"skills_{ts}_{safe}.png")
+        except Exception as e:
+            logger_uma.debug("[skills] failed saving digit debug: %s", e)
 
     @staticmethod
     def _find_buy_inside(
@@ -497,8 +561,11 @@ class SkillsFlow:
             return clicked_any, game_img, dets, ocr_titles_sig, 0, purchased_cost
 
         # --- Phase 2: batch OCR all candidate titles + costs (2 calls total).
+        # Costs are tiny digits; upscale each crop so PP-OCRv5 mobile can read them.
         title_texts = self.ocr.batch_text([c[2] for c in candidates])
-        cost_strs = self.ocr.batch_digits([c[3] for c in candidates])
+        cost_strs = self.ocr.batch_digits(
+            [self._upscale_for_digits(c[3]) for c in candidates]
+        )
         costs = [int(s) if s else 0 for s in cost_strs]
 
         # --- Phase 3: decide + click per candidate.

@@ -46,7 +46,7 @@ from core.utils.event_processor import UserPrefs
 from core.utils.preset_overlay import show_preset_overlay
 from core.ui.scenario_prompt import choose_active_scenario, ScenarioSelectionCancelled
 from core.run_context import set as set_run_record, get as get_run_record, start_active_interval, tick_active_time
-from server.run_history import append_history, get_record
+from server.run_history import append_history, get_full_record
 from server.bot_bridge import register as register_bot_bridge
 
 # Controllers & perception interfaces
@@ -310,9 +310,10 @@ class BotState:
                 preset_name = "Unnamed"
                 trainee_name = None
 
-            # Resolve char_id from trainee name (if possible)
-            char_id = None
-            if trainee_name:
+            # Resolve char_id: prefer the preset's explicit charId field (set by the UI
+            # character selector), fall back to a name search as a best-effort guess.
+            char_id = full_preset.get("charId") if full_preset else None
+            if not char_id and trainee_name:
                 try:
                     from core.utils.character_data import search_characters
                     results = search_characters(trainee_name)
@@ -331,7 +332,7 @@ class BotState:
             now = datetime.now()
 
             if continue_id:
-                run_record = get_record(continue_id)
+                run_record = get_full_record(continue_id)
                 if run_record is None:
                     logger_uma.warning("[run_history] continue_id '%s' not found, starting fresh", continue_id)
                     run_record = None
@@ -340,6 +341,8 @@ class BotState:
                     run_record["uma_name"] = f"{preset_name} / {trainee_name}" if trainee_name else preset_name
                     run_record["error"] = None
                     run_record["end_time"] = None
+                    if char_id and not run_record.get("char_id"):
+                        run_record["char_id"] = char_id
                     if not run_record.get("active_periods") and (run_record.get("active_seconds") or 0) > 0:
                         try:
                             start_iso = run_record.get("start_time")

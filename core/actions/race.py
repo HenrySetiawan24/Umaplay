@@ -172,7 +172,7 @@ class RaceFlow:
             logger_uma.debug(f"Looking for race buttons: {reason}")
         if Settings.ACTIVE_SCENARIO == "unity_cup":
             # Little delay before pressing race
-            time.sleep(1.5)
+            self._beat(1.5)
         # Try to enter race screen from lobby (idempotent)
         clicked = self.waiter.click_when(
             classes=("lobby_races", "race_race_day"),
@@ -530,8 +530,8 @@ class RaceFlow:
         seen_title_counts: Dict[str, int] = {}
 
         for scroll_j in range(max_scrolls + 1):
-            # Wait screen to stabilize
-            time.sleep(1)
+            # Wait screen to stabilize (scaled by race pacing)
+            self._beat(1)
             game_img, dets = self._collect("race_pick")
             squares = find(dets, "race_square")
             if squares:
@@ -1166,7 +1166,7 @@ class RaceFlow:
         if elements and len(elements) == 1:
             button_change = elements[0]
             self.ctrl.click_xyxy_center(button_change["xyxy"], clicks=1)
-            time.sleep(1.2)
+            self._beat(1.2)
         else:
             return False
         select_style = (select_style or "").strip().lower()
@@ -1303,7 +1303,10 @@ class RaceFlow:
                 self._last_failure_reason = RaceFailureReason.NAV_CONSECUTIVE_REFUSED
                 return False
 
-        self._beat(2)
+        # _ensure_in_raceday already confirmed race_square is visible, and
+        # _pick_race_square settles again before its first scan — so just a short
+        # transition beat here instead of a full 2s.
+        self._beat(0.6)
         # 1) Pick race card; scroll if needed
         square, need_click = self._pick_race_square(
             prioritize_g1=prioritize_g1,

@@ -437,8 +437,6 @@ export default function RaceScheduler({ presetId }: { presetId: string; compact?
   return (
     <Paper variant="outlined" sx={{ p: 1.5 }}>
       <Stack spacing={1}>
-        <Typography variant="subtitle2">Race Scheduler</Typography>
-
         <TextField
           size="small"
           fullWidth

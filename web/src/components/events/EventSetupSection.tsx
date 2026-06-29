@@ -759,8 +759,6 @@ export default function EventSetupSection({ index }: Props) {
 
   return (
     <Stack spacing={2}>
-      <Typography variant="h6">Event Setup</Typography>
-
       {/* Supports */}
       <Card variant="outlined">
         <CardContent>

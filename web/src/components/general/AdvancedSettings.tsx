@@ -19,6 +19,7 @@ export default function AdvancedSettings() {
   const [settleTimeout, setSettleTimeout] = useState(a.trainingSettleTimeoutMs ?? 400)
   const [settleDiff, setSettleDiff] = useState(a.trainingSettleDiffThreshold ?? 2)
   const [raceScale, setRaceScale] = useState(a.raceAwaitScale ?? 1)
+  const [trainPause, setTrainPause] = useState(a.trainingPostClickPause ?? 3)
   const [skillsScrolls, setSkillsScrolls] = useState(a.skillsMaxScrolls ?? 15)
   const [skillsPatience, setSkillsPatience] = useState(a.skillsScanPatience ?? 3)
 
@@ -42,6 +43,7 @@ export default function AdvancedSettings() {
     setSettleTimeout(a.trainingSettleTimeoutMs ?? 400)
     setSettleDiff(a.trainingSettleDiffThreshold ?? 2)
     setRaceScale(a.raceAwaitScale ?? 1)
+    setTrainPause(a.trainingPostClickPause ?? 3)
     setSkillsScrolls(a.skillsMaxScrolls ?? 15)
     setSkillsPatience(a.skillsScanPatience ?? 3)
   }, [
@@ -54,6 +56,7 @@ export default function AdvancedSettings() {
     a.trainingSettleTimeoutMs,
     a.trainingSettleDiffThreshold,
     a.raceAwaitScale,
+    a.trainingPostClickPause,
     a.skillsMaxScrolls,
     a.skillsScanPatience,
   ])
@@ -459,6 +462,29 @@ export default function AdvancedSettings() {
               const next = Math.max(0.4, Math.min(2, Math.round(toNumber(v) * 10) / 10))
               setRaceScale(next)
               commitAdvanced('raceAwaitScale', next)
+            },
+          })}
+          sx={{ mt: 2 }}
+        />
+
+        <FieldRow
+          label="Training: wait before next turn"
+          info="Seconds to wait after clicking a training before the bot resumes and starts the next turn. The in-game training animation plays during this time, so this isn't pure idle — but lowering it lets the bot start advancing through the result screens sooner. Too low risks capturing mid-animation. Default 3s."
+          control={renderSliderControl({
+            id: 'trainingPostClickPause',
+            value: trainPause,
+            min: 0.5,
+            max: 10,
+            step: 0.5,
+            format: (v) => `${v.toFixed(1)}s`,
+            onChange: (_, v) => {
+              const next = Math.max(0.5, Math.min(10, Math.round(toNumber(v) * 2) / 2))
+              setTrainPause(next)
+            },
+            onCommit: (_, v) => {
+              const next = Math.max(0.5, Math.min(10, Math.round(toNumber(v) * 2) / 2))
+              setTrainPause(next)
+              commitAdvanced('trainingPostClickPause', next)
             },
           })}
           sx={{ mt: 2 }}

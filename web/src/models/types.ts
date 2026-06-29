@@ -66,6 +66,8 @@ export interface GeneralConfig {
     trainingSettleDiffThreshold: number // Frame-diff below which the screen is "settled"
     // Race flow: multiplier on animation grace waits (<1 faster, >1 slower)
     raceAwaitScale: number
+    // Training: seconds to wait after clicking a training before the next turn
+    trainingPostClickPause: number
     // Skills shop: max scroll passes per buy session
     skillsMaxScrolls: number
     // Skills shop: unchanged-view passes tolerated before early-stop

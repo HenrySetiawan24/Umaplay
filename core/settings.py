@@ -85,6 +85,10 @@ class Settings:
     # Multiplier on the race-flow animation grace waits. 1.0 = current pacing;
     # <1 speeds up (fast devices/emulators), >1 slows down (slow phones).
     RACE_AWAIT_SCALE: float = _env_float("RACE_AWAIT_SCALE", default=1.0)
+    # Seconds to wait after clicking a training tile before the agent resumes and
+    # processes the next turn. The in-game training animation plays during this
+    # time; lower is faster, too low risks capturing mid-animation.
+    TRAINING_POST_CLICK_PAUSE: float = _env_float("TRAINING_POST_CLICK_PAUSE", default=3.0)
     # Skills shop: max scroll passes per buy session.
     SKILLS_MAX_SCROLLS: int = _env_int("SKILLS_MAX_SCROLLS", default=15)
     # Skills shop: consecutive unchanged-view passes tolerated before early-stop.
@@ -569,6 +573,13 @@ class Settings:
         except Exception:
             race_scale = cls.RACE_AWAIT_SCALE
         cls.RACE_AWAIT_SCALE = max(0.4, min(2.0, race_scale))
+
+        # Training: pause after clicking a training tile (before next turn)
+        try:
+            tpc = float(adv.get("trainingPostClickPause", cls.TRAINING_POST_CLICK_PAUSE))
+        except Exception:
+            tpc = cls.TRAINING_POST_CLICK_PAUSE
+        cls.TRAINING_POST_CLICK_PAUSE = max(0.5, min(10.0, tpc))
 
         # Skills shop scroll tuning
         try:

@@ -138,6 +138,7 @@ export const generalSchema = z.object({
     trainingSettleTimeoutMs: z.number().int().min(50).max(2000).default(400),
     trainingSettleDiffThreshold: z.number().min(0.1).max(30).default(2),
     raceAwaitScale: z.number().min(0.4).max(2).default(1),
+    trainingPostClickPause: z.number().min(0.5).max(10).default(3),
     skillsMaxScrolls: z.number().int().min(1).max(60).default(15),
     skillsScanPatience: z.number().int().min(1).max(10).default(3),
   }).default({
@@ -153,6 +154,7 @@ export const generalSchema = z.object({
     trainingSettleTimeoutMs: 400,
     trainingSettleDiffThreshold: 2,
     raceAwaitScale: 1,
+    trainingPostClickPause: 3,
     skillsMaxScrolls: 15,
     skillsScanPatience: 3,
   }),
@@ -182,6 +184,7 @@ export const generalSchema = z.object({
     trainingSettleTimeoutMs: 400,
     trainingSettleDiffThreshold: 2,
     raceAwaitScale: 1,
+    trainingPostClickPause: 3,
     skillsMaxScrolls: 15,
     skillsScanPatience: 3,
   },

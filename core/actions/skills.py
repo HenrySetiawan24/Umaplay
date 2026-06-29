@@ -148,19 +148,26 @@ class SkillsFlow:
             )
             any_clicked |= clicked
 
-            # Extract initial SP from the first pass screenshot
-            if i == 0:
+            # Read the SP total once, retrying on later passes until we get a real
+            # value. The SP figure is always on-screen, so a transient OCR miss must
+            # NOT permanently disable affordability tracking (the old code fell back
+            # to a 9999 sentinel here, which silently defeated the SP early-exit).
+            if running_sp is None:
                 sp_crop = crop_pil(game_img, self._sp_region(game_img.size), pad=0)
-                running_sp = self.ocr.digits(sp_crop)
-                if running_sp <= 0:
-                    running_sp = 9999
-                logger_uma.info("[skills] Initial SP: %d", running_sp)
+                sp_val = self.ocr.digits(sp_crop)
+                if sp_val > 0:
+                    running_sp = sp_val
+                    logger_uma.info("[skills] SP total: %d", running_sp)
+                else:
+                    logger_uma.debug("[skills] SP read failed this pass; will retry.")
 
-            # Track remaining SP
+            # Track remaining SP. purchased_cost is the total spent this pass
+            # (sum of cost x clicks across every BUY), so the subtraction stays
+            # accurate for multi-buys and double-circle (clicks=2) skills.
             if purchased_cost > 0 and running_sp is not None:
                 running_sp -= purchased_cost
                 logger_uma.debug(
-                    "[skills] SP remaining after purchase: %d (cost %d)",
+                    "[skills] SP remaining after purchase: %d (spent %d)",
                     running_sp, purchased_cost,
                 )
 
@@ -594,7 +601,9 @@ class SkillsFlow:
                 shifted = (bx1, by1 - dy, bx2, by2 - dy)
                 self.ctrl.click_xyxy_center(shifted, clicks=click_counts, jitter=0)
                 purchases_made[best_name] = purchases_made.get(best_name, 0) + 1
-                purchased_cost = cost
+                # Accumulate total spend this pass: every BUY counts, and a
+                # double-circle skill costs `cost` per click (click_counts clicks).
+                purchased_cost += cost * max(1, click_counts)
                 if canonical_name and self._skill_memory:
                     self._skill_memory.record_bought(
                         canonical_name,

@@ -872,7 +872,7 @@ class AgentUnityCup(AgentScenario):
         }
         # Tile actions within the training screen
         if action.value in tile_actions_train and tidx is not None:
-            ok = click_training_tile(self.ctrl, training_state, tidx, pause_after=5)
+            ok = click_training_tile(self.ctrl, training_state, tidx, pause_after=3)
             if not ok:
                 logger_uma.error(
                     "[training] Failed to click training tile idx=%s", tidx

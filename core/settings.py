@@ -82,6 +82,9 @@ class Settings:
     TRAINING_SETTLE_DIFF_THRESHOLD: float = _env_float(
         "TRAINING_SETTLE_DIFF_THRESHOLD", default=2.0
     )
+    # Multiplier on the race-flow animation grace waits. 1.0 = current pacing;
+    # <1 speeds up (fast devices/emulators), >1 slows down (slow phones).
+    RACE_AWAIT_SCALE: float = _env_float("RACE_AWAIT_SCALE", default=1.0)
     # Race if no good training options are available (default: False = skip race if no good training)
     RACE_IF_NO_GOOD_VALUE: bool = _env_bool("RACE_IF_NO_GOOD_VALUE", default=False)
 
@@ -555,6 +558,13 @@ class Settings:
         except Exception:
             settle_diff = cls.TRAINING_SETTLE_DIFF_THRESHOLD
         cls.TRAINING_SETTLE_DIFF_THRESHOLD = max(0.1, min(30.0, settle_diff))
+
+        # Race pacing multiplier
+        try:
+            race_scale = float(adv.get("raceAwaitScale", cls.RACE_AWAIT_SCALE))
+        except Exception:
+            race_scale = cls.RACE_AWAIT_SCALE
+        cls.RACE_AWAIT_SCALE = max(0.4, min(2.0, race_scale))
 
         # Skills optimization gates
         try:

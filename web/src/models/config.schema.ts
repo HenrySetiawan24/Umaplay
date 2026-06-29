@@ -137,6 +137,7 @@ export const generalSchema = z.object({
     skillPtsDelta: z.number().int().min(0).max(1000).default(60),
     trainingSettleTimeoutMs: z.number().int().min(50).max(2000).default(400),
     trainingSettleDiffThreshold: z.number().min(0.1).max(30).default(2),
+    raceAwaitScale: z.number().min(0.4).max(2).default(1),
   }).default({
     hotkey: 'F2',
     debugMode: true,
@@ -149,6 +150,7 @@ export const generalSchema = z.object({
     skillPtsDelta: 60,
     trainingSettleTimeoutMs: 400,
     trainingSettleDiffThreshold: 2,
+    raceAwaitScale: 1,
   }),
 }).default({
   mode: 'steam',
@@ -175,6 +177,7 @@ export const generalSchema = z.object({
     skillPtsDelta: 60,
     trainingSettleTimeoutMs: 400,
     trainingSettleDiffThreshold: 2,
+    raceAwaitScale: 1,
   },
 })
 

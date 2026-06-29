@@ -18,6 +18,7 @@ export default function AdvancedSettings() {
   const [externalUrl, setExternalUrl] = useState(a.externalProcessorUrl)
   const [settleTimeout, setSettleTimeout] = useState(a.trainingSettleTimeoutMs ?? 400)
   const [settleDiff, setSettleDiff] = useState(a.trainingSettleDiffThreshold ?? 2)
+  const [raceScale, setRaceScale] = useState(a.raceAwaitScale ?? 1)
 
   const autoRestMarks = useMemo(() => {
     const marks = [{ value: 1 }]
@@ -38,6 +39,7 @@ export default function AdvancedSettings() {
     setExternalUrl(a.externalProcessorUrl)
     setSettleTimeout(a.trainingSettleTimeoutMs ?? 400)
     setSettleDiff(a.trainingSettleDiffThreshold ?? 2)
+    setRaceScale(a.raceAwaitScale ?? 1)
   }, [
     a.autoRestMinimum,
     a.skillCheckInterval,
@@ -47,6 +49,7 @@ export default function AdvancedSettings() {
     a.externalProcessorUrl,
     a.trainingSettleTimeoutMs,
     a.trainingSettleDiffThreshold,
+    a.raceAwaitScale,
   ])
 
   const commitAdvanced = <K extends keyof typeof a>(key: K, value: (typeof a)[K]) => {
@@ -427,6 +430,29 @@ export default function AdvancedSettings() {
               const next = Math.max(0.5, Math.min(10, Math.round(toNumber(v) * 2) / 2))
               setSettleDiff(next)
               commitAdvanced('trainingSettleDiffThreshold', next)
+            },
+          })}
+          sx={{ mt: 2 }}
+        />
+
+        <FieldRow
+          label="Race pacing"
+          info="Multiplier on the race-day animation grace waits (race start, skip, result screens). 1.0 keeps current pacing; lower speeds the bot up on fast devices/emulators; higher gives slow phones more time for animations to finish."
+          control={renderSliderControl({
+            id: 'raceAwaitScale',
+            value: raceScale,
+            min: 0.4,
+            max: 2,
+            step: 0.1,
+            format: (v) => `${v.toFixed(1)}x`,
+            onChange: (_, v) => {
+              const next = Math.max(0.4, Math.min(2, Math.round(toNumber(v) * 10) / 10))
+              setRaceScale(next)
+            },
+            onCommit: (_, v) => {
+              const next = Math.max(0.4, Math.min(2, Math.round(toNumber(v) * 10) / 10))
+              setRaceScale(next)
+              commitAdvanced('raceAwaitScale', next)
             },
           })}
           sx={{ mt: 2 }}

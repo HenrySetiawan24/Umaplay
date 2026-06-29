@@ -147,14 +147,23 @@ For beats that can't be polled away (animation grace periods), introduce a singl
 
 ---
 
-## 5. Status
+## 5. Status — implemented
 
-- [ ] A1 — replace full-screen placement OCR with row-1 highlight color check (no OCR; validated on 145 captures)
-- [ ] A2 — batch + cache race-name OCR in selection
-- [ ] A3 — reduce View-Results button OCR
-- [ ] B1 — convert blind sleeps (esp. `run()` `sleep(7)`) to poll-until-ready
-- [ ] B2 — `RACE_AWAIT_SCALE` + Advanced-settings "Race pacing" slider
-- [ ] B3 — tighten skip / NEXT loop timeouts
+- [x] A1 — row-1 highlight win check replaces full-screen placement OCR
+  (`_row1_is_win`/`_content_bounds`; `_last_placement:int` → `_last_won:bool`).
+- [x] A2 — `_pick_race_square` desired-race loop batches all title crops into one
+  `ocr.batch_text` (pass-1 build crops → batch → pass-2 match).
+- [x] A3 — `_pick_view_results_button` batches white-button OCR into one call.
+- [x] B1 — removed the blind `run()` `sleep(7)` (now a short beat + the existing
+  `button_change` poll).
+- [x] B2 — `Settings.RACE_AWAIT_SCALE` + `RaceFlow._beat()` wraps the animation
+  grace waits; surfaced as the "Race pacing" slider in Advanced settings.
+- [x] B3 — skip the ~3s TRY-AGAIN probe when `_last_won is True` (every winning
+  race). NEXT click timeouts left as-is (already poll-bounded by `click_when`).
 
-**Suggested order:** A1 (biggest OCR win, self-contained) → B1 (biggest time win,
-low risk) → B2 (configurability) → A2 / A3 / B3 (incremental).
+**Notes / follow-ups:**
+- The post-strategy `sleep(3)` is scaled via `_beat` rather than polled (no clean
+  ready-signal vs lobby's own white buttons).
+- The banner tie-breaker OCR (top-4 candidates) is left per-call; limited fan-out.
+- Validated: A1 win/loss on real captures, B2 setting maps+clamps, web build +
+  settings/schema/skills tests green. Live on-device run still recommended.

@@ -64,6 +64,8 @@ export interface GeneralConfig {
     // Training scan: wait between clicking a tile and scanning it
     trainingSettleTimeoutMs: number // Max ms to wait for the animation to settle
     trainingSettleDiffThreshold: number // Frame-diff below which the screen is "settled"
+    // Race flow: multiplier on animation grace waits (<1 faster, >1 slower)
+    raceAwaitScale: number
   }
 }
 

@@ -451,9 +451,24 @@ class AgentURA(AgentScenario):
                         tt = reason
                     elif outcome == "RESTED":
                         tt = "recreation" if "recreation" in (reason or "").lower() else "rest"
+                    _dk = self._turn_date_key()
+                    if Settings.DEBUG:
+                        _di = getattr(self.lobby.state, "date_info", None)
+                        logger_uma.debug(
+                            "[turnlog-diag] abs_next=%d outcome=%s | lobby.turn=%s | "
+                            "date raw=%r year=%s month=%s half=%s | inferred date_key=%s",
+                            len(run_record.get("turn_log") or []) + 1,
+                            outcome,
+                            getattr(self.lobby.state, "turn", None),
+                            getattr(_di, "raw", None),
+                            getattr(_di, "year_code", None),
+                            getattr(_di, "month", None),
+                            getattr(_di, "half", None),
+                            _dk,
+                        )
                     push_turn_log(
                         turn=self.lobby.state.turn,
-                        date_key=self._turn_date_key(),
+                        date_key=_dk,
                         action=outcome.lower() if outcome else "unknown",
                         training_type=tt,
                         reason=reason,

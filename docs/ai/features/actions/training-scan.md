@@ -217,9 +217,9 @@ Goal: pick one action based on SV, energy, mood, race proximity, and special rul
 | `core/settings.py` | `MAX_FAILURE`, `PRIORITY_STATS`, `FAST_MODE` config |
 | `core/constants.py` | `DEFAULT_TILE_TO_TYPE = {0:"SPD", 1:"STA", 2:"PWR", 3:"GUTS", 4:"WIT"}` |
 
-> **Note:** this doc covers both `training_check.py` (the scanner) **and**
-> `training_policy.py` (the `check_training` orchestrator + `TrainingDecision`), so
-> there is no separate `training-policy.md`.
+> **Note:** this doc covers the scan → compute → decide pipeline in detail.
+> For the orchestrator layer (`check_training`, `TrainingDecision`, preset resolution),
+> see [training-policy.md](training-policy.md).
 
 ---
 

@@ -13,25 +13,29 @@ Per-screen automation classes under [`core/actions/`](../../../../core/actions/)
 | [skills-flow.md](skills-flow.md) | `SkillsFlow` | `skills.py` | Skill shop buying loop |
 | [event-flow.md](event-flow.md) | `EventFlow` | `events.py` | Event choice popups |
 | [daily-race-flow.md](daily-race-flow.md) | `DailyRaceFlow` | `daily_race.py` | Daily (RP) races outside career |
-| [training-scan.md](training-scan.md) | *(functions)* | `training_check.py` + `training_policy.py` | Training tile scan → score → decide |
+| [training-scan.md](training-scan.md) | *(functions)* | `training_check.py` | Training tile scan → per-tile SV scoring |
+| [training-policy.md](training-policy.md) | *(functions)* | `training_policy.py` | Orchestrates scan→score→decide; `TrainingDecision` |
+| [team-trials-flow.md](team-trials-flow.md) | `TeamTrialsFlow` | `team_trials.py` | Weekly Team Trials race mode (non-career) |
 
-> `training_check.py` and `training_policy.py` are **not** Flow classes — they're the
-> stateless scan + decision helpers the lobby calls each non-race turn. Both are
-> covered by [training-scan.md](training-scan.md).
+> `training_check.py` and `training_policy.py` are **not** Flow classes — they are
+> stateless helpers the lobby calls each non-race turn. `training-scan.md` covers the
+> full scan→compute→decide pipeline; `training-policy.md` focuses on the
+> orchestrator layer and `TrainingDecision`.
 >
-> Same Flow pattern, not in this set: `RouletteFlow` (`roulette.py`),
-> `TeamTrialsFlow` (`team_trials.py`).
+> Same Flow pattern, not yet documented: `RouletteFlow` (`roulette.py`).
 
 ## How they relate
 
 ```
-LobbyFlow.process_turn()            ← every career turn
-  ├─ training scan  → training-scan.md   (train / rest / race decision)
-  ├─ RaceFlow.run() → race-flow.md       (when racing)
-  ├─ EventFlow      → event-flow.md       (on event popups)
-  └─ SkillsFlow.buy → skills-flow.md      (when SP gate clears)
+LobbyFlow.process_turn()               ← every career turn
+  ├─ check_training() → training-policy.md   (orchestrates scan→decide)
+  │     └─ scan_training_screen → training-scan.md
+  ├─ RaceFlow.run()   → race-flow.md          (when racing)
+  ├─ EventFlow        → event-flow.md          (on event popups)
+  └─ SkillsFlow.buy   → skills-flow.md         (when SP gate clears)
 
-agent_nav → DailyRaceFlow → daily-race-flow.md   (separate, non-career)
+agent_nav → DailyRaceFlow   → daily-race-flow.md    (separate, non-career)
+agent_nav → TeamTrialsFlow  → team-trials-flow.md   (separate, non-career)
 ```
 
 ## Images

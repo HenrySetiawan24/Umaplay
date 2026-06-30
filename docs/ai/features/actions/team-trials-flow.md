@@ -43,25 +43,58 @@ process_banners_screen()
     sort banners by conf (top-3) → sort top-to-bottom
     pick banner by Settings.get_team_trials_banner_pref() (1-indexed, clamped)
     click banner (3-4 clicks) → sleep 9s
-    click_button_loop(button_green, max=1) × 1-2   # pre-start progression prompts
+
+    ┌ Screen 2: Team Preview ─────────────────────────────────────────────────┐
+    │ Matchup grid: your team vs opponent, character grades per race distance. │
+    │ Buttons: Back (grey) / Next (green).                                     │
+    └─────────────────────────────────────────────────────────────────────────┘
+    click_button_loop(button_green, max_clicks=1, timeout=4s)  # Next; retries once on miss
+    sleep(1.8)
+
+    ┌ Screen 3: Item Select dialog ───────────────────────────────────────────┐
+    │ Optional item slots (Parfait / Weather / Gate items). RP cost shown.     │
+    │ Buttons: Cancel (grey) / Race! (green).                                  │
+    └─────────────────────────────────────────────────────────────────────────┘
     click_when(button_green, texts=("RACE!",), forbid=("CANCEL",))
+    sleep(1)
+
+    ┌ Screen 4: Track Preview ────────────────────────────────────────────────┐
+    │ Race list (3–5 races) with STANDBY status + Quick Mode toggle.           │
+    │ "See All Results" green oval button starts the race simulation.          │
+    │ Only visible when Quick Mode is OFF; in Quick Mode the game skips here   │
+    │ after the Race! click and proceeds directly to the race animation.       │
+    └─────────────────────────────────────────────────────────────────────────┘
     _handle_post_race_sequence(ensure_enter_shop=True)
 ```
 
-### `_handle_post_race_sequence` (post-race to RACE-AGAIN)
+### `_handle_post_race_sequence` (race animation → RACE AGAIN)
 
 ```
-sleep(10)                          # race animation
+sleep(10)                          # race animation / Quick Mode simulation
+
 advance_sequence_with_mid_taps()   # button_advance loop (1 iteration)
+                                   # advances past track summary / race-result list
+
+┌ Screen 5: Placement Reaction ───────────────────────────────────────────────┐
+│ Character art celebrating (or reacting to loss). Skip (>>|) bottom-right.   │
+└─────────────────────────────────────────────────────────────────────────────┘
 skip loop (≤1 skip, 5s budget):
     click_when(button_skip, 3-5 clicks)
-    → if skip fired: click NEXT → sleep 5s → click race_after_next → sleep 3s
+    → if skip fired: click NEXT(green) → sleep 5s → click race_after_next → sleep 3s
     → else: sleep 5s
+
 random_center_tap() × 4-5         # tap through special reward screen
 sleep(4.2)
+
 recapture → if only 1 det or no button_pink:
     click button_advance (forbid VIEW RACE) → click button_green
+
 handle_shop_exchange()             # nav utility; handles shop if present
+
+┌ Screen 7: Points Result ────────────────────────────────────────────────────┐
+│ Individual character score cards (WIN pts / placement per race).             │
+│ Race Again (bright pink, left) / Next (green, right).                        │
+└─────────────────────────────────────────────────────────────────────────────┘
 click button_pink (RACE AGAIN)     # loops the trial; not found → log + stop
 ```
 

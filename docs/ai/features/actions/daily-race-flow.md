@@ -19,12 +19,40 @@ task. Unlike `RaceFlow` (career race-day), there is no race selection, strategy,
 win-detection, or retry — daily races are fixed and the only goal is to spend
 race tickets and collect rewards.
 
+## Screen sequence
+
+```
+┌ Daily Races lobby ──────────────────────────────────────────────────────────┐
+│ Two selectable cards:                                                         │
+│   TOP   → Coins race (Moonlight Sho, etc.)      ← bot always picks this     │
+│   BOTTOM → Support Points race (Jupiter Cup, etc.)                           │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌ Difficulty list ────────────────────────────────────────────────────────────┐
+│ Same race, 4 difficulty rows (topmost = hardest):                            │
+│   VERY HARD (bright pink pill)   ← bot always picks this (topmost row)      │
+│   HARD      (red/dark-pink pill)                                             │
+│   NORMAL    (orange pill)                                                    │
+│   EASY      (light-green pill)                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌ "No tickets" popup (edge case) ─────────────────────────────────────────────┐
+│ "Not enough Daily Race Ticket. Purchase tickets?" — Cancel (grey) / OK (green)│
+│ Bot clicks Cancel and exits to ui_home.                                      │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+After difficulty selection the flow follows the standard pre-race / race / results
+screens (confirm details → entrants list → race strategy → race animation →
+placement reaction → result → rewards) and then loops via RACE AGAIN (pink) or
+exits when tickets run out.
+```
+
 ## Flow
 
 ```
-enter_from_menu()        # click RACES menu → click the 'monies' card
-pick_first_row()         # click the topmost 'monies' row above conf 0.70
-confirm_and_next_to_race()   # NEXT(green RACE) → RACE; handles a CANCEL/insufficient popup
+enter_from_menu()            # click RACES menu → Daily Races lobby → click top card (coins)
+pick_first_row()             # on difficulty list, click topmost row (VERY HARD)
+confirm_and_next_to_race()   # NEXT(green) → RACE(green); on no-ticket popup → Cancel → ui_home
 run_race_and_collect():      # loop (≤5 races):
     NEXT(green) → RACE(green) → wait
     click VIEW RESULTS / CLOSE (white)
@@ -39,9 +67,9 @@ handle_shop_in_place()   # resume entry point if the run was interrupted mid-sho
 
 | Method | Role |
 |--------|------|
-| `enter_from_menu()` | Clicks `race_daily_races` then the `race_daily_races_monies` card. |
-| `pick_first_row()` | Picks the topmost `race_daily_races_monies_row` with conf ≥ `_thr["row"]` (0.70). |
-| `confirm_and_next_to_race()` | Green **RACE** (text-gated, forbids OK/PURCHASE/BUY/RESTORE). If only a **CANCEL** + OK popup is present (not enough tickets / restore prompt), it cancels and goes `ui_home`. |
+| `enter_from_menu()` | Clicks `race_daily_races` to open the lobby, then clicks the `race_daily_races_monies` card (top/coins option). |
+| `pick_first_row()` | On the difficulty screen, clicks the topmost `race_daily_races_monies_row` (conf ≥ 0.70) — always VERY HARD. |
+| `confirm_and_next_to_race()` | Clicks green **RACE** (text-gated, forbids OK/PURCHASE/BUY/RESTORE). If only a **CANCEL** + OK popup is present (no tickets), it cancels and goes `ui_home`. |
 | `run_race_and_collect()` | The race→results→race-again loop (≤5 iterations). Delegates shop handling to `nav.handle_shop_exchange`. Returns `finalized: bool`. |
 | `handle_shop_in_place()` | Re-enters shop handling when resuming a run that was already inside the shop (`ensure_enter=False`). |
 

@@ -8,7 +8,7 @@ import PresetsTabs from '@/components/presets/PresetsTabs'
 import { PresetSettingsSection, PresetStrategySection, PresetEventSection, PresetSkillsSchedulerSection, PresetRaceSchedulerSection } from '@/components/presets/PresetPanel'
 import ShopPrefs from '@/components/nav/ShopPrefs'
 import TeamTrialsPrefs from '@/components/nav/TeamTrialsPrefs'
-import DailyActions from '@/components/nav/DailyActions'
+import DailyActionsBar from '@/components/nav/DailyActionsBar'
 import RunHistory from '@/components/history/RunHistory'
 import LogsView from '@/components/logviewer/LogsView'
 import BotControl from '@/components/common/BotControl'
@@ -112,6 +112,7 @@ export default function Home() {
             <Tab value="history" label="Run History" />
             <Tab value="logs" label="Logs" />
           </Tabs>
+          <DailyActionsBar />
           <BotControl />
           </Box>
         </Paper>
@@ -170,18 +171,15 @@ export default function Home() {
           </Stack>
         </Box>
         <Box sx={{ display: tab === 'daily_trials' ? 'block' : 'none' }}>
-          <Stack spacing={3}>
-            <DailyActions />
-            <Box sx={{
-              display: 'grid',
-              gap: 3,
-              gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
-              alignItems: 'start',
-            }}>
-              <ShopPrefs />
-              <TeamTrialsPrefs />
-            </Box>
-          </Stack>
+          <Box sx={{
+            display: 'grid',
+            gap: 3,
+            gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
+            alignItems: 'start',
+          }}>
+            <ShopPrefs />
+            <TeamTrialsPrefs />
+          </Box>
         </Box>
         <Box sx={{ display: tab === 'history' ? 'block' : 'none' }}>
           <RunHistory />

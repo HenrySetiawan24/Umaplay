@@ -1,7 +1,7 @@
 # Race Flow — Execution, OCR & Await Optimization
 
 **Status:** Implemented (2026-06). This doc describes the race-day execution flow
-in [`core/actions/race.py`](../core/actions/race.py) and records the OCR/await
+in [`core/actions/race.py`](../../../../core/actions/race.py) and records the OCR/await
 optimizations applied to it. Line numbers drift — methods are named so they stay
 findable.
 
@@ -76,7 +76,27 @@ The bot only **re-races** in one case — a confirmed loss of a goal race:
 
 All other "retries" (`_pick_view_results_button` progressive retries, the skip
 loop, the reactive confirm loops, the results gate) are navigation robustness, not
-re-racing. Background: [`docs/ai/features/try-again-bug/`](ai/features/try-again-bug/).
+re-racing. Background: [`try-again-bug/`](../try-again-bug/).
+
+### Post-skip screens — captured
+
+After tapping **View results** in the lobby, the game walks two screen *types*. The
+captures in [`images/`](images/) show a win and a loss of each:
+
+| Image | Screen | Notes |
+|-------|--------|-------|
+| ![pose win](images/race-after-skip-pose-win.png) | **Placement pose** (win) | Gold-crown `1st` emblem + `TAP`. Appears right after the skip. |
+| ![pose loss](images/race-after-skip-pose-loss.png) | **Placement pose** (loss) | Grey `5th` emblem (no crown) + `TAP`. |
+| ![no next](images/race-leaderboard-no-next.png) | **Results leaderboard (mid-transition)** | Full ranking rendered, but the speech bubble is **empty** and the green **Next** button has **not appeared** — the frame the gate must *not* fire on. |
+| ![with next](images/race-leaderboard-with-next.png) | **Results leaderboard (settled)** | Speech bubble filled + green **Next** present — the confirmed frame. |
+
+These are exactly the false-positive vs true-positive pair `_wait_for_results_screen`
+separates: the "no next" frame fails the `button_green` check and keeps polling; the
+"with next" frame passes. Two cues live here — the **placement pose** emblem (gold
+`1st` vs grey `5th`) and the **leaderboard row-1 highlight** (`_row1_is_win` samples
+the cream-saturated top row, valid only on the leaderboard, not the pose). The empty
+speech bubble on the "no next" frame is a cheap secondary readiness signal if the
+green-button class is ever flaky.
 
 ---
 

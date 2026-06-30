@@ -1,6 +1,6 @@
 # Skill Buy Flow — Fixes & OCR Reduction
 
-Covers the skill-shop buying loop in [`core/actions/skills.py`](../core/actions/skills.py)
+Covers the skill-shop buying loop in [`core/actions/skills.py`](../../../../core/actions/skills.py)
 (`SkillsFlow.buy` / `SkillsFlow._scan_and_click_buys`).
 
 ## Background: Original Behavior
@@ -220,3 +220,20 @@ decide/click per candidate. A pass is ~2 OCR calls regardless of card count.
 
 Not yet done: #5 (memoize title OCR across overlapping scrolls), #6 (scroll
 overlap tuning).
+
+---
+
+## Example images
+
+> Reuse from `debug/skills/` captures where available; the screens below still need
+> representative shots dropped into `images/`. Useful annotations: the **BUY** button
+> (and the cost ROI anchored left of it), the **SP total** band (top-right), and an
+> **inactive/greyed** card vs an active one.
+
+| Placeholder file | Screen to capture |
+|------------------|-------------------|
+| `images/skills-shop-cards.png` | The skill shop with several cards — label the title, the cost (between `-`/`+`), and the BUY button. |
+| `images/skills-sp-region.png` | The top-right **SP total** region the early-exit reads. |
+| `images/skills-inactive-card.png` | A greyed/unaffordable card (the active-buy classifier gate skips its OCR). |
+
+*(See [README](README.md#images-still-needed).)*

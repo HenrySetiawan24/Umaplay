@@ -216,3 +216,22 @@ Goal: pick one action based on SV, energy, mood, race proximity, and special rul
 | `core/actions/unity_cup/training_policy.py` | Unity Cup decision tree |
 | `core/settings.py` | `MAX_FAILURE`, `PRIORITY_STATS`, `FAST_MODE` config |
 | `core/constants.py` | `DEFAULT_TILE_TO_TYPE = {0:"SPD", 1:"STA", 2:"PWR", 3:"GUTS", 4:"WIT"}` |
+
+> **Note:** this doc covers both `training_check.py` (the scanner) **and**
+> `training_policy.py` (the `check_training` orchestrator + `TrainingDecision`), so
+> there is no separate `training-policy.md`.
+
+---
+
+## Example images
+
+> Reuse from `debug/training/` captures where available; the screens below still need
+> representative shots dropped into `images/`.
+
+| Placeholder file | Screen to capture |
+|------------------|-------------------|
+| `images/training-tiles.png` | The training screen showing the 5 tiles (SPD→WIT) before any click. |
+| `images/training-tile-supports.png` | One tile opened — label the support cards, a rainbow support, and the failure% bubble. |
+| `images/training-rainbow.png` | A tile with a rainbow (raised) support — the greedy-hit case. |
+
+*(See [README](README.md#images-still-needed).)*

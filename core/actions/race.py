@@ -252,18 +252,20 @@ class RaceFlow:
         """
         time.sleep(max(0.0, seconds * float(Settings.RACE_AWAIT_SCALE)))
 
-    def _wait_for_results_screen(self, *, timeout_s: float = 6.0) -> Optional[Image.Image]:
+    def _wait_for_results_screen(self, *, timeout_s: float = 10.0) -> Optional[Image.Image]:
         """
         Poll until the post-race result leaderboard is actually on screen, so the
         win-check and NEXT click don't fire on a mid-transition frame.
 
         Confirmation is **YOLO-only (no OCR)**: a `race_badge` (the grade badge on
         the result banner) AND a `button_green` (NEXT) both detected. One snapshot
-        per poll. Nudges through any lingering skip button. Returns the confirming
-        frame (reused for the win-check to save a recognize), or None on timeout —
-        in which case the caller proceeds as before (never worse than today).
+        per poll. Nudges through any lingering skip button or tap-to-continue screens
+        (e.g. the character placement reaction screen that appears before the leaderboard).
+        Returns the confirming frame (reused for the win-check to save a recognize),
+        or None on timeout — in which case the caller proceeds as before.
         """
         deadline = time.time() + timeout_s
+        last_tap_t = 0.0
         while time.time() < deadline:
             if abort_requested():
                 return None
@@ -277,6 +279,15 @@ class RaceFlow:
                 skip = next((d for d in dets if d["name"] == "button_skip"), None)
                 if skip and skip.get("xyxy"):
                     self.ctrl.click_xyxy_center(skip["xyxy"], clicks=2)
+            elif not names.intersection({"button_green", "button_white", "race_badge"}):
+                # No known buttons visible — likely a tap-to-continue screen
+                # (e.g. character placement reaction before the leaderboard). Tap center.
+                now = time.time()
+                if now - last_tap_t >= 0.8:
+                    logger_uma.debug("[race] No known buttons; tapping center to advance tap screen.")
+                    _, _, bw, bh = self.ctrl.capture_bbox()
+                    self.ctrl.click(bw // 2, bh // 2, clicks=1)
+                    last_tap_t = now
             time.sleep(0.2)
         logger_uma.debug("[race] Results screen not confirmed before timeout; proceeding.")
         return None
@@ -1012,6 +1023,7 @@ class RaceFlow:
             skip_clicks = 0
             t0 = time.time()
             total_time = 12.0
+            last_center_tap_t = 0.0
             while (time.time() - t0) < total_time:
                 # Early-exit conditions:
                 #  - close available → click once and stop
@@ -1045,6 +1057,17 @@ class RaceFlow:
                     skip_clicks += 1
                     total_time += 2
                     continue
+
+                # No known button found — may be a tap-to-continue screen (e.g. the
+                # character placement reaction "5th / TAP" screen between skip and
+                # the leaderboard). Tap the center to advance it.
+                now = time.time()
+                if now - last_center_tap_t >= 1.0:
+                    logger_uma.debug("[race] Skip loop: no known button; tapping center to advance.")
+                    _, _, bw, bh = self.ctrl.capture_bbox()
+                    cx, cy = self.ctrl.local_to_screen(bw // 2, bh // 2)
+                    self.ctrl.click(cx, cy, clicks=1)
+                    last_center_tap_t = now
                 time.sleep(0.12)
 
             # Confirm the result leaderboard is actually up before reading it / NEXT

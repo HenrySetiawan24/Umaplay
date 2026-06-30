@@ -8,7 +8,9 @@ import PresetsTabs from '@/components/presets/PresetsTabs'
 import { PresetSettingsSection, PresetStrategySection, PresetEventSection, PresetSkillsSchedulerSection, PresetRaceSchedulerSection } from '@/components/presets/PresetPanel'
 import ShopPrefs from '@/components/nav/ShopPrefs'
 import TeamTrialsPrefs from '@/components/nav/TeamTrialsPrefs'
+import DailyActions from '@/components/nav/DailyActions'
 import RunHistory from '@/components/history/RunHistory'
+import LogsView from '@/components/logviewer/LogsView'
 import BotControl from '@/components/common/BotControl'
 
 export default function Home() {
@@ -17,7 +19,7 @@ export default function Home() {
   const theme = useTheme()
   const isWide = useMediaQuery(theme.breakpoints.up(1400))
   const isMd = useMediaQuery(theme.breakpoints.up('md'))
-  const [tab, setTab] = useState<'scenario' | 'daily_trials' | 'history'>('scenario')
+  const [tab, setTab] = useState<'scenario' | 'daily_trials' | 'history' | 'logs'>('scenario')
   const configLoadedRef = useRef(false)
 
   useEffect(() => {
@@ -106,8 +108,9 @@ export default function Home() {
             indicatorColor="primary"
           >
             <Tab value="scenario" label="Scenario setup" />
-            <Tab value="daily_trials" label="Daily &amp; Trials setup" />
+            <Tab value="daily_trials" label="Daily &amp; Trials" />
             <Tab value="history" label="Run History" />
+            <Tab value="logs" label="Logs" />
           </Tabs>
           <BotControl />
           </Box>
@@ -167,18 +170,24 @@ export default function Home() {
           </Stack>
         </Box>
         <Box sx={{ display: tab === 'daily_trials' ? 'block' : 'none' }}>
-          <Box sx={{
-            display: 'grid',
-            gap: 3,
-            gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
-            alignItems: 'start',
-          }}>
-            <ShopPrefs />
-            <TeamTrialsPrefs />
-          </Box>
+          <Stack spacing={3}>
+            <DailyActions />
+            <Box sx={{
+              display: 'grid',
+              gap: 3,
+              gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
+              alignItems: 'start',
+            }}>
+              <ShopPrefs />
+              <TeamTrialsPrefs />
+            </Box>
+          </Stack>
         </Box>
         <Box sx={{ display: tab === 'history' ? 'block' : 'none' }}>
           <RunHistory />
+        </Box>
+        <Box sx={{ display: tab === 'logs' ? 'block' : 'none' }}>
+          <LogsView />
         </Box>
       </Stack>
     </Container>

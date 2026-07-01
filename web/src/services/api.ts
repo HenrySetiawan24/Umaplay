@@ -123,6 +123,17 @@ export async function checkUpdate(): Promise<any> {
   return r.json()
 }
 
+export type AdbDevice = { serial: string; state: string; model: string }
+
+export const fetchAdbDevices = async (): Promise<AdbDevice[]> => {
+  try {
+    const { data } = await api.get('/api/adb/devices')
+    return Array.isArray(data?.devices) ? data.devices : []
+  } catch {
+    return []
+  }
+}
+
 export const fetchEvents = async (): Promise<EventsRoot> => {
   try {
     const { data } = await api.get('/api/events')

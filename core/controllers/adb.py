@@ -58,6 +58,10 @@ class ADBController(IController):
     # Helpers
     # ------------------------------------------------------------------
     def _resolve_adb_executable(self) -> str:
+        return self.resolve_adb_executable()
+
+    @staticmethod
+    def resolve_adb_executable() -> str:
         """Return the adb executable path or raise if not found.
 
         Cross-platform strategy:
@@ -84,6 +88,45 @@ class ADBController(IController):
         raise RuntimeError(
             "ADB executable not found. Install Android Platform Tools and ensure 'adb' is on PATH (or set ADB_EXEC)."
         )
+
+    @classmethod
+    def discover_devices(cls) -> list[dict[str, str]]:
+        """
+        Run `adb devices -l` and return connected devices as
+        [{"serial": ..., "state": ..., "model": ...}, ...] without
+        instantiating a controller (no auto-connect/screen-size side effects).
+        Returns [] if adb isn't installed or the command fails.
+        """
+        try:
+            adb_exec = cls.resolve_adb_executable()
+        except RuntimeError:
+            return []
+        try:
+            result = subprocess.run(
+                [adb_exec, "devices", "-l"],
+                capture_output=True,
+                text=True,
+                timeout=5,
+                check=False,
+            )
+        except Exception:
+            return []
+        if result.returncode != 0:
+            return []
+        devices: list[dict[str, str]] = []
+        for line in result.stdout.strip().splitlines()[1:]:
+            parts = line.split()
+            if not parts:
+                continue
+            serial = parts[0]
+            state = parts[1] if len(parts) > 1 else "unknown"
+            model = ""
+            for tok in parts[2:]:
+                if tok.startswith("model:"):
+                    model = tok.split(":", 1)[1]
+                    break
+            devices.append({"serial": serial, "state": state, "model": model})
+        return devices
 
     def _adb_command(
         self,

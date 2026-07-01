@@ -6,12 +6,14 @@ import {
   DialogContent,
   DialogActions,
   Link, Tooltip,
+  Autocomplete, IconButton, CircularProgress,
 } from '@mui/material'
+import RefreshIcon from '@mui/icons-material/Refresh'
 import Section from '@/components/common/Section'
 import { useConfigStore } from '@/store/configStore'
 import AdvancedSettings from './AdvancedSettings'
-import { checkUpdate, forceUpdate, getVersion, updateFromGithub } from '@/services/api'
-import { useEffect, useState } from 'react'
+import { checkUpdate, fetchAdbDevices, forceUpdate, getVersion, updateFromGithub, type AdbDevice } from '@/services/api'
+import { useCallback, useEffect, useState } from 'react'
 
 export default function GeneralForm() {
   const { config, setGeneral } = useConfigStore()
@@ -24,7 +26,15 @@ export default function GeneralForm() {
   const [update, setUpdate] = useState<{is_update_available:boolean; latest?:string; html_url?:string} | null>(null)
   const [version, setVersion] = useState<string>('—')
   const [confirmForce, setConfirmForce] = useState(false)
-  
+  const [adbDevices, setAdbDevices] = useState<AdbDevice[]>([])
+  const [adbLoading, setAdbLoading] = useState(false)
+
+  const refreshAdbDevices = useCallback(() => {
+    setAdbLoading(true)
+    fetchAdbDevices()
+      .then(setAdbDevices)
+      .finally(() => setAdbLoading(false))
+  }, [])
 
   useEffect(() => {
     let mounted = true
@@ -34,6 +44,12 @@ export default function GeneralForm() {
     getVersion().then(v => { if (mounted) setVersion(v.version) }).catch(() => {})
     return () => { mounted = false }
   }, [])
+
+  const showAdbField = g.mode === 'adb' || (g.mode === 'bluestack' && !!g.useAdb)
+  useEffect(() => {
+    if (showAdbField) refreshAdbDevices()
+  }, [showAdbField, refreshAdbDevices])
+
   // small helper map for mode icons (place PNGs under /public/icons/)
   const MODE_ICON: Record<'steam' | 'scrcpy' | 'bluestack' | 'adb', string> = {
     steam: '/icons/mode_steam.png',
@@ -41,6 +57,44 @@ export default function GeneralForm() {
     bluestack: '/icons/mode_bluestack.png',
     adb: '/icons/mode_adb.png',
   }
+
+  const adbDeviceField = (
+    <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 0.5 }}>
+      <Autocomplete
+        size="small"
+        freeSolo
+        sx={{ flex: 1 }}
+        options={adbDevices.map((d) => d.serial)}
+        value={g.adbDevice ?? 'localhost:5555'}
+        onInputChange={(_, value) => setGeneral({ adbDevice: value })}
+        renderOption={(props, serial) => {
+          const dev = adbDevices.find((d) => d.serial === serial)
+          return (
+            <Box component="li" {...props} key={serial}>
+              <Stack>
+                <Typography variant="body2">{serial}</Typography>
+                {dev && (
+                  <Typography variant="caption" color="text.secondary">
+                    {dev.state}{dev.model ? ` · ${dev.model}` : ''}
+                  </Typography>
+                )}
+              </Stack>
+            </Box>
+          )
+        }}
+        renderInput={(params) => (
+          <TextField {...params} placeholder="localhost:5555" />
+        )}
+      />
+      <Tooltip title="Refresh connected ADB devices (adb devices)" arrow>
+        <span>
+          <IconButton size="small" onClick={refreshAdbDevices} disabled={adbLoading} sx={{ mt: 0.25 }}>
+            {adbLoading ? <CircularProgress size={18} /> : <RefreshIcon fontSize="small" />}
+          </IconButton>
+        </span>
+      </Tooltip>
+    </Box>
+  )
 
   return (
     <Section title="" sx={{ maxWidth: 820, width: '100%' }}>
@@ -202,16 +256,11 @@ export default function GeneralForm() {
         {g.mode === 'adb' && (
           <Box>
             <Typography variant="body2" color="text.secondary" fontWeight={500} sx={{ mb: 0.5 }}>
-              <Tooltip title="ADB device identifier (e.g., localhost:5555). The bot will auto-connect when starting." arrow>
+              <Tooltip title="ADB device identifier (e.g., localhost:5555). The bot will auto-connect when starting. Pick from connected devices or type a custom one." arrow>
                 <span>ADB device</span>
               </Tooltip>
             </Typography>
-            <TextField
-              size="small"
-              value={g.adbDevice ?? 'localhost:5555'}
-              onChange={(e) => setGeneral({ adbDevice: e.target.value })}
-              placeholder="localhost:5555"
-            />
+            {adbDeviceField}
           </Box>
         )}
 
@@ -236,16 +285,11 @@ export default function GeneralForm() {
             {g.useAdb && (
               <Box>
                 <Typography variant="body2" color="text.secondary" fontWeight={500} sx={{ mb: 0.5 }}>
-                  <Tooltip title="ADB device identifier (e.g., localhost:5555)." arrow>
+                  <Tooltip title="ADB device identifier (e.g., localhost:5555). Pick from connected devices or type a custom one." arrow>
                     <span>ADB device</span>
                   </Tooltip>
                 </Typography>
-                <TextField
-                  size="small"
-                  value={g.adbDevice ?? 'localhost:5555'}
-                  onChange={(e) => setGeneral({ adbDevice: e.target.value })}
-                  placeholder="localhost:5555"
-                />
+                {adbDeviceField}
               </Box>
             )}
           </>

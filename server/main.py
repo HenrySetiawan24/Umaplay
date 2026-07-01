@@ -59,6 +59,14 @@ def update_nav(new_nav: Dict[str, Any]):
     return {"status": "success", "data": load_nav_prefs()}
 
 
+@app.get("/api/adb/devices")
+def get_adb_devices():
+    """List devices currently visible to `adb devices -l` (empty if adb isn't installed)."""
+    from core.controllers.adb import ADBController
+
+    return {"devices": ADBController.discover_devices()}
+
+
 @app.get("/api/history")
 def get_history():
     return load_history()

@@ -82,6 +82,7 @@ class Waiter:
         allow_greedy_click: bool = True,
         forbid_texts: Optional[Sequence[str]] = None,
         forbid_threshold: float = 0.65,
+        require_text_match: bool = False,
         return_object: bool = False,
     ) -> bool: ...
 
@@ -100,6 +101,7 @@ class Waiter:
         allow_greedy_click: bool = True,
         forbid_texts: Optional[Sequence[str]] = None,
         forbid_threshold: float = 0.65,
+        require_text_match: bool = False,
         return_object: bool = True,
     ) -> Tuple[bool, Optional[DetectionDict]]: ...
 
@@ -118,6 +120,7 @@ class Waiter:
         # NEW: text exceptions
         forbid_texts: Optional[Sequence[str]] = None,
         forbid_threshold: float = 0.65,
+        require_text_match: bool = False,
         return_object: bool = False,
     ) -> Union[bool, Tuple[bool, Optional[DetectionDict]]]:
         """
@@ -130,6 +133,15 @@ class Waiter:
             will prevent clicking that candidate.
         forbid_threshold:
             Fuzzy ratio threshold for a phrase to be considered a match in `forbid_texts`.
+        require_text_match:
+            By default the single-candidate and prefer_bottom cascade steps click
+            greedily WITHOUT ever checking `texts` — OCR verification against
+            `texts` only happens as a last resort when 2+ candidates exist and
+            prefer_bottom didn't apply. That means a lone/bottom-most `classes`
+            detection gets clicked even if it isn't the intended button (e.g. a
+            stray 'button_green' elsewhere on screen gets clicked instead of the
+            one actually labeled 'RACE'). Set this to True (with `texts` given)
+            to force real OCR verification even for those fast paths.
         return_object:
             If True, returns (did_click, clicked_object) tuple instead of just bool.
             The clicked_object is the DetectionDict that was clicked, or None if no click.
@@ -155,9 +167,26 @@ class Waiter:
             img, dets = self._snap(tag=tag)
             cand = det_filter(dets, classes)
 
+            if not cand and dets:
+                logger_uma.debug(
+                    "[waiter] no candidates for classes=%s (tag=%s); seen=%s",
+                    classes,
+                    tag,
+                    sorted(
+                        {
+                            f"{d.get('name', '?')}:{float(d.get('conf', 0.0)):.2f}"
+                            for d in dets
+                        }
+                    ),
+                )
+
+            skip_fast_paths = require_text_match and bool(texts)
+
             if cand:
-                # 1) Single candidate fast path (with optional forbid check)
-                if len(cand) == 1 and allow_greedy_click:
+                # 1) Single candidate fast path (with optional forbid check).
+                # Skipped when require_text_match=True — a lone candidate must
+                # still OCR-match `texts` before it's clicked (see step 3).
+                if not skip_fast_paths and len(cand) == 1 and allow_greedy_click:
                     pick = cand[0]
                     if self._is_forbidden(img, pick, forbid_texts, forbid_threshold):
                         # Skip this candidate; keep polling for a better state.
@@ -169,8 +198,10 @@ class Waiter:
                         self.ctrl.click_xyxy_center(pick["xyxy"], clicks=clicks)
                         return (True, pick) if return_object else True
 
-                # 2) Bottom-most preference (try from bottom to top; skip forbiddens)
-                if prefer_bottom and allow_greedy_click:
+                # 2) Bottom-most preference (try from bottom to top; skip forbiddens).
+                # Also skipped when require_text_match=True (geometry alone isn't
+                # proof the bottom-most box is actually the intended button).
+                if not skip_fast_paths and prefer_bottom and allow_greedy_click:
                     ordered = sorted(
                         cand,
                         key=lambda d: (d["xyxy"][1] + d["xyxy"][3]) * 0.5,
@@ -197,6 +228,7 @@ class Waiter:
                         threshold,
                         forbid_texts,
                         forbid_threshold,
+                        tag=tag,
                     )
                     if pick is not None:
                         logger_uma.debug(
@@ -398,6 +430,8 @@ class Waiter:
         threshold: float,
         forbid_texts: Optional[List[str]] = None,
         forbid_threshold: float = 0.65,
+        *,
+        tag: Optional[str] = None,
     ) -> Tuple[Optional[DetectionDict], float]:
         """
         OCR candidates and pick the one whose text best matches any of `texts`,
@@ -412,6 +446,14 @@ class Waiter:
         for d in cand:
             crop = crop_pil(img, d["xyxy"], pad=0)
             txt = (self.ocr.text(crop) or "").strip()
+            logger_uma.debug(
+                "[waiter] OCR candidate (tag=%s) name=%s conf=%.2f xyxy=%s text=%r",
+                tag,
+                d.get("name", "?"),
+                float(d.get("conf", 0.0)),
+                d.get("xyxy"),
+                txt,
+            )
             if not txt:
                 continue
             # Skip forbidden

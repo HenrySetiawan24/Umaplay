@@ -32,7 +32,7 @@ from core.settings import Settings
 from core.types import DetectionDict
 from core.utils.geometry import crop_pil
 from core.utils.logger import logger_uma
-from core.utils.text import _normalize_ocr, fuzzy_ratio
+from core.utils.text import _normalize_ocr, fuzzy_contains, fuzzy_ratio
 from core.utils.yolo_objects import collect, find, bottom_most, inside
 from core.utils.pointer import smart_scroll_small
 from core.utils.abort import abort_requested, request_abort
@@ -152,6 +152,34 @@ class RaceFlow:
         except Exception as e:
             logger_uma.debug("[placement_debug] save failed: %s", e)
 
+    @staticmethod
+    def _save_diag_debug(pil_img: Image.Image, dets: List[DetectionDict], source: str) -> None:
+        """
+        Unconditional (not low-conf-gated) frame + detection dump for a stuck
+        screen, so a failure can be inspected after the fact instead of only
+        being inferable from log lines.
+        """
+        if not Settings.STORE_FOR_TRAINING:
+            return
+        import os
+        import time
+        try:
+            ts = time.strftime("%Y%m%d-%H%M%S") + f"_{int((time.time() % 1) * 1000):03d}"
+            base_dir = Settings.DEBUG_DIR / "race" / "diag"
+            os.makedirs(base_dir, exist_ok=True)
+            stem = f"{source}_{ts}"
+            pil_img.save(base_dir / f"{stem}.png")
+            det_summary = sorted(
+                f"{d.get('name', '?')}:{float(d.get('conf', 0.0)):.2f}" for d in dets
+            )
+            logger_uma.debug(
+                "[race-ocr] diag frame saved -> %s | dets=%s",
+                base_dir / f"{stem}.png",
+                det_summary,
+            )
+        except Exception as e:
+            logger_uma.debug("[race-ocr] diag save failed: %s", e)
+
     def _ensure_in_raceday(
         self, *, reason: str | None = None, from_raceday=False
     ) -> bool:
@@ -196,32 +224,41 @@ class RaceFlow:
                     classes=("race_square",), tag="race_nav_seen_squares"
                 ):
                     return True
-                # 2) If consecutive-race penalty popup is present → honor settings
+                # 2) A green button with no squares in this nav window is the
+                #    consecutive-race penalty OK popup (if squares were up we'd
+                #    have returned at the check above). Detect it class-only —
+                #    no OCR on the hot path.
                 if self.waiter.seen(
                     classes=("button_green",),
-                    texts=("OK",),
                     tag="race_nav_penalty_seen",
                 ):
                     # from_raceday forces to accept consecutive, there is no another option
                     if not Settings.ACCEPT_CONSECUTIVE_RACE and not from_raceday:
-                        logger_uma.info(
-                            "[race] Consecutive race detected and refused by settings."
-                        )
-                        raise ConsecutiveRaceRefused(
-                            "Consecutive race not accepted by settings."
-                        )
-                    # Accept the penalty promptly (single shot, no wait)
-                    self.waiter.click_when(
-                        classes=("button_green",),
-                        texts=("OK",),
-                        prefer_bottom=False,
-                        allow_greedy_click=False,
-                        timeout_s=0.5,
-                        tag="race_nav_penalty_ok_click",
-                    )
-                    logger_uma.debug(
-                        "Consecutive race. Accepted penalization per settings."
-                    )
+                        # Refusal is a hard stop — confirm it really is the OK
+                        # popup (one OCR) before raising.
+                        if self.waiter.seen(
+                            classes=("button_green",),
+                            texts=("OK",),
+                            tag="race_nav_penalty_confirm",
+                        ):
+                            logger_uma.info(
+                                "[race] Consecutive race detected and refused by settings."
+                            )
+                            raise ConsecutiveRaceRefused(
+                                "Consecutive race not accepted by settings."
+                            )
+                    else:
+                        # Accept the penalty promptly: click the green OK by class
+                        # (single snapshot, no OCR, no wait).
+                        if self.waiter.try_click_once(
+                            classes=("button_green",),
+                            prefer_bottom=True,
+                            allow_greedy_click=True,
+                            tag="race_nav_penalty_ok_click",
+                        ):
+                            logger_uma.debug(
+                                "Consecutive race. Accepted penalization per settings."
+                            )
 
                 time.sleep(0.12)
             # If loop expires, do one last probe:
@@ -291,6 +328,51 @@ class RaceFlow:
             time.sleep(0.2)
         logger_uma.debug("[race] Results screen not confirmed before timeout; proceeding.")
         return None
+
+    def _advance_past_reaction_screen(self, *, timeout_s: float = 8.0) -> bool:
+        """
+        Nudge through the post-race "uma reaction to placement" tap-to-continue
+        screen that appears (esp. on the View-Results path) between the result
+        leaderboard and the after-race NEXT. That screen shows no NEXT button and
+        otherwise stalls the flow until a manual tap.
+
+        Each poll: stop as soon as a green NEXT (button_green / race_after_next)
+        is detected — class-presence only, no OCR — and let the caller's awaits
+        click it. Otherwise click a lingering white button (View Results / CLOSE)
+        if present, else tap center to advance the reaction. Bounded by
+        `timeout_s`, so it can never hang and is never worse than before.
+
+        Returns True if a NEXT became visible before timeout, else False.
+        """
+        deadline = time.time() + timeout_s
+        while time.time() < deadline:
+            if abort_requested():
+                return False
+            if self.waiter.seen(
+                classes=("button_green", "race_after_next"),
+                tag="race_after_reaction_next_probe",
+                conf_min=0.5,
+            ):
+                logger_uma.debug("[race] NEXT visible; ending post-race reaction tap-through.")
+                return True
+            # Prefer a real white button (View Results / CLOSE) when present.
+            if self.waiter.click_when(
+                classes=("button_white",),
+                texts=("VIEW RESULTS", "CLOSE"),
+                prefer_bottom=False,
+                allow_greedy_click=False,
+                timeout_s=0.3,
+                tag="race_after_reaction_white",
+            ):
+                logger_uma.debug("[race] Tapped white button to advance post-race reaction.")
+                continue
+            # No known button — tap center to advance the tap-to-continue screen.
+            logger_uma.debug("[race] No known buttons; tapping center to advance reaction screen.")
+            _, _, bw, bh = self.ctrl.capture_bbox()
+            self.ctrl.click(bw // 2, bh // 2, clicks=1)
+            time.sleep(0.4)
+        logger_uma.debug("[race] Reaction screen tap-through timed out; proceeding to NEXT awaits.")
+        return False
 
     def _attempt_try_again_retry(self) -> bool:
         """Click the 'TRY AGAIN' button once loss was confirmed."""
@@ -436,6 +518,53 @@ class RaceFlow:
             )
         return best_d
 
+    def _is_goal_race_only_screen(self) -> bool:
+        """
+        Detect a mandatory-goal-race state where there is nothing left to pick
+        via 'race_square' and the goal race just needs confirming:
+
+          1) The race LIST is shown with every non-goal card locked
+             ('You can only compete in the goal race.'), occluding the star
+             icons so _pick_race_square rejects every square (< MIN_STARS).
+          2) For a *planned/desired* race (RaceIndex-driven), the game can skip
+             the list entirely and open the 'Race Details ... Enter race?'
+             confirmation popup directly — so 'race_square' is never rendered
+             at all (squares stay 0 across every scroll attempt).
+
+        Either way the goal race is already selected; the caller only needs to
+        confirm with the green RACE button. Requires a green action button to
+        still be on screen so we never treat an arbitrary no-square screen as
+        raceable.
+        """
+        try:
+            img, dets = self._collect("race_goal_only_probe")
+            green = find(dets, "button_green")
+            det_names = sorted({str(d.get("name", "?")) for d in dets})
+            if not green:
+                logger_uma.debug(
+                    "[race-ocr] goal-only probe: no button_green on screen; dets=%s",
+                    det_names,
+                )
+                return False
+            text = (self.ocr.text(img) or "").lower()
+            matched = (
+                "only compete in the goal" in text
+                or fuzzy_contains(text, "compete in the goal race", threshold=0.8)
+                or fuzzy_contains(text, "enter race", threshold=0.8)
+                or ("race details" in text and "cancel" in text)
+            )
+            logger_uma.debug(
+                "[race-ocr] goal-only probe: matched=%s green=%d dets=%s | ocr='%s'",
+                matched,
+                len(green),
+                det_names,
+                text[:300],
+            )
+            return matched
+        except Exception:
+            logger_uma.debug("[race-ocr] goal-only probe failed", exc_info=True)
+            return False
+
     def _pick_race_square(
         self,
         *,
@@ -574,6 +703,15 @@ class RaceFlow:
             self._beat(1)
             game_img, dets = self._collect("race_pick")
             squares = find(dets, "race_square")
+            logger_uma.debug(
+                "[race-ocr] pick scroll=%d/%d: squares=%d stars=%d badges=%d desired=%s",
+                scroll_j,
+                max_scrolls,
+                len(squares),
+                len(find(dets, "race_star")),
+                len(find(dets, "race_badge")),
+                desired_race_name or "<none>",
+            )
             if squares:
                 squares.sort(key=lambda d: ((d["xyxy"][1] + d["xyxy"][3]) / 2.0))
                 if first_top_xyxy is None:
@@ -1162,6 +1300,15 @@ class RaceFlow:
                 loss_indicator_seen,
                 self._race_result_counters,
             )
+            # Some post-race flows (esp. the View-Results path) land on a
+            # tap-to-continue "uma reaction to placement" screen that shows
+            # neither NEXT button — the flow then stalls until a manual tap
+            # (observed ~2.5min hang). Nudge through it: click a lingering
+            # white button (View Results / CLOSE) if present, else tap center,
+            # and stop the instant a green NEXT is detected so the awaits below
+            # can click it. Bounded so it can never hang / never worse.
+            self._advance_past_reaction_screen()
+
             # After the race/UI flow → 'NEXT' / 'OK' / 'PROCEED'
             logger_uma.debug(
                 "[race] Looking for button_green 'Next' button. Shown after race."
@@ -1375,22 +1522,39 @@ class RaceFlow:
             date_key=date_key,
         )
         if square is None:
-            logger_uma.debug("race square not found")
-            self._last_failure_reason = RaceFailureReason.NO_RACE_SQUARE
-            return False
-        self._last_race_name = desired_race_name or square.get("race_name") or str(square.get("raw", ""))
+            # Goal-race-only turn: the game locks every non-goal card and
+            # pre-selects the goal race, whose lock popups occlude the star
+            # icons so no square passes the >= MIN_STARS gate. Nothing to pick —
+            # skip straight to confirming the pre-selected race with green RACE.
+            if self._is_goal_race_only_screen():
+                logger_uma.info(
+                    "[race] Goal-race-only screen; confirming pre-selected goal race."
+                )
+                need_click = False
+                self._last_race_name = desired_race_name or "goal race"
+            else:
+                logger_uma.debug("race square not found")
+                self._last_failure_reason = RaceFailureReason.NO_RACE_SQUARE
+                return False
+        else:
+            self._last_race_name = desired_race_name or square.get("race_name") or str(square.get("raw", ""))
 
-        # 2) Click the race square
-        if need_click:
+        # 2) Click the race square (skipped when the goal race is pre-selected)
+        if square is not None and need_click:
             self.ctrl.click_xyxy_center(square["xyxy"], clicks=1)
             time.sleep(0.2)
             logger_uma.info("[race] Clicked race square")
 
-        # 3) Click green 'RACE' on the list (prefer bottom-most; OCR 'RACE' if needed)
+        # 3) Click green 'RACE' on the list. require_text_match=True forces a real
+        # OCR check even when only one/bottom-most button_green candidate exists —
+        # otherwise a stray green button elsewhere on screen (e.g. a lobby
+        # quick-access affordance) gets clicked blindly, since the fast paths
+        # below don't consult `texts` at all (see Waiter.click_when docstring).
         if not self.waiter.click_when(
             classes=("button_green",),
             texts=("RACE",),
             prefer_bottom=True,
+            require_text_match=True,
             timeout_s=2,
             tag="race_list_race",
         ):
@@ -1402,6 +1566,8 @@ class RaceFlow:
         self._beat(1.2)
         # Reactive confirm of the popup (if/when it appears). Bail out if pre-race lobby is already visible.
         t0 = time.time()
+        popup_confirmed = False
+        popup_attempts = 0
         while (time.time() - t0) < 5.0:
             if abort_requested():
                 logger_uma.info("[race] Abort requested before popup confirm.")
@@ -1410,21 +1576,39 @@ class RaceFlow:
             if self.waiter.seen(
                 classes=("button_change",), tag="race_pre_lobby_seen_early"
             ):
+                popup_confirmed = True
                 break
+            popup_attempts += 1
             if self.waiter.click_when(
                 classes=("button_green",),
                 texts=("RACE",),
                 prefer_bottom=True,
+                require_text_match=True,
                 timeout_s=1,
                 tag="race_popup_confirm_try",
             ):
                 logger_uma.info("[race] Clicked green 'Race' button (popup) confirmation")
                 # Give a short beat for the transition; continue probing.
                 time.sleep(0.2)
+                popup_confirmed = True
                 break
             else:
-                logger_uma.warning("[race] couldn't find 'Race' button (popup) confirmation in this check.")
+                logger_uma.warning(
+                    "[race] couldn't find 'Race' button (popup) confirmation in this check (attempt=%d).",
+                    popup_attempts,
+                )
             time.sleep(0.1)
+
+        if not popup_confirmed:
+            logger_uma.warning(
+                "[race-ocr] popup confirm never resolved after %d attempt(s); dumping diagnostic frame.",
+                popup_attempts,
+            )
+            try:
+                diag_img, diag_dets = self._collect("race_popup_confirm_diag")
+                self._save_diag_debug(diag_img, diag_dets, "popup_confirm_unresolved")
+            except Exception:
+                logger_uma.debug("[race-ocr] diagnostic collect failed", exc_info=True)
 
         # 4) Wait until the pre-race lobby is actually on screen (key: 'button_change').
         # B1: no blind 7s pre-wait — a short settle beat then poll, so we proceed as

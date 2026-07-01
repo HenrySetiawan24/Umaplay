@@ -16,7 +16,8 @@ hands off to `RaceFlow.lobby()` for the race + result handling.
 run():
   _ensure_in_raceday()         # click RACES; confirm race_square visible (handles consecutive-race popup)
   _pick_race_square()          # pick the target/best race card (scroll up to max_scrolls)
-  click green RACE (list)      # + reactive popup confirm
+    └─ no square found? → _is_goal_race_only_screen() fallback (see below)
+  click green RACE (list)      # + reactive popup confirm — require_text_match=True (see below)
   wait for pre-race lobby      # poll for button_change (no blind sleep)
   set_strategy()               # optional, if select_style
   lobby():
@@ -26,8 +27,48 @@ run():
       → win check (_row1_is_win)                  # screen 2: result leaderboard
       → CLOSE (trophy)                            # screen 3, wins/G1 only
       → TRY AGAIN probe / retry                   # loss handling
+      → _advance_past_reaction_screen()           # tap through uma placement reaction
       → NEXT / NEXT                               # screen 4
 ```
+
+### Goal-race-only screen (`_is_goal_race_only_screen`)
+
+On a mandatory goal-race turn, `_pick_race_square` can legitimately find no
+clickable `race_square` in two different states, both meaning "nothing to
+pick, the goal race is already selected — just confirm it":
+
+1. **Race list, locked.** The game shows the race list with every non-goal
+   card locked (`'You can only compete in the goal race.'`), and those lock
+   popups occlude the star icons so every square fails the `>= MIN_STARS` gate.
+2. **Confirm popup, direct.** For a *planned/desired* race (`RaceIndex`-driven),
+   the game can skip the list screen entirely and open the `Race Details ...
+   Enter race?` confirmation popup directly — so `race_square` is never
+   rendered at all (`squares=0` across every scroll attempt).
+
+`_is_goal_race_only_screen` OCR-detects either case (gated on a `button_green`
+still being present) and `run()` skips straight to the green-RACE
+confirm step instead of failing with `NO_RACE_SQUARE`.
+
+> Debug: `[race-ocr]` tag. `_pick_race_square` logs
+> `squares=/stars=/badges=` per scroll pass; the goal-only probe logs
+> `matched=`, detected classes, and the OCR text read off the screen.
+
+### Popup-confirm click hardening (`require_text_match`)
+
+`Waiter.click_when`'s single-candidate and `prefer_bottom` fast paths click
+whatever lone/bottom-most `button_green` is on screen **without ever checking
+`texts`** — that verification only runs as a last resort when 2+ candidates
+exist and `prefer_bottom` didn't resolve one. A stray green button elsewhere
+on screen (e.g. a lobby quick-access affordance) could get clicked instead of
+the one actually labeled "RACE", silently — this caused an observed
+`pre_lobby_timeout` failure where the popup had likely already been dismissed
+and the bot then clicked a stray lobby button.
+
+The two race-confirmation calls (`race_list_race`, `race_popup_confirm_try`)
+now pass `require_text_match=True`, which forces a real OCR check against
+`texts` even through those fast paths. See `Waiter.click_when`'s docstring in
+[`core/utils/waiter.py`](../../../../core/utils/waiter.py) — the flag defaults
+to `False`, so no other caller's behavior changed.
 
 ### Post-skip screens
 
@@ -36,7 +77,37 @@ run():
 | 1 | **Skip** the race animation | greedy skip loop clicks `button_skip` (`random.randint(3,5)` per press; `skip_clicks > 2` floor before it may break on NEXT) |
 | 2 | **Result leaderboard** — placement emblem + race banner + rows + NEXT | win/loss via `_row1_is_win` (color sample, no OCR); debug saved to `debug/race/placement/*_win.png` / `*_loss.png` |
 | 3 | **Trophy** (wins, esp. G1) | `CLOSE` button (`tag="race_trophy"`); if the skip loop breaks here, `closed_early=True` and the win-check is skipped |
+| 3.5 | **Uma reaction to placement** (tap-to-continue, no button) | `_advance_past_reaction_screen()` — see below |
 | 4 | **NEXT** screens | `race_after_flow_next`, then `race_after_next` |
+
+### Post-race reaction gate (`_advance_past_reaction_screen`)
+
+Both the skip-loop and View-Results paths can land on a **tap-to-continue "uma
+reaction to placement" screen** that shows *neither* NEXT button. Previously the
+two after-race NEXT awaits (`race_after_flow_next` 4.6s, `race_after` 6s) both
+timed out on it and the flow "finished" while the reaction was still up — the
+agent's unknown-screen handler then stalled until a manual tap (a ~2.5-min hang
+was observed in the wild). Note the agent's own center-tap safety net is dead
+code (`if self.patience > 10 == 0:` in `ura`/`unity_cup` `agent.py`), so it never
+rescued this.
+
+Before the NEXT awaits, the bot now nudges through the reaction:
+
+- Poll, capped at `timeout_s` (8s). **Break** the instant a `button_green` /
+  `race_after_next` is present (class-presence only, **no OCR**) — the awaits
+  below then click the real NEXT.
+- Otherwise click a lingering **white button** (`VIEW RESULTS` / `CLOSE`) if one
+  is on screen, else **tap center** to advance the tap-to-continue frame.
+- Bounded → falls through to the prior NEXT awaits on timeout, so it can never
+  hang and is never worse than before.
+
+> **Validated in the wild (2026-07):** on a real Normal-race-day win via the
+> View-Results path, the reaction screen had *no* white button, so
+> `race_after_reaction_white` timed out and the **center-tap** cleared it in 3
+> nudges; NEXT appeared ~8s later (`NEXT visible; ending post-race reaction
+> tap-through`) and `race_after_flow_next` clicked it — replacing the prior
+> ~2.5-min stall. The center-tap fallback (not just the white-button click) is
+> what does the work here.
 
 ### Results-screen gate (`_wait_for_results_screen`)
 
@@ -134,6 +205,20 @@ N sequential per-square OCRs with one batch call; matching logic is byte-identic
 `_pick_view_results_button` OCRs all `button_white` candidates in one `batch_text`
 instead of one call each.
 
+### A4 — drop the double-OCR on the consecutive-race penalty popup
+
+`_ensure_in_raceday`'s post-`RACES` probe loop used to OCR the green OK button
+**twice** per hit — once in `seen(classes=("button_green",), texts=("OK",))` to
+gate the branch, then again in `click_when(..., texts=("OK",))` to click it — a
+~3s stall on the accept path (observed 2026-07: `21:55:41` detect → `21:55:44`
+click). In this window a `button_green` with **no** `race_square` present can only
+be the penalty popup (a loaded squares screen returns at the `race_square` check
+above), so the accept path now detects it **class-only (no OCR)** and clicks via
+`try_click_once(classes=("button_green",), prefer_bottom=True)`. OCR is kept only
+on the **refuse** branch (`ACCEPT_CONSECUTIVE_RACE` off), where it guards a hard
+stop and confirms the button truly reads `OK` before raising `ConsecutiveRaceRefused`.
+Net: the common accept path drops from two OCR passes to zero (~3s → ~YOLO-only).
+
 ---
 
 ## 3. Await reduction & configurability (Part B)
@@ -168,8 +253,10 @@ poll-bounded by `click_when`.
 - [x] A3 — batched View-Results button OCR
 - [x] B1 — removed blind pre-lobby `sleep(7)`
 - [x] B2 — `RACE_AWAIT_SCALE` + `_beat()` + "Race pacing" slider; entry-path waits scaled
+- [x] A4 — class-only accept of the consecutive-race penalty popup (drops double-OCR, ~3s → YOLO-only)
 - [x] B3 — skip TRY-AGAIN probe on confirmed wins
 - [x] Results gate — `_wait_for_results_screen` (YOLO-only) before win-check / NEXT
+- [x] Reaction gate — `_advance_past_reaction_screen` taps through the post-race uma placement reaction before the NEXT awaits (validated in the wild 2026-07: center-tap cleared it, NEXT in ~8s)
 
 **Notes / known trade-offs:**
 - Post-strategy beat is scaled via `_beat`, not polled (no clean ready-signal vs

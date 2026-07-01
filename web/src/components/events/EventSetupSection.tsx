@@ -657,14 +657,20 @@ export default function EventSetupSection({ index }: Props) {
 
   const openOptionsForScenario = () => {
     if (!scenario) return
+    // The scenario may have no matching entry in the events catalog (e.g. no
+    // scenario-type rows have been scraped yet). Still open the dialog so the
+    // energy toggle + reward-priority controls remain reachable; just show an
+    // empty event list in that case.
     const set = index.scenarios.find(s => s.name === scenario.name)
-    if (!set) return
-    const evs: ChoiceEvent[] = (((set as unknown as { events?: ChoiceEvent[]; choice_events?: ChoiceEvent[] }).events)
-      ?? ((set as unknown as { events?: ChoiceEvent[]; choice_events?: ChoiceEvent[] }).choice_events)
-      ?? [])
+    const setName = set?.name ?? scenario.name
+    const evs: ChoiceEvent[] = set
+      ? (((set as unknown as { events?: ChoiceEvent[]; choice_events?: ChoiceEvent[] }).events)
+        ?? ((set as unknown as { events?: ChoiceEvent[]; choice_events?: ChoiceEvent[] }).choice_events)
+        ?? [])
+      : []
     const items = evs.map((ev: any) => ({
-      key: `scenario/${set.name}/None/None/${ev.name}`,
-      keyStep: `scenario/${set.name}/None/None/${ev.name}#s${ev.chain_step ?? 1}`,
+      key: `scenario/${setName}/None/None/${ev.name}`,
+      keyStep: `scenario/${setName}/None/None/${ev.name}#s${ev.chain_step ?? 1}`,
       evType: ev.type,
       eventName: ev.name,
       chainStep: ev.chain_step ?? 1,
@@ -674,7 +680,7 @@ export default function EventSetupSection({ index }: Props) {
         const outcomes = Array.isArray(arr) ? arr : []
         let label = `Option ${k}`
 
-        if (set.name === 'Unity Cup' && ev.name === 'A Team at Last') {
+        if (setName === 'Unity Cup' && ev.name === 'A Team at Last') {
           const team = outcomes[0]?.team
           if (typeof team === 'string' && team.trim()) {
             label = team.trim()
@@ -691,7 +697,7 @@ export default function EventSetupSection({ index }: Props) {
     const currentToggle = scenario.avoidEnergyOverflow ?? true
     setOptionsFor({
       type: 'scenario',
-      title: `${set.name} — events`,
+      title: `${setName} — events`,
       items,
       energyToggle: currentToggle,
       onToggle: (checked) => {

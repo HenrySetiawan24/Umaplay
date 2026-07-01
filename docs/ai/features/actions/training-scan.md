@@ -47,7 +47,7 @@ Initial capture (YOLO, conf=0.60)
   └─ Visit remaining tiles in PRIORITY_STATS order
         │  For each tile: click → YOLO recapture → collect supports + failure%
         ├─ FAST_MODE + greedy hit? → return immediately
-        ├─ ≥4 total supports seen? → break (early exit)
+        ├─ ≥N meaningful supports seen AND top-3 priority tiles scanned? → break (early exit)
         └─ HIGH-FAILURE ABORT (same check as above, after 1st clicked tile)
 ```
 
@@ -76,8 +76,35 @@ Initial capture (YOLO, conf=0.60)
 | FAST_MODE low-energy | `FAST_MODE && energy ≤ 35` | 3-4 tile clicks |
 | FAST_MODE greedy | `FAST_MODE && greedy_hit` | Remaining tile clicks |
 | High-failure abort | `failure_pct > 20` on first tile | 3+ tile clicks |
-| Support count ≥4 | 4+ total supports across tiles | Variable |
+| Meaningful support count | `Settings.TRAINING_SCAN_EARLY_EXIT_SUPPORTS` reached, top-3 priority tiles already scanned | Variable |
 | All tiles scanned | Normal completion | None (worst case) |
+
+#### Meaningful-support early exit (`_is_meaningful_support`)
+
+Counts only supports that actually move `sv_total` — blue/green friendship bar,
+a hint, a rainbow, or an active spirit — not raw headcount. Deliberately not a
+plain card count: Unity Cup team rosters keep growing past the 6-card deck cap
+as new teammates join after every in-game Unity Cup race (15-20+ by late game),
+and most of them sit at low/no friendship with no spirit, contributing 0 SV. A
+raw-headcount threshold either gets swamped by that noise (too high to be
+useful) or quits before any real signal is seen (too low). Counting signal
+instead of headcount fixes this for any roster size, no scenario-specific
+roster-size ceiling needed.
+
+The exit also requires the top-3 `Settings.PRIORITY_STATS` tiles to have been
+scanned first, so a low-priority tile loaded with cards can't cut the scan
+short before the stats you actually care about are checked.
+
+Threshold is scenario-aware via `Settings.TRAINING_SCAN_EARLY_EXIT_SUPPORTS_BY_SCENARIO`:
+
+| Scenario | Threshold | Why |
+|----------|-----------|-----|
+| `ura` | 4 | ~6-card deck cap; a handful of meaningful sightings usually covers most of the deck (cards repeat across tiles) |
+| `unity_cup` | 6 | Same 6-card deck plus Unity's always-relevant cameo cast (Director, Etsuko, Kashimoto, PAL-Tazuna) |
+
+Resolved into `Settings.TRAINING_SCAN_EARLY_EXIT_SUPPORTS` whenever the active
+scenario changes (`Settings.apply_config`). Tune the per-scenario dict if logs
+still show `EARLY EXIT` firing before real signal has been sampled.
 
 ---
 
@@ -214,7 +241,7 @@ Goal: pick one action based on SV, energy, mood, race proximity, and special rul
 | `core/actions/ura/training_policy.py` | URA decision tree |
 | `core/actions/unity_cup/training_check.py` | Unity Cup SV scoring with spirit/flame mechanics |
 | `core/actions/unity_cup/training_policy.py` | Unity Cup decision tree |
-| `core/settings.py` | `MAX_FAILURE`, `PRIORITY_STATS`, `FAST_MODE` config |
+| `core/settings.py` | `MAX_FAILURE`, `PRIORITY_STATS`, `FAST_MODE`, `TRAINING_SCAN_EARLY_EXIT_SUPPORTS_BY_SCENARIO` config |
 | `core/constants.py` | `DEFAULT_TILE_TO_TYPE = {0:"SPD", 1:"STA", 2:"PWR", 3:"GUTS", 4:"WIT"}` |
 
 > **Note:** this doc covers the scan → compute → decide pipeline in detail.

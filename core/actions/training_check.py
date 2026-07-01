@@ -10,7 +10,7 @@ from PIL import Image
 
 from core.perception.yolo.interface import IDetector
 from core.settings import Settings
-from core.types import DetectionDict
+from core.types import BLUE_GREEN, DetectionDict
 from core.utils.geometry import calculate_jitter
 from core.utils.logger import logger_uma
 from core.utils.skill_memory import SkillMemoryManager
@@ -34,6 +34,27 @@ def get_compute_support_values():
     """Resolve the correct compute_support_values function based on active scenario."""
     compute_fn, _ = registry.resolve(Settings.ACTIVE_SCENARIO)
     return compute_fn
+
+
+def _is_meaningful_support(support: Dict) -> bool:
+    """
+    True if this support actually moves sv_total in compute_support_values —
+    i.e. it has a blue/green friendship bar, a hint, a rainbow, or an active
+    spirit (Unity Cup's white/blue spark). Orange/max/unknown-bar cards with
+    none of those contribute 0 SV and shouldn't count as "signal seen".
+
+    Needed because Unity Cup team rosters grow well past the 6-card deck cap
+    (teammates keep joining after each Unity Cup race), so a raw headcount of
+    every card on a tile is dominated by low-value teammates and no longer
+    reflects "have we sampled enough of the deck to decide".
+    """
+    bar_color = str((support.get("friendship_bar") or {}).get("color", "")).lower()
+    return bool(
+        bar_color in BLUE_GREEN
+        or support.get("has_rainbow")
+        or support.get("has_hint")
+        or support.get("has_spirit")
+    )
 
 def scan_training_screen(
     ctrl,
@@ -359,12 +380,32 @@ def scan_training_screen(
             except Exception as e:
                 logger_uma.error(f"Error while checking FAST_MODE greedy SV: {e}")
 
-        # -------- Early exit: stop once we've seen ≥4 supports --------
-        total_supports = sum(len(r.get("supports", [])) for r in results)
-        if total_supports >= 4:
+        # -------- Early exit: stop once we've seen enough MEANINGFUL supports --------
+        # Count only supports that actually move sv_total (blue/green bar, hint,
+        # rainbow, or an active spirit) — not raw headcount. Unity Cup team
+        # rosters keep growing past the 6-card deck cap (new teammates join
+        # after every Unity Cup race, 15-20+ by late game), so a raw-headcount
+        # threshold gets swamped by low-friendship teammates that contribute 0
+        # SV and never reflects "have we sampled enough to decide". Counting
+        # signal instead of headcount fixes this for both scenarios without
+        # having to guess a scenario-specific roster-size ceiling.
+        # Also require the top-priority tiles to have been scanned first, so a
+        # low-priority tile with a lot of cards can't cut the scan short before
+        # the stats the user actually cares about have been checked.
+        early_exit_min_supports = Settings.TRAINING_SCAN_EARLY_EXIT_SUPPORTS
+        priority_tiles = visit_order[: min(3, len(visit_order))]
+        scanned_priority_tiles = sum(1 for i in processed if i in priority_tiles)
+        total_supports = sum(
+            sum(1 for s in r.get("supports", []) if _is_meaningful_support(s))
+            for r in results
+        )
+        if (
+            total_supports >= early_exit_min_supports
+            and scanned_priority_tiles >= len(priority_tiles)
+        ):
             logger_uma.info(
-                "EARLY EXIT: %d supports seen across %d tiles, stopping scan",
-                total_supports, len(results)
+                "EARLY EXIT: %d meaningful supports seen across %d tiles (scenario=%s, threshold=%d), stopping scan",
+                total_supports, len(results), Settings.ACTIVE_SCENARIO, early_exit_min_supports,
             )
             break
 

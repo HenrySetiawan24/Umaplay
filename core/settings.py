@@ -226,6 +226,26 @@ class Settings:
     }
     WEAK_TURN_SV: float = WEAK_TURN_SV_BY_SCENARIO["ura"]
     RACE_PRECHECK_SV: float = RACE_PRECHECK_SV_BY_SCENARIO["ura"]
+
+    # Training-scan early exit: stop clicking remaining tiles once this many
+    # MEANINGFUL support sightings (blue/green bar, hint, rainbow, or active
+    # spirit — see _is_meaningful_support in training_check.py; summed across
+    # already-scanned tiles, so a card shown on 2 tiles counts twice) have
+    # accumulated. Deliberately NOT raw headcount: Unity Cup team rosters grow
+    # well past the 6-card deck cap as new teammates join after every Unity
+    # Cup race (15-20+ by late game per in-game observation), and most of them
+    # sit at low/no friendship with no spirit — counting them all would make
+    # the threshold either meaningless (if raised to cover the noise) or quit
+    # before real signal is seen (if left low). Unity's number is only
+    # slightly above URA's to cover its extra always-meaningful cameo cast
+    # (Director, Etsuko, Kashimoto, PAL-Tazuna) on top of the same 6-card deck.
+    TRAINING_SCAN_EARLY_EXIT_SUPPORTS_BY_SCENARIO: Dict[str, int] = {
+        "ura": 4,
+        "unity_cup": 6,
+    }
+    TRAINING_SCAN_EARLY_EXIT_SUPPORTS: int = (
+        TRAINING_SCAN_EARLY_EXIT_SUPPORTS_BY_SCENARIO["ura"]
+    )
     LOBBY_PRECHECK_ENABLE: bool = False
     JUNIOR_MINIMAL_MOOD: Optional[str] = None
     GOAL_RACE_FORCE_TURNS: int = 5
@@ -353,6 +373,12 @@ class Settings:
         )
         cls.RACE_PRECHECK_SV = cls.RACE_PRECHECK_SV_BY_SCENARIO.get(
             scenario_key, cls.RACE_PRECHECK_SV_BY_SCENARIO.get("ura", 2.5)
+        )
+        cls.TRAINING_SCAN_EARLY_EXIT_SUPPORTS = (
+            cls.TRAINING_SCAN_EARLY_EXIT_SUPPORTS_BY_SCENARIO.get(
+                scenario_key,
+                cls.TRAINING_SCAN_EARLY_EXIT_SUPPORTS_BY_SCENARIO.get("ura", 4),
+            )
         )
         cls.LOBBY_PRECHECK_ENABLE = False
         cls.JUNIOR_MINIMAL_MOOD = None

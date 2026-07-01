@@ -4,7 +4,7 @@ date: 2025-10-12T13:09:00-05:00
 version: 1.0.0
 owner: Not applicable
 applies_to: [core/utils/waiter.py, core/agent.py, core/actions/]
-last_validated: 2025-10-12
+last_validated: 2026-07-02
 related_prs: []
 related_docs: [docs/ai/SYSTEM_OVERVIEW.md]
 risk_level: medium
@@ -24,9 +24,16 @@ Document how the unified `Waiter` in `core/utils/waiter.py` orchestrates detecti
   - `imgsz`, `conf`, `iou`: YOLO inference parameters (defaults mirror `Settings.YOLO_*`).
   - `poll_interval_s`, `timeout_s`: Poll cadence and overall wait budget.
   - `tag`: Log tag forwarded to detector.
-- **Waiter.click_when()`** (`core/utils/waiter.py:67`)
+- **Waiter.click_when()`** (`core/utils/waiter.py:106`)
   - Required `classes` tuple; optional `texts`, `prefer_bottom`, `timeout_s`, `clicks`, `allow_greedy_click`.
   - `forbid_texts` + `forbid_threshold` prevent misclicks via OCR.
+  - **`require_text_match`** (default `False`): the single-candidate and
+    `prefer_bottom` fast paths click a lone/bottom-most candidate WITHOUT ever
+    checking `texts` — real OCR verification only happens as the last-resort
+    step when 2+ candidates exist and `prefer_bottom` found nothing
+    unforbidden. Set `True` when a wrong click would be costly (e.g.
+    confirmation popups) to force OCR verification even through those fast
+    paths, at the cost of an extra OCR call per poll.
 - **Waiter.seen()`** (`core/utils/waiter.py:168`)
   - Single snapshot probe with optional `texts` OCR.
 - **Waiter.try_click_once()`** (`core/utils/waiter.py:218`)
@@ -97,11 +104,12 @@ Document how the unified `Waiter` in `core/utils/waiter.py` orchestrates detecti
 # Observability
 - Monitor console or file logs emitted via `logger_uma` with tag `[waiter]` (timeouts, OCR rejections, forbidden matches).
 - Review YOLO capture artifacts under `debug/` if attacks are enabled to ensure bounding boxes align.
-- For persistent issues, enable additional logging in `core/utils/waiter.py` around `_pick_by_text()` to inspect OCR outputs.
+- `_pick_by_text()` logs every OCR candidate it inspects (`[waiter] OCR candidate ... text=...`) — always on, no need to add logging manually. When `classes` finds zero candidates in a poll, `click_when` logs `[waiter] no candidates for classes=... seen=[...]` with every detected class+confidence in that frame, so you can tell "target class never appeared" apart from "appeared but text didn't match".
 
 # Failure Modes & Recovery
-- **Symptom:** Waiter times out (`[waiter] timeout` log). → **Cause:** Detection class missing or blocked by forbid rule. → **Resolution:** Adjust `classes`, relax `forbid_texts`, or increase `timeout_s`.
-- **Symptom:** Wrong button clicked. → **Cause:** OCR threshold too low or `allow_greedy_click` True on ambiguous detections. → **Resolution:** Set `allow_greedy_click=False`, provide `texts` constraints, or raise `threshold`.
+- **Symptom:** Waiter times out (`[waiter] timeout` log). → **Cause:** Detection class missing or blocked by forbid rule. → **Resolution:** Adjust `classes`, relax `forbid_texts`, or increase `timeout_s`. Check the `[waiter] no candidates ...` log line for what was actually on screen.
+- **Symptom:** Wrong button clicked (a `button_green`/etc. got tapped but it wasn't the intended one, no OCR-miss log preceded it). → **Cause:** The single-candidate or `prefer_bottom` fast path fired — with `texts` given but `require_text_match` left `False` (default), those paths click by count/geometry alone and never consult `texts`. → **Resolution:** Pass `require_text_match=True` for high-stakes confirmations, or narrow `classes` if the same class is reused for unrelated buttons on screen.
+- **Symptom:** Wrong button clicked due to ambiguous OCR. → **Cause:** OCR threshold too low or `allow_greedy_click` True on ambiguous detections. → **Resolution:** Set `allow_greedy_click=False`, provide `texts` constraints, or raise `threshold`.
 - **Symptom:** Loop stalls on popup with overlapping options. → **Cause:** `prefer_bottom` not set when vertical choices overlap. → **Resolution:** Enable `prefer_bottom=True` or add `texts` disambiguation.
 
 # Security & Compliance

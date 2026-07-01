@@ -1,11 +1,15 @@
 # Daily Legend Race Flow
 
-**Planned class:** `DailyLegendRaceFlow` — [`core/actions/daily_race.py`](../../../../core/actions/daily_race.py)
-**Entry point:** Daily Races lobby → right card (Daily Legend Races)
+**Class:** `DailyLegendRaceFlow` — [`core/actions/daily_race.py`](../../../../core/actions/daily_race.py)
+**Constructed in:** [`core/agent_nav.py`](../../../../core/agent_nav.py) (`self.daily_legend = DailyLegendRaceFlow(...)`)
+**Entry point:** Daily Races lobby → right module (Daily Legend Races)
 
-> **Not yet implemented.** This doc specifies the 10-screen flow for automation
-> reference. `DailyRaceFlow` (left/coins card) is already implemented; this flow
-> covers the right card.
+> **Auto-chained, opt-in.** After a daily-race run finalizes under the
+> `daily_races` nav trigger, `agent_nav` calls `DailyLegendRaceFlow.run()` **only
+> when** the `daily_legend.enabled` nav-pref is on (default OFF). The legend flow's
+> `enter_from_menu()` is robust to wherever the daily-race run left off (home /
+> stale results / monies-SP sub-page), so it re-navigates to the legend module on
+> its own.
 
 Daily Legend Races pit a fixed legend Umamusume opponent against your team.
 One ticket per run; tickets reset on a timer (typically 23 h). Rewards include
@@ -101,31 +105,40 @@ the lobby card click.
 
 ---
 
-## Planned flow (pseudocode)
+## Flow (actual methods)
 
 ```python
-enter_from_menu()
-    # click race_daily_races → lobby
-    # click right card (race_daily_legend_races or equivalent YOLO class)
-
-pick_legend_opponent()
-    # detect legend character cards
-    # click preferred slot (configurable, default: first/topmost)
-
-confirm_and_start()
-    # screen 3: may auto-advance or require a tap/Next
-    # screen 4: click_when(button_green, texts=("RACE!",), forbid=("CANCEL",))
-    # screen 5: click Next (button_green) through entrants list
-    # screen 6: click Race! (button_green) on item dialog (skip items)
-    # screen 7: click Race (button_green) — NOT View Results
-
-run_and_collect()
-    # wait for race animation
-    # screen 8: tap placement reaction
-    # screen 9: click Next on result
-    # screen 10: click Next on rewards
-    # return to lobby → detect "Resets in Xh" → done
+run()                          # orchestrator; short-circuits to False on any miss
+  enter_from_menu()            # bounded loop (≤6): reach 2-module lobby, OCR-click
+                               #   "DAILY LEGEND RACES"; backs out of monies/SP page
+                               #   or opens ui_race from home as needed
+  pick_opponent()              # OCR-match Settings.get_daily_legend_opponent() in the
+                               #   grid band; fallback = topmost-leftmost text card
+  confirm_and_start()
+    # selected-legend : button_green (forbid BACK/CANCEL); fallback ui_race
+    # confirm         : button_green texts=("RACE!",) forbid=("CANCEL",)
+    #                   on no-ticket popup → button_white CANCEL → ui_home → False
+    # entrants        : button_green (Next, forbid BACK)
+    # item dialog     : button_green texts=("RACE!",) forbid=("CANCEL",)
+    # strategy        : button_green texts=("RACE",) forbid=("VIEW RESULTS","BACK")
+  run_and_collect()
+    # race animation  : blind sleep (+ emulator extra)
+    # placement       : nav.random_center_tap ×2 rounds (+ defensive button_advance)
+    # result          : button_green (Next, forbid PLACING)
+    # rewards         : button_green (Next)
+    # back to lobby   : detect race_daily_races / "DAILY LEGEND" / "RESETS IN" → done
 ```
+
+### Configuration (nav-prefs)
+
+`Settings.NAV_PREFS["daily_legend"]` (see [`core/settings.py`](../../../../core/settings.py)):
+
+| Key | Default | Meaning |
+|-----|---------|---------|
+| `enabled` | `False` | Opt-in toggle; when on, the legend race runs after each daily-race completion. |
+| `preferred_opponent` | `""` | Legend name OCR-matched on the grid; empty → topmost-leftmost card. |
+
+Getters: `Settings.get_daily_legend_enabled()`, `Settings.get_daily_legend_opponent()`.
 
 ---
 
@@ -143,16 +156,24 @@ run_and_collect()
 
 ---
 
-## YOLO classes to verify
+## Detection: YOLO + OCR
 
-These are inferred — confirm against the YOLO label list before implementing:
+The `uma_nav.pt` model has **no class for the legend module card or the opponent
+grid** (verified against the model's label list). Those two screens are located via
+**OCR text boxes** (`ocr.raw(img)` → `_text_boxes` / `_click_text` in the flow).
+Everything else reuses generic button classes that already exist.
 
-| Class | Expected screen |
-|-------|-----------------|
-| `race_daily_legend_races` | Right card on Daily Races lobby |
-| `race_daily_legend_opponent` | Individual legend character cards in grid |
-| `button_green` | Race! / Next / Race buttons throughout |
-| `button_white` / `button_grey` | Back / Cancel / Placing buttons |
+| Screen | How it's clicked |
+|--------|------------------|
+| Daily Legend module (2-module lobby) | OCR text "DAILY LEGEND RACES" (`_click_text`) |
+| Legend opponent grid | OCR-match preferred name, else topmost-leftmost text box |
+| selected-legend / confirm / entrants / item / strategy | `button_green` (text/forbid-gated) |
+| no-ticket popup | `button_white` "CANCEL" → `ui_home` |
+| placement reaction | center taps (`nav.random_center_tap`) + `button_advance` |
+| result / rewards | `button_green` (Next) |
+
+> Future hardening: retrain `uma_nav.pt` with dedicated `race_daily_legend` +
+> opponent classes to replace the OCR-anchored clicks on the two legend-only screens.
 
 ---
 

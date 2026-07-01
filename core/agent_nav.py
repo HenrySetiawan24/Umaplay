@@ -8,7 +8,7 @@ from typing import Dict, List, Tuple
 
 from PIL import Image
 
-from core.actions.daily_race import DailyRaceFlow
+from core.actions.daily_race import DailyLegendRaceFlow, DailyRaceFlow
 from core.actions.roulette import RouletteFlow
 from core.actions.team_trials import TeamTrialsFlow
 from core.controllers.base import IController
@@ -73,6 +73,7 @@ class AgentNav:
         # flows
         self.team_trials = TeamTrialsFlow(ctrl, ocr, yolo_engine, self.waiter)
         self.daily_race = DailyRaceFlow(ctrl, ocr, yolo_engine, self.waiter)
+        self.daily_legend = DailyLegendRaceFlow(ctrl, ocr, yolo_engine, self.waiter)
         self.roulette = RouletteFlow(
             ctrl,
             ocr,
@@ -214,6 +215,20 @@ class AgentNav:
 
         return "UnknownNav", {"counts": dict(counts)}
 
+    def _maybe_run_daily_legend(self) -> None:
+        """Chain a Daily Legend race after a finished daily-race run (opt-in)."""
+        try:
+            if not Settings.get_daily_legend_enabled():
+                return
+        except Exception:
+            return
+        logger_uma.info("[AgentNav] Daily Legend enabled; chaining legend race")
+        try:
+            ok = self.daily_legend.run()
+            logger_uma.info("[AgentNav] Daily Legend run finished (ok=%s)", ok)
+        except Exception as e:  # keep nav loop alive on any legend failure
+            logger_uma.warning("[AgentNav] Daily Legend run errored: %s", e)
+
     # --------------------------
     # Main
     # --------------------------
@@ -253,6 +268,7 @@ class AgentNav:
                         finalized = self.daily_race.run_race_and_collect()
 
                         if finalized:
+                            self._maybe_run_daily_legend()
                             self.is_running = False
                             counter = 0
                     else:
@@ -289,6 +305,7 @@ class AgentNav:
                 finalized = self.daily_race.run_race_and_collect()
 
                 if finalized:
+                    self._maybe_run_daily_legend()
                     self.is_running = False
                     counter = 0
 

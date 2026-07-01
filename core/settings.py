@@ -52,6 +52,10 @@ _DEFAULT_NAV_PREFS: Dict[str, Dict[str, Any]] = {
     "team_trials": {
         "preferred_banner": 2,
     },
+    "daily_legend": {
+        "enabled": False,
+        "preferred_opponent": "",
+    },
 }
 
 
@@ -254,6 +258,7 @@ class Settings:
     NAV_PREFS: Dict[str, Dict[str, Any]] = {
         "shop": dict(_DEFAULT_NAV_PREFS["shop"]),
         "team_trials": dict(_DEFAULT_NAV_PREFS["team_trials"]),
+        "daily_legend": dict(_DEFAULT_NAV_PREFS["daily_legend"]),
     }
 
     UNITY_CUP_ADVANCED: Dict[str, Any] = {
@@ -611,11 +616,14 @@ class Settings:
         nav = nav if isinstance(nav, dict) else {}
         shop = nav.get("shop") if isinstance(nav, dict) else None
         team = nav.get("team_trials") if isinstance(nav, dict) else None
+        legend = nav.get("daily_legend") if isinstance(nav, dict) else None
 
         if not isinstance(shop, dict):
             shop = dict(_DEFAULT_NAV_PREFS["shop"])
         if not isinstance(team, dict):
             team = dict(_DEFAULT_NAV_PREFS["team_trials"])
+        if not isinstance(legend, dict):
+            legend = dict(_DEFAULT_NAV_PREFS["daily_legend"])
 
         normalized_shop = {
             "alarm_clock": bool(shop.get("alarm_clock", True)),
@@ -629,9 +637,15 @@ class Settings:
             preferred_banner = 2
         preferred_banner = max(1, min(3, preferred_banner))
 
+        normalized_legend = {
+            "enabled": bool(legend.get("enabled", False)),
+            "preferred_opponent": str(legend.get("preferred_opponent", "") or "").strip(),
+        }
+
         cls.NAV_PREFS = {
             "shop": normalized_shop,
             "team_trials": {"preferred_banner": preferred_banner},
+            "daily_legend": normalized_legend,
         }
 
     @classmethod
@@ -662,6 +676,16 @@ class Settings:
         except Exception:
             preferred = _DEFAULT_NAV_PREFS["team_trials"]["preferred_banner"]
         return max(1, min(3, preferred))
+
+    @classmethod
+    def get_daily_legend_enabled(cls) -> bool:
+        legend = cls.NAV_PREFS.get("daily_legend") or {}
+        return bool(legend.get("enabled", False))
+
+    @classmethod
+    def get_daily_legend_opponent(cls) -> str:
+        legend = cls.NAV_PREFS.get("daily_legend") or {}
+        return str(legend.get("preferred_opponent", "") or "").strip()
 
     @classmethod
     def normalize_scenario(cls, scenario: str | None) -> str:

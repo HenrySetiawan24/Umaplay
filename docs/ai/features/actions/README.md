@@ -13,7 +13,7 @@ Per-screen automation classes under [`core/actions/`](../../../../core/actions/)
 | [skills-flow.md](skills-flow.md) | `SkillsFlow` | `skills.py` | Skill shop buying loop |
 | [event-flow.md](event-flow.md) | `EventFlow` | `events.py` | Event choice popups |
 | [daily-race-flow.md](daily-race-flow.md) | `DailyRaceFlow` | `daily_race.py` | Daily (coins/SP) races outside career |
-| [daily-legend-race-flow.md](daily-legend-race-flow.md) | `DailyLegendRaceFlow` *(planned)* | `daily_race.py` | Daily Legend Races — pick opponent, 1 race per ticket |
+| [daily-legend-race-flow.md](daily-legend-race-flow.md) | `DailyLegendRaceFlow` | `daily_race.py` | Daily Legend Races — pick opponent, 1 race per ticket (opt-in, chains after daily race) |
 | [training-scan.md](training-scan.md) | *(functions)* | `training_check.py` | Training tile scan → per-tile SV scoring |
 | [training-policy.md](training-policy.md) | *(functions)* | `training_policy.py` | Orchestrates scan→score→decide; `TrainingDecision` |
 | [team-trials-flow.md](team-trials-flow.md) | `TeamTrialsFlow` | `team_trials.py` | Weekly Team Trials race mode (non-career) |
@@ -35,8 +35,8 @@ LobbyFlow.process_turn()               ← every career turn
   ├─ EventFlow        → event-flow.md          (on event popups)
   └─ SkillsFlow.buy   → skills-flow.md         (when SP gate clears)
 
-agent_nav → DailyRaceFlow        → daily-race-flow.md         (coins/SP, implemented)
-agent_nav → DailyLegendRaceFlow  → daily-legend-race-flow.md  (legend, planned)
+agent_nav → DailyRaceFlow        → daily-race-flow.md         (coins/SP)
+   └─ if daily_legend.enabled → DailyLegendRaceFlow → daily-legend-race-flow.md  (chains after)
 agent_nav → TeamTrialsFlow       → team-trials-flow.md        (weekly trials)
 ```
 

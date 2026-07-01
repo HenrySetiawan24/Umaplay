@@ -18,6 +18,7 @@ This fork adds experimental support for AMD GPUs using **ROCm** on Windows. This
 ## Prerequisites
 
 1.  **AMD GPU**: A modern AMD Radeon GPU (e.g., RX 6000/7000/9000 series).
+    *   **Note for RX 7900 GRE Users**: While not explicitly listed in the ROCm 7.2 release notes, it is supported by ROCm 6.0+. If it doesn't work out-of-the-box, try setting the environment variable `HSA_OVERRIDE_GFX_VERSION=11.0.0` (matching the 7900 series architecture).
 2.  **OS**: Windows 10/11.
 3.  **Drivers**: **AMD Software: Adrenalin Edition 26.1.1** (or newer).
     *   *Note*: This specific driver is required for ROCm 7.2 support on Windows.
@@ -66,6 +67,32 @@ Install the rest of the bot's requirements (like PaddleOCR for CPU) using the AM
 ```bash
 pip install -r requirements-amd.txt
 ```
+
+---
+
+### Alternative Installation (Older ROCm 6.2 / Python 3.10)
+
+If you are unable to use the ROCm 7.2 / Python 3.12 setup above, an older approach using ROCm 6.2 and Python 3.10 is also available:
+
+```bash
+conda create -n uma_amd python=3.10 -y
+conda activate uma_amd
+```
+
+Install PyTorch from the nightly ROCm 6.2 index:
+
+```bash
+pip install --pre torch torchvision --index-url https://download.pytorch.org/whl/nightly/rocm6.2
+```
+
+For PaddlePaddle (OCR), install the standard CPU version — YOLO (the heavy workload) will still run on your AMD GPU:
+
+```bash
+pip install paddlepaddle paddleocr
+pip install -r requirements.txt
+```
+
+> **Note**: The alternative route uses an older Python (3.10) and an older ROCm version (6.2). You may miss some fixes and optimizations from the 7.2 setup. The newer ROCm 7.2 guide above is the recommended path.
 
 ---
 

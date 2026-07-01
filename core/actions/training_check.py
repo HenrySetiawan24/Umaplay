@@ -3,14 +3,14 @@ from __future__ import annotations
 
 import time
 from typing import Dict, List, Optional, Tuple, Union
-import random
 
+import cv2
 import numpy as np
 from PIL import Image
 
 from core.perception.yolo.interface import IDetector
 from core.settings import Settings
-from core.types import DetectionDict
+from core.types import BLUE_GREEN, DetectionDict
 from core.utils.geometry import calculate_jitter
 from core.utils.logger import logger_uma
 from core.utils.skill_memory import SkillMemoryManager
@@ -23,7 +23,9 @@ from core.utils.training_check_helpers import (
     raised_training_ltr_index,
     collect_supports_enriched,
     failure_pct,
-    reindex_left_to_right
+    reindex_left_to_right,
+    save_recognition_fail_debug,
+    wait_until_settled,
 )
 from core.constants import DEFAULT_TILE_TO_TYPE
 from core.scenarios.registry import registry
@@ -32,6 +34,27 @@ def get_compute_support_values():
     """Resolve the correct compute_support_values function based on active scenario."""
     compute_fn, _ = registry.resolve(Settings.ACTIVE_SCENARIO)
     return compute_fn
+
+
+def _is_meaningful_support(support: Dict) -> bool:
+    """
+    True if this support actually moves sv_total in compute_support_values —
+    i.e. it has a blue/green friendship bar, a hint, a rainbow, or an active
+    spirit (Unity Cup's white/blue spark). Orange/max/unknown-bar cards with
+    none of those contribute 0 SV and shouldn't count as "signal seen".
+
+    Needed because Unity Cup team rosters grow well past the 6-card deck cap
+    (teammates keep joining after each Unity Cup race), so a raw headcount of
+    every card on a tile is dominated by low-value teammates and no longer
+    reflects "have we sampled enough of the deck to decide".
+    """
+    bar_color = str((support.get("friendship_bar") or {}).get("color", "")).lower()
+    return bool(
+        bar_color in BLUE_GREEN
+        or support.get("has_rainbow")
+        or support.get("has_hint")
+        or support.get("has_spirit")
+    )
 
 def scan_training_screen(
     ctrl,
@@ -57,12 +80,10 @@ def scan_training_screen(
     param_conf = 0.60  # lower than 0.8 so we don't miss support cards
     param_iou = 0.45
 
-    def _jitter_delay():
-        if pause_after_click_range and len(pause_after_click_range) >= 2:
-            a, b = float(pause_after_click_range[0]), float(pause_after_click_range[1])
-            lo, hi = (a, b) if a <= b else (b, a)
-            return max(0.0, random.uniform(lo, hi))
-        return 0.6
+    def _to_bgr(img):
+        # Single RGB->BGR conversion per capture, shared by collect_supports_enriched
+        # and failure_pct so we don't convert the same full frame twice per tile.
+        return cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
 
     # -------- 1) Initial capture, wait for button training animations --------
     time.sleep(0.3)
@@ -80,9 +101,19 @@ def scan_training_screen(
         )
 
         btns = get_buttons_ltr(cur_parsed)
+        if btns and len(btns) != 5:
+            logger_uma.warning(
+                "Training buttons incomplete after retry: got %d, expected 5", len(btns)
+            )
+            save_recognition_fail_debug(
+                cur_img, tag="training", reason=f"buttons_{len(btns)}"
+            )
     if not btns:
         logger_uma.warning("No training buttons detected.")
+        save_recognition_fail_debug(cur_img, tag="training", reason="no_buttons")
         return [], cur_img, cur_parsed
+
+    cur_bgr = _to_bgr(cur_img)
 
     # Fixed LTR scaffold
     scan = [
@@ -116,14 +147,17 @@ def scan_training_screen(
         for tag_kind, idx in wanted:
             tile = scan[idx]
             if tag_kind == "raised":
-                supps, any_rainbow = collect_supports_enriched(cur_img, cur_parsed)
+                supps, any_rainbow = collect_supports_enriched(
+                    cur_img, cur_parsed, frame_bgr=cur_bgr
+                )
                 results.append(
                     {
                         **tile,
                         "supports": supps,
                         "has_any_rainbow": any_rainbow,
                         "failure_pct": failure_pct(
-                            cur_img, cur_parsed, tile["tile_xyxy"], energy, ocr
+                            cur_img, cur_parsed, tile["tile_xyxy"], energy, ocr,
+                            frame_bgr=cur_bgr,
                         ),
                         "skipped_click": True,
                     }
@@ -135,10 +169,11 @@ def scan_training_screen(
                     clicks=1,
                     jitter=calculate_jitter(tile["tile_xyxy"], percentage_offset=0.20),
                 )
-                time.sleep(_jitter_delay())
+                wait_until_settled(ctrl)
                 cur_img, _, cur_parsed = yolo_engine.recognize(
                     imgsz=param_imgsz, conf=param_conf, iou=param_iou, tag="training"
                 )
+                cur_bgr = _to_bgr(cur_img)
                 # Refresh LTR geometry
                 btns_now = [d for d in cur_parsed if d["name"] == "training_button"]
                 btns_now.sort(key=lambda d: _center_x(d["xyxy"]))
@@ -154,14 +189,17 @@ def scan_training_screen(
                     else idx
                 )
                 eff_tile = scan[eff_idx]
-                supps, any_rainbow = collect_supports_enriched(cur_img, cur_parsed)
+                supps, any_rainbow = collect_supports_enriched(
+                    cur_img, cur_parsed, frame_bgr=cur_bgr
+                )
                 results.append(
                     {
                         **eff_tile,
                         "supports": supps,
                         "has_any_rainbow": any_rainbow,
                         "failure_pct": failure_pct(
-                            cur_img, cur_parsed, eff_tile["tile_xyxy"], energy, ocr
+                            cur_img, cur_parsed, eff_tile["tile_xyxy"], energy, ocr,
+                            frame_bgr=cur_bgr,
                         ),
                         "skipped_click": False,
                     }
@@ -178,12 +216,16 @@ def scan_training_screen(
     ridx = raised_training_ltr_index(cur_parsed)
     if ridx is not None and 0 <= ridx < len(scan):
         tile = scan[ridx]
-        supps, any_rainbow = collect_supports_enriched(cur_img, cur_parsed)
+        supps, any_rainbow = collect_supports_enriched(
+            cur_img, cur_parsed, frame_bgr=cur_bgr
+        )
         tile_record = {
             **tile,
             "supports": supps,
             "has_any_rainbow": any_rainbow,
-            "failure_pct": failure_pct(cur_img, cur_parsed, tile["tile_xyxy"], energy, ocr),
+            "failure_pct": failure_pct(
+                cur_img, cur_parsed, tile["tile_xyxy"], energy, ocr, frame_bgr=cur_bgr
+            ),
             "skipped_click": True,  # we did not click for the already-raised tile
         }
         results.append(tile_record)
@@ -254,11 +296,12 @@ def scan_training_screen(
             jitter=calculate_jitter(tile["tile_xyxy"], percentage_offset=0.20),
         )
 
-        time.sleep(_jitter_delay())
+        wait_until_settled(ctrl)
 
         cur_img, _, cur_parsed = yolo_engine.recognize(
             imgsz=param_imgsz, conf=param_conf, iou=param_iou, tag="training"
         )
+        cur_bgr = _to_bgr(cur_img)
 
         btns_now = get_buttons_ltr(cur_parsed)
         if len(btns_now) == len(scan):
@@ -276,13 +319,17 @@ def scan_training_screen(
         eff_idx = ridx if (ridx is not None and 0 <= ridx < len(scan)) else idx
         eff_tile = scan[eff_idx]
 
-        supps, any_rainbow = collect_supports_enriched(cur_img, cur_parsed)
+        supps, any_rainbow = collect_supports_enriched(
+            cur_img, cur_parsed, frame_bgr=cur_bgr
+        )
 
         tile_record = {
             **eff_tile,
             "supports": supps,
             "has_any_rainbow": any_rainbow,
-            "failure_pct": failure_pct(cur_img, cur_parsed, eff_tile["tile_xyxy"], energy, ocr),
+            "failure_pct": failure_pct(
+                cur_img, cur_parsed, eff_tile["tile_xyxy"], energy, ocr, frame_bgr=cur_bgr
+            ),
             "skipped_click": False,
         }
         results.append(tile_record)
@@ -333,12 +380,32 @@ def scan_training_screen(
             except Exception as e:
                 logger_uma.error(f"Error while checking FAST_MODE greedy SV: {e}")
 
-        # -------- Early exit: stop once we've seen ≥4 supports --------
-        total_supports = sum(len(r.get("supports", [])) for r in results)
-        if total_supports >= 4:
+        # -------- Early exit: stop once we've seen enough MEANINGFUL supports --------
+        # Count only supports that actually move sv_total (blue/green bar, hint,
+        # rainbow, or an active spirit) — not raw headcount. Unity Cup team
+        # rosters keep growing past the 6-card deck cap (new teammates join
+        # after every Unity Cup race, 15-20+ by late game), so a raw-headcount
+        # threshold gets swamped by low-friendship teammates that contribute 0
+        # SV and never reflects "have we sampled enough to decide". Counting
+        # signal instead of headcount fixes this for both scenarios without
+        # having to guess a scenario-specific roster-size ceiling.
+        # Also require the top-priority tiles to have been scanned first, so a
+        # low-priority tile with a lot of cards can't cut the scan short before
+        # the stats the user actually cares about have been checked.
+        early_exit_min_supports = Settings.TRAINING_SCAN_EARLY_EXIT_SUPPORTS
+        priority_tiles = visit_order[: min(3, len(visit_order))]
+        scanned_priority_tiles = sum(1 for i in processed if i in priority_tiles)
+        total_supports = sum(
+            sum(1 for s in r.get("supports", []) if _is_meaningful_support(s))
+            for r in results
+        )
+        if (
+            total_supports >= early_exit_min_supports
+            and scanned_priority_tiles >= len(priority_tiles)
+        ):
             logger_uma.info(
-                "EARLY EXIT: %d supports seen across %d tiles, stopping scan",
-                total_supports, len(results)
+                "EARLY EXIT: %d meaningful supports seen across %d tiles (scenario=%s, threshold=%d), stopping scan",
+                total_supports, len(results), Settings.ACTIVE_SCENARIO, early_exit_min_supports,
             )
             break
 

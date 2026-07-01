@@ -1,10 +1,12 @@
 # core/utils/logger.py
 from __future__ import annotations
+import collections
 import logging
 import sys
 import os
+import threading
 from datetime import datetime
-from typing import Optional
+from typing import Any, Dict, List, Optional
 
 # ---------- single global logger ----------
 logger_uma = logging.getLogger("uma")
@@ -14,6 +16,47 @@ logger_uma.propagate = False  # don't bubble to root
 _console: Optional[logging.Handler] = None
 _file_handler: Optional[logging.Handler] = None
 _file_handler_ts: Optional[logging.Handler] = None  # timestamped file handler
+
+
+class _RingBufferHandler(logging.Handler):
+    """Keeps the most recent log records in memory so the web UI can poll them
+    (works headless, no file tailing). Each entry carries a monotonic seq so the
+    client can fetch only what's new."""
+
+    def __init__(self, capacity: int = 2000) -> None:
+        super().__init__()
+        self._buf: "collections.deque[Dict[str, Any]]" = collections.deque(maxlen=capacity)
+        self._seq = 0
+        self._lock = threading.Lock()
+
+    def emit(self, record: logging.LogRecord) -> None:
+        try:
+            text = self.format(record)
+        except Exception:
+            return
+        with self._lock:
+            self._seq += 1
+            self._buf.append(
+                {"seq": self._seq, "level": record.levelname, "text": text}
+            )
+
+    def get_since(self, after_seq: int = 0, limit: int = 1000) -> Dict[str, Any]:
+        with self._lock:
+            items: List[Dict[str, Any]] = [e for e in self._buf if e["seq"] > after_seq]
+            last = self._buf[-1]["seq"] if self._buf else 0
+        if limit and len(items) > limit:
+            items = items[-limit:]
+        return {"entries": items, "last_seq": last}
+
+
+_ring: _RingBufferHandler = _RingBufferHandler()
+_ring.setLevel(logging.DEBUG)
+_ring.setFormatter(logging.Formatter("%(asctime)s %(filename)s:%(lineno)d %(message)s", "%H:%M:%S"))
+
+
+def get_recent_logs(after_seq: int = 0, limit: int = 1000) -> Dict[str, Any]:
+    """Return ring-buffer log entries with seq > after_seq (for the web Logs tab)."""
+    return _ring.get_since(after_seq=after_seq, limit=limit)
 
 
 def _has_console_handler(logger: logging.Logger) -> bool:
@@ -65,6 +108,10 @@ def setup_uma_logging(
     )
     _console.setFormatter(logging.Formatter(console_fmt, "%H:%M:%S"))
     logger_uma.addHandler(_console)
+
+    # ---- In-memory ring buffer for the web Logs tab (attach once) ----
+    if _ring not in logger_uma.handlers:
+        logger_uma.addHandler(_ring)
 
     # ---- Levels ----
     if debug:

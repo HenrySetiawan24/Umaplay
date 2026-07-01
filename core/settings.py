@@ -52,6 +52,10 @@ _DEFAULT_NAV_PREFS: Dict[str, Dict[str, Any]] = {
     "team_trials": {
         "preferred_banner": 2,
     },
+    "daily_legend": {
+        "enabled": False,
+        "preferred_opponent": "",
+    },
 }
 
 
@@ -74,6 +78,25 @@ class Settings:
     UNDERTRAIN_THRESHOLD: float = _env_float("UNDERTRAIN_THRESHOLD", default=6.0)
     # Number of top stats to focus on for undertraining
     TOP_STATS_FOCUS: int = _env_int("TOP_STATS_FOCUS", default=3)
+    # Max time (ms) to wait for the training animation to settle after clicking a
+    # tile before scanning. The scan polls and exits early once the frame is stable.
+    TRAINING_SETTLE_TIMEOUT_MS: int = _env_int("TRAINING_SETTLE_TIMEOUT_MS", default=400)
+    # Mean per-pixel frame diff (0-255) below which the screen counts as "settled".
+    # Higher = less sensitive (settles sooner); lower = stricter (waits longer).
+    TRAINING_SETTLE_DIFF_THRESHOLD: float = _env_float(
+        "TRAINING_SETTLE_DIFF_THRESHOLD", default=2.0
+    )
+    # Multiplier on the race-flow animation grace waits. 1.0 = current pacing;
+    # <1 speeds up (fast devices/emulators), >1 slows down (slow phones).
+    RACE_AWAIT_SCALE: float = _env_float("RACE_AWAIT_SCALE", default=1.0)
+    # Seconds to wait after clicking a training tile before the agent resumes and
+    # processes the next turn. The in-game training animation plays during this
+    # time; lower is faster, too low risks capturing mid-animation.
+    TRAINING_POST_CLICK_PAUSE: float = _env_float("TRAINING_POST_CLICK_PAUSE", default=3.0)
+    # Skills shop: max scroll passes per buy session.
+    SKILLS_MAX_SCROLLS: int = _env_int("SKILLS_MAX_SCROLLS", default=15)
+    # Skills shop: consecutive unchanged-view passes tolerated before early-stop.
+    SKILLS_SCAN_PATIENCE: int = _env_int("SKILLS_SCAN_PATIENCE", default=3)
     # Race if no good training options are available (default: False = skip race if no good training)
     RACE_IF_NO_GOOD_VALUE: bool = _env_bool("RACE_IF_NO_GOOD_VALUE", default=False)
 
@@ -203,6 +226,26 @@ class Settings:
     }
     WEAK_TURN_SV: float = WEAK_TURN_SV_BY_SCENARIO["ura"]
     RACE_PRECHECK_SV: float = RACE_PRECHECK_SV_BY_SCENARIO["ura"]
+
+    # Training-scan early exit: stop clicking remaining tiles once this many
+    # MEANINGFUL support sightings (blue/green bar, hint, rainbow, or active
+    # spirit — see _is_meaningful_support in training_check.py; summed across
+    # already-scanned tiles, so a card shown on 2 tiles counts twice) have
+    # accumulated. Deliberately NOT raw headcount: Unity Cup team rosters grow
+    # well past the 6-card deck cap as new teammates join after every Unity
+    # Cup race (15-20+ by late game per in-game observation), and most of them
+    # sit at low/no friendship with no spirit — counting them all would make
+    # the threshold either meaningless (if raised to cover the noise) or quit
+    # before real signal is seen (if left low). Unity's number is only
+    # slightly above URA's to cover its extra always-meaningful cameo cast
+    # (Director, Etsuko, Kashimoto, PAL-Tazuna) on top of the same 6-card deck.
+    TRAINING_SCAN_EARLY_EXIT_SUPPORTS_BY_SCENARIO: Dict[str, int] = {
+        "ura": 4,
+        "unity_cup": 6,
+    }
+    TRAINING_SCAN_EARLY_EXIT_SUPPORTS: int = (
+        TRAINING_SCAN_EARLY_EXIT_SUPPORTS_BY_SCENARIO["ura"]
+    )
     LOBBY_PRECHECK_ENABLE: bool = False
     JUNIOR_MINIMAL_MOOD: Optional[str] = None
     GOAL_RACE_FORCE_TURNS: int = 5
@@ -235,6 +278,7 @@ class Settings:
     NAV_PREFS: Dict[str, Dict[str, Any]] = {
         "shop": dict(_DEFAULT_NAV_PREFS["shop"]),
         "team_trials": dict(_DEFAULT_NAV_PREFS["team_trials"]),
+        "daily_legend": dict(_DEFAULT_NAV_PREFS["daily_legend"]),
     }
 
     UNITY_CUP_ADVANCED: Dict[str, Any] = {
@@ -329,6 +373,12 @@ class Settings:
         )
         cls.RACE_PRECHECK_SV = cls.RACE_PRECHECK_SV_BY_SCENARIO.get(
             scenario_key, cls.RACE_PRECHECK_SV_BY_SCENARIO.get("ura", 2.5)
+        )
+        cls.TRAINING_SCAN_EARLY_EXIT_SUPPORTS = (
+            cls.TRAINING_SCAN_EARLY_EXIT_SUPPORTS_BY_SCENARIO.get(
+                scenario_key,
+                cls.TRAINING_SCAN_EARLY_EXIT_SUPPORTS_BY_SCENARIO.get("ura", 4),
+            )
         )
         cls.LOBBY_PRECHECK_ENABLE = False
         cls.JUNIOR_MINIMAL_MOOD = None
@@ -534,6 +584,46 @@ class Settings:
         top_stats_focus = int(adv.get("topStatsFocus", cls.TOP_STATS_FOCUS))
         cls.TOP_STATS_FOCUS = max(1, min(5, top_stats_focus))  # Clamp between 1 and 5
 
+        # Training scan: settle-wait tuning (click tile -> scan)
+        try:
+            settle_ms = int(adv.get("trainingSettleTimeoutMs", cls.TRAINING_SETTLE_TIMEOUT_MS))
+        except Exception:
+            settle_ms = cls.TRAINING_SETTLE_TIMEOUT_MS
+        cls.TRAINING_SETTLE_TIMEOUT_MS = max(50, min(2000, settle_ms))  # 50ms..2s
+        try:
+            settle_diff = float(
+                adv.get("trainingSettleDiffThreshold", cls.TRAINING_SETTLE_DIFF_THRESHOLD)
+            )
+        except Exception:
+            settle_diff = cls.TRAINING_SETTLE_DIFF_THRESHOLD
+        cls.TRAINING_SETTLE_DIFF_THRESHOLD = max(0.1, min(30.0, settle_diff))
+
+        # Race pacing multiplier
+        try:
+            race_scale = float(adv.get("raceAwaitScale", cls.RACE_AWAIT_SCALE))
+        except Exception:
+            race_scale = cls.RACE_AWAIT_SCALE
+        cls.RACE_AWAIT_SCALE = max(0.4, min(2.0, race_scale))
+
+        # Training: pause after clicking a training tile (before next turn)
+        try:
+            tpc = float(adv.get("trainingPostClickPause", cls.TRAINING_POST_CLICK_PAUSE))
+        except Exception:
+            tpc = cls.TRAINING_POST_CLICK_PAUSE
+        cls.TRAINING_POST_CLICK_PAUSE = max(0.5, min(10.0, tpc))
+
+        # Skills shop scroll tuning
+        try:
+            sk_scrolls = int(adv.get("skillsMaxScrolls", cls.SKILLS_MAX_SCROLLS))
+        except Exception:
+            sk_scrolls = cls.SKILLS_MAX_SCROLLS
+        cls.SKILLS_MAX_SCROLLS = max(1, min(60, sk_scrolls))
+        try:
+            sk_patience = int(adv.get("skillsScanPatience", cls.SKILLS_SCAN_PATIENCE))
+        except Exception:
+            sk_patience = cls.SKILLS_SCAN_PATIENCE
+        cls.SKILLS_SCAN_PATIENCE = max(1, min(10, sk_patience))
+
         # Skills optimization gates
         try:
             interval = int(adv.get("skillCheckInterval", cls.SKILL_CHECK_INTERVAL))
@@ -552,11 +642,14 @@ class Settings:
         nav = nav if isinstance(nav, dict) else {}
         shop = nav.get("shop") if isinstance(nav, dict) else None
         team = nav.get("team_trials") if isinstance(nav, dict) else None
+        legend = nav.get("daily_legend") if isinstance(nav, dict) else None
 
         if not isinstance(shop, dict):
             shop = dict(_DEFAULT_NAV_PREFS["shop"])
         if not isinstance(team, dict):
             team = dict(_DEFAULT_NAV_PREFS["team_trials"])
+        if not isinstance(legend, dict):
+            legend = dict(_DEFAULT_NAV_PREFS["daily_legend"])
 
         normalized_shop = {
             "alarm_clock": bool(shop.get("alarm_clock", True)),
@@ -570,9 +663,15 @@ class Settings:
             preferred_banner = 2
         preferred_banner = max(1, min(3, preferred_banner))
 
+        normalized_legend = {
+            "enabled": bool(legend.get("enabled", False)),
+            "preferred_opponent": str(legend.get("preferred_opponent", "") or "").strip(),
+        }
+
         cls.NAV_PREFS = {
             "shop": normalized_shop,
             "team_trials": {"preferred_banner": preferred_banner},
+            "daily_legend": normalized_legend,
         }
 
     @classmethod
@@ -603,6 +702,16 @@ class Settings:
         except Exception:
             preferred = _DEFAULT_NAV_PREFS["team_trials"]["preferred_banner"]
         return max(1, min(3, preferred))
+
+    @classmethod
+    def get_daily_legend_enabled(cls) -> bool:
+        legend = cls.NAV_PREFS.get("daily_legend") or {}
+        return bool(legend.get("enabled", False))
+
+    @classmethod
+    def get_daily_legend_opponent(cls) -> str:
+        legend = cls.NAV_PREFS.get("daily_legend") or {}
+        return str(legend.get("preferred_opponent", "") or "").strip()
 
     @classmethod
     def normalize_scenario(cls, scenario: str | None) -> str:

@@ -16,6 +16,12 @@ export default function AdvancedSettings() {
   const [undertrain, setUndertrain] = useState(a.undertrainThreshold)
   const [topStats, setTopStats] = useState(a.topStatsFocus)
   const [externalUrl, setExternalUrl] = useState(a.externalProcessorUrl)
+  const [settleTimeout, setSettleTimeout] = useState(a.trainingSettleTimeoutMs ?? 400)
+  const [settleDiff, setSettleDiff] = useState(a.trainingSettleDiffThreshold ?? 2)
+  const [raceScale, setRaceScale] = useState(a.raceAwaitScale ?? 1)
+  const [trainPause, setTrainPause] = useState(a.trainingPostClickPause ?? 3)
+  const [skillsScrolls, setSkillsScrolls] = useState(a.skillsMaxScrolls ?? 15)
+  const [skillsPatience, setSkillsPatience] = useState(a.skillsScanPatience ?? 3)
 
   const autoRestMarks = useMemo(() => {
     const marks = [{ value: 1 }]
@@ -34,6 +40,12 @@ export default function AdvancedSettings() {
     setUndertrain(a.undertrainThreshold)
     setTopStats(a.topStatsFocus)
     setExternalUrl(a.externalProcessorUrl)
+    setSettleTimeout(a.trainingSettleTimeoutMs ?? 400)
+    setSettleDiff(a.trainingSettleDiffThreshold ?? 2)
+    setRaceScale(a.raceAwaitScale ?? 1)
+    setTrainPause(a.trainingPostClickPause ?? 3)
+    setSkillsScrolls(a.skillsMaxScrolls ?? 15)
+    setSkillsPatience(a.skillsScanPatience ?? 3)
   }, [
     a.autoRestMinimum,
     a.skillCheckInterval,
@@ -41,6 +53,12 @@ export default function AdvancedSettings() {
     a.undertrainThreshold,
     a.topStatsFocus,
     a.externalProcessorUrl,
+    a.trainingSettleTimeoutMs,
+    a.trainingSettleDiffThreshold,
+    a.raceAwaitScale,
+    a.trainingPostClickPause,
+    a.skillsMaxScrolls,
+    a.skillsScanPatience,
   ])
 
   const commitAdvanced = <K extends keyof typeof a>(key: K, value: (typeof a)[K]) => {
@@ -376,6 +394,150 @@ export default function AdvancedSettings() {
               const next = Math.max(1, Math.min(5, Math.round(toNumber(v))))
               setTopStats(next)
               commitAdvanced('topStatsFocus', next)
+            },
+          })}
+          sx={{ mt: 2 }}
+        />
+
+        <Divider sx={{ my: 2 }} />
+        <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 0.5 }}>
+          Performance &amp; timing
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+          Tune how long the bot waits for animations and how far it scans. Lower
+          values are faster but less tolerant of slow devices.
+        </Typography>
+
+        <FieldRow
+          label="Training settle: max wait"
+          info="After clicking a training tile, the bot polls the screen and scans as soon as the raise/support animation stops moving. This is the upper bound on that wait — it almost always finishes earlier. Raise it if the game animates slowly; lower it for snappier scanning."
+          control={renderSliderControl({
+            id: 'trainingSettleTimeoutMs',
+            value: settleTimeout,
+            min: 100,
+            max: 1000,
+            step: 50,
+            format: (v) => `${v}ms`,
+            onChange: (_, v) => {
+              const next = Math.max(100, Math.min(1000, Math.round(toNumber(v) / 50) * 50))
+              setSettleTimeout(next)
+            },
+            onCommit: (_, v) => {
+              const next = Math.max(100, Math.min(1000, Math.round(toNumber(v) / 50) * 50))
+              setSettleTimeout(next)
+              commitAdvanced('trainingSettleTimeoutMs', next)
+            },
+          })}
+          sx={{ mt: 2 }}
+        />
+
+        <FieldRow
+          label="Training settle: sensitivity"
+          info="How still the screen must be before the bot considers the animation finished (mean per-pixel frame difference). Higher = less sensitive, so it settles and scans sooner; lower = stricter, so it waits longer for the screen to fully stop. Raise this if looping sparkle/rainbow effects keep it waiting the full time."
+          control={renderSliderControl({
+            id: 'trainingSettleDiffThreshold',
+            value: settleDiff,
+            min: 0.5,
+            max: 10,
+            step: 0.5,
+            onChange: (_, v) => {
+              const next = Math.max(0.5, Math.min(10, Math.round(toNumber(v) * 2) / 2))
+              setSettleDiff(next)
+            },
+            onCommit: (_, v) => {
+              const next = Math.max(0.5, Math.min(10, Math.round(toNumber(v) * 2) / 2))
+              setSettleDiff(next)
+              commitAdvanced('trainingSettleDiffThreshold', next)
+            },
+          })}
+          sx={{ mt: 2 }}
+        />
+
+        <FieldRow
+          label="Race pacing"
+          info="Multiplier on the race-day animation grace waits (race start, skip, result screens). 1.0 keeps current pacing; lower speeds the bot up on fast devices/emulators; higher gives slow phones more time for animations to finish."
+          control={renderSliderControl({
+            id: 'raceAwaitScale',
+            value: raceScale,
+            min: 0.4,
+            max: 2,
+            step: 0.1,
+            format: (v) => `${v.toFixed(1)}x`,
+            onChange: (_, v) => {
+              const next = Math.max(0.4, Math.min(2, Math.round(toNumber(v) * 10) / 10))
+              setRaceScale(next)
+            },
+            onCommit: (_, v) => {
+              const next = Math.max(0.4, Math.min(2, Math.round(toNumber(v) * 10) / 10))
+              setRaceScale(next)
+              commitAdvanced('raceAwaitScale', next)
+            },
+          })}
+          sx={{ mt: 2 }}
+        />
+
+        <FieldRow
+          label="Training: wait before next turn"
+          info="Seconds to wait after clicking a training before the bot resumes and starts the next turn. The in-game training animation plays during this time, so this isn't pure idle — but lowering it lets the bot start advancing through the result screens sooner. Too low risks capturing mid-animation. Default 3s."
+          control={renderSliderControl({
+            id: 'trainingPostClickPause',
+            value: trainPause,
+            min: 0.5,
+            max: 10,
+            step: 0.5,
+            format: (v) => `${v.toFixed(1)}s`,
+            onChange: (_, v) => {
+              const next = Math.max(0.5, Math.min(10, Math.round(toNumber(v) * 2) / 2))
+              setTrainPause(next)
+            },
+            onCommit: (_, v) => {
+              const next = Math.max(0.5, Math.min(10, Math.round(toNumber(v) * 2) / 2))
+              setTrainPause(next)
+              commitAdvanced('trainingPostClickPause', next)
+            },
+          })}
+          sx={{ mt: 2 }}
+        />
+
+        <FieldRow
+          label="Skills: max scrolls"
+          info="How many times the bot scrolls the skill shop while buying before giving up. Higher reaches skills further down a long list; lower ends the buy session sooner."
+          control={renderSliderControl({
+            id: 'skillsMaxScrolls',
+            value: skillsScrolls,
+            min: 1,
+            max: 60,
+            step: 1,
+            onChange: (_, v) => {
+              const next = Math.max(1, Math.min(60, Math.round(toNumber(v))))
+              setSkillsScrolls(next)
+            },
+            onCommit: (_, v) => {
+              const next = Math.max(1, Math.min(60, Math.round(toNumber(v))))
+              setSkillsScrolls(next)
+              commitAdvanced('skillsMaxScrolls', next)
+            },
+          })}
+          sx={{ mt: 2 }}
+        />
+
+        <FieldRow
+          label="Skills: stop after repeats"
+          info="Stop scrolling the skill shop after this many consecutive scrolls show the same screen with nothing bought (i.e. you've reached the bottom). Lower stops sooner; higher is more tolerant of scroll/animation hiccups."
+          control={renderSliderControl({
+            id: 'skillsScanPatience',
+            value: skillsPatience,
+            min: 1,
+            max: 10,
+            step: 1,
+            onChange: (_, v) => {
+              const next = Math.max(1, Math.min(10, Math.round(toNumber(v))))
+              setSkillsPatience(next)
+            },
+            onCommit: (_, v) => {
+              const next = Math.max(1, Math.min(10, Math.round(toNumber(v))))
+              setSkillsPatience(next)
+              commitAdvanced('skillsScanPatience', next)
             },
           })}
           sx={{ mt: 2 }}

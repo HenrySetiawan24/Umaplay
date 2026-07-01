@@ -47,7 +47,7 @@ from core.utils.preset_overlay import show_preset_overlay
 from core.ui.scenario_prompt import choose_active_scenario, ScenarioSelectionCancelled
 from core.run_context import set as set_run_record, get as get_run_record, start_active_interval, tick_active_time
 from server.run_history import append_history, get_full_record
-from server.bot_bridge import register as register_bot_bridge
+from server.bot_bridge import register as register_bot_bridge, register_nav as register_nav_bridge
 
 # Controllers & perception interfaces
 from core.controllers.base import IController
@@ -999,6 +999,11 @@ if __name__ == "__main__":
     state = BotState()
     nav_state = NavState()
     register_bot_bridge(state.start, state.stop, lambda: state.running)
+    register_nav_bridge(
+        nav_state.start,
+        nav_state.stop,
+        lambda: {"running": nav_state.running, "action": nav_state.current_action},
+    )
     logger_uma.debug("[INIT] Spawning server thread…")
     srv_thread = threading.Thread(target=boot_server, daemon=True)
     srv_thread.start()

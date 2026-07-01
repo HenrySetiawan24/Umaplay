@@ -4,6 +4,8 @@ import logging
 import sys
 from typing import Callable, Set, Optional
 
+from core.utils.keyboard_handler import HEADLESS
+
 logger = logging.getLogger(__name__)
 
 # Try to detect the best keyboard library
@@ -11,29 +13,34 @@ _use_pynput = False
 _keyboard_available = False
 _pynput_keyboard = None
 
-try:
-    import keyboard
-    _keyboard_available = True
-    logger.debug("keyboard library available")
-except ImportError:
-    logger.debug("keyboard library not available")
+# On a headless box (no display / HEADLESS=1) there's no usable global hotkey —
+# skip both libraries entirely; the bot is controlled from the web UI.
+if not HEADLESS:
+    try:
+        import keyboard
+        _keyboard_available = True
+        logger.debug("keyboard library available")
+    except Exception:
+        logger.debug("keyboard library not available")
 
-try:
-    from pynput import keyboard as pynput_keyboard
-    _pynput_keyboard = pynput_keyboard
-    _use_pynput = True
-    logger.debug("pynput library available")
-except ImportError:
-    logger.debug("pynput library not available")
+    try:
+        from pynput import keyboard as pynput_keyboard
+        _pynput_keyboard = pynput_keyboard
+        _use_pynput = True
+        logger.debug("pynput library available")
+    except Exception:
+        logger.debug("pynput library not available")
 
-# Auto-detect Wine environment
-try:
-    from core.utils.wine_helper import is_running_under_wine
-    if is_running_under_wine() and _use_pynput:
-        logger.info("Wine detected - using pynput for hotkeys")
-        _keyboard_available = False  # Force pynput under Wine
-except ImportError:
-    pass
+    # Auto-detect Wine environment
+    try:
+        from core.utils.wine_helper import is_running_under_wine
+        if is_running_under_wine() and _use_pynput:
+            logger.info("Wine detected - using pynput for hotkeys")
+            _keyboard_available = False  # Force pynput under Wine
+    except ImportError:
+        pass
+else:
+    logger.info("[HotkeyManager] Headless environment — global hotkeys disabled (use the web UI).")
 
 
 class HotkeyManager:
@@ -145,12 +152,17 @@ class HotkeyManager:
                     except Exception as e:
                         logger.error(f"Hotkey callback error: {e}")
         
-        self._pynput_listener = _pynput_keyboard.Listener(
-            on_press=on_press,
-            on_release=on_release
-        )
-        self._pynput_listener.start()
-        logger.debug("Started pynput keyboard listener")
+        try:
+            self._pynput_listener = _pynput_keyboard.Listener(
+                on_press=on_press,
+                on_release=on_release
+            )
+            self._pynput_listener.start()
+            logger.debug("Started pynput keyboard listener")
+        except Exception as e:
+            # No display on a headless box — degrade to no hotkey.
+            self._pynput_listener = None
+            logger.warning("Could not start pynput listener (%s); hotkeys disabled.", e)
     
     def is_pressed(self, key: str) -> bool:
         """

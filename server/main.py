@@ -19,7 +19,8 @@ from server.utils import (
     load_event_setup_defaults,
 )
 from server.run_history import load_history, append_history, delete_history, get_record, get_full_record, find_incomplete
-from server.bot_bridge import start_bot, stop_bot, is_running
+from server.bot_bridge import start_bot, stop_bot, is_running, start_nav, stop_nav, nav_status
+from core.utils.logger import get_recent_logs
 from core.version import __version__
 
 ensure_nav_exists()
@@ -56,6 +57,14 @@ def update_nav(new_nav: Dict[str, Any]):
     data = new_nav or {}
     save_nav_prefs(data)
     return {"status": "success", "data": load_nav_prefs()}
+
+
+@app.get("/api/adb/devices")
+def get_adb_devices():
+    """List devices currently visible to `adb devices -l` (empty if adb isn't installed)."""
+    from core.controllers.adb import ADBController
+
+    return {"devices": ADBController.discover_devices()}
 
 
 @app.get("/api/history")
@@ -112,6 +121,41 @@ def bot_stop():
         return {"status": "not_running"}
     stop_bot()
     return {"status": "stopped"}
+
+
+# ---- AgentNav: dailies / team trials / roulette (the F7/F8/F9 actions) ----
+_NAV_ACTIONS = {"team_trials", "daily_races", "roulette"}
+
+
+@app.get("/api/nav/status")
+def nav_status_endpoint():
+    return nav_status()
+
+
+@app.post("/api/nav/start")
+def nav_start(body: Dict[str, Any] = {}):
+    action = (body or {}).get("action")
+    if action not in _NAV_ACTIONS:
+        raise HTTPException(status_code=400, detail=f"action must be one of {sorted(_NAV_ACTIONS)}")
+    st = nav_status()
+    if st.get("running"):
+        return {"status": "already_running", **st}
+    start_nav(action)
+    return {"status": "started", "action": action}
+
+
+@app.post("/api/nav/stop")
+def nav_stop():
+    if not nav_status().get("running"):
+        return {"status": "not_running"}
+    stop_nav()
+    return {"status": "stopped"}
+
+
+# ---- Logs (in-memory ring buffer; works headless) ----
+@app.get("/api/logs")
+def logs(after: int = 0, limit: int = 1000):
+    return get_recent_logs(after_seq=after, limit=limit)
 
 
 PATH = "web/dist"

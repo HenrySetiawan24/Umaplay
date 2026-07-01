@@ -7,6 +7,7 @@ from typing import List, Optional, Sequence, Tuple, Dict
 from collections import Counter
 from dataclasses import dataclass
 from enum import Enum
+import numpy as np
 from PIL import Image
 
 from core.controllers.android import ScrcpyController
@@ -95,7 +96,7 @@ class SkillsFlow:
         self,
         skill_list: Sequence[str],
         *,
-        max_scrolls: int = 15,
+        max_scrolls: Optional[int] = None,
         ocr_threshold: float = 0.85,  # experimental, upgraded to 0.82 for the sake of avoiding false positives
         scroll_time_range: Tuple[int, int] = (6, 7),
         early_stop: bool = True,
@@ -133,7 +134,13 @@ class SkillsFlow:
                     continue
             purchases_made[t] = 0
 
-        patience = 3
+        # Resolve scroll budget + early-stop patience from Settings when not
+        # explicitly overridden, so both are tunable from Advanced settings.
+        if max_scrolls is None:
+            max_scrolls = int(Settings.SKILLS_MAX_SCROLLS)
+        patience_max = max(1, int(Settings.SKILLS_SCAN_PATIENCE))
+
+        patience = patience_max
         running_sp: Optional[int] = None
         for i in range(max_scrolls):
             clicked, game_img, dets, cur_ocr_sig, min_visible_cost, purchased_cost = (
@@ -148,19 +155,34 @@ class SkillsFlow:
             )
             any_clicked |= clicked
 
-            # Extract initial SP from the first pass screenshot
-            if i == 0:
-                sp_crop = crop_pil(game_img, self._sp_region(game_img.size), pad=0)
-                running_sp = self.ocr.digits(sp_crop)
-                if running_sp <= 0:
-                    running_sp = 9999
-                logger_uma.info("[skills] Initial SP: %d", running_sp)
+            # Read the SP total once, retrying on later passes until we get a real
+            # value. The SP figure is always on-screen, so a transient OCR miss must
+            # NOT permanently disable affordability tracking (the old code fell back
+            # to a 9999 sentinel here, which silently defeated the SP early-exit).
+            if running_sp is None:
+                sp_val = 0
+                first_crop: Optional[Image.Image] = None
+                for region in self._sp_regions(game_img):
+                    sp_crop = crop_pil(game_img, region, pad=0)
+                    if first_crop is None:
+                        first_crop = sp_crop
+                    sp_val = self._ocr_digits_big(sp_crop)
+                    if sp_val > 0:
+                        break
+                if sp_val > 0:
+                    running_sp = sp_val
+                    logger_uma.info("[skills] SP total: %d", running_sp)
+                else:
+                    logger_uma.debug("[skills] SP read failed this pass; will retry.")
+                    self._save_digit_debug(first_crop, "sp_read")
 
-            # Track remaining SP
+            # Track remaining SP. purchased_cost is the total spent this pass
+            # (sum of cost x clicks across every BUY), so the subtraction stays
+            # accurate for multi-buys and double-circle (clicks=2) skills.
             if purchased_cost > 0 and running_sp is not None:
                 running_sp -= purchased_cost
                 logger_uma.debug(
-                    "[skills] SP remaining after purchase: %d (cost %d)",
+                    "[skills] SP remaining after purchase: %d (spent %d)",
                     running_sp, purchased_cost,
                 )
 
@@ -178,7 +200,7 @@ class SkillsFlow:
                     logger_uma.info("[skills] Early stop buying.")
                     break
             else:
-                patience = 3
+                patience = patience_max
             prev_sig = cur_sig
             prev_ocr_sig = cur_ocr_sig
 
@@ -400,34 +422,95 @@ class SkillsFlow:
         return (left, top, right, bot)
 
     @staticmethod
-    def _skill_cost_roi(
-        square_xyxy: Tuple[int, int, int, int],
+    def _skill_cost_roi_from_buy(
+        buy_xyxy: Tuple[int, int, int, int],
     ) -> Tuple[int, int, int, int]:
-        """Crop region for the SP cost number in the bottom-left of a skill card."""
-        x1, y1, x2, y2 = square_xyxy
-        w = max(1, x2 - x1)
-        h = max(1, y2 - y1)
-        left = x1 + int(w * 0.02)
-        right = x1 + int(w * 0.45)
-        top = y2 - int(h * 0.32)
-        bot = y2 - int(h * 0.02)
+        """
+        Crop region for the SP cost number, anchored to the BUY (+) button. The cost
+        sits immediately left of the +, on the same line. Anchoring to the button
+        (rather than the full-row square) keeps the band tight so a 'NN% OFF!'
+        discount badge above the number doesn't corrupt the read, and naturally
+        captures the discounted price the player actually pays.
+        """
+        bx1, by1, bx2, by2 = buy_xyxy
+        bw = max(1, bx2 - bx1)
+        bh = max(1, by2 - by1)
+        left = bx1 - bw * 2.6
+        right = bx1 - bw * 0.4
+        top = by1 - bh * 0.10
+        bot = by2 + bh * 0.10
         if right <= left:
             right = left + 1
         if bot <= top:
             bot = top + 1
-        return (left, top, right, bot)
+        return (int(left), int(top), int(right), int(bot))
 
     @staticmethod
-    def _sp_region(
-        img_size: Tuple[int, int],
-    ) -> Tuple[int, int, int, int]:
-        """Fixed crop region for the total SP text in the top-right of the skills screen."""
-        W, H = img_size
-        left = int(W * 0.78)
-        right = int(W * 0.96)
-        top = int(H * 0.010)
-        bot = int(H * 0.055)
-        return (left, top, right, bot)
+    def _content_bounds(img: Image.Image, thr: int = 25) -> Tuple[int, int, int, int]:
+        """
+        Bounding box of the non-letterbox (non-black) game content. On tall phones
+        the screenshot has black bars, so screen-fraction crops miss the UI; anchor
+        to the detected content instead.
+        """
+        arr = np.asarray(img.convert("L"))
+        H, W = arr.shape
+        rows = np.where(arr.max(axis=1) > thr)[0]
+        cols = np.where(arr.max(axis=0) > thr)[0]
+        if rows.size == 0 or cols.size == 0:
+            return (0, 0, W, H)
+        return (int(cols[0]), int(rows[0]), int(cols[-1]) + 1, int(rows[-1]) + 1)
+
+    @classmethod
+    def _sp_regions(cls, img: Image.Image) -> List[Tuple[int, int, int, int]]:
+        """
+        Candidate crops for the 'Skill Points NNN' total, most-likely first.
+        Primary is anchored to the detected game content (the banner sits ~30% down
+        the content, right-of-centre — verified across letterboxed phone captures);
+        the legacy top-right screen-fraction crop is kept as a fallback.
+        """
+        W, H = img.size
+        x0, y0, x1, y1 = cls._content_bounds(img)
+        cw, ch = max(1, x1 - x0), max(1, y1 - y0)
+        primary = (
+            x0 + int(cw * 0.67), y0 + int(ch * 0.25),
+            x0 + int(cw * 0.94), y0 + int(ch * 0.35),
+        )
+        legacy = (int(W * 0.78), int(H * 0.010), int(W * 0.96), int(H * 0.055))
+        return [primary, legacy]
+
+    @staticmethod
+    def _upscale_for_digits(img: Image.Image, scale: int = 3) -> Image.Image:
+        """
+        Upscale a small numeric crop before OCR. PP-OCRv5 mobile frequently misses
+        tiny digits (e.g. SP totals / skill costs on high-res phone screenshots);
+        a 3x bicubic enlarge makes them legible without changing the source frame.
+        """
+        try:
+            w, h = img.size
+            if w <= 0 or h <= 0:
+                return img
+            return img.resize((w * scale, h * scale), Image.BICUBIC)
+        except Exception:
+            return img
+
+    def _ocr_digits_big(self, img: Image.Image) -> int:
+        """digits() with an upscaled crop for robustness on small numbers."""
+        return self.ocr.digits(self._upscale_for_digits(img))
+
+    @staticmethod
+    def _save_digit_debug(img: Image.Image, reason: str) -> None:
+        """Persist a failing numeric crop so the SP/cost region can be verified."""
+        if not Settings.STORE_FOR_TRAINING or img is None:
+            return
+        try:
+            import os, time as _t
+            out_dir = Settings.DEBUG_DIR / "skills" / "fail"
+            os.makedirs(out_dir, exist_ok=True)
+            ts = _t.strftime("%Y%m%d-%H%M%S") + f"_{int((_t.time() % 1) * 1000):03d}"
+            safe = "".join(c if c.isalnum() or c in "-_" else "-" for c in reason) or "fail"
+            img.save(out_dir / f"skills_{ts}_{safe}.png")
+        except Exception as e:
+            logger_uma.debug("[skills] failed saving digit debug: %s", e)
 
     @staticmethod
     def _find_buy_inside(
@@ -455,6 +538,11 @@ class SkillsFlow:
         Single pass: find all skills_square + their BUY button; OCR title-band and
         click BUY if matches a target.
         Returns (clicked_any, img, dets, ocr_title_signature, min_visible_cost, purchased_cost).
+
+        OCR is batched: after gating cards by the local active-buy classifier (no
+        OCR), all candidate titles and costs are read in two `batch_*` calls rather
+        than two sequential OCR calls per card. This keeps a pass at ~2 OCR calls
+        regardless of how many cards are visible.
         """
         game_img, dets = self._collect("skills_scan")
 
@@ -467,34 +555,47 @@ class SkillsFlow:
         min_visible_cost = 9999
         purchased_cost = 0
 
+        # --- Phase 1: gather active candidates using the local classifier (no OCR).
+        # Greyed/inactive cards never reach OCR.
+        candidates: List[Tuple[DetectionDict, DetectionDict, Image.Image, Image.Image]] = []
         for sq in squares:
             buy = self._find_buy_inside(sq, buys)
             if buy is None:
                 continue
+            crop_buy = crop_pil(game_img, buy["xyxy"], pad=0)
+            if float(self._clf.predict_proba(crop_buy)) < 0.55:
+                continue
+            title_crop = crop_pil(game_img, self._skill_title_roi(sq["xyxy"]), pad=2)
+            cost_crop = crop_pil(game_img, self._skill_cost_roi_from_buy(buy["xyxy"]), pad=0)
+            candidates.append((sq, buy, title_crop, cost_crop))
 
-            # OCR SP cost from bottom-left of the skill card
-            cost_crop = crop_pil(game_img, self._skill_cost_roi(sq["xyxy"]), pad=0)
-            cost = self.ocr.digits(cost_crop)  # returns int, 0 if none found
-            if cost > 0 and (min_visible_cost == 0 or cost < min_visible_cost):
+        if not candidates:
+            return clicked_any, game_img, dets, ocr_titles_sig, 0, purchased_cost
+
+        # --- Phase 2: batch OCR all candidate titles + costs (2 calls total).
+        # Costs are tiny digits; upscale each crop so PP-OCRv5 mobile can read them.
+        title_texts = self.ocr.batch_text([c[2] for c in candidates])
+        cost_strs = self.ocr.batch_digits(
+            [self._upscale_for_digits(c[3]) for c in candidates]
+        )
+        costs = [int(s) if s else 0 for s in cost_strs]
+
+        # --- Phase 3: decide + click per candidate.
+        for (sq, buy, _title_crop, _cost_crop), raw_text, cost in zip(
+            candidates, title_texts, costs
+        ):
+            raw_text = raw_text or ""
+            if cost > 0 and cost < min_visible_cost:
                 min_visible_cost = cost
 
             # Affordability guard: skip if we can't afford this skill
             if running_sp is not None and cost > 0 and running_sp < cost:
                 logger_uma.debug(
-                    "[skills] skipping '%s' (cost %d > running SP %d)",
-                    self.ocr.text(cost_crop) or "?", cost, running_sp,
+                    "[skills] skipping unaffordable card (cost %d > running SP %d)",
+                    cost, running_sp,
                 )
                 continue
 
-            # BUY must be active
-            crop_buy = crop_pil(game_img, buy["xyxy"], pad=0)
-            p = float(self._clf.predict_proba(crop_buy))
-            if p < 0.55:
-                continue
-
-            # OCR only the title band for accuracy/speed
-            title_crop = crop_pil(game_img, self._skill_title_roi(sq["xyxy"]), pad=2)
-            raw_text = self.ocr.text(title_crop) or ""
             norm_text = self._norm_title(raw_text)
             tokens = tokenize_ocr_text(norm_text)
             # Record OCR title signature with coarse position buckets.
@@ -594,7 +695,9 @@ class SkillsFlow:
                 shifted = (bx1, by1 - dy, bx2, by2 - dy)
                 self.ctrl.click_xyxy_center(shifted, clicks=click_counts, jitter=0)
                 purchases_made[best_name] = purchases_made.get(best_name, 0) + 1
-                purchased_cost = cost
+                # Accumulate total spend this pass: every BUY counts, and a
+                # double-circle skill costs `cost` per click (click_counts clicks).
+                purchased_cost += cost * max(1, click_counts)
                 if canonical_name and self._skill_memory:
                     self._skill_memory.record_bought(
                         canonical_name,

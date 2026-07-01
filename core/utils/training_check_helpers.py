@@ -1,6 +1,7 @@
 # core\utils\training_check_helpers.py
 from typing import Any, Dict, List, Optional, Tuple, Union
 
+import os
 import numpy as np
 from PIL import Image
 import cv2
@@ -76,25 +77,129 @@ def reindex_left_to_right(rows: List[Dict]) -> List[Dict]:
         r["tile_idx"] = j
     return rows_sorted
 
-def failure_pct(cur_img, cur_parsed, tile_xyxy, energy, ocr):
+def failure_pct(cur_img, cur_parsed, tile_xyxy, energy, ocr, frame_bgr=None):
     ENERGY_TO_IGNORE_FAILURE = 45
     if energy >= ENERGY_TO_IGNORE_FAILURE:
         return 0
 
     failure_predict = extract_failure_pct_for_tile(
-        cur_img, cur_parsed, tile_xyxy, ocr
+        cur_img, cur_parsed, tile_xyxy, ocr, frame_bgr=frame_bgr
     )
+    # A retry here would re-OCR the identical pixels (OCR is deterministic), so it
+    # can never turn a -1 into a real value — fall straight to the conservative
+    # "too risky" sentinel instead of sleeping + re-running OCR for nothing.
     if failure_predict == -1:
-        # try again
-        time.sleep(0.2)
-        failure_predict = extract_failure_pct_for_tile(
-            cur_img, cur_parsed, tile_xyxy, ocr
-        )
-
-        if failure_predict == -1:
-            failure_predict = Settings.MAX_FAILURE + 1
+        failure_predict = Settings.MAX_FAILURE + 1
 
     return failure_predict
+
+
+def save_recognition_fail_debug(
+    pil_img: Optional[Image.Image], *, tag: str, reason: str
+) -> None:
+    """
+    Persist a screenshot when YOLO fails to recognize an expected scene (e.g. the
+    training screen detector returns no/insufficient buttons).
+
+    The engine-level `_maybe_store_debug` only captures low-confidence detections
+    that *exist*; it returns early on empty results, so this fills that gap. Reuses
+    the same `STORE_FOR_TRAINING` gate and `DEBUG_DIR` root, under a `fail/` subdir.
+    """
+    if not Settings.STORE_FOR_TRAINING or pil_img is None:
+        return
+    try:
+        out_dir = Settings.DEBUG_DIR / tag / "fail"
+        os.makedirs(out_dir, exist_ok=True)
+        ts = time.strftime("%Y%m%d-%H%M%S") + f"_{int((time.time() % 1) * 1000):03d}"
+        safe_reason = (
+            "".join(c if c.isalnum() or c in "-_" else "-" for c in reason) or "fail"
+        )
+        path = out_dir / f"{tag}_{ts}_{safe_reason}.png"
+        pil_img.save(path)
+        logger_uma.debug("saved recognition-fail debug -> %s", path)
+    except Exception as e:
+        logger_uma.debug("failed saving recognition-fail debug: %s", e)
+
+
+def wait_until_settled(
+    ctrl,
+    *,
+    region_xywh=None,
+    pre_delay: float = 0.08,
+    poll_interval: float = 0.04,
+    min_stable_frames: int = 2,
+    diff_threshold: Optional[float] = None,
+    timeout: Optional[float] = None,
+    downscale: float = 0.25,
+    slow_grab_s: float = 0.06,
+) -> bool:
+    """
+    Poll cheap screenshots until the frame stops changing, instead of a fixed
+    post-click sleep. Returns True if the scene settled, False on timeout / slow
+    grabs — in which case the caller proceeds to YOLO anyway (the fallback).
+
+    `timeout` is the TOTAL budget (including `pre_delay`), so this can never wait
+    longer than the fixed sleep it replaces. On controllers whose grab is too slow
+    to poll (e.g. ADB screencap), it falls back to waiting out the remaining budget.
+
+    `timeout` and `diff_threshold` default to the user-tunable Settings values
+    (TRAINING_SETTLE_TIMEOUT_MS / TRAINING_SETTLE_DIFF_THRESHOLD) when not passed.
+    """
+    if timeout is None:
+        timeout = max(0.05, Settings.TRAINING_SETTLE_TIMEOUT_MS / 1000.0)
+    if diff_threshold is None:
+        diff_threshold = float(Settings.TRAINING_SETTLE_DIFF_THRESHOLD)
+
+    start = time.monotonic()
+    deadline = start + timeout
+
+    # Let the click register and the animation actually START before sampling,
+    # otherwise two identical pre-animation frames read as a false "settled".
+    time.sleep(min(max(0.0, pre_delay), max(0.0, timeout)))
+
+    prev = None
+    stable = 0
+    first = True
+    while time.monotonic() < deadline:
+        t0 = time.monotonic()
+        try:
+            img = ctrl.screenshot(region=region_xywh)
+        except Exception as e:
+            logger_uma.debug("[settle] grab failed (%s); proceeding", e)
+            return False
+
+        if first and (time.monotonic() - t0) > slow_grab_s:
+            # Grabs cost more than a poll step is worth (ADB). Don't busy-poll;
+            # wait out the remaining budget like the old fixed sleep and move on.
+            remaining = deadline - time.monotonic()
+            if remaining > 0:
+                time.sleep(remaining)
+            return False
+        first = False
+
+        w, h = img.size
+        small = img.resize(
+            (max(1, int(w * downscale)), max(1, int(h * downscale)))
+        )
+        arr = np.asarray(small.convert("L"), dtype=np.float32)
+        if prev is not None:
+            if float(np.mean(np.abs(arr - prev))) <= diff_threshold:
+                stable += 1
+                if stable >= min_stable_frames:
+                    return True
+            else:
+                stable = 0
+        prev = arr
+
+        # Pace the loop, but never sleep past the deadline (keeps total <= timeout).
+        sleep_left = min(
+            (t0 + poll_interval) - time.monotonic(),
+            deadline - time.monotonic(),
+        )
+        if sleep_left > 0:
+            time.sleep(sleep_left)
+
+    return False
 
 def _classify_flame_pose(flx1, fly1, flx2, fly2, geom) -> str:
     """
@@ -203,13 +308,20 @@ def _classify_spirit_icon(frame_bgr, xyxy, *, threshold: float = 0.51):
 
 
 def collect_supports_enriched(
-    cur_img: Image.Image, cur_parsed: List[Dict], conf_support: float = 0.60
+    cur_img: Image.Image,
+    cur_parsed: List[Dict],
+    conf_support: float = 0.60,
+    frame_bgr: Optional[np.ndarray] = None,
 ) -> Tuple[List[Dict], bool]:
     """
     Take *all* supports visible in this capture — they correspond to the currently raised tile.
     Enrich each with bar/type pieces, hint, rainbow, etc.
     """
-    frame_bgr = cv2.cvtColor(np.array(cur_img), cv2.COLOR_RGB2BGR)
+    # Reuse a pre-converted frame when the caller already has one (the failure-pct
+    # path needs the same BGR frame, so the scan converts once and shares it).
+    if frame_bgr is None:
+        frame_bgr = cv2.cvtColor(np.array(cur_img), cv2.COLOR_RGB2BGR)
+    assert frame_bgr is not None  # narrowed for the type-checker
 
     # --- helpers: IoU + NMS ---
     def _area(xyxy):

@@ -5,6 +5,7 @@ On Linux, 'keyboard' requires root, so we use 'pynput' instead.
 """
 from __future__ import annotations
 
+import os
 import sys
 import threading
 from typing import Set, Optional
@@ -12,22 +13,36 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+# A headless server (no display / HEADLESS=1) can run neither a global keyboard
+# hook (needs root on Linux) nor a pynput X listener — and pynput's backend can
+# raise on import *or* on Listener.start() when there's no $DISPLAY. Detect that
+# and skip keyboard entirely; the bot is controlled from the web UI in that case.
+HEADLESS = bool(os.environ.get("HEADLESS")) or (
+    sys.platform not in ("win32", "darwin") and not os.environ.get("DISPLAY")
+)
+
 # Detect platform and choose appropriate library
-if sys.platform == "win32":
+if HEADLESS:
+    HAS_KEYBOARD = False
+    HAS_PYNPUT = False
+    logger.info(
+        "[KeyboardHandler] Headless environment — global hotkeys disabled (use the web UI)."
+    )
+elif sys.platform == "win32":
     try:
         import keyboard as kb  # type: ignore
         HAS_KEYBOARD = True
         HAS_PYNPUT = False
-    except ImportError:
+    except Exception:
         HAS_KEYBOARD = False
         HAS_PYNPUT = False
 else:
-    # Linux/macOS: use pynput (doesn't require root)
+    # Linux/macOS with a display: use pynput (doesn't require root)
     HAS_KEYBOARD = False
     try:
         from pynput import keyboard as pynput_kb  # type: ignore
         HAS_PYNPUT = True
-    except ImportError:
+    except Exception:
         HAS_PYNPUT = False
 
 
@@ -40,13 +55,20 @@ class KeyboardHandler:
         self._lock = threading.Lock()
         
         if HAS_PYNPUT:
-            # Use pynput for Linux/macOS
-            self._listener = pynput_kb.Listener(
-                on_press=self._on_press_pynput,
-                on_release=self._on_release_pynput
-            )
-            self._listener.start()
-            logger.debug("[KeyboardHandler] Using pynput for keyboard handling")
+            # Use pynput for Linux/macOS. Starting the listener needs a display, so
+            # degrade gracefully (no hotkey) if that fails on a headless box.
+            try:
+                self._listener = pynput_kb.Listener(
+                    on_press=self._on_press_pynput,
+                    on_release=self._on_release_pynput
+                )
+                self._listener.start()
+                logger.debug("[KeyboardHandler] Using pynput for keyboard handling")
+            except Exception as e:
+                self._listener = None
+                logger.warning(
+                    "[KeyboardHandler] pynput listener unavailable (%s); hotkeys disabled.", e
+                )
         elif HAS_KEYBOARD:
             # Use keyboard for Windows
             logger.debug("[KeyboardHandler] Using keyboard library for keyboard handling")

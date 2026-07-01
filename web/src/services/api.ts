@@ -123,6 +123,17 @@ export async function checkUpdate(): Promise<any> {
   return r.json()
 }
 
+export type AdbDevice = { serial: string; state: string; model: string }
+
+export const fetchAdbDevices = async (): Promise<AdbDevice[]> => {
+  try {
+    const { data } = await api.get('/api/adb/devices')
+    return Array.isArray(data?.devices) ? data.devices : []
+  } catch {
+    return []
+  }
+}
+
 export const fetchEvents = async (): Promise<EventsRoot> => {
   try {
     const { data } = await api.get('/api/events')
@@ -169,6 +180,38 @@ export async function startBot(continueId?: string): Promise<void> {
 export async function stopBot(): Promise<void> {
   const res = await fetch('/api/bot/stop', { method: 'POST' })
   if (!res.ok) throw new Error('Failed to stop bot')
+}
+
+// AgentNav: dailies / team trials / roulette (the F7/F8/F9 actions)
+export type NavAction = 'team_trials' | 'daily_races' | 'roulette'
+
+export async function fetchNavStatus(): Promise<{ running: boolean; action: NavAction | null }> {
+  const res = await fetch('/api/nav/status', { cache: 'no-store' })
+  if (!res.ok) throw new Error('Failed to fetch nav status')
+  return res.json()
+}
+
+export async function startNav(action: NavAction): Promise<void> {
+  const res = await fetch('/api/nav/start', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ action }),
+  })
+  if (!res.ok) throw new Error('Failed to start nav action')
+}
+
+export async function stopNav(): Promise<void> {
+  const res = await fetch('/api/nav/stop', { method: 'POST' })
+  if (!res.ok) throw new Error('Failed to stop nav action')
+}
+
+// Logs (in-memory ring buffer)
+export interface LogEntry { seq: number; level: string; text: string }
+
+export async function fetchLogs(after = 0, limit = 1000): Promise<{ entries: LogEntry[]; last_seq: number }> {
+  const res = await fetch(`/api/logs?after=${after}&limit=${limit}`, { cache: 'no-store' })
+  if (!res.ok) throw new Error('Failed to fetch logs')
+  return res.json()
 }
 
 // Focused preset event_setup endpoints

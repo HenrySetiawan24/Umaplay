@@ -61,6 +61,17 @@ export interface GeneralConfig {
     // Skills optimization (Raceday auto-buy gating)
     skillCheckInterval: number // Check skills every N turns (1 = every turn)
     skillPtsDelta: number // Only check if points increased by at least this amount
+    // Training scan: wait between clicking a tile and scanning it
+    trainingSettleTimeoutMs: number // Max ms to wait for the animation to settle
+    trainingSettleDiffThreshold: number // Frame-diff below which the screen is "settled"
+    // Race flow: multiplier on animation grace waits (<1 faster, >1 slower)
+    raceAwaitScale: number
+    // Training: seconds to wait after clicking a training before the next turn
+    trainingPostClickPause: number
+    // Skills shop: max scroll passes per buy session
+    skillsMaxScrolls: number
+    // Skills shop: unchanged-view passes tolerated before early-stop
+    skillsScanPatience: number
   }
 }
 

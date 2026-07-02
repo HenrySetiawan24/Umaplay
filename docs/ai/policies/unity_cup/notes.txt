@@ -51,4 +51,6 @@
 
 * **Risk gate:** every check that says “allowed” means the tile passed your **failure-risk filter**. Anything not “allowed” is ignored for selection.
 
+* **Showdown pacing (agent glue, 2026-07):** the begin_showdown sequence in `core/actions/unity_cup/agent.py` no longer uses raw unscaled sleeps. Fixed waits go through `AgentUnityCup._beat` (seconds x `Settings.RACE_AWAIT_SCALE`, same semantics as `RaceFlow._beat`), and transition sleeps were folded into the adjacent `waiter` poll windows so ready-early screens proceed early. The song cutscene wait is a scaled 55s floor plus up to 30s of polling for the CLOSE button, replacing the old flat `sleep(80)`.
+
 * **What goes into SV:** the calculation that feeds the chart includes the **sum of support contributions** on the tile, **rainbow** bonuses, **hint** value, **spirit and flame** bonuses (white vs blue, plus multi-spirit combo), and small **cameo** bumps from **Director**, **PAL**, and **Reporter**, all reduced by **risk filtering**. The thresholds above act on that single **sv_total** per tile.

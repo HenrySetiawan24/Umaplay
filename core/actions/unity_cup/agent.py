@@ -1027,6 +1027,84 @@ class AgentUnityCup(AgentScenario):
         # Fallback: nothing to do
         logger_uma.debug("[training] No actionable decision.")
 
+    def _advance_result_screens(self, *, timeout_s: float = 25.0) -> None:
+        """
+        Drive the standard post-race result screens directly, in-place, until a
+        known screen returns or the budget expires:
+
+          - lingering race animation → button_skip
+          - green NEXT / OK (never RACE / TRY AGAIN)
+          - white CLOSE (trophy)
+          - race_after_next special continue (Pyramid/finale cutscene)
+          - otherwise tap-to-continue (placement pose etc.)
+
+        Returns as soon as we're back on a lobby / training / next-opponent /
+        race-day / event screen, so the main loop takes over cleanly. This
+        keeps the whole result walk inside begin_showdown (fast, targeted
+        polls) instead of bailing after one NEXT and deferring every remaining
+        screen to the slower generic unknown-screen handler.
+        """
+        DONE = {
+            "lobby_tazuna", "training_button", "lobby_races", "lobby_rest",
+            "lobby_recreation", "race_race_day", "unity_opponent_banner",
+            "event_choice",
+        }
+        deadline = time.time() + timeout_s
+        last_tap = 0.0
+        while time.time() < deadline:
+            if abort_requested():
+                return
+            img, _, dets = self.yolo_engine.recognize(
+                imgsz=self.imgsz, conf=self.conf, iou=self.iou,
+                agent=self.agent_name, tag="uc_result_advance",
+            )
+            names = {d["name"] for d in dets if float(d.get("conf", 0.0)) >= 0.5}
+            if names & DONE:
+                logger_uma.debug("[unity_cup] Result flow done; back on a known screen (%s).", sorted(names & DONE))
+                return
+            # Green NEXT / OK — never RACE or TRY AGAIN.
+            if self.waiter.click_when(
+                classes=("button_green",),
+                texts=("NEXT", "OK", "PROCEED"),
+                forbid_texts=("RACE", "try again", "complete", "career"),
+                prefer_bottom=True, timeout_s=0.4, tag="uc_result_next",
+            ):
+                last_tap = 0.0
+                self._beat(0.4)
+                continue
+            # White CLOSE (trophy screen).
+            if self.waiter.click_when(
+                classes=("button_white",), texts=("CLOSE",),
+                timeout_s=0.4, tag="uc_result_close",
+            ):
+                last_tap = 0.0
+                self._beat(0.4)
+                continue
+            # Special race_after_next continue (Pyramid/finale cutscene).
+            if self.waiter.click_when(
+                classes=("race_after_next",),
+                timeout_s=0.4, tag="uc_result_special",
+            ):
+                last_tap = 0.0
+                self._beat(0.4)
+                continue
+            # Lingering race animation → skip.
+            if self.waiter.click_when(
+                classes=("button_skip",), prefer_bottom=True,
+                clicks=random.randint(3, 5), timeout_s=0.4, tag="uc_result_skip",
+            ):
+                last_tap = 0.0
+                continue
+            # No actionable button → tap-to-continue frame (placement pose etc.).
+            now = time.time()
+            if now - last_tap >= 1.0:
+                _, _, bw, bh = self.ctrl.capture_bbox()
+                cx, cy = self.ctrl.local_to_screen(bw // 2, bh // 2)
+                self.ctrl.click(cx, cy, clicks=1)
+                last_tap = now
+            time.sleep(0.2)
+        logger_uma.debug("[unity_cup] Result advance timed out; deferring to main loop.")
+
     def begin_showdown(self, img, dets):
         if self.waiter.click_when(
             classes=("button_green",),
@@ -1077,50 +1155,13 @@ class AgentUnityCup(AgentScenario):
                         self._beat(0.5)
                         self.ctrl.click_xyxy_center(race_after_next_det["xyxy"], clicks=1)
                         logger_uma.debug("[unity_cup] Clicked race after next first")
-                        # Skip-loop click_when below already polls (2s timeout
-                        # per attempt inside a 5s window) — a short beat is
-                        # enough here instead of the old sleep(3).
                         self._beat(1.0)
-                        # Skip button loop (same pattern as race.py)
-                        skip_clicks = 0
-                        t0 = time.time()
-                        while (time.time() - t0) < 5.0 and skip_clicks < 1:  # Max 12s of skip attempts
-                            if self.waiter.click_when(
-                                classes=("button_skip",),
-                                prefer_bottom=True,
-                                timeout_s=2.0,
-                                clicks=random.randint(3, 5),  # 3-5 clicks per detection
-                                tag="unity_cup_skip"
-                            ):
-                                skip_clicks += 1
-                            time.sleep(0.12)  # Brief pause between attempts
-                        self._beat(1.0)
-                        if skip_clicks > 0:
-                            logger_uma.debug(f"[unity_cup] Completed skip sequence (clicks={skip_clicks})")
-                            if self.waiter.click_when(
-                                classes=("button_green",),
-                                texts=("NEXT", ),
-                                allow_greedy_click=True,
-                                timeout_s=4.0,
-                                tag="unity_cup_next"
-                            ):
-                                # race_after_next only appears on special
-                                # cutscene screens (Pyramid/song finale), NOT
-                                # the normal opponent-race result — which shows
-                                # a plain button_green 'Next' + button_white
-                                # 'Try Again'. Poll it only briefly and
-                                # opportunistically so an absent special button
-                                # doesn't burn the full timeout; the main loop's
-                                # unknown-screen handler drives the remaining
-                                # standard Next/Close result screens either way.
-                                if self.waiter.click_when(
-                                    classes=("race_after_next",),
-                                    allow_greedy_click=True,
-                                    timeout_s=1.0,
-                                    tag="unity_cup_race_after_next",
-                                ):
-                                    logger_uma.debug("[unity_cup] Clicked race_after_next")
-                                    self._beat(1.0)
+                        # Drive the full result walk (skip animation → NEXT(s) →
+                        # CLOSE → tap-throughs) in-place, returning once a known
+                        # screen is back. Replaces the old truncated "skip once +
+                        # one NEXT + dead race_after_next poll", which bailed
+                        # mid-result and left the slow generic handler to finish.
+                        self._advance_result_screens()
                     else:
                         button_pink = next((d for d in dets if d.get("name") == "button_pink"), None)
                         if button_pink:

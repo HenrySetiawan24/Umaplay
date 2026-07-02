@@ -51384,6 +51384,218 @@
     "event_kind": null
   },
   {
+    "key": "scenario/Ura Finale/None/None/Exhilarating! What a Scoop!",
+    "key_step": "scenario/Ura Finale/None/None/Exhilarating! What a Scoop!#s1",
+    "type": "scenario",
+    "name": "Ura Finale",
+    "rarity": "None",
+    "attribute": "None",
+    "event_name": "Exhilarating! What a Scoop!",
+    "chain_step": 1,
+    "default_preference": 1,
+    "options": {
+      "1": [
+        {
+          "stamina": 10,
+          "bond": 5,
+          "character": "etsuko"
+        }
+      ],
+      "2": [
+        {
+          "guts": 10,
+          "bond": 5,
+          "character": "etsuko"
+        }
+      ]
+    },
+    "title_norm": "exhilarating! what a scoop!",
+    "image_path": "web\\public\\events\\scenario\\Ura Finale.png",
+    "phash64": 10526736906120381499,
+    "image_variants": [
+      "web\\public\\events\\scenario\\Ura Finale.png"
+    ],
+    "event_kind": "special"
+  },
+  {
+    "key": "scenario/Ura Finale/None/None/A Trainer's Knowledge",
+    "key_step": "scenario/Ura Finale/None/None/A Trainer's Knowledge#s1",
+    "type": "scenario",
+    "name": "Ura Finale",
+    "rarity": "None",
+    "attribute": "None",
+    "event_name": "A Trainer's Knowledge",
+    "chain_step": 1,
+    "default_preference": 2,
+    "options": {
+      "1": [
+        {
+          "power": 10,
+          "bond": 5,
+          "character": "etsuko"
+        }
+      ],
+      "2": [
+        {
+          "speed": 10,
+          "bond": 5,
+          "character": "etsuko"
+        }
+      ]
+    },
+    "title_norm": "a trainer's knowledge",
+    "image_path": "web\\public\\events\\scenario\\Ura Finale.png",
+    "phash64": 10526736906120381499,
+    "image_variants": [
+      "web\\public\\events\\scenario\\Ura Finale.png"
+    ],
+    "event_kind": "special"
+  },
+  {
+    "key": "scenario/Ura Finale/None/None/Best Foot Forward!",
+    "key_step": "scenario/Ura Finale/None/None/Best Foot Forward!#s1",
+    "type": "scenario",
+    "name": "Ura Finale",
+    "rarity": "None",
+    "attribute": "None",
+    "event_name": "Best Foot Forward!",
+    "chain_step": 1,
+    "default_preference": 2,
+    "options": {
+      "1": [
+        {
+          "energy": -10,
+          "power": 20,
+          "guts": 20,
+          "hints": [
+            "Beeline Burst"
+          ]
+        }
+      ],
+      "2": [
+        {
+          "energy": 30,
+          "stamina": 20,
+          "hints": [
+            "Breath of Fresh Air"
+          ]
+        }
+      ]
+    },
+    "title_norm": "best foot forward!",
+    "image_path": "web\\public\\events\\scenario\\Ura Finale.png",
+    "phash64": 10526736906120381499,
+    "image_variants": [
+      "web\\public\\events\\scenario\\Ura Finale.png"
+    ],
+    "event_kind": "special"
+  },
+  {
+    "key": "scenario/Unity Cup/None/None/Tutorial",
+    "key_step": "scenario/Unity Cup/None/None/Tutorial#s1",
+    "type": "scenario",
+    "name": "Unity Cup",
+    "rarity": "None",
+    "attribute": "None",
+    "event_name": "Tutorial",
+    "chain_step": 1,
+    "default_preference": 5,
+    "options": {
+      "1": [
+        {
+          "bond": 0
+        }
+      ],
+      "2": [
+        {
+          "bond": 0
+        }
+      ],
+      "3": [
+        {
+          "bond": 0
+        }
+      ],
+      "4": [
+        {
+          "bond": 0
+        }
+      ],
+      "5": [
+        {
+          "bond": 0
+        }
+      ]
+    },
+    "title_norm": "tutorial",
+    "image_path": "web\\public\\events\\scenario\\Unity Cup.png",
+    "phash64": 9623398841818468594,
+    "image_variants": [
+      "web\\public\\events\\scenario\\Unity Cup.png"
+    ],
+    "event_kind": "special"
+  },
+  {
+    "key": "scenario/Unity Cup/None/None/A Team at Last",
+    "key_step": "scenario/Unity Cup/None/None/A Team at Last#s1",
+    "type": "scenario",
+    "name": "Unity Cup",
+    "rarity": "None",
+    "attribute": "None",
+    "event_name": "A Team at Last",
+    "chain_step": 1,
+    "default_preference": 5,
+    "options": {
+      "1": [
+        {
+          "team": "Happy Hoppers, like Taiki suggested",
+          "hints": [
+            "Mile Maven"
+          ]
+        }
+      ],
+      "2": [
+        {
+          "team": "Sunny Runners, like Fukukitaru suggested",
+          "hints": [
+            "Clairvoyance"
+          ]
+        }
+      ],
+      "3": [
+        {
+          "team": "Carrot Pudding, like Haru suggested",
+          "hints": [
+            "Indomitable"
+          ]
+        }
+      ],
+      "4": [
+        {
+          "team": "Blue Bloom, like Rice suggested",
+          "hints": [
+            "Cooldown"
+          ]
+        }
+      ],
+      "5": [
+        {
+          "team": "Team Carrot",
+          "hints": [
+            "No Stopping Me!"
+          ]
+        }
+      ]
+    },
+    "title_norm": "a team at last",
+    "image_path": "web\\public\\events\\scenario\\Unity Cup.png",
+    "phash64": 9623398841818468594,
+    "image_variants": [
+      "web\\public\\events\\scenario\\Unity Cup.png"
+    ],
+    "event_kind": "special"
+  },
+  {
     "key": "trainee/Special Week/None/None/How Should I Pose?",
     "key_step": "trainee/Special Week/None/None/How Should I Pose?#s1",
     "type": "trainee",

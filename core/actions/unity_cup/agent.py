@@ -195,15 +195,19 @@ class AgentUnityCup(AgentScenario):
                 else:
                     self.patience += 1
 
-                    if self.patience > 10 == 0:
-                        # try single clean click
-                        screen_width = img.width
-                        screen_height = img.height
-                        cx = screen_width * 0.5
-                        y = screen_height * 0.1
-
-                        self.ctrl.click_xyxy_center((cx, y, cx, y), clicks=1)
-                        pass
+                    # Tap-to-continue screens (e.g. the post-race placement
+                    # pose) show no clickable buttons at all — a periodic
+                    # center tap is the only way through. Replaces
+                    # `if self.patience > 10 == 0:`, a chained comparison
+                    # that was always False, so this rescue never fired.
+                    if self.patience >= 3 and self.patience % 3 == 0:
+                        logger_uma.debug(
+                            "[agent] Unknown screen persists (patience=%d); center-tapping possible tap-to-continue screen.",
+                            self.patience,
+                        )
+                        _, _, bw, bh = self.ctrl.capture_bbox()
+                        cx, cy = self.ctrl.local_to_screen(bw // 2, bh // 2)
+                        self.ctrl.click(cx, cy, clicks=1)
                     pat = int(delay * 100)
                     if self.patience >= pat:
                         logger_uma.warning(
@@ -557,7 +561,8 @@ class AgentUnityCup(AgentScenario):
                         if self.waiter.click_when(
                             classes=("button_green",),
                             texts=("SELECT", "OPPONENT"),
-                            allow_greedy_click=False,
+                            allow_greedy_click=True,
+                            prefer_bottom=True,
                             tag="unity_cup_click_button_green",
                         ):
                             logger_uma.info("[UnityCup] Clicked button_green")
@@ -1014,7 +1019,8 @@ class AgentUnityCup(AgentScenario):
         if self.waiter.click_when(
             classes=("button_green",),
             texts=("BEGIN", "SHOWDOWN", "SHOWDOWN!"),
-            allow_greedy_click=False,
+            allow_greedy_click=True,
+            prefer_bottom=True,
             tag="unity_cup_click_showdown",
         ):
             logger_uma.info("[UnityCup] Clicked begin showdown")

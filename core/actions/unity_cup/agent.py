@@ -497,9 +497,15 @@ class AgentUnityCup(AgentScenario):
                     )
 
                 if clicked:
-                    # The 15s banner poll below is the real wait; scaled beat
-                    # instead of a raw sleep(2) so pacing follows the slider.
                     self._beat(1.0)
+                    # Actively advance to the opponent-select screen instead of
+                    # passively waiting for banners. After the race-day banner
+                    # there's an intro/confirm screen with a green GO/RACE button
+                    # that must be clicked before the opponent banners render.
+                    # The old passive seen()-poll never clicked it, so it burned
+                    # the full 15s every race day and the generic fallback did
+                    # the GO click ~15s late. Now we click through it here and
+                    # break as soon as the banners appear.
                     t0 = time.time()
                     banners_seen = False
 
@@ -510,7 +516,19 @@ class AgentUnityCup(AgentScenario):
                         ):
                             banners_seen = True
                             break
-                        time.sleep(0.5)
+                        # Click the intro/confirm GO button if it's up (also
+                        # re-clicks the race-day banner if we're somehow still
+                        # on the lobby) — whichever advances toward the banners.
+                        if self.waiter.click_when(
+                            classes=("button_green", "race_race_day"),
+                            texts=("GO", "RACE", "NEXT", "TO RACE", "Unity", "Cup"),
+                            prefer_bottom=True,
+                            timeout_s=0.4,
+                            tag="unity_cup_raceday_advance",
+                        ):
+                            self._beat(0.5)
+                            continue
+                        time.sleep(0.4)
 
                     if not banners_seen:
                         logger_uma.warning(

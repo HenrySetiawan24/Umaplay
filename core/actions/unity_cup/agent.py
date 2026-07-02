@@ -1104,17 +1104,23 @@ class AgentUnityCup(AgentScenario):
                                 timeout_s=4.0,
                                 tag="unity_cup_next"
                             ):
-                                # click_when below polls; fold the old blind
-                                # sleep(5) into its timeout.
-                                self._beat(1.0)
+                                # race_after_next only appears on special
+                                # cutscene screens (Pyramid/song finale), NOT
+                                # the normal opponent-race result — which shows
+                                # a plain button_green 'Next' + button_white
+                                # 'Try Again'. Poll it only briefly and
+                                # opportunistically so an absent special button
+                                # doesn't burn the full timeout; the main loop's
+                                # unknown-screen handler drives the remaining
+                                # standard Next/Close result screens either way.
                                 if self.waiter.click_when(
                                     classes=("race_after_next",),
                                     allow_greedy_click=True,
-                                    timeout_s=8.0,
+                                    timeout_s=1.0,
                                     tag="unity_cup_race_after_next",
                                 ):
                                     logger_uma.debug("[unity_cup] Clicked race_after_next")
-                                    self._beat(1.5)
+                                    self._beat(1.0)
                     else:
                         button_pink = next((d for d in dets if d.get("name") == "button_pink"), None)
                         if button_pink:

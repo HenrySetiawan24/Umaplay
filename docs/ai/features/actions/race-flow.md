@@ -74,6 +74,19 @@ now pass `require_text_match=True`, which forces a real OCR check against
 [`core/utils/waiter.py`](../../../../core/utils/waiter.py) — the flag defaults
 to `False`, so no other caller's behavior changed.
 
+`race_popup_confirm_try` accepts `texts=("RACE", "OK")`, not just `"RACE"`.
+`_ensure_in_raceday` already handles a consecutive-race penalty popup
+(`texts=("OK",)`) at the initial "click RACES" navigation — but a second
+instance of that same popup can appear again at this later confirm step,
+after a specific race has been selected. Without "OK" here it went
+unrecognized: observed as a static `button_green` reading `'OK'` for the
+full 5s timeout, every poll logging a text-match miss, "recovering" only
+because the pre-race lobby happened to already be reachable underneath it
+by luck (not because the popup was ever clicked). No extra
+`Settings.ACCEPT_CONSECUTIVE_RACE` gate is needed here — by this point in
+`run()` we're already committed to racing, same as `from_raceday`'s
+always-accept semantics in `_ensure_in_raceday`.
+
 ### Unity Cup confirm clicks: geometry instead of forced OCR
 
 The inverse tuning applies to two high-frequency confirm clicks in

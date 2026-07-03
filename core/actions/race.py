@@ -1603,22 +1603,31 @@ class RaceFlow:
                 popup_confirmed = True
                 break
             popup_attempts += 1
+            # Accept 'RACE' (the actual confirm) or 'OK' — a second instance of
+            # the same consecutive-race penalty popup _ensure_in_raceday already
+            # handles can reappear at this later confirm step too. Without OK
+            # here, that popup sat un-clicked for the full timeout (observed:
+            # a static button_green reading 'OK' for 5s straight) and only
+            # "worked" if the pre-race lobby happened to already be reachable
+            # underneath it by luck. We're already committed to racing by this
+            # point in the flow (mirrors from_raceday's always-accept), so no
+            # extra ACCEPT_CONSECUTIVE_RACE gate is needed here.
             if self.waiter.click_when(
                 classes=("button_green",),
-                texts=("RACE",),
+                texts=("RACE", "OK"),
                 prefer_bottom=True,
                 require_text_match=True,
                 timeout_s=1,
                 tag="race_popup_confirm_try",
             ):
-                logger_uma.info("[race] Clicked green 'Race' button (popup) confirmation")
+                logger_uma.info("[race] Clicked green button (popup) confirmation")
                 # Give a short beat for the transition; continue probing.
                 time.sleep(0.2)
                 popup_confirmed = True
                 break
             else:
                 logger_uma.warning(
-                    "[race] couldn't find 'Race' button (popup) confirmation in this check (attempt=%d).",
+                    "[race] couldn't find 'Race'/'OK' button (popup) confirmation in this check (attempt=%d).",
                     popup_attempts,
                 )
             time.sleep(0.1)

@@ -2,7 +2,8 @@
   "shop": {
     "alarm_clock": true,
     "star_pieces": false,
-    "parfait": false
+    "parfait": false,
+    "buy_all": false
   },
   "team_trials": {
     "preferred_banner": 2

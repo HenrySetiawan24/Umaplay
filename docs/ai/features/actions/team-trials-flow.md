@@ -90,6 +90,8 @@ recapture → if only 1 det or no button_pink:
     click button_advance (forbid VIEW RACE) → click button_green
 
 handle_shop_exchange()             # nav utility; handles shop if present
+                                    # (multi-select checkbox UI — see
+                                    # daily-race-flow.md#shop-exchange-multi-select-ui-2026-07)
 
 ┌ Screen 7: Points Result ────────────────────────────────────────────────────┐
 │ Individual character score cards (WIN pts / placement per race).             │

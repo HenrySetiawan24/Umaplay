@@ -6,6 +6,7 @@ const DEFAULT_PREFS: NavPrefs = {
     alarm_clock: true,
     star_pieces: false,
     parfait: false,
+    buy_all: false,
   },
   team_trials: {
     preferred_banner: 2,
@@ -37,6 +38,7 @@ const mergeWithDefaults = (prefs: NavPrefs | undefined): NavPrefs => ({
     alarm_clock: prefs?.shop?.alarm_clock ?? DEFAULT_PREFS.shop.alarm_clock,
     star_pieces: prefs?.shop?.star_pieces ?? DEFAULT_PREFS.shop.star_pieces,
     parfait: prefs?.shop?.parfait ?? DEFAULT_PREFS.shop.parfait,
+    buy_all: prefs?.shop?.buy_all ?? DEFAULT_PREFS.shop.buy_all,
   },
   team_trials: {
     preferred_banner: prefs?.team_trials?.preferred_banner ?? DEFAULT_PREFS.team_trials.preferred_banner,

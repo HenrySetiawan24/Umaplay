@@ -73,6 +73,46 @@ handle_shop_in_place()   # resume entry point if the run was interrupted mid-sho
 | `run_race_and_collect()` | The race→results→race-again loop (≤5 iterations). Delegates shop handling to `nav.handle_shop_exchange`. Returns `finalized: bool`. |
 | `handle_shop_in_place()` | Re-enters shop handling when resuming a run that was already inside the shop (`ensure_enter=False`). |
 
+### Shop exchange (multi-select UI, 2026-07)
+
+The Daily Race / Team Trials shop switched from a per-row "EXCHANGE → confirm
+→ CLOSE" flow to a batch UI: every `shop_row` now shows a checkbox on its
+right edge, plus a top **Select All** button and a bottom **Confirm**/**Reset**
+bar with a running cost total. `nav.handle_shop_exchange` (`core/utils/nav.py`)
+was rewritten around this — the old per-row `EXCHANGE` button/dialog no longer
+exists in-game, so the previous flow is gone, not just superseded.
+
+Two modes, selected by the `shop.buy_all` nav preference:
+
+- **Buy all** (`_handle_shop_buy_all`): click **Select All**, then **Confirm**,
+  then walk the resulting purchase popup (`EXCHANGE`/`PURCHASE`/`OK`/`YES`) and
+  **CLOSE**. No row-level detection needed — lowest risk, matches "just buy
+  everything."
+- **Selective** (`_handle_shop_selective`): only enabled when `buy_all` is off
+  and at least one of `alarm_clock`/`star_pieces`/`parfait` is on. For each
+  scroll pass, rows whose item-icon class (`shop_clock`/`shop_star_piece`/
+  `shop_parfait`) matches an enabled preference get their checkbox tapped, then
+  a single **Confirm** at the end.
+
+**Checkbox targeting is geometric, not a trained class** — there's no YOLO
+class for the checkbox widget itself (checked `models/uma_nav.pt`'s class list;
+it has `shop_row`/`shop_exchange`/`shop_clock`/`shop_star_piece`/`shop_parfait`/
+`shop_shoes`/`shop_sp` but nothing checkbox/select-all/confirm-specific). The
+click point is `row.x1 + row_width * Settings.SHOP_CHECKBOX_X_FRAC` (default
+`0.87`), vertically centered on the row — a fraction of each row's own detected
+width so it scales across resolutions, calibrated against a single reference
+screenshot. **This has not been verified against a live device** — if a live
+run shows the tap landing off the checkbox, tune `SHOP_CHECKBOX_X_FRAC` (env
+var of the same name, or via the `shop` nav-prefs plumbing) rather than editing
+the click math.
+
+**Dedup across scroll passes**: because checked rows stay checked (there's no
+per-row confirm to remove them from view, unlike the old flow), re-tapping an
+already-checked row on an overlapping scroll would *uncheck* it. Each row's
+item name is OCR'd once (`_row_item_name`) and tracked in a `checked_names` set
+so a row is only ever tapped once per shop visit, regardless of how many scroll
+passes re-show it.
+
 ### Notes / quirks
 
 - **Emulator pacing:** extra `sleep` is added when `ctrl` is `ScrcpyController` /

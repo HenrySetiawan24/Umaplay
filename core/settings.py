@@ -48,6 +48,7 @@ _DEFAULT_NAV_PREFS: Dict[str, Dict[str, Any]] = {
         "alarm_clock": True,
         "star_pieces": False,
         "parfait": False,
+        "buy_all": False,
     },
     "team_trials": {
         "preferred_banner": 2,
@@ -97,6 +98,10 @@ class Settings:
     SKILLS_MAX_SCROLLS: int = _env_int("SKILLS_MAX_SCROLLS", default=15)
     # Skills shop: consecutive unchanged-view passes tolerated before early-stop.
     SKILLS_SCAN_PATIENCE: int = _env_int("SKILLS_SCAN_PATIENCE", default=3)
+    # Daily/Team-trials shop (multi-select UI): checkbox x-position as a fraction
+    # of each detected shop_row's own width, from the row's left edge. Tune this
+    # if live captures show the click landing off the checkbox.
+    SHOP_CHECKBOX_X_FRAC: float = _env_float("SHOP_CHECKBOX_X_FRAC", default=0.87)
     # Race if no good training options are available (default: False = skip race if no good training)
     RACE_IF_NO_GOOD_VALUE: bool = _env_bool("RACE_IF_NO_GOOD_VALUE", default=False)
 
@@ -655,6 +660,7 @@ class Settings:
             "alarm_clock": bool(shop.get("alarm_clock", True)),
             "star_pieces": bool(shop.get("star_pieces", False)),
             "parfait": bool(shop.get("parfait", False)),
+            "buy_all": bool(shop.get("buy_all", False)),
         }
 
         try:
@@ -687,6 +693,7 @@ class Settings:
             "alarm_clock": bool(prefs.get("alarm_clock", True)),
             "star_pieces": bool(prefs.get("star_pieces", False)),
             "parfait": bool(prefs.get("parfait", False)),
+            "buy_all": bool(prefs.get("buy_all", False)),
         }
 
     @classmethod

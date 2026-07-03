@@ -35,6 +35,7 @@ export type NavPrefs = {
     alarm_clock: boolean
     star_pieces: boolean
     parfait: boolean
+    buy_all: boolean
   }
   team_trials: {
     preferred_banner: 1 | 2 | 3

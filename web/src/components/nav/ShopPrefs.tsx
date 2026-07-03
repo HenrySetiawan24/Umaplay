@@ -32,10 +32,12 @@ export default function ShopPrefs() {
     },
   )
 
-  const handleToggle = (key: 'alarm_clock' | 'star_pieces' | 'parfait') => (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleToggle = (key: 'alarm_clock' | 'star_pieces' | 'parfait' | 'buy_all') => (event: React.ChangeEvent<HTMLInputElement>) => {
     toggleShop(key, event.target.checked)
     setToast((prev) => ({ ...prev, open: false }))
   }
+
+  const buyAll = prefs.shop.buy_all
 
   const handleSave = async () => {
     try {
@@ -77,40 +79,65 @@ export default function ShopPrefs() {
             Loading preferences…
           </Typography>
         ) : (
-          <List disablePadding>
-            {options.map((item, idx) => (
-              <Fragment key={item.key}>
-                <ListItem sx={{ px: 0 }}>
-                  <Stack
-                    direction={{ xs: 'column', sm: 'row' }}
-                    alignItems={{ xs: 'flex-start', sm: 'center' }}
-                    justifyContent="space-between"
-                    spacing={{ xs: 2, sm: 3 }}
-                    sx={{ width: '100%' }}
-                  >
-                    <Stack direction="row" spacing={2} alignItems="center">
-                      <Box
-                        component="img"
-                        src={item.icon}
-                        alt={item.label}
-                        sx={{ width: 64, height: 64, objectFit: 'contain' }}
+          <>
+            <Stack
+              direction={{ xs: 'column', sm: 'row' }}
+              alignItems={{ xs: 'flex-start', sm: 'center' }}
+              justifyContent="space-between"
+              spacing={{ xs: 2, sm: 3 }}
+            >
+              <Stack spacing={0.25}>
+                <Typography variant="subtitle1" fontWeight={600}>
+                  Buy everything available
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Uses "Select All" + "Confirm" in the shop instead of picking specific items below.
+                </Typography>
+              </Stack>
+              <Switch
+                edge="end"
+                checked={buyAll}
+                onChange={handleToggle('buy_all')}
+                inputProps={{ 'aria-label': 'Buy everything available' }}
+              />
+            </Stack>
+            <Divider sx={{ my: 1 }} />
+            <List disablePadding sx={{ opacity: buyAll ? 0.5 : 1, pointerEvents: buyAll ? 'none' : 'auto' }}>
+              {options.map((item, idx) => (
+                <Fragment key={item.key}>
+                  <ListItem sx={{ px: 0 }}>
+                    <Stack
+                      direction={{ xs: 'column', sm: 'row' }}
+                      alignItems={{ xs: 'flex-start', sm: 'center' }}
+                      justifyContent="space-between"
+                      spacing={{ xs: 2, sm: 3 }}
+                      sx={{ width: '100%' }}
+                    >
+                      <Stack direction="row" spacing={2} alignItems="center">
+                        <Box
+                          component="img"
+                          src={item.icon}
+                          alt={item.label}
+                          sx={{ width: 64, height: 64, objectFit: 'contain' }}
+                        />
+                        <Typography variant="subtitle1" fontWeight={600}>
+                          {item.label}
+                        </Typography>
+                      </Stack>
+                      <Switch
+                        edge="end"
+                        checked={prefs.shop[item.key]}
+                        onChange={handleToggle(item.key)}
+                        disabled={buyAll}
+                        inputProps={{ 'aria-label': item.label }}
                       />
-                      <Typography variant="subtitle1" fontWeight={600}>
-                        {item.label}
-                      </Typography>
                     </Stack>
-                    <Switch
-                      edge="end"
-                      checked={prefs.shop[item.key]}
-                      onChange={handleToggle(item.key)}
-                      inputProps={{ 'aria-label': item.label }}
-                    />
-                  </Stack>
-                </ListItem>
-                {idx < options.length - 1 && <Divider sx={{ my: 2 }} />}
-              </Fragment>
-            ))}
-          </List>
+                  </ListItem>
+                  {idx < options.length - 1 && <Divider sx={{ my: 2 }} />}
+                </Fragment>
+              ))}
+            </List>
+          </>
         )}
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
           <Button

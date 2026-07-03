@@ -11,6 +11,7 @@ from core.controllers.base import IController
 from core.perception.yolo.interface import IDetector
 from core.settings import Settings
 from core.types import DetectionDict
+from core.utils.geometry import crop_pil
 from core.utils.logger import logger_uma
 from core.utils.pointer import smart_scroll_small
 from core.utils.waiter import Waiter
@@ -201,31 +202,77 @@ def _shop_item_order() -> Iterable[Tuple[str, str]]:
             yield det_name, pref_key
 
 
-def _confirm_exchange_dialog(waiter: Waiter, tag_prefix: str) -> bool:
+def _row_checkbox_point(row: DetectionDict, x_frac: float) -> Tuple[float, float, float, float]:
+    """
+    Approximate click point for a shop_row's multi-select checkbox, which sits
+    near the row's right edge. Expressed as a fraction of the row's own
+    detected width so it scales with resolution/aspect ratio instead of a
+    fixed screen-space offset.
+    """
+    x1, y1, x2, y2 = row["xyxy"]
+    cx = x1 + (x2 - x1) * x_frac
+    cy = 0.5 * (y1 + y2)
+    return (cx, cy, cx, cy)
+
+
+def _row_item_name(waiter: Waiter, img: Image.Image, row: DetectionDict) -> str:
+    """OCR the item-name area of a shop_row (between the icon and the cost/checkbox)."""
+    if not waiter.ocr:
+        return ""
+    x1, y1, x2, y2 = row["xyxy"]
+    w = x2 - x1
+    crop = crop_pil(img, (x1 + w * 0.22, y1, x1 + w * 0.75, y2), pad=0)
+    return (waiter.ocr.text(crop) or "").strip()
+
+
+def _click_select_all(waiter: Waiter, tag_prefix: str) -> bool:
+    return waiter.click_when(
+        classes=("button_green",),
+        texts=("SELECT ALL",),
+        prefer_bottom=False,
+        allow_greedy_click=True,
+        require_text_match=True,
+        timeout_s=3.0,
+        tag=f"{tag_prefix}_select_all",
+    )
+
+
+def _click_confirm_purchase(waiter: Waiter, tag_prefix: str) -> bool:
+    """Click the bottom 'Confirm' button, then walk through the resulting
+    purchase confirmation popup (if any) and close it."""
     ok = waiter.click_when(
         classes=("button_green",),
-        texts=("EXCHANGE",),
-        prefer_bottom=False,
+        texts=("CONFIRM",),
+        prefer_bottom=True,
+        allow_greedy_click=True,
+        require_text_match=True,
         timeout_s=3.0,
-        allow_greedy_click=False,
-        tag=f"{tag_prefix}_confirm_exchange",
+        tag=f"{tag_prefix}_confirm",
     )
     if not ok:
         return False
 
-    sleep(1.5)
-    if not waiter.click_when(
+    sleep(1.0)
+    waiter.click_when(
+        classes=("button_green",),
+        texts=("EXCHANGE", "PURCHASE", "OK", "YES"),
+        prefer_bottom=False,
+        allow_greedy_click=True,
+        timeout_s=3.0,
+        tag=f"{tag_prefix}_confirm_popup",
+    )
+    sleep(1.0)
+    waiter.click_when(
         classes=("button_white",),
         texts=("CLOSE",),
         prefer_bottom=False,
+        allow_greedy_click=True,
         timeout_s=3.0,
-        allow_greedy_click=False,
-        tag=f"{tag_prefix}_close",
-    ):
-        return False
-
-    sleep(0.8)
+        tag=f"{tag_prefix}_confirm_close",
+    )
+    sleep(0.6)
     return True
+
 
 def end_sale_dialog(waiter: Waiter, tag_prefix: str) -> bool:
     clicked_end = waiter.click_when(
@@ -265,6 +312,94 @@ def end_sale_dialog(waiter: Waiter, tag_prefix: str) -> bool:
     )
     return True
 
+def _handle_shop_buy_all(waiter: Waiter, tag_prefix: str) -> bool:
+    """Multi-select UI: tap 'Select All' then 'Confirm' once."""
+    if not _click_select_all(waiter, tag_prefix):
+        logger_uma.info("[nav] shop: 'Select All' not found (nothing to buy?)")
+        return False
+
+    sleep(0.6)
+    if not _click_confirm_purchase(waiter, tag_prefix):
+        logger_uma.warning("[nav] shop: 'Confirm' failed after Select All")
+        return False
+
+    logger_uma.info("[nav] shop: bought all available items")
+    end_sale_dialog(waiter, tag_prefix)
+    return True
+
+
+def _handle_shop_selective(
+    waiter: Waiter,
+    yolo_engine: IDetector,
+    ctrl: IController,
+    prefs_enabled: List[Tuple[str, str]],
+    *,
+    tag_prefix: str,
+    max_cycles: int,
+) -> bool:
+    """
+    Multi-select UI: tick the checkbox for rows matching enabled preferences,
+    then 'Confirm' once. Rows are deduped by OCR'd item name so an overlapping
+    scroll pass never re-taps (and un-checks) an item already selected.
+    """
+    checked_names: set = set()
+    stagnant_passes = 0
+    attempts = 0
+
+    while attempts < max_cycles:
+        attempts += 1
+        img, dets = collect_snapshot(waiter, yolo_engine, tag=f"{tag_prefix}_scan")
+
+        rows = rows_top_to_bottom(dets, "shop_row")
+        if not rows:
+            logger_uma.debug("[nav] shop: no shop_row detected, retry scrolling")
+            smart_scroll_small(ctrl, steps_android=1, steps_pc=1)
+            sleep(1.0)
+            continue
+
+        new_this_pass = 0
+        for det_name, pref_key in prefs_enabled:
+            for row in rows:
+                if not _detections_in_row(dets, row, det_name):
+                    continue
+
+                name_text = _row_item_name(waiter, img, row)
+                if not name_text or name_text in checked_names:
+                    continue
+
+                checked_names.add(name_text)
+                point = _row_checkbox_point(row, Settings.SHOP_CHECKBOX_X_FRAC)
+                ctrl.click_xyxy_center(point, clicks=1)
+                logger_uma.info(
+                    f"[nav] shop: checked '{name_text}' (pref={pref_key}) at {point}"
+                )
+                new_this_pass += 1
+                sleep(0.35)
+
+        if new_this_pass == 0:
+            stagnant_passes += 1
+            if stagnant_passes >= 2:
+                break
+        else:
+            stagnant_passes = 0
+
+        smart_scroll_small(ctrl, steps_android=1, steps_pc=1)
+        sleep(0.8)
+
+    if not checked_names:
+        logger_uma.info("[nav] shop: preferences not satisfied after scroll attempts")
+        return False
+
+    sleep(0.4)
+    if not _click_confirm_purchase(waiter, tag_prefix):
+        logger_uma.warning("[nav] shop: 'Confirm' failed after selecting items")
+        return False
+
+    logger_uma.info("[nav] shop: purchased %d selected item(s)", len(checked_names))
+    end_sale_dialog(waiter, tag_prefix)
+    return True
+
+
 def handle_shop_exchange(
     waiter: Waiter,
     yolo_engine: IDetector,
@@ -274,8 +409,10 @@ def handle_shop_exchange(
     ensure_enter: bool = True,
     max_cycles: int = 6,
 ) -> bool:
+    prefs = Settings.get_shop_nav_prefs()
+    buy_all = bool(prefs.get("buy_all", False))
     prefs_enabled = list(_shop_item_order())
-    if not prefs_enabled:
+    if not buy_all and not prefs_enabled:
         logger_uma.info("[nav] shop: all items disabled by preference")
         return False
 
@@ -308,69 +445,8 @@ def handle_shop_exchange(
     else:
         sleep(1.0)
 
-    attempts = 0
-    any_purchased = False
-
-    all_purchased = True
-    while attempts < max_cycles:
-        attempts += 1
-        img, dets = collect_snapshot(waiter, yolo_engine, tag=f"{tag_prefix}_scan")
-
-        rows = rows_top_to_bottom(dets, "shop_row")
-        if not rows:
-            logger_uma.debug("[nav] shop: no shop_row detected, retry scrolling")
-            smart_scroll_small(ctrl, steps_android=1, steps_pc=1)
-            sleep(1.0)
-            continue
-
-        any_purchased = False
-        expected_purchases = len(prefs_enabled)
-        for det_name, pref_key in prefs_enabled:
-            for row in rows:
-                items = _detections_in_row(dets, row, det_name)
-                if not items:
-                    continue
-
-                exchanges = _detections_in_row(dets, row, "shop_exchange")
-                if not exchanges:
-                    logger_uma.debug(
-                        f"[nav] shop: exchange button missing in row for {pref_key}"
-                    )
-                    continue
-
-                target_exchange = max(exchanges, key=lambda d: float(d.get("conf", 0.0)))
-                ctrl.click_xyxy_center(target_exchange["xyxy"], clicks=1)
-                logger_uma.info(
-                    f"[nav] shop: clicked exchange for '{det_name}' (pref={pref_key})"
-                )
-                sleep(0.5)
-
-                confirmed = _confirm_exchange_dialog(waiter, tag_prefix)
-                if confirmed:
-                    logger_uma.info(
-                        f"[nav] shop: completed exchange for {pref_key}"
-                    )
-                    any_purchased = True
-                    expected_purchases -= 1
-                else:
-                    logger_uma.debug(
-                        f"[nav] shop: confirmation failed for {pref_key}, continuing"
-                    )
-                if pref_key != "star_pieces":
-                    # if star pieces we may need to look in other rows
-                    break
-
-        if expected_purchases > 0:
-            smart_scroll_small(ctrl, steps_android=1, steps_pc=1)
-            sleep(1.0)
-        elif any_purchased:
-            # everything purchased at first glance
-            end_sale_dialog(waiter, tag_prefix)
-            return True
-
-    if any_purchased:
-        end_sale_dialog(waiter, tag_prefix)
-        return True
-
-    logger_uma.info("[nav] shop: preferences not satisfied after scroll attempts")
-    return False
+    if buy_all:
+        return _handle_shop_buy_all(waiter, tag_prefix)
+    return _handle_shop_selective(
+        waiter, yolo_engine, ctrl, prefs_enabled, tag_prefix=tag_prefix, max_cycles=max_cycles
+    )

@@ -97,15 +97,15 @@ An enhanced fork of Magody's Umaplay — an Umamusume career-automation bot (YOL
   - Group performance/timing knobs; make post-training pause configurable
 - UI improvements:
   ![Screenshot](assets/doc/UI-rearranged.png)
-  - buttons to start and stop the bot, (so we can exclude the keyboard import from python, making it runnable in mac or linux)
-  - better race selector section, in-game alike schedule system
+  - Start/stop buttons in the Web UI — eliminates the keyboard dependency, making the bot runnable on macOS and Linux without a keyboard hook
+  - Redesigned race scheduler with an in-game-like calendar system
     ![Screenshot](assets/doc/UI-scheduler-calendar.png)
-    - goals now appear in the yellow color
-    - clicking a goal will create a pop-up like the in game selector and selecting a race will navigate to the next date.
+    - Goal races highlighted in yellow
+    - Clicking a goal opens an in-game-style popup; selecting a race auto-navigates to the next eligible date
       ![Screenshot](assets\doc\UI-race-selector-pop-up.png)
-  - new run logs:
+  - New run logs tab:
     ![Screenshot](assets\doc\UI-run-logs.png)
-    - with details to the bot's choices and race placements:
+    - Drill-down details showing the bot's decisions and race placements per turn
       ![Screenshot](assets\doc\UI-run-logs-details.png)
 
 ![Screenshot](assets/doc/screenshot.png)

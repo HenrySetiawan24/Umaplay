@@ -51499,36 +51499,18 @@
     "attribute": "None",
     "event_name": "Tutorial",
     "chain_step": 1,
-    "default_preference": 5,
+    "default_preference": 2,
     "options": {
       "1": [
         {
           "bond": 0,
-          "label": "The Unity Cup in general"
+          "label": "Yes, please."
         }
       ],
       "2": [
         {
           "bond": 0,
-          "label": "The Unity Cup races"
-        }
-      ],
-      "3": [
-        {
-          "bond": 0,
-          "label": "Team members and Unity Training"
-        }
-      ],
-      "4": [
-        {
-          "bond": 0,
-          "label": "Team stats"
-        }
-      ],
-      "5": [
-        {
-          "bond": 0,
-          "label": "That's all, thank you."
+          "label": "No, thank you."
         }
       ]
     },

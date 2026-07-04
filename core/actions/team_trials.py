@@ -356,6 +356,7 @@ class TeamTrialsFlow:
                 if self.waiter.click_when(
                     classes=("race_after_next",),
                     allow_greedy_click=True,
+                    timeout_s=1.2,
                     tag="team_trials_race_after_next",
                 ):
                     logger_uma.debug("[TeamTrials] Clicked race_after_next")
@@ -389,7 +390,7 @@ class TeamTrialsFlow:
             self.waiter.click_when(
                 classes=("button_green",),
                 prefer_bottom=True,
-                timeout_s=2.8,
+                timeout_s=1.2,
                 clicks=1,
                 tag="team_trials_reward_next_green",
             )

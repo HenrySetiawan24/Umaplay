@@ -7,5 +7,9 @@
   },
   "team_trials": {
     "preferred_banner": 2
+  },
+  "daily_legend": {
+    "enabled": false,
+    "preferred_opponent": ""
   }
 }

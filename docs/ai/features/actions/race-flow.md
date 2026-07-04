@@ -190,11 +190,22 @@ The bot only **re-races** in one case — a confirmed loss of a goal race:
 - After the race it probes for **TRY AGAIN** (loss indicator), **skipped entirely
   when `_last_won is True`** (A1 already confirmed a win — saves ~3s + 6 detections
   on every winning race).
-- Re-races iff `loss_indicator_seen` **and** `Settings.TRY_AGAIN_ON_FAILED_GOAL`:
-  `_attempt_try_again_retry()` clicks TRY AGAIN → `_handle_retry_transition()`
-  clears interstitials and waits for the lobby/View-Results to reappear → recursive
-  `lobby()`.
-- Lost but retry disabled → the bot **stops** for a manual decision.
+- Re-races iff `loss_indicator_seen` **and** `Settings.TRY_AGAIN_ON_FAILED_GOAL`
+  **and** the per-race retry budget isn't spent (`_goal_retry_count <
+  Settings.GOAL_RETRY_LIMIT`): `_attempt_try_again_retry()` clicks TRY AGAIN →
+  `_handle_retry_transition()` clears interstitials and waits for the
+  lobby/View-Results to reappear → recursive `lobby()`. `_goal_retry_count`
+  increments per retry and resets per race in `run()`.
+- Lost, retry enabled, but **budget spent** (`GOAL_RETRY_LIMIT` reached) →
+  `_dismiss_try_again_popup()` clicks **Cancel** on the alarm-clock "Try Again"
+  popup and the run **continues** (no more retries, no manual stop).
+- Lost but retry disabled (`TRY_AGAIN_ON_FAILED_GOAL` off) → the bot **stops**
+  for a manual decision (unchanged).
+
+`GOAL_RETRY_LIMIT` (General → "Max retries per race", 0–10, default 3) caps how
+many alarm-clock retries the bot spends per race before giving up. The game
+still bounds it too (finite alarm clocks / "try again N more times"); this is a
+softer, user-set cap on top.
 
 All other "retries" (`_pick_view_results_button` progressive retries, the skip
 loop, the reactive confirm loops, the results gate) are navigation robustness, not

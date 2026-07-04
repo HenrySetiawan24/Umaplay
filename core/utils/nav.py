@@ -47,6 +47,45 @@ def has(dets: List[DetectionDict], name: str, *, conf_min: float = 0.0) -> bool:
     )
 
 
+def maybe_handle_connection_error(
+    waiter: Waiter,
+    dets: Optional[List[DetectionDict]] = None,
+    *,
+    tag_prefix: str = "conn_err",
+) -> bool:
+    """
+    Detect and dismiss the game's **Connection Error** popup — a network-hiccup
+    modal (green *Retry* + white *Title Screen*) that can overlay ANY screen —
+    by clicking *Retry* to resume in place. Meant to be called at the top of
+    every flow's poll loop as a shared recovery step (no flow has a common
+    per-iteration hook otherwise).
+
+    Cheap gate: *Retry* is a green button, so when `dets` is given, skip the OCR
+    probe entirely if no `button_green` is on screen this frame. Pass `dets=None`
+    (e.g. from a flow that doesn't have fresh detections handy) to always probe.
+    Matching requires the literal text "Retry" (`require_text_match`), so it
+    won't fire on the race-loss "Try Again" popup or ordinary green NEXT/OK
+    buttons. Returns True if it clicked Retry.
+    """
+    if dets is not None and not any(d.get("name") == "button_green" for d in dets):
+        return False
+    if waiter.click_when(
+        classes=("button_green",),
+        texts=("RETRY",),
+        prefer_bottom=True,
+        allow_greedy_click=True,
+        require_text_match=True,
+        timeout_s=0.4,
+        tag=f"{tag_prefix}_retry",
+    ):
+        logger_uma.warning(
+            "[nav] Connection Error detected; clicked Retry to recover."
+        )
+        sleep(1.0)
+        return True
+    return False
+
+
 def by_name(
     dets: List[DetectionDict], name: str, *, conf_min: float = 0.0
 ) -> List[DetectionDict]:

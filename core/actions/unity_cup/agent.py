@@ -21,6 +21,7 @@ from core.agent_scenario import AgentScenario
 from core.settings import Settings
 from core.utils.logger import logger_uma
 from core.utils.text import fuzzy_contains
+from core.utils import nav
 from core.constants import DEFAULT_TILE_TO_TYPE
 from core.utils.training_policy_utils import click_training_tile
 from core.utils.waiter import PollConfig, Waiter
@@ -142,6 +143,11 @@ class AgentUnityCup(AgentScenario):
                 agent=self.agent_name,
             )
 
+            # Shared recovery: a Connection Error popup can overlay any screen;
+            # click Retry and re-loop before classifying/handling anything else.
+            if nav.maybe_handle_connection_error(self.waiter, dets):
+                continue
+
             screen, _ = classify_screen_unity_cup(
                 dets,
                 lobby_conf=0.5,
@@ -172,6 +178,16 @@ class AgentUnityCup(AgentScenario):
                     continue
                 # Reset event stale counters when on unknown screen
                 self._single_event_option_counter = 0
+
+                # Team Showdown opponent-selection screens (Select Opponent list
+                # / Begin Showdown! confirm) often carry neither race_race_day
+                # nor unity_opponent_banner, so they land here as Unknown. Drive
+                # them by button text FIRST — otherwise the generic handler below
+                # matches 'CANCEL' on the confirm and cancels the showdown, or
+                # can't match 'Select Opponent' and loops.
+                if self._try_advance_showdown(img, dets):
+                    self.patience = 0
+                    continue
 
                 if self.patience >= fallback_utils.FALLBACK_PATIENCE_STAGE_1:
                     if fallback_utils.handle_unknown_low_conf_targets(self, dets):
@@ -602,6 +618,10 @@ class AgentUnityCup(AgentScenario):
                             logger_uma.warning("[UnityCup] button_green not found")
                     else:
                         logger_uma.warning("[UnityCup] No opponent banners detected")
+                        # Banner detection missed — fall back to advancing the
+                        # showdown by button text (Select Opponent / Begin
+                        # Showdown!) so we don't stall on this race day.
+                        self._try_advance_showdown(img, dets)
 
             if screen == "Lobby" or is_lobby_summer:
                 self._consume_pending_hint_recheck()
@@ -1122,6 +1142,61 @@ class AgentUnityCup(AgentScenario):
                 last_tap = now
             time.sleep(0.2)
         logger_uma.debug("[unity_cup] Result advance timed out; deferring to main loop.")
+
+    def _try_advance_showdown(self, img, dets) -> bool:
+        """
+        Advance the Team Showdown opponent-selection screens by button *text*,
+        independent of `unity_opponent_banner` / `race_race_day` detection.
+
+        Those two screens — the 'Select Opponent' list and the 'Begin Showdown!'
+        confirm popup — frequently yield neither class, so they classify as
+        Unknown and fall to the generic `agent_unknown_advance` handler, which
+        (1) matches 'CANCEL' on the confirm popup and *cancels* the showdown,
+        and (2) can't match 'Select Opponent' so it loops. This runs before
+        that handler and drives the flow forward instead.
+
+        Returns True if it handled a showdown screen.
+        """
+        # Cheap gate: both showdown controls are green buttons. If none is on
+        # screen this iteration, skip the OCR probes (each does a recognize).
+        if not any(d.get("name") == "button_green" for d in dets):
+            return False
+
+        # Confirm popup: a green 'Begin Showdown!' is present. Route through
+        # begin_showdown so the button click AND the post-race result walk run.
+        # (begin_showdown is class-filtered to button_green, so it targets the
+        # green Begin Showdown!, never the white Cancel.)
+        if self.waiter.seen(
+            classes=("button_green",),
+            texts=("BEGIN SHOWDOWN", "SHOWDOWN"),
+            tag="unity_cup_showdown_confirm_probe",
+        ):
+            logger_uma.info(
+                "[UnityCup] Showdown confirm detected by text; beginning showdown."
+            )
+            self.begin_showdown(img, dets)
+            return True
+
+        # Selector list: a green 'Select Opponent' confirms the pre-selected
+        # opponent (middle card is highlighted by default). Specific-slot
+        # selection still needs unity_opponent_banner detection; this fallback
+        # just keeps the flow moving when that detection misses.
+        if self.waiter.click_when(
+            classes=("button_green",),
+            texts=("SELECT OPPONENT",),
+            prefer_bottom=True,
+            allow_greedy_click=True,
+            require_text_match=True,
+            timeout_s=0.4,
+            tag="unity_cup_select_opponent_ocr",
+        ):
+            logger_uma.info(
+                "[UnityCup] Showdown: clicked 'Select Opponent' (pre-selected opponent)."
+            )
+            self._beat(1.0)
+            return True
+
+        return False
 
     def begin_showdown(self, img, dets):
         if self.waiter.click_when(

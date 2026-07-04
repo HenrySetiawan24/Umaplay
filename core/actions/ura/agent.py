@@ -22,6 +22,7 @@ from core.agent_scenario import AgentScenario
 from core.settings import Settings
 from core.utils.logger import logger_uma
 from core.utils.text import fuzzy_contains
+from core.utils import nav
 from core.constants import DEFAULT_TILE_TO_TYPE
 from core.utils.training_policy_utils import click_training_tile
 from core.utils.waiter import PollConfig, Waiter
@@ -123,6 +124,11 @@ class AgentURA(AgentScenario):
                 tag="screen",
                 agent=self.agent_name,
             )
+
+            # Shared recovery: a Connection Error popup can overlay any screen;
+            # click Retry and re-loop before classifying/handling anything else.
+            if nav.maybe_handle_connection_error(self.waiter, dets):
+                continue
 
             screen, _ = classify_screen_ura(
                 dets,

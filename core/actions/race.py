@@ -35,6 +35,7 @@ from core.utils.logger import logger_uma
 from core.utils.text import _normalize_ocr, fuzzy_contains, fuzzy_ratio
 from core.utils.yolo_objects import collect, find, bottom_most, inside
 from core.utils.pointer import smart_scroll_small
+from core.utils import nav
 from core.utils.abort import abort_requested, request_abort
 from core.run_context import get as get_run_record, update_last_turn_log
 from server.run_history import append_history
@@ -87,6 +88,9 @@ class RaceFlow:
             "lobby_view_failures": 0,
         }
         self._waiting_for_manual_retry_decision = False
+        # How many "Try Again" retries we've already spent on the current race.
+        # Reset per race in run(); capped by Settings.GOAL_RETRY_LIMIT.
+        self._goal_retry_count = 0
         self._last_failure_reason: RaceFailureReason = RaceFailureReason.NONE
         self._last_race_name: Optional[str] = None
         self._current_turn: Optional[int] = None
@@ -420,6 +424,23 @@ class RaceFlow:
             self._race_result_counters,
         )
         return False
+
+    def _dismiss_try_again_popup(self) -> bool:
+        """Click 'Cancel' on the alarm-clock 'Try Again' popup to decline the
+        retry and let the run continue (used when the retry budget is spent)."""
+        clicked = self.waiter.click_when(
+            classes=("button_white",),
+            texts=("CANCEL",),
+            prefer_bottom=False,
+            allow_greedy_click=False,
+            require_text_match=True,
+            timeout_s=2.0,
+            tag="race_try_again_cancel",
+        )
+        if clicked:
+            logger_uma.info("[race] Declined 'Try Again' (retry budget spent); clicked Cancel.")
+            time.sleep(0.4)
+        return clicked
 
     def _handle_retry_transition(self) -> None:
         """Clear alarm-clock confirmations and wait until lobby buttons reappear."""
@@ -1220,16 +1241,23 @@ class RaceFlow:
                     total_time += 2
                     continue
 
-                # No known button found — may be a tap-to-continue screen (e.g. the
-                # character placement reaction "5th / TAP" screen between skip and
-                # the leaderboard). Tap the center to advance it.
+                # No known button found — either a Connection Error popup
+                # (network hiccup can overlay the race screen) or a
+                # tap-to-continue screen (e.g. the character placement reaction
+                # "5th / TAP" between skip and the leaderboard). Throttled to
+                # the same 1s cadence so the extra OCR probe doesn't slow the
+                # reaction tap-through.
                 now = time.time()
                 if now - last_center_tap_t >= 1.0:
+                    last_center_tap_t = now
+                    if nav.maybe_handle_connection_error(
+                        self.waiter, tag_prefix="race_conn_err"
+                    ):
+                        continue
                     logger_uma.debug("[race] Skip loop: no known button; tapping center to advance.")
                     _, _, bw, bh = self.ctrl.capture_bbox()
                     cx, cy = self.ctrl.local_to_screen(bw // 2, bh // 2)
                     self.ctrl.click(cx, cy, clicks=1)
-                    last_center_tap_t = now
                 time.sleep(0.12)
 
             # Confirm the result leaderboard is actually up before reading it / NEXT
@@ -1282,10 +1310,29 @@ class RaceFlow:
                 self._race_result_counters,
             )
 
-        should_retry = bool(Settings.TRY_AGAIN_ON_FAILED_GOAL and loss_indicator_seen)
+        retry_enabled = bool(Settings.TRY_AGAIN_ON_FAILED_GOAL)
+        budget_left = self._goal_retry_count < Settings.GOAL_RETRY_LIMIT
+        should_retry = bool(retry_enabled and loss_indicator_seen and budget_left)
 
         if should_retry:
+            self._goal_retry_count += 1
+            logger_uma.info(
+                "[race] Retrying (attempt %d/%d) via 'Try Again'.",
+                self._goal_retry_count,
+                Settings.GOAL_RETRY_LIMIT,
+            )
             clicked_try_again = self._attempt_try_again_retry()
+        elif loss_indicator_seen and retry_enabled and not budget_left:
+            # Retry is on, but we've spent our GOAL_RETRY_LIMIT budget for this
+            # race. Decline the popup (Cancel) and continue the run instead of
+            # retrying forever or stalling on the confirmation screen.
+            self._race_result_counters["retry_skipped"] += 1
+            logger_uma.info(
+                "[race] Retry budget spent (%d/%d); declining further retries.",
+                self._goal_retry_count,
+                Settings.GOAL_RETRY_LIMIT,
+            )
+            self._dismiss_try_again_popup()
         elif loss_indicator_seen:
             self._race_result_counters["retry_skipped"] += 1
             logger_uma.info(
@@ -1515,6 +1562,7 @@ class RaceFlow:
         """
         # Reset manual retry decision flag and last failure reason at the start of a new race
         self._waiting_for_manual_retry_decision = False
+        self._goal_retry_count = 0
         self._last_failure_reason = RaceFailureReason.NONE
         
         logger_uma.info(

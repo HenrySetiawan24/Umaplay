@@ -46,6 +46,7 @@ export interface GeneralConfig {
   fastModeEnergyThreshold?: number
   detailedHistory: boolean
   tryAgainOnFailedGoal: boolean
+  goalRetryLimit: number
   maxFailure: number
   acceptConsecutiveRace: boolean
   activeScenario: 'ura' | 'unity_cup'

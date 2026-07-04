@@ -262,6 +262,11 @@ class Settings:
     )
     ACCEPT_CONSECUTIVE_RACE = True
     TRY_AGAIN_ON_FAILED_GOAL = True
+    # Max times to retry a race (via the "Try Again" alarm-clock popup) when the
+    # trainee doesn't win, per race. Only applies when TRY_AGAIN_ON_FAILED_GOAL
+    # is on. Once the budget is spent, the popup is cancelled and the run
+    # continues instead of retrying further.
+    GOAL_RETRY_LIMIT = 3
     AUTO_REST_MINIMUM = 20
 
     PRIORITY_STATS = ["SPD", "STA", "WIT", "PWR", "GUTS"]
@@ -355,10 +360,17 @@ class Settings:
         cls.TRY_AGAIN_ON_FAILED_GOAL = bool(
             g.get("tryAgainOnFailedGoal", cls.TRY_AGAIN_ON_FAILED_GOAL)
         )
+        try:
+            cls.GOAL_RETRY_LIMIT = max(
+                0, min(10, int(g.get("goalRetryLimit", cls.GOAL_RETRY_LIMIT)))
+            )
+        except (TypeError, ValueError):
+            pass
         if cls.DEBUG:
             logger_uma.info(
-                "[settings] TRY_AGAIN_ON_FAILED_GOAL=%s",
+                "[settings] TRY_AGAIN_ON_FAILED_GOAL=%s GOAL_RETRY_LIMIT=%s",
                 cls.TRY_AGAIN_ON_FAILED_GOAL,
+                cls.GOAL_RETRY_LIMIT,
             )
         cls.HINT_IS_IMPORTANT = bool(g.get("prioritizeHint", cls.HINT_IS_IMPORTANT))
         cls.MAX_FAILURE = int(g.get("maxFailure", cls.MAX_FAILURE))

@@ -1,9 +1,5 @@
 # Umamusume Auto Train
 
-> **Latest Update (v0.4.0)**: Unity Cup strategy, PAL policy, ADB mode, preset groups, and smarter training/race handling.
->
-> _Previous updates_: v0.3.3 bugfixes, v0.3.2 skill memory + data scraper, v0.3.1 remote template matching fixes.
-
 This project is an **AI bot for Umamusume: Pretty Derby** that automates training, races, and skill management. It helps you **farm fans, clear goals, and optimize stats** without grinding manually.
 
 It works on:
@@ -21,7 +17,9 @@ It’s based on and improved from:
 - [shiokaze/UmamusumeAutoTrainer](https://github.com/shiokaze/UmamusumeAutoTrainer)
 - [samsulpanjul/umamusume-auto-train](https://github.com/samsulpanjul/umamusume-auto-train)
 
-## HenrySetiawan24 Fork
+## THIS Fork
+
+Im not big on versioning so here are my changes so far (AI ofcourse):
 
 An enhanced fork of Magody's Umaplay — an Umamusume career-automation bot (YOLO + OCR perception → decision → action). This fork focuses on speed (aggressive OCR reduction and pacing controls), new automation surfaces (Unity Cup scenario, daily activities, run history), and robustness (self-healing stuck-screen recovery).
 

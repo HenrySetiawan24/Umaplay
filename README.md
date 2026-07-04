@@ -42,6 +42,8 @@ An enhanced fork of Magody's Umaplay — an Umamusume career-automation bot (YOL
 - **Poll-until-settled** — training scans exit as soon as the frame stabilizes rather than waiting a fixed post-click delay.
 - **Scenario-aware training** — early-exit threshold scales per scenario and counts signal-bearing supports, not raw headcount.
 
+> All fork changes tested on ADB mode using a **Xiaomi 14T** and an **Android emulator** at **1080p**.
+
 **Changelog**
 
 - Unity Cup scenario

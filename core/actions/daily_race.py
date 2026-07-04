@@ -443,8 +443,15 @@ class DailyLegendRaceFlow:
                 sleep(0.8)
                 continue
             # On the monies/SP sub-page — back out to the two-module lobby.
-            if nav.has(dets, "race_daily_races_monies") or nav.has(
-                dets, "race_daily_races_sp"
+            # `race_daily_races_monies_row` is the difficulty list a finished
+            # daily-race run lands on (tickets exhausted, no RACE AGAIN): it
+            # shows the Moonlight Sho rows + a white Back button, but NOT the
+            # `race_daily_races_monies` module card, so it must be matched too
+            # or the chain falls through to clicking the footer race tab.
+            if (
+                nav.has(dets, "race_daily_races_monies")
+                or nav.has(dets, "race_daily_races_monies_row")
+                or nav.has(dets, "race_daily_races_sp")
             ):
                 self.waiter.click_when(
                     classes=("button_white",),

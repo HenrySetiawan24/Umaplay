@@ -21,7 +21,7 @@ run():
   wait for pre-race lobby      # poll for button_change (no blind sleep)
   set_strategy()               # optional, if select_style
   lobby():
-    _pick_view_results_button()           # already-raced? → View Results path
+    _pick_view_results_button()           # already-raced? → View Results → results gate → win check
     else: click green RACE → skip loop    # screen 1: skip the race animation
       → results gate (_wait_for_results_screen)   # confirm leaderboard up
       → win check (_row1_is_win)                  # screen 2: result leaderboard
@@ -45,13 +45,17 @@ pick, the goal race is already selected — just confirm it":
    Enter race?` confirmation popup directly — so `race_square` is never
    rendered at all (`squares=0` across every scroll attempt).
 
-`_is_goal_race_only_screen` OCR-detects either case (gated on a `button_green`
-still being present) and `run()` skips straight to the green-RACE
-confirm step instead of failing with `NO_RACE_SQUARE`.
+`_is_goal_race_only_screen` detects case 1 with **zero OCR** via the
+`race_square_locked` YOLO class — a dedicated class present in both the URA
+and Unity Cup weights that was sitting unused before this. Case 2 (no locked
+squares rendered at all) falls through to the original OCR text-scan, gated
+on a `button_green` still being present. Either way, `run()` skips straight
+to the green-RACE confirm step instead of failing with `NO_RACE_SQUARE`.
 
 > Debug: `[race-ocr]` tag. `_pick_race_square` logs
-> `squares=/stars=/badges=` per scroll pass; the goal-only probe logs
-> `matched=`, detected classes, and the OCR text read off the screen.
+> `squares=/stars=/badges=` per scroll pass; the goal-only probe logs which
+> path matched (`race_square_locked` class vs. OCR text), detected classes,
+> and — on the OCR path — the text actually read off the screen.
 
 ### Popup-confirm click hardening (`require_text_match`)
 
@@ -70,6 +74,38 @@ now pass `require_text_match=True`, which forces a real OCR check against
 [`core/utils/waiter.py`](../../../../core/utils/waiter.py) — the flag defaults
 to `False`, so no other caller's behavior changed.
 
+`race_popup_confirm_try` accepts `texts=("RACE", "OK")`, not just `"RACE"`.
+`_ensure_in_raceday` already handles a consecutive-race penalty popup
+(`texts=("OK",)`) at the initial "click RACES" navigation — but a second
+instance of that same popup can appear again at this later confirm step,
+after a specific race has been selected. Without "OK" here it went
+unrecognized: observed as a static `button_green` reading `'OK'` for the
+full 5s timeout, every poll logging a text-match miss, "recovering" only
+because the pre-race lobby happened to already be reachable underneath it
+by luck (not because the popup was ever clicked). No extra
+`Settings.ACCEPT_CONSECUTIVE_RACE` gate is needed here — by this point in
+`run()` we're already committed to racing, same as `from_raceday`'s
+always-accept semantics in `_ensure_in_raceday`.
+
+### Unity Cup confirm clicks: geometry instead of forced OCR
+
+The inverse tuning applies to two high-frequency confirm clicks in
+[`core/actions/unity_cup/agent.py`](../../../../core/actions/unity_cup/agent.py)
+that fire on *every* Unity Cup race entry: opponent SELECT confirm
+(`tag="unity_cup_click_button_green"`) and BEGIN SHOWDOWN confirm
+(`tag="unity_cup_click_showdown"`). Both previously set
+`allow_greedy_click=False`, which **forces a full OCR pass on every single
+poll** — even the free single-candidate fast path is disabled by that flag.
+Neither screen is the kind of ambiguous, multi-meaning-button screen
+`require_text_match` exists for (unlike the goal-race popup or the
+overloaded `button_white` CLOSE/Cancel/Back cases — see "What NOT to touch"
+in the optimization plan), so both now use
+`allow_greedy_click=True, prefer_bottom=True`: a lone `button_green`
+resolves free, and 2+ candidates resolve by geometry (bottom-most) — no OCR
+needed either way. `texts=` stays as the fallback if geometry ever picks
+wrong, so this is a latency win, not a strict-safety trade like
+`require_text_match`.
+
 ### Post-skip screens
 
 | # | Screen | Detect / handle |
@@ -87,15 +123,20 @@ reaction to placement" screen** that shows *neither* NEXT button. Previously the
 two after-race NEXT awaits (`race_after_flow_next` 4.6s, `race_after` 6s) both
 timed out on it and the flow "finished" while the reaction was still up — the
 agent's unknown-screen handler then stalled until a manual tap (a ~2.5-min hang
-was observed in the wild). Note the agent's own center-tap safety net is dead
-code (`if self.patience > 10 == 0:` in `ura`/`unity_cup` `agent.py`), so it never
-rescued this.
+was observed in the wild). The agent's own center-tap safety net used to be
+dead code (`if self.patience > 10 == 0:` — a chained comparison, always False,
+in `ura`/`unity_cup` `agent.py`); it is now a real periodic center tap (every
+3rd patience tick), so any residual tap-to-continue wedge self-heals even if
+the race flow misses it.
 
 Before the NEXT awaits, the bot now nudges through the reaction:
 
-- Poll, capped at `timeout_s` (8s). **Break** the instant a `button_green` /
-  `race_after_next` is present (class-presence only, **no OCR**) — the awaits
-  below then click the real NEXT.
+- Poll, capped at `timeout_s` (8s). **Break** when a `button_green` /
+  `race_after_next` is present **and OCR-verifies as "NEXT"** — bare class
+  presence isn't proof: the pose screen's blurred background UI can
+  false-positive as `button_green` (observed wedge), which used to make this
+  helper declare "done" without ever tapping. `seen(texts=…)` only OCRs when a
+  candidate exists, so the common no-button poll stays OCR-free.
 - Otherwise click a lingering **white button** (`VIEW RESULTS` / `CLOSE`) if one
   is on screen, else **tap center** to advance the tap-to-continue frame.
 - Bounded → falls through to the prior NEXT awaits on timeout, so it can never
@@ -118,9 +159,19 @@ frame:
 - Poll, one `_collect()` per iteration, **YOLO-only (no OCR)**: confirmed when a
   `race_badge` (result-banner grade badge) **and** a `button_green` (NEXT) are both
   detected (≥0.5 conf).
-- Nudges through any lingering `button_skip`.
-- Capped by `timeout_s` (6s) → falls back to prior behavior, so never worse / can't hang.
+- Nudges through any lingering `button_skip`, and **center-taps** tap-to-continue
+  frames (the placement pose). A bare `button_green` deliberately does **not**
+  block the tap: the pose screen's blurred background can false-positive as
+  `button_green`, and green without a `race_badge` is never the confirmed
+  leaderboard (a center tap on the real leaderboard is a no-op anyway). Only
+  `button_white` / `race_badge` block it.
+- Capped by `timeout_s` → falls back to prior behavior, so never worse / can't hang.
 - Returns the confirming frame, **reused for the win-check** to save a recognize.
+- **Used by both paths since 2026-07:** the skip loop *and* the View-Results
+  path. View-Results previously used blind beats + 3 taps at the button's
+  coordinates, which raced the transition — mistimed taps left the pose screen
+  up and the win check sampled the wrong frame (observed stuck-on-pose wedge).
+  Now: click View Results once/twice → gate → win check on the confirmed frame.
 
 Why no extra OCR: `Waiter.seen(classes=…)` without `texts=` is a class-presence
 check (fast path, zero OCR); OCR only happens when `texts=` is passed. The gate
@@ -139,11 +190,22 @@ The bot only **re-races** in one case — a confirmed loss of a goal race:
 - After the race it probes for **TRY AGAIN** (loss indicator), **skipped entirely
   when `_last_won is True`** (A1 already confirmed a win — saves ~3s + 6 detections
   on every winning race).
-- Re-races iff `loss_indicator_seen` **and** `Settings.TRY_AGAIN_ON_FAILED_GOAL`:
-  `_attempt_try_again_retry()` clicks TRY AGAIN → `_handle_retry_transition()`
-  clears interstitials and waits for the lobby/View-Results to reappear → recursive
-  `lobby()`.
-- Lost but retry disabled → the bot **stops** for a manual decision.
+- Re-races iff `loss_indicator_seen` **and** `Settings.TRY_AGAIN_ON_FAILED_GOAL`
+  **and** the per-race retry budget isn't spent (`_goal_retry_count <
+  Settings.GOAL_RETRY_LIMIT`): `_attempt_try_again_retry()` clicks TRY AGAIN →
+  `_handle_retry_transition()` clears interstitials and waits for the
+  lobby/View-Results to reappear → recursive `lobby()`. `_goal_retry_count`
+  increments per retry and resets per race in `run()`.
+- Lost, retry enabled, but **budget spent** (`GOAL_RETRY_LIMIT` reached) →
+  `_dismiss_try_again_popup()` clicks **Cancel** on the alarm-clock "Try Again"
+  popup and the run **continues** (no more retries, no manual stop).
+- Lost but retry disabled (`TRY_AGAIN_ON_FAILED_GOAL` off) → the bot **stops**
+  for a manual decision (unchanged).
+
+`GOAL_RETRY_LIMIT` (General → "Max retries per race", 0–10, default 3) caps how
+many alarm-clock retries the bot spends per race before giving up. The game
+still bounds it too (finite alarm clocks / "try again N more times"); this is a
+softer, user-set cap on top.
 
 All other "retries" (`_pick_view_results_button` progressive retries, the skip
 loop, the reactive confirm loops, the results gate) are navigation robustness, not

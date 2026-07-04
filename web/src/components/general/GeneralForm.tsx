@@ -366,6 +366,28 @@ export default function GeneralForm() {
             }
             label={g.tryAgainOnFailedGoal ? 'Enabled' : 'Disabled'}
           />
+          <Box sx={{ mt: 1, opacity: g.tryAgainOnFailedGoal ? 1 : 0.5 }}>
+            <Typography variant="body2" color="text.secondary" fontWeight={500} sx={{ mb: 0.5 }}>
+              <Tooltip title="Maximum number of times to retry a race (using an alarm clock) when the trainee doesn't win. Once this budget is spent, the bot cancels the Try Again popup and continues." arrow>
+                <span>Max retries per race</span>
+              </Tooltip>
+            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <Slider
+                value={g.goalRetryLimit}
+                onChange={(_, v) => setGeneral({ goalRetryLimit: Number(v) })}
+                min={0}
+                max={10}
+                step={1}
+                marks
+                disabled={!g.tryAgainOnFailedGoal}
+                sx={{ flex: 1 }}
+              />
+              <Typography variant="body2" sx={{ width: 32, textAlign: 'right' }}>
+                {g.goalRetryLimit}
+              </Typography>
+            </Box>
+          </Box>
         </Box>
 
         {/* Moved to per-preset Strategy section: prioritizeHint */}

@@ -35,6 +35,7 @@ from core.utils.logger import logger_uma
 from core.utils.text import _normalize_ocr, fuzzy_contains, fuzzy_ratio
 from core.utils.yolo_objects import collect, find, bottom_most, inside
 from core.utils.pointer import smart_scroll_small
+from core.utils import nav
 from core.utils.abort import abort_requested, request_abort
 from core.run_context import get as get_run_record, update_last_turn_log
 from server.run_history import append_history
@@ -87,6 +88,9 @@ class RaceFlow:
             "lobby_view_failures": 0,
         }
         self._waiting_for_manual_retry_decision = False
+        # How many "Try Again" retries we've already spent on the current race.
+        # Reset per race in run(); capped by Settings.GOAL_RETRY_LIMIT.
+        self._goal_retry_count = 0
         self._last_failure_reason: RaceFailureReason = RaceFailureReason.NONE
         self._last_race_name: Optional[str] = None
         self._current_turn: Optional[int] = None
@@ -316,14 +320,20 @@ class RaceFlow:
                 skip = next((d for d in dets if d["name"] == "button_skip"), None)
                 if skip and skip.get("xyxy"):
                     self.ctrl.click_xyxy_center(skip["xyxy"], clicks=2)
-            elif not names.intersection({"button_green", "button_white", "race_badge"}):
-                # No known buttons visible — likely a tap-to-continue screen
-                # (e.g. character placement reaction before the leaderboard). Tap center.
+            elif not names.intersection({"button_white", "race_badge"}):
+                # No leaderboard signal — likely a tap-to-continue screen (e.g.
+                # character placement reaction before the leaderboard). Tap
+                # center. Note: a bare button_green deliberately does NOT block
+                # the tap — the pose screen's blurred background UI can
+                # false-positive as button_green (observed wedge), and green
+                # without a race_badge is never the confirmed leaderboard; a
+                # center tap on the real leaderboard is a no-op anyway.
                 now = time.time()
                 if now - last_tap_t >= 0.8:
-                    logger_uma.debug("[race] No known buttons; tapping center to advance tap screen.")
+                    logger_uma.debug("[race] No leaderboard signal; tapping center to advance tap screen.")
                     _, _, bw, bh = self.ctrl.capture_bbox()
-                    self.ctrl.click(bw // 2, bh // 2, clicks=1)
+                    cx, cy = self.ctrl.local_to_screen(bw // 2, bh // 2)
+                    self.ctrl.click(cx, cy, clicks=1)
                     last_tap_t = now
             time.sleep(0.2)
         logger_uma.debug("[race] Results screen not confirmed before timeout; proceeding.")
@@ -337,10 +347,13 @@ class RaceFlow:
         otherwise stalls the flow until a manual tap.
 
         Each poll: stop as soon as a green NEXT (button_green / race_after_next)
-        is detected — class-presence only, no OCR — and let the caller's awaits
-        click it. Otherwise click a lingering white button (View Results / CLOSE)
-        if present, else tap center to advance the reaction. Bounded by
-        `timeout_s`, so it can never hang and is never worse than before.
+        is detected AND OCR-verifies as "NEXT" — the pose screen's blurred
+        background UI can false-positive as button_green (observed wedge), so
+        bare class presence isn't proof. `seen(texts=…)` only OCRs when a
+        candidate exists, so the common no-button poll stays OCR-free. Otherwise
+        click a lingering white button (View Results / CLOSE) if present, else
+        tap center to advance the reaction. Bounded by `timeout_s`, so it can
+        never hang and is never worse than before.
 
         Returns True if a NEXT became visible before timeout, else False.
         """
@@ -350,6 +363,7 @@ class RaceFlow:
                 return False
             if self.waiter.seen(
                 classes=("button_green", "race_after_next"),
+                texts=("NEXT",),
                 tag="race_after_reaction_next_probe",
                 conf_min=0.5,
             ):
@@ -369,7 +383,8 @@ class RaceFlow:
             # No known button — tap center to advance the tap-to-continue screen.
             logger_uma.debug("[race] No known buttons; tapping center to advance reaction screen.")
             _, _, bw, bh = self.ctrl.capture_bbox()
-            self.ctrl.click(bw // 2, bh // 2, clicks=1)
+            cx, cy = self.ctrl.local_to_screen(bw // 2, bh // 2)
+            self.ctrl.click(cx, cy, clicks=1)
             time.sleep(0.4)
         logger_uma.debug("[race] Reaction screen tap-through timed out; proceeding to NEXT awaits.")
         return False
@@ -409,6 +424,23 @@ class RaceFlow:
             self._race_result_counters,
         )
         return False
+
+    def _dismiss_try_again_popup(self) -> bool:
+        """Click 'Cancel' on the alarm-clock 'Try Again' popup to decline the
+        retry and let the run continue (used when the retry budget is spent)."""
+        clicked = self.waiter.click_when(
+            classes=("button_white",),
+            texts=("CANCEL",),
+            prefer_bottom=False,
+            allow_greedy_click=False,
+            require_text_match=True,
+            timeout_s=2.0,
+            tag="race_try_again_cancel",
+        )
+        if clicked:
+            logger_uma.info("[race] Declined 'Try Again' (retry budget spent); clicked Cancel.")
+            time.sleep(0.4)
+        return clicked
 
     def _handle_retry_transition(self) -> None:
         """Clear alarm-clock confirmations and wait until lobby buttons reappear."""
@@ -535,6 +567,12 @@ class RaceFlow:
         confirm with the green RACE button. Requires a green action button to
         still be on screen so we never treat an arbitrary no-square screen as
         raceable.
+
+        Fast path: 'race_square_locked' is a dedicated YOLO class (present in
+        both the URA and Unity Cup weights) for the locked-card variant (case
+        1 above) — checking it first resolves that case with zero OCR. Falls
+        through to the OCR text-scan for the direct-confirm-popup variant
+        (case 2), which renders no locked squares at all.
         """
         try:
             img, dets = self._collect("race_goal_only_probe")
@@ -546,6 +584,12 @@ class RaceFlow:
                     det_names,
                 )
                 return False
+            if find(dets, "race_square_locked"):
+                logger_uma.debug(
+                    "[race-ocr] goal-only probe: matched via race_square_locked class (no OCR); dets=%s",
+                    det_names,
+                )
+                return True
             text = (self.ocr.text(img) or "").lower()
             matched = (
                 "only compete in the goal" in text
@@ -1080,23 +1124,24 @@ class RaceFlow:
                 logger_uma.debug("[race] View Results inactive")
 
         if is_view_active and view_btn is not None:
-            # Tap 'View Results' a couple times to clear residual screens
+            # Tap 'View Results'; the game then walks placement pose (TAP) →
+            # results leaderboard (NEXT). Gate on the leaderboard actually being
+            # up (race_badge + button_green) before sampling the win check — the
+            # gate itself taps through the pose screen. This replaces the old
+            # blind beats + 3 taps at the button's coords, which raced the
+            # transition: mistimed taps left the pose screen up and the win
+            # check sampling the wrong frame (observed stuck-on-pose wedge).
             self.ctrl.click_xyxy_center(view_btn["xyxy"], clicks=random.randint(1, 2))
+            results_img = self._wait_for_results_screen(timeout_s=12.0)
             if Settings.DETAILED_HISTORY:
-                self._beat(random.uniform(3, 3.5))
-                self.ctrl.click_xyxy_center(view_btn["xyxy"], clicks=random.randint(3, 3))
-                time.sleep(random.uniform(0.3, 0.5))
-                # -- Win check on leaderboard after View Results (no OCR: top row
-                #    highlighted cream ⟹ trainee 1st ⟹ win) --
-                self._beat(1.5)
-                img_vr, _ = self._collect("race_placement_vr")
+                img_vr = (
+                    results_img
+                    if results_img is not None
+                    else self._collect("race_placement_vr")[0]
+                )
                 self._last_won = self._row1_is_win(img_vr)
                 RaceFlow._save_placement_debug(img_vr, self._last_won, "view_results")
             else:
-                self._beat(random.uniform(3, 3.5))
-                self.ctrl.click_xyxy_center(view_btn["xyxy"], clicks=random.randint(3, 3))
-                time.sleep(random.uniform(0.3, 0.5))
-                time.sleep(0.4)
                 self._last_won = None
         else:
             # Click green 'RACE' (prefer bottom-most; OCR disambiguation if needed)
@@ -1196,16 +1241,23 @@ class RaceFlow:
                     total_time += 2
                     continue
 
-                # No known button found — may be a tap-to-continue screen (e.g. the
-                # character placement reaction "5th / TAP" screen between skip and
-                # the leaderboard). Tap the center to advance it.
+                # No known button found — either a Connection Error popup
+                # (network hiccup can overlay the race screen) or a
+                # tap-to-continue screen (e.g. the character placement reaction
+                # "5th / TAP" between skip and the leaderboard). Throttled to
+                # the same 1s cadence so the extra OCR probe doesn't slow the
+                # reaction tap-through.
                 now = time.time()
                 if now - last_center_tap_t >= 1.0:
+                    last_center_tap_t = now
+                    if nav.maybe_handle_connection_error(
+                        self.waiter, tag_prefix="race_conn_err"
+                    ):
+                        continue
                     logger_uma.debug("[race] Skip loop: no known button; tapping center to advance.")
                     _, _, bw, bh = self.ctrl.capture_bbox()
                     cx, cy = self.ctrl.local_to_screen(bw // 2, bh // 2)
                     self.ctrl.click(cx, cy, clicks=1)
-                    last_center_tap_t = now
                 time.sleep(0.12)
 
             # Confirm the result leaderboard is actually up before reading it / NEXT
@@ -1258,10 +1310,29 @@ class RaceFlow:
                 self._race_result_counters,
             )
 
-        should_retry = bool(Settings.TRY_AGAIN_ON_FAILED_GOAL and loss_indicator_seen)
+        retry_enabled = bool(Settings.TRY_AGAIN_ON_FAILED_GOAL)
+        budget_left = self._goal_retry_count < Settings.GOAL_RETRY_LIMIT
+        should_retry = bool(retry_enabled and loss_indicator_seen and budget_left)
 
         if should_retry:
+            self._goal_retry_count += 1
+            logger_uma.info(
+                "[race] Retrying (attempt %d/%d) via 'Try Again'.",
+                self._goal_retry_count,
+                Settings.GOAL_RETRY_LIMIT,
+            )
             clicked_try_again = self._attempt_try_again_retry()
+        elif loss_indicator_seen and retry_enabled and not budget_left:
+            # Retry is on, but we've spent our GOAL_RETRY_LIMIT budget for this
+            # race. Decline the popup (Cancel) and continue the run instead of
+            # retrying forever or stalling on the confirmation screen.
+            self._race_result_counters["retry_skipped"] += 1
+            logger_uma.info(
+                "[race] Retry budget spent (%d/%d); declining further retries.",
+                self._goal_retry_count,
+                Settings.GOAL_RETRY_LIMIT,
+            )
+            self._dismiss_try_again_popup()
         elif loss_indicator_seen:
             self._race_result_counters["retry_skipped"] += 1
             logger_uma.info(
@@ -1491,6 +1562,7 @@ class RaceFlow:
         """
         # Reset manual retry decision flag and last failure reason at the start of a new race
         self._waiting_for_manual_retry_decision = False
+        self._goal_retry_count = 0
         self._last_failure_reason = RaceFailureReason.NONE
         
         logger_uma.info(
@@ -1579,22 +1651,31 @@ class RaceFlow:
                 popup_confirmed = True
                 break
             popup_attempts += 1
+            # Accept 'RACE' (the actual confirm) or 'OK' — a second instance of
+            # the same consecutive-race penalty popup _ensure_in_raceday already
+            # handles can reappear at this later confirm step too. Without OK
+            # here, that popup sat un-clicked for the full timeout (observed:
+            # a static button_green reading 'OK' for 5s straight) and only
+            # "worked" if the pre-race lobby happened to already be reachable
+            # underneath it by luck. We're already committed to racing by this
+            # point in the flow (mirrors from_raceday's always-accept), so no
+            # extra ACCEPT_CONSECUTIVE_RACE gate is needed here.
             if self.waiter.click_when(
                 classes=("button_green",),
-                texts=("RACE",),
+                texts=("RACE", "OK"),
                 prefer_bottom=True,
                 require_text_match=True,
                 timeout_s=1,
                 tag="race_popup_confirm_try",
             ):
-                logger_uma.info("[race] Clicked green 'Race' button (popup) confirmation")
+                logger_uma.info("[race] Clicked green button (popup) confirmation")
                 # Give a short beat for the transition; continue probing.
                 time.sleep(0.2)
                 popup_confirmed = True
                 break
             else:
                 logger_uma.warning(
-                    "[race] couldn't find 'Race' button (popup) confirmation in this check (attempt=%d).",
+                    "[race] couldn't find 'Race'/'OK' button (popup) confirmation in this check (attempt=%d).",
                     popup_attempts,
                 )
             time.sleep(0.1)

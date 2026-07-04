@@ -48,6 +48,7 @@ _DEFAULT_NAV_PREFS: Dict[str, Dict[str, Any]] = {
         "alarm_clock": True,
         "star_pieces": False,
         "parfait": False,
+        "buy_all": False,
     },
     "team_trials": {
         "preferred_banner": 2,
@@ -97,6 +98,10 @@ class Settings:
     SKILLS_MAX_SCROLLS: int = _env_int("SKILLS_MAX_SCROLLS", default=15)
     # Skills shop: consecutive unchanged-view passes tolerated before early-stop.
     SKILLS_SCAN_PATIENCE: int = _env_int("SKILLS_SCAN_PATIENCE", default=3)
+    # Daily/Team-trials shop (multi-select UI): checkbox x-position as a fraction
+    # of each detected shop_row's own width, from the row's left edge. Tune this
+    # if live captures show the click landing off the checkbox.
+    SHOP_CHECKBOX_X_FRAC: float = _env_float("SHOP_CHECKBOX_X_FRAC", default=0.87)
     # Race if no good training options are available (default: False = skip race if no good training)
     RACE_IF_NO_GOOD_VALUE: bool = _env_bool("RACE_IF_NO_GOOD_VALUE", default=False)
 
@@ -257,6 +262,11 @@ class Settings:
     )
     ACCEPT_CONSECUTIVE_RACE = True
     TRY_AGAIN_ON_FAILED_GOAL = True
+    # Max times to retry a race (via the "Try Again" alarm-clock popup) when the
+    # trainee doesn't win, per race. Only applies when TRY_AGAIN_ON_FAILED_GOAL
+    # is on. Once the budget is spent, the popup is cancelled and the run
+    # continues instead of retrying further.
+    GOAL_RETRY_LIMIT = 3
     AUTO_REST_MINIMUM = 20
 
     PRIORITY_STATS = ["SPD", "STA", "WIT", "PWR", "GUTS"]
@@ -350,10 +360,17 @@ class Settings:
         cls.TRY_AGAIN_ON_FAILED_GOAL = bool(
             g.get("tryAgainOnFailedGoal", cls.TRY_AGAIN_ON_FAILED_GOAL)
         )
+        try:
+            cls.GOAL_RETRY_LIMIT = max(
+                0, min(10, int(g.get("goalRetryLimit", cls.GOAL_RETRY_LIMIT)))
+            )
+        except (TypeError, ValueError):
+            pass
         if cls.DEBUG:
             logger_uma.info(
-                "[settings] TRY_AGAIN_ON_FAILED_GOAL=%s",
+                "[settings] TRY_AGAIN_ON_FAILED_GOAL=%s GOAL_RETRY_LIMIT=%s",
                 cls.TRY_AGAIN_ON_FAILED_GOAL,
+                cls.GOAL_RETRY_LIMIT,
             )
         cls.HINT_IS_IMPORTANT = bool(g.get("prioritizeHint", cls.HINT_IS_IMPORTANT))
         cls.MAX_FAILURE = int(g.get("maxFailure", cls.MAX_FAILURE))
@@ -655,6 +672,7 @@ class Settings:
             "alarm_clock": bool(shop.get("alarm_clock", True)),
             "star_pieces": bool(shop.get("star_pieces", False)),
             "parfait": bool(shop.get("parfait", False)),
+            "buy_all": bool(shop.get("buy_all", False)),
         }
 
         try:
@@ -687,6 +705,7 @@ class Settings:
             "alarm_clock": bool(prefs.get("alarm_clock", True)),
             "star_pieces": bool(prefs.get("star_pieces", False)),
             "parfait": bool(prefs.get("parfait", False)),
+            "buy_all": bool(prefs.get("buy_all", False)),
         }
 
     @classmethod

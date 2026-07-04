@@ -261,10 +261,18 @@ def read_date_pill_robust(ocr: OCRInterface, pill_img_pil: Image.Image) -> str:
     # Also include the raw pill for completeness
     variants.append(pill_img_pil)
 
-    # OCR all variants and pick the most "date-like" by fuzzy score
+    # OCR all variants in ONE batch call (previously one PaddleOCR invocation
+    # per variant, 3 per read — and extract_career_date can call this twice),
+    # then pick the most "date-like" by fuzzy score. Falls back to sequential
+    # per-variant OCR if the batch call fails.
+    try:
+        texts = ocr.batch_text(variants, min_conf=0.0)
+    except Exception:
+        texts = [(ocr.text(v, min_conf=0.0) or "") for v in variants]
+
     best_txt, best_score = "", -1.0
-    for v in variants:
-        t = (ocr.text(v, min_conf=0.0) or "").strip()
+    for t in texts:
+        t = (t or "").strip()
         s = score_date_like(t)
         if s > best_score:
             best_txt, best_score = t, s

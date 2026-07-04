@@ -265,6 +265,47 @@ def extract_career_date(
 # ------------------------------
 # Stats (SPD/STA/PWR/GUTS/WIT)
 # ------------------------------
+def _fast_parse_stat_text(raw_loose: str) -> Optional[int]:
+    """
+    Digits-only fast parse of a loose (min_conf=0.0) OCR read of a stat
+    segment. Returns the value when it parses cleanly into the valid stat
+    range, else None (caller falls through to the salvage pass).
+    """
+    import re
+
+    digits_only = re.sub(r"[^\d]", "", raw_loose or "").strip()
+    if 1 <= len(digits_only) <= 4:
+        val_fast = int(digits_only)
+        if 90 <= val_fast <= 1200:
+            return val_fast
+        # clearly out of range (e.g., 2034) → let the salvage pass decide
+    return None
+
+
+def _parse_stat_segments_batched(
+    ocr: OCRInterface, seg_imgs: List[Image.Image]
+) -> List[int]:
+    """
+    Batched variant of `_parse_stat_segment` for the 5 stat segments: ONE
+    `batch_text` call covers every segment's fast path (instead of one OCR
+    invocation per segment); the per-segment salvage OCR only runs for
+    segments whose fast parse failed. Parsing logic is identical to the
+    single-image path.
+    """
+    try:
+        raws = ocr.batch_text(seg_imgs, min_conf=0.0)
+    except Exception:
+        logger_uma.debug("[stats] batch_text failed; falling back to per-segment OCR")
+        raws = [""] * len(seg_imgs)
+    out: List[int] = []
+    for seg_img, raw_loose in zip(seg_imgs, raws):
+        val = _fast_parse_stat_text(raw_loose)
+        if val is None:
+            val = _salvage_stat_segment(ocr, seg_img)
+        out.append(val)
+    return out
+
+
 def _parse_stat_segment(ocr: OCRInterface, seg_img: Image.Image) -> int:
     """
     Segment typically looks like `C 416 / 1200`.
@@ -272,21 +313,22 @@ def _parse_stat_segment(ocr: OCRInterface, seg_img: Image.Image) -> int:
       1) Try a digits-only fast path using low confidence threshold (min_conf=0.0).
       2) If that fails, fall back to your robust regex salvage (kept intact).
     """
-    import re
-
     # ---- 1) fast path: keep low-confidence chars, then strip to digits ----
     try:
         raw_loose = ocr.text(seg_img, min_conf=0.0) or ""
-        digits_only = re.sub(r"[^\d]", "", raw_loose).strip()
-        if 1 <= len(digits_only) <= 4:
-            val_fast = int(digits_only)
-            if 90 <= val_fast <= 1200:
-                return val_fast
-            # if it's clearly out of range (e.g., 2034), fall through to salvage
+        val_fast = _fast_parse_stat_text(raw_loose)
+        if val_fast is not None:
+            return val_fast
     except Exception:
         pass
 
-    # ---- 2) original robust salvage path (unchanged) ----
+    return _salvage_stat_segment(ocr, seg_img)
+
+
+def _salvage_stat_segment(ocr: OCRInterface, seg_img: Image.Image) -> int:
+    """Robust regex salvage pass (original logic, unchanged)."""
+    import re
+
     raw = ocr.text(seg_img) or ""
     # Normalize and remove the capacity part (tolerant to whitespace)
     t = re.sub(r"[\s,.:;]+", "", raw)
@@ -456,35 +498,16 @@ def extract_stats(
         x2 = int(x2 + segW * x_right_offset)  # keep your extra right margin
         return stats_img.crop((x1, int(H * y_top_offset), x2, int(H * y_bottom_offset)))
 
-    if with_segments:
-        out: Dict[str, Dict[str, object]] = {}
-        for i, key in enumerate(keys):
-            seg = _crop_seg(i, last=(i == k - 1))
-
-            # Preprocess only for small full-frame captures
-            seg_for_ocr = seg
-            if use_pp:
-                try:
-                    seg_for_ocr, _ = preprocess_digits(
-                        seg,
-                        scale=3,
-                        drop_top_frac=0.35,
-                        trim_right_frac=0.15,
-                        dilate_iters=1,
-                        focus_largest_cc=False,
-                    )
-                except Exception as e:
-                    logger_uma.debug(
-                        f"[stats] preprocess_digits failed ({e}); using raw segment"
-                    )
-
-            out[key] = {"value": _parse_stat_segment(ocr, seg_for_ocr), "seg": seg}
-        return out
-
-    out2: Dict[str, int] = {}
-    for i, key in enumerate(keys):
+    # Build all 5 segment crops first, then OCR them in ONE batch call (the
+    # per-segment salvage OCR only runs for segments whose fast parse failed).
+    # Previously each segment was a separate PaddleOCR invocation — 5-10 calls
+    # per lobby turn for this one stats row.
+    segs: List[Image.Image] = []
+    segs_for_ocr: List[Image.Image] = []
+    for i, _key in enumerate(keys):
         seg = _crop_seg(i, last=(i == k - 1))
 
+        # Preprocess only for small full-frame captures
         seg_for_ocr = seg
         if use_pp:
             try:
@@ -500,9 +523,20 @@ def extract_stats(
                 logger_uma.debug(
                     f"[stats] preprocess_digits failed ({e}); using raw segment"
                 )
+        segs.append(seg)
+        segs_for_ocr.append(seg_for_ocr)
 
-        out2[key] = _parse_stat_segment(ocr, seg_for_ocr)
+    values = _parse_stat_segments_batched(ocr, segs_for_ocr)
 
+    if with_segments:
+        out: Dict[str, Dict[str, object]] = {}
+        for key, seg, val in zip(keys, segs, values):
+            out[key] = {"value": val, "seg": seg}
+        return out
+
+    out2: Dict[str, int] = {}
+    for key, val in zip(keys, values):
+        out2[key] = val
     return out2
 
 

@@ -112,6 +112,8 @@ run()                          # orchestrator; short-circuits to False on any mi
   enter_from_menu()            # bounded loop (≤6): reach 2-module lobby, OCR-click
                                #   "DAILY LEGEND RACES"; backs out of monies/SP page
                                #   or opens ui_race from home as needed
+                               #   (monies back-out triggers on race_daily_races_monies
+                               #    OR race_daily_races_monies_row — see note below)
   pick_opponent()              # OCR-match Settings.get_daily_legend_opponent() in the
                                #   grid band; fallback = topmost-leftmost text card
   confirm_and_start()
@@ -174,6 +176,20 @@ Everything else reuses generic button classes that already exist.
 
 > Future hardening: retrain `uma_nav.pt` with dedicated `race_daily_legend` +
 > opponent classes to replace the OCR-anchored clicks on the two legend-only screens.
+
+### Chaining after a finished daily-race run (2026-07 fix)
+
+When `_maybe_run_daily_legend` chains this flow after a bulk daily-race run that
+exhausted its tickets (0/6, no RACE AGAIN), the bot is left on the **monies
+difficulty list** — the Moonlight Sho VERY HARD / HARD / NORMAL rows + a white
+**Back** button. That screen detects as `race_daily_races_monies_row` (the
+difficulty rows), **not** `race_daily_races_monies` (the module card). The
+`enter_from_menu` back-out originally matched only the module card, so on this
+screen it fell through to clicking the `ui_race` footer tab instead of pressing
+Back, and never reached the 2-module lobby. Fixed by matching
+`race_daily_races_monies_row` too. (Note: the chain only runs when the
+`daily_legend.enabled` nav-pref is on — it defaults OFF and has no web-UI
+toggle yet, so it must be set in `prefs/nav.json`.)
 
 ---
 

@@ -680,7 +680,12 @@ export default function EventSetupSection({ index }: Props) {
         const outcomes = Array.isArray(arr) ? arr : []
         let label = `Option ${k}`
 
-        if (setName === 'Unity Cup' && ev.name === 'A Team at Last') {
+        // Prefer an explicit per-option label (e.g. the Unity Cup Tutorial
+        // menu choices), then the A-Team team name, else the generic index.
+        const explicitLabel = outcomes[0]?.label
+        if (typeof explicitLabel === 'string' && explicitLabel.trim()) {
+          label = explicitLabel.trim()
+        } else if (setName === 'Unity Cup' && ev.name === 'A Team at Last') {
           const team = outcomes[0]?.team
           if (typeof team === 'string' && team.trim()) {
             label = team.trim()

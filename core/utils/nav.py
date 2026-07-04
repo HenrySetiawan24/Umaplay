@@ -11,8 +11,10 @@ from core.controllers.base import IController
 from core.perception.yolo.interface import IDetector
 from core.settings import Settings
 from core.types import DetectionDict
+from core.utils.geometry import crop_pil
 from core.utils.logger import logger_uma
 from core.utils.pointer import smart_scroll_small
+from core.utils.text import fuzzy_contains
 from core.utils.waiter import Waiter
 
 
@@ -43,6 +45,45 @@ def has(dets: List[DetectionDict], name: str, *, conf_min: float = 0.0) -> bool:
     return any(
         d.get("name") == name and float(d.get("conf", 0.0)) >= conf_min for d in dets
     )
+
+
+def maybe_handle_connection_error(
+    waiter: Waiter,
+    dets: Optional[List[DetectionDict]] = None,
+    *,
+    tag_prefix: str = "conn_err",
+) -> bool:
+    """
+    Detect and dismiss the game's **Connection Error** popup — a network-hiccup
+    modal (green *Retry* + white *Title Screen*) that can overlay ANY screen —
+    by clicking *Retry* to resume in place. Meant to be called at the top of
+    every flow's poll loop as a shared recovery step (no flow has a common
+    per-iteration hook otherwise).
+
+    Cheap gate: *Retry* is a green button, so when `dets` is given, skip the OCR
+    probe entirely if no `button_green` is on screen this frame. Pass `dets=None`
+    (e.g. from a flow that doesn't have fresh detections handy) to always probe.
+    Matching requires the literal text "Retry" (`require_text_match`), so it
+    won't fire on the race-loss "Try Again" popup or ordinary green NEXT/OK
+    buttons. Returns True if it clicked Retry.
+    """
+    if dets is not None and not any(d.get("name") == "button_green" for d in dets):
+        return False
+    if waiter.click_when(
+        classes=("button_green",),
+        texts=("RETRY",),
+        prefer_bottom=True,
+        allow_greedy_click=True,
+        require_text_match=True,
+        timeout_s=0.4,
+        tag=f"{tag_prefix}_retry",
+    ):
+        logger_uma.warning(
+            "[nav] Connection Error detected; clicked Retry to recover."
+        )
+        sleep(1.0)
+        return True
+    return False
 
 
 def by_name(
@@ -201,38 +242,210 @@ def _shop_item_order() -> Iterable[Tuple[str, str]]:
             yield det_name, pref_key
 
 
-def _confirm_exchange_dialog(waiter: Waiter, tag_prefix: str) -> bool:
+def _row_checkbox_point(row: DetectionDict, x_frac: float) -> Tuple[float, float, float, float]:
+    """
+    Approximate click point for a shop_row's multi-select checkbox, which sits
+    near the row's right edge. Expressed as a fraction of the row's own
+    detected width so it scales with resolution/aspect ratio instead of a
+    fixed screen-space offset.
+    """
+    x1, y1, x2, y2 = row["xyxy"]
+    cx = x1 + (x2 - x1) * x_frac
+    cy = 0.5 * (y1 + y2)
+    return (cx, cy, cx, cy)
+
+
+def _row_item_name(waiter: Waiter, img: Image.Image, row: DetectionDict) -> str:
+    """OCR the item-name area of a shop_row (between the icon and the cost/checkbox)."""
+    if not waiter.ocr:
+        return ""
+    x1, y1, x2, y2 = row["xyxy"]
+    w = x2 - x1
+    crop = crop_pil(img, (x1 + w * 0.22, y1, x1 + w * 0.75, y2), pad=0)
+    return (waiter.ocr.text(crop) or "").strip()
+
+
+def _ocr_click_text(
+    waiter: Waiter,
+    img: Image.Image,
+    targets: Sequence[str],
+    *,
+    threshold: float = 0.8,
+    forbid: Optional[Sequence[str]] = None,
+    forbid_threshold: float = 0.85,
+    tag: str,
+    clicks: int = 1,
+) -> bool:
+    """
+    Click UI text that has NO YOLO class by OCR'ing `img` and fuzzy-matching
+    each recognized line, clicking the best-scoring box.
+
+    Needed for the shop's 'Select All' button: it's a small pill the nav model
+    doesn't classify as `button_green` (different shape), so a
+    `click_when(classes=("button_green",))` poll never surfaces it as a
+    candidate — the frame only ever yields the large 'Confirm' green button.
+    Mirrors `DailyLegendFlow._click_text` (`core/actions/daily_race.py`).
+
+    Coordinates: OCR boxes are in last-screenshot space; `click_xyxy_center`
+    translates them via the origin set by the capture that produced `img`.
+    Pass an image straight from `collect_snapshot` and don't capture again
+    before this returns, so that origin is still the one for `img` (handles
+    Steam's left-half capture, which a bare `ctrl.screenshot()` would not).
+    """
+    ocr = waiter.ocr
+    ctrl = waiter.ctrl
+    if not ocr:
+        return False
+    try:
+        j = ocr.raw(img)
+    except Exception as e:  # pragma: no cover - perception failure
+        logger_uma.warning("[nav] OCR raw failed (tag=%s): %s", tag, e)
+        return False
+    res = (j or {}).get("res", {}) or {}
+    texts = res.get("rec_texts", []) or []
+    boxes = res.get("rec_boxes", None)
+    polys = res.get("rec_polys", None)
+
+    best: Optional[Tuple[float, float, float, float]] = None
+    best_s = 0.0
+    best_text = ""
+    for i, raw_t in enumerate(texts):
+        t = (raw_t or "").strip()
+        if not t:
+            continue
+        box: Optional[Tuple[float, float, float, float]] = None
+        if boxes is not None and i < len(boxes):
+            try:
+                b = boxes[i]
+                box = (float(b[0]), float(b[1]), float(b[2]), float(b[3]))
+            except Exception:
+                box = None
+        if box is None and polys is not None and i < len(polys):
+            try:
+                pts = polys[i]
+                xs = [float(p[0]) for p in pts]
+                ys = [float(p[1]) for p in pts]
+                box = (min(xs), min(ys), max(xs), max(ys))
+            except Exception:
+                box = None
+        if box is None:
+            continue
+        if forbid and any(
+            fuzzy_contains(t, f, threshold=forbid_threshold) for f in forbid
+        ):
+            # e.g. skip 'Deselect All' when hunting 'Select All' ('select all'
+            # is a substring of 'deselect all', so it would otherwise match).
+            continue
+        for tgt in targets:
+            ok, r = fuzzy_contains(t, tgt, threshold=threshold, return_ratio=True)
+            if ok and r > best_s:
+                best, best_s, best_text = box, r, t
+
+    if best is None:
+        return False
+    ctrl.click_xyxy_center(best, clicks=clicks)
+    logger_uma.info(
+        "[nav] OCR-clicked '%s' via text=%r (score=%.2f, tag=%s)",
+        targets[0],
+        best_text,
+        best_s,
+        tag,
+    )
+    return True
+
+
+def _click_select_all(waiter: Waiter, img: Image.Image, tag_prefix: str) -> bool:
+    # 'Select All' is a small pill the nav YOLO model doesn't detect as
+    # button_green, so locate it by OCR text instead. Both casings are passed
+    # because the OCR normalizer maps lowercase 'l'->'1' but not uppercase 'L',
+    # so "Select All" and "SELECT ALL" normalize differently and only the
+    # matching-case target scores 1.0. threshold=0.82 keeps the
+    # "Select an item to purchase." header (best token ~0.75) out; 'Deselect
+    # All' is forbidden since "select all" is a substring of it.
+    return _ocr_click_text(
+        waiter,
+        img,
+        ("Select All", "SELECT ALL"),
+        threshold=0.82,
+        forbid=("Deselect All", "DESELECT ALL"),
+        tag=f"{tag_prefix}_select_all",
+    )
+
+
+def _click_confirm_purchase(waiter: Waiter, tag_prefix: str) -> bool:
+    """Click the bottom 'Confirm' button, then walk through the resulting
+    purchase confirmation popup (if any) and close the 'Exchange Complete'
+    summary."""
     ok = waiter.click_when(
         classes=("button_green",),
-        texts=("EXCHANGE",),
-        prefer_bottom=False,
+        texts=("CONFIRM",),
+        prefer_bottom=True,
+        allow_greedy_click=True,
+        require_text_match=True,
         timeout_s=3.0,
-        allow_greedy_click=False,
-        tag=f"{tag_prefix}_confirm_exchange",
+        tag=f"{tag_prefix}_confirm",
     )
     if not ok:
         return False
 
-    sleep(1.5)
-    if not waiter.click_when(
-        classes=("button_white",),
-        texts=("CLOSE",),
+    sleep(1.0)
+    waiter.click_when(
+        classes=("button_green",),
+        texts=("EXCHANGE", "PURCHASE", "OK", "YES"),
         prefer_bottom=False,
+        allow_greedy_click=True,
         timeout_s=3.0,
-        allow_greedy_click=False,
-        tag=f"{tag_prefix}_close",
-    ):
-        return False
+        tag=f"{tag_prefix}_confirm_popup",
+    )
 
-    sleep(0.8)
+    # After the purchase commits, the game shows an 'Exchange Complete' summary
+    # (all bought items + monies delta) whose only dismiss is a white 'Close'
+    # button. It renders after a short processing delay, so a single click can
+    # land mid-transition — retry a few times and stop as soon as it's gone.
+    dismissed = False
+    for attempt in range(4):
+        sleep(0.8)
+        clicked = waiter.click_when(
+            classes=("button_white",),
+            texts=("CLOSE",),
+            prefer_bottom=True,
+            allow_greedy_click=True,
+            require_text_match=True,  # only click a white button reading 'Close'
+            # — never the shop's white 'Back' if the summary is already gone.
+            timeout_s=2.0,
+            tag=f"{tag_prefix}_confirm_close",
+        )
+        if clicked:
+            dismissed = True
+            sleep(0.6)
+            # Confirm the summary is actually gone; if a Close button is no
+            # longer present, we're done.
+            if not waiter.seen(
+                classes=("button_white",),
+                texts=("CLOSE",),
+                tag=f"{tag_prefix}_confirm_close_check",
+            ):
+                break
+    if not dismissed:
+        logger_uma.warning(
+            "[nav] shop: 'Exchange Complete' Close button not found (tag=%s)", tag_prefix
+        )
+    sleep(0.4)
     return True
 
+
 def end_sale_dialog(waiter: Waiter, tag_prefix: str) -> bool:
+    """
+    Leave the shop screen. The multi-select UI's exit control is a white
+    'Back' button (bottom-left) rather than the old 'End Sale' dialog, so both
+    are accepted — 'Back' covers the common case, 'End Sale' is kept for
+    whatever screen still shows it.
+    """
     clicked_end = waiter.click_when(
         classes=("button_white",),
-        texts=("END SALE",),
+        texts=("BACK", "END SALE"),
         prefer_bottom=False,
-        timeout_s=2.0,
+        timeout_s=2.5,
         allow_greedy_click=False,
         tag=f"{tag_prefix}_end_sale",
     )
@@ -265,6 +478,103 @@ def end_sale_dialog(waiter: Waiter, tag_prefix: str) -> bool:
     )
     return True
 
+def _handle_shop_buy_all(
+    waiter: Waiter, yolo_engine: IDetector, tag_prefix: str
+) -> bool:
+    """Multi-select UI: tap 'Select All' then 'Confirm' once."""
+    # Grab the frame via the same capture path the waiter clicks in so the OCR
+    # box for 'Select All' maps back to the right screen coords.
+    img, _dets = collect_snapshot(waiter, yolo_engine, tag=f"{tag_prefix}_select_all_scan")
+    if not _click_select_all(waiter, img, tag_prefix):
+        logger_uma.info("[nav] shop: 'Select All' not found (nothing to buy?)")
+        end_sale_dialog(waiter, tag_prefix)
+        return False
+
+    sleep(0.6)
+    if not _click_confirm_purchase(waiter, tag_prefix):
+        logger_uma.warning("[nav] shop: 'Confirm' failed after Select All")
+        end_sale_dialog(waiter, tag_prefix)
+        return False
+
+    logger_uma.info("[nav] shop: bought all available items")
+    end_sale_dialog(waiter, tag_prefix)
+    return True
+
+
+def _handle_shop_selective(
+    waiter: Waiter,
+    yolo_engine: IDetector,
+    ctrl: IController,
+    prefs_enabled: List[Tuple[str, str]],
+    *,
+    tag_prefix: str,
+    max_cycles: int,
+) -> bool:
+    """
+    Multi-select UI: tick the checkbox for rows matching enabled preferences,
+    then 'Confirm' once. Rows are deduped by OCR'd item name so an overlapping
+    scroll pass never re-taps (and un-checks) an item already selected.
+    """
+    checked_names: set = set()
+    stagnant_passes = 0
+    attempts = 0
+
+    while attempts < max_cycles:
+        attempts += 1
+        img, dets = collect_snapshot(waiter, yolo_engine, tag=f"{tag_prefix}_scan")
+
+        rows = rows_top_to_bottom(dets, "shop_row")
+        if not rows:
+            logger_uma.debug("[nav] shop: no shop_row detected, retry scrolling")
+            smart_scroll_small(ctrl, steps_android=1, steps_pc=1)
+            sleep(1.0)
+            continue
+
+        new_this_pass = 0
+        for det_name, pref_key in prefs_enabled:
+            for row in rows:
+                if not _detections_in_row(dets, row, det_name):
+                    continue
+
+                name_text = _row_item_name(waiter, img, row)
+                if not name_text or name_text in checked_names:
+                    continue
+
+                checked_names.add(name_text)
+                point = _row_checkbox_point(row, Settings.SHOP_CHECKBOX_X_FRAC)
+                ctrl.click_xyxy_center(point, clicks=1)
+                logger_uma.info(
+                    f"[nav] shop: checked '{name_text}' (pref={pref_key}) at {point}"
+                )
+                new_this_pass += 1
+                sleep(0.35)
+
+        if new_this_pass == 0:
+            stagnant_passes += 1
+            if stagnant_passes >= 2:
+                break
+        else:
+            stagnant_passes = 0
+
+        smart_scroll_small(ctrl, steps_android=1, steps_pc=1)
+        sleep(0.8)
+
+    if not checked_names:
+        logger_uma.info("[nav] shop: preferences not satisfied after scroll attempts")
+        end_sale_dialog(waiter, tag_prefix)
+        return False
+
+    sleep(0.4)
+    if not _click_confirm_purchase(waiter, tag_prefix):
+        logger_uma.warning("[nav] shop: 'Confirm' failed after selecting items")
+        end_sale_dialog(waiter, tag_prefix)
+        return False
+
+    logger_uma.info("[nav] shop: purchased %d selected item(s)", len(checked_names))
+    end_sale_dialog(waiter, tag_prefix)
+    return True
+
+
 def handle_shop_exchange(
     waiter: Waiter,
     yolo_engine: IDetector,
@@ -274,8 +584,10 @@ def handle_shop_exchange(
     ensure_enter: bool = True,
     max_cycles: int = 6,
 ) -> bool:
+    prefs = Settings.get_shop_nav_prefs()
+    buy_all = bool(prefs.get("buy_all", False))
     prefs_enabled = list(_shop_item_order())
-    if not prefs_enabled:
+    if not buy_all and not prefs_enabled:
         logger_uma.info("[nav] shop: all items disabled by preference")
         return False
 
@@ -293,12 +605,19 @@ def handle_shop_exchange(
                 "[nav] shop: detected existing shop UI, skipping 'SHOP' enter click"
             )
         else:
+            # Most calls land here with no shop prompt at all this pass (shop
+            # doesn't appear every race). If the precheck frame already shows
+            # zero button_green candidates, an 8s poll can't discover one that
+            # isn't there — a brief poll only covers late-rendering animation.
+            # If a button_green IS already visible (just needs OCR/timing to
+            # confirm it says SHOP), keep the full budget.
+            enter_timeout = 8.0 if has(dets_pre, "button_green") else 1.5
             shop_appeared = waiter.click_when(
                 classes=("button_green",),
                 texts=("SHOP",),
                 prefer_bottom=False,
                 allow_greedy_click=True,
-                timeout_s=8.0,
+                timeout_s=enter_timeout,
                 clicks=2,
                 tag=f"{tag_prefix}_enter",
             )
@@ -308,69 +627,8 @@ def handle_shop_exchange(
     else:
         sleep(1.0)
 
-    attempts = 0
-    any_purchased = False
-
-    all_purchased = True
-    while attempts < max_cycles:
-        attempts += 1
-        img, dets = collect_snapshot(waiter, yolo_engine, tag=f"{tag_prefix}_scan")
-
-        rows = rows_top_to_bottom(dets, "shop_row")
-        if not rows:
-            logger_uma.debug("[nav] shop: no shop_row detected, retry scrolling")
-            smart_scroll_small(ctrl, steps_android=1, steps_pc=1)
-            sleep(1.0)
-            continue
-
-        any_purchased = False
-        expected_purchases = len(prefs_enabled)
-        for det_name, pref_key in prefs_enabled:
-            for row in rows:
-                items = _detections_in_row(dets, row, det_name)
-                if not items:
-                    continue
-
-                exchanges = _detections_in_row(dets, row, "shop_exchange")
-                if not exchanges:
-                    logger_uma.debug(
-                        f"[nav] shop: exchange button missing in row for {pref_key}"
-                    )
-                    continue
-
-                target_exchange = max(exchanges, key=lambda d: float(d.get("conf", 0.0)))
-                ctrl.click_xyxy_center(target_exchange["xyxy"], clicks=1)
-                logger_uma.info(
-                    f"[nav] shop: clicked exchange for '{det_name}' (pref={pref_key})"
-                )
-                sleep(0.5)
-
-                confirmed = _confirm_exchange_dialog(waiter, tag_prefix)
-                if confirmed:
-                    logger_uma.info(
-                        f"[nav] shop: completed exchange for {pref_key}"
-                    )
-                    any_purchased = True
-                    expected_purchases -= 1
-                else:
-                    logger_uma.debug(
-                        f"[nav] shop: confirmation failed for {pref_key}, continuing"
-                    )
-                if pref_key != "star_pieces":
-                    # if star pieces we may need to look in other rows
-                    break
-
-        if expected_purchases > 0:
-            smart_scroll_small(ctrl, steps_android=1, steps_pc=1)
-            sleep(1.0)
-        elif any_purchased:
-            # everything purchased at first glance
-            end_sale_dialog(waiter, tag_prefix)
-            return True
-
-    if any_purchased:
-        end_sale_dialog(waiter, tag_prefix)
-        return True
-
-    logger_uma.info("[nav] shop: preferences not satisfied after scroll attempts")
-    return False
+    if buy_all:
+        return _handle_shop_buy_all(waiter, yolo_engine, tag_prefix)
+    return _handle_shop_selective(
+        waiter, yolo_engine, ctrl, prefs_enabled, tag_prefix=tag_prefix, max_cycles=max_cycles
+    )

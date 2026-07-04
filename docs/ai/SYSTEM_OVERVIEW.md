@@ -28,6 +28,16 @@ context_budget_pct_target: 40
 
 The runtime supports Steam on Windows and Android mirrored via scrcpy, with experimental BlueStacks support.
 
+**Shared recovery (Connection Error):** there is no single per-iteration hook
+across flows — the URA agent, Unity Cup agent, and `agent_nav` each run their
+own `recognize → classify → handle` loop. `nav.maybe_handle_connection_error`
+is the shared exception: it's called at the top of each of those loops (and in
+`RaceFlow`'s during-race skip loop, which runs synchronously and blocks the
+agent loop) to dismiss the game's network-hiccup **Connection Error** popup by
+clicking its green **Retry**. It's cheap-gated on `button_green` presence and
+matches the literal "Retry" text, so it never fires on ordinary green
+NEXT/OK/Try-Again buttons. When adding a new top-level flow loop, call it too.
+
 ## Directory Map
 ```
 .

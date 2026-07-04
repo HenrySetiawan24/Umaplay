@@ -249,6 +249,10 @@ class AgentNav:
             img, dets = nav.collect_snapshot(
                 self.waiter, self.yolo_engine, agent=self.agent_name, tag="screen_detector"
             )
+            # Shared recovery: dismiss a Connection Error popup (click Retry)
+            # before classifying/handling anything else.
+            if nav.maybe_handle_connection_error(self.waiter, dets):
+                continue
             screen, info = self.classify_nav_screen(dets)
             logger_uma.debug(f"[AgentNav] screen={screen} | info={info}")
 

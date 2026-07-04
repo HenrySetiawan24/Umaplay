@@ -90,6 +90,8 @@ recapture → if only 1 det or no button_pink:
     click button_advance (forbid VIEW RACE) → click button_green
 
 handle_shop_exchange()             # nav utility; handles shop if present
+                                    # (multi-select checkbox UI — see
+                                    # daily-race-flow.md#shop-exchange-multi-select-ui-2026-07)
 
 ┌ Screen 7: Points Result ────────────────────────────────────────────────────┐
 │ Individual character score cards (WIN pts / placement per race).             │
@@ -130,6 +132,35 @@ for _ in range(max_steps):
   `ScrcpyController` / `BlueStacksController` (not currently wired — note the
   `sleep(5) + sleep(4)` pattern after clicking the banner, inherited from the same
   pattern as `DailyRaceFlow`).
+
+### Dead-poll trims (2026-07)
+
+A live run log (`debug_2026-07-04_01-15.log`) showed ~9-11s of pure
+timeout-waiting per race lap (out of ~60-65s total), all in
+`_handle_post_race_sequence`:
+
+- **`team_trials_shop_enter`** (in `nav.handle_shop_exchange`, shared with
+  Daily Race): an 8s poll for the green **SHOP** button ran to its full
+  timeout on *every* race in the log — `seen=` never showed a `button_green`
+  candidate at all, so no amount of polling would have found one. Fixed by
+  reading the entry precheck frame (`dets_pre`, already captured for the
+  "already in shop" check) once: if it shows zero `button_green` candidates,
+  the poll budget drops to 1.5s (covers late-rendering animation only); if a
+  green button is already visible, the full 8s budget is kept for OCR/timing
+  to confirm it says SHOP. Saves ~6.5s on the common no-shop-this-race path.
+- **`team_trials_race_after_next`**: had no explicit `timeout_s`, so it used
+  the `PollConfig` default of 4.0s. In both races captured, `seen=` only ever
+  showed `button_advance` — `race_after_next` never appeared — and the poll's
+  result isn't even load-bearing: a blind `random_center_tap()` sequence runs
+  immediately after it regardless. Dropped to `timeout_s=1.2`.
+- **`team_trials_reward_next_green`**: `timeout_s=2.8`, hit only on the
+  "especial reward" branch (`len(dets)==1 or not button_pink`), same
+  no-candidate pattern. Dropped to `timeout_s=1.2`.
+
+None of these are load-bearing waits for animation — they're `click_when`
+polls that keep re-checking for a class that just isn't on screen this lap.
+Shrinking them doesn't change what gets clicked, only how long the bot waits
+before giving up when there's nothing to find.
 
 ---
 

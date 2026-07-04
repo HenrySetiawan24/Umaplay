@@ -48996,6 +48996,161 @@
     ]
   },
   {
+    "type": "scenario",
+    "name": "Ura Finale",
+    "rarity": "None",
+    "attribute": "None",
+    "choice_events": [
+      {
+        "type": "special",
+        "chain_step": 1,
+        "name": "Exhilarating! What a Scoop!",
+        "options": {
+          "1": [
+            {
+              "stamina": 10,
+              "bond": 5,
+              "character": "etsuko"
+            }
+          ],
+          "2": [
+            {
+              "guts": 10,
+              "bond": 5,
+              "character": "etsuko"
+            }
+          ]
+        },
+        "default_preference": 1
+      },
+      {
+        "type": "special",
+        "chain_step": 1,
+        "name": "A Trainer's Knowledge",
+        "options": {
+          "1": [
+            {
+              "power": 10,
+              "bond": 5,
+              "character": "etsuko"
+            }
+          ],
+          "2": [
+            {
+              "speed": 10,
+              "bond": 5,
+              "character": "etsuko"
+            }
+          ]
+        },
+        "default_preference": 2
+      },
+      {
+        "type": "special",
+        "chain_step": 1,
+        "name": "Best Foot Forward!",
+        "options": {
+          "1": [
+            {
+              "energy": -10,
+              "power": 20,
+              "guts": 20,
+              "hints": [
+                "Beeline Burst"
+              ]
+            }
+          ],
+          "2": [
+            {
+              "energy": 30,
+              "stamina": 20,
+              "hints": [
+                "Breath of Fresh Air"
+              ]
+            }
+          ]
+        },
+        "default_preference": 2
+      }
+    ]
+  },
+  {
+    "type": "scenario",
+    "name": "Unity Cup",
+    "rarity": "None",
+    "attribute": "None",
+    "choice_events": [
+      {
+        "type": "special",
+        "chain_step": 1,
+        "name": "Tutorial",
+        "options": {
+          "1": [
+            {
+              "bond": 0,
+              "label": "Yes, please."
+            }
+          ],
+          "2": [
+            {
+              "bond": 0,
+              "label": "No, thank you."
+            }
+          ]
+        },
+        "default_preference": 2
+      },
+      {
+        "type": "special",
+        "chain_step": 1,
+        "name": "A Team at Last",
+        "options": {
+          "1": [
+            {
+              "team": "Happy Hoppers, like Taiki suggested",
+              "hints": [
+                "Mile Maven"
+              ]
+            }
+          ],
+          "2": [
+            {
+              "team": "Sunny Runners, like Fukukitaru suggested",
+              "hints": [
+                "Clairvoyance"
+              ]
+            }
+          ],
+          "3": [
+            {
+              "team": "Carrot Pudding, like Haru suggested",
+              "hints": [
+                "Indomitable"
+              ]
+            }
+          ],
+          "4": [
+            {
+              "team": "Blue Bloom, like Rice suggested",
+              "hints": [
+                "Cooldown"
+              ]
+            }
+          ],
+          "5": [
+            {
+              "team": "Team Carrot",
+              "hints": [
+                "No Stopping Me!"
+              ]
+            }
+          ]
+        },
+        "default_preference": 5
+      }
+    ]
+  },
+  {
     "type": "trainee",
     "name": "Special Week",
     "rarity": "None",

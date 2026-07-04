@@ -5,6 +5,7 @@
     "windowTitle": "Umamusume",
     "fastMode": false,
     "tryAgainOnFailedGoal": true,
+    "goalRetryLimit": 3,
     "prioritizeHint": false,
     "skillPtsCheck": 700,
     "acceptConsecutiveRace": true,

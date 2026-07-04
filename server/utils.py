@@ -8,6 +8,7 @@ _DEFAULT_NAV_PREFS: Dict[str, Dict[str, Any]] = {
         "alarm_clock": True,
         "star_pieces": False,
         "parfait": False,
+        "buy_all": False,
     },
     "team_trials": {
         "preferred_banner": 2,

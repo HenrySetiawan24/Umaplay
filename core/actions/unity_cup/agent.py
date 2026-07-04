@@ -21,6 +21,7 @@ from core.agent_scenario import AgentScenario
 from core.settings import Settings
 from core.utils.logger import logger_uma
 from core.utils.text import fuzzy_contains
+from core.utils import nav
 from core.constants import DEFAULT_TILE_TO_TYPE
 from core.utils.training_policy_utils import click_training_tile
 from core.utils.waiter import PollConfig, Waiter
@@ -109,6 +110,15 @@ class AgentUnityCup(AgentScenario):
         # Track Unity Cup opponent stage count
         self._unity_cup_race_stage: int = 0
 
+    @staticmethod
+    def _beat(seconds: float) -> None:
+        """
+        Animation grace wait scaled by Settings.RACE_AWAIT_SCALE — same
+        semantics as RaceFlow._beat, so the showdown sequence follows the
+        user's race-pacing slider instead of raw unscaled sleeps.
+        """
+        time.sleep(max(0.0, seconds * float(Settings.RACE_AWAIT_SCALE)))
+
     def run(self, *, delay: float = 0.4, max_iterations: int | None = None) -> None:
         self.ctrl.focus()
         self.is_running = True
@@ -132,6 +142,11 @@ class AgentUnityCup(AgentScenario):
                 tag="screen",
                 agent=self.agent_name,
             )
+
+            # Shared recovery: a Connection Error popup can overlay any screen;
+            # click Retry and re-loop before classifying/handling anything else.
+            if nav.maybe_handle_connection_error(self.waiter, dets):
+                continue
 
             screen, _ = classify_screen_unity_cup(
                 dets,
@@ -164,6 +179,16 @@ class AgentUnityCup(AgentScenario):
                 # Reset event stale counters when on unknown screen
                 self._single_event_option_counter = 0
 
+                # Team Showdown opponent-selection screens (Select Opponent list
+                # / Begin Showdown! confirm) often carry neither race_race_day
+                # nor unity_opponent_banner, so they land here as Unknown. Drive
+                # them by button text FIRST — otherwise the generic handler below
+                # matches 'CANCEL' on the confirm and cancels the showdown, or
+                # can't match 'Select Opponent' and loops.
+                if self._try_advance_showdown(img, dets):
+                    self.patience = 0
+                    continue
+
                 if self.patience >= fallback_utils.FALLBACK_PATIENCE_STAGE_1:
                     if fallback_utils.handle_unknown_low_conf_targets(self, dets):
                         logger_uma.info(
@@ -195,15 +220,19 @@ class AgentUnityCup(AgentScenario):
                 else:
                     self.patience += 1
 
-                    if self.patience > 10 == 0:
-                        # try single clean click
-                        screen_width = img.width
-                        screen_height = img.height
-                        cx = screen_width * 0.5
-                        y = screen_height * 0.1
-
-                        self.ctrl.click_xyxy_center((cx, y, cx, y), clicks=1)
-                        pass
+                    # Tap-to-continue screens (e.g. the post-race placement
+                    # pose) show no clickable buttons at all — a periodic
+                    # center tap is the only way through. Replaces
+                    # `if self.patience > 10 == 0:`, a chained comparison
+                    # that was always False, so this rescue never fired.
+                    if self.patience >= 3 and self.patience % 3 == 0:
+                        logger_uma.debug(
+                            "[agent] Unknown screen persists (patience=%d); center-tapping possible tap-to-continue screen.",
+                            self.patience,
+                        )
+                        _, _, bw, bh = self.ctrl.capture_bbox()
+                        cx, cy = self.ctrl.local_to_screen(bw // 2, bh // 2)
+                        self.ctrl.click(cx, cy, clicks=1)
                     pat = int(delay * 100)
                     if self.patience >= pat:
                         logger_uma.warning(
@@ -484,7 +513,15 @@ class AgentUnityCup(AgentScenario):
                     )
 
                 if clicked:
-                    sleep(2)
+                    self._beat(1.0)
+                    # Actively advance to the opponent-select screen instead of
+                    # passively waiting for banners. After the race-day banner
+                    # there's an intro/confirm screen with a green GO/RACE button
+                    # that must be clicked before the opponent banners render.
+                    # The old passive seen()-poll never clicked it, so it burned
+                    # the full 15s every race day and the generic fallback did
+                    # the GO click ~15s late. Now we click through it here and
+                    # break as soon as the banners appear.
                     t0 = time.time()
                     banners_seen = False
 
@@ -495,7 +532,19 @@ class AgentUnityCup(AgentScenario):
                         ):
                             banners_seen = True
                             break
-                        time.sleep(0.5)
+                        # Click the intro/confirm GO button if it's up (also
+                        # re-clicks the race-day banner if we're somehow still
+                        # on the lobby) — whichever advances toward the banners.
+                        if self.waiter.click_when(
+                            classes=("button_green", "race_race_day"),
+                            texts=("GO", "RACE", "NEXT", "TO RACE", "Unity", "Cup"),
+                            prefer_bottom=True,
+                            timeout_s=0.4,
+                            tag="unity_cup_raceday_advance",
+                        ):
+                            self._beat(0.5)
+                            continue
+                        time.sleep(0.4)
 
                     if not banners_seen:
                         logger_uma.warning(
@@ -557,16 +606,22 @@ class AgentUnityCup(AgentScenario):
                         if self.waiter.click_when(
                             classes=("button_green",),
                             texts=("SELECT", "OPPONENT"),
-                            allow_greedy_click=False,
+                            allow_greedy_click=True,
+                            prefer_bottom=True,
                             tag="unity_cup_click_button_green",
                         ):
                             logger_uma.info("[UnityCup] Clicked button_green")
-                            sleep(1.5)
+                            # begin_showdown opens with its own click_when poll.
+                            self._beat(1.0)
                             self.begin_showdown(img, dets)
                         else:
                             logger_uma.warning("[UnityCup] button_green not found")
                     else:
                         logger_uma.warning("[UnityCup] No opponent banners detected")
+                        # Banner detection missed — fall back to advancing the
+                        # showdown by button text (Select Opponent / Begin
+                        # Showdown!) so we don't stall on this race day.
+                        self._try_advance_showdown(img, dets)
 
             if screen == "Lobby" or is_lobby_summer:
                 self._consume_pending_hint_recheck()
@@ -1010,20 +1065,155 @@ class AgentUnityCup(AgentScenario):
         # Fallback: nothing to do
         logger_uma.debug("[training] No actionable decision.")
 
+    def _advance_result_screens(self, *, timeout_s: float = 25.0) -> None:
+        """
+        Drive the standard post-race result screens directly, in-place, until a
+        known screen returns or the budget expires:
+
+          - lingering race animation → button_skip
+          - green NEXT / OK (never RACE / TRY AGAIN)
+          - white CLOSE (trophy)
+          - race_after_next special continue (Pyramid/finale cutscene)
+          - otherwise tap-to-continue (placement pose etc.)
+
+        Returns as soon as we're back on a lobby / training / next-opponent /
+        race-day / event screen, so the main loop takes over cleanly. This
+        keeps the whole result walk inside begin_showdown (fast, targeted
+        polls) instead of bailing after one NEXT and deferring every remaining
+        screen to the slower generic unknown-screen handler.
+        """
+        DONE = {
+            "lobby_tazuna", "training_button", "lobby_races", "lobby_rest",
+            "lobby_recreation", "race_race_day", "unity_opponent_banner",
+            "event_choice",
+        }
+        deadline = time.time() + timeout_s
+        last_tap = 0.0
+        while time.time() < deadline:
+            if abort_requested():
+                return
+            img, _, dets = self.yolo_engine.recognize(
+                imgsz=self.imgsz, conf=self.conf, iou=self.iou,
+                agent=self.agent_name, tag="uc_result_advance",
+            )
+            names = {d["name"] for d in dets if float(d.get("conf", 0.0)) >= 0.5}
+            if names & DONE:
+                logger_uma.debug("[unity_cup] Result flow done; back on a known screen (%s).", sorted(names & DONE))
+                return
+            # Green NEXT / OK — never RACE or TRY AGAIN.
+            if self.waiter.click_when(
+                classes=("button_green",),
+                texts=("NEXT", "OK", "PROCEED"),
+                forbid_texts=("RACE", "try again", "complete", "career"),
+                prefer_bottom=True, timeout_s=0.4, tag="uc_result_next",
+            ):
+                last_tap = 0.0
+                self._beat(0.4)
+                continue
+            # White CLOSE (trophy screen).
+            if self.waiter.click_when(
+                classes=("button_white",), texts=("CLOSE",),
+                timeout_s=0.4, tag="uc_result_close",
+            ):
+                last_tap = 0.0
+                self._beat(0.4)
+                continue
+            # Special race_after_next continue (Pyramid/finale cutscene).
+            if self.waiter.click_when(
+                classes=("race_after_next",),
+                timeout_s=0.4, tag="uc_result_special",
+            ):
+                last_tap = 0.0
+                self._beat(0.4)
+                continue
+            # Lingering race animation → skip.
+            if self.waiter.click_when(
+                classes=("button_skip",), prefer_bottom=True,
+                clicks=random.randint(3, 5), timeout_s=0.4, tag="uc_result_skip",
+            ):
+                last_tap = 0.0
+                continue
+            # No actionable button → tap-to-continue frame (placement pose etc.).
+            now = time.time()
+            if now - last_tap >= 1.0:
+                _, _, bw, bh = self.ctrl.capture_bbox()
+                cx, cy = self.ctrl.local_to_screen(bw // 2, bh // 2)
+                self.ctrl.click(cx, cy, clicks=1)
+                last_tap = now
+            time.sleep(0.2)
+        logger_uma.debug("[unity_cup] Result advance timed out; deferring to main loop.")
+
+    def _try_advance_showdown(self, img, dets) -> bool:
+        """
+        Advance the Team Showdown opponent-selection screens by button *text*,
+        independent of `unity_opponent_banner` / `race_race_day` detection.
+
+        Those two screens — the 'Select Opponent' list and the 'Begin Showdown!'
+        confirm popup — frequently yield neither class, so they classify as
+        Unknown and fall to the generic `agent_unknown_advance` handler, which
+        (1) matches 'CANCEL' on the confirm popup and *cancels* the showdown,
+        and (2) can't match 'Select Opponent' so it loops. This runs before
+        that handler and drives the flow forward instead.
+
+        Returns True if it handled a showdown screen.
+        """
+        # Cheap gate: both showdown controls are green buttons. If none is on
+        # screen this iteration, skip the OCR probes (each does a recognize).
+        if not any(d.get("name") == "button_green" for d in dets):
+            return False
+
+        # Confirm popup: a green 'Begin Showdown!' is present. Route through
+        # begin_showdown so the button click AND the post-race result walk run.
+        # (begin_showdown is class-filtered to button_green, so it targets the
+        # green Begin Showdown!, never the white Cancel.)
+        if self.waiter.seen(
+            classes=("button_green",),
+            texts=("BEGIN SHOWDOWN", "SHOWDOWN"),
+            tag="unity_cup_showdown_confirm_probe",
+        ):
+            logger_uma.info(
+                "[UnityCup] Showdown confirm detected by text; beginning showdown."
+            )
+            self.begin_showdown(img, dets)
+            return True
+
+        # Selector list: a green 'Select Opponent' confirms the pre-selected
+        # opponent (middle card is highlighted by default). Specific-slot
+        # selection still needs unity_opponent_banner detection; this fallback
+        # just keeps the flow moving when that detection misses.
+        if self.waiter.click_when(
+            classes=("button_green",),
+            texts=("SELECT OPPONENT",),
+            prefer_bottom=True,
+            allow_greedy_click=True,
+            require_text_match=True,
+            timeout_s=0.4,
+            tag="unity_cup_select_opponent_ocr",
+        ):
+            logger_uma.info(
+                "[UnityCup] Showdown: clicked 'Select Opponent' (pre-selected opponent)."
+            )
+            self._beat(1.0)
+            return True
+
+        return False
+
     def begin_showdown(self, img, dets):
         if self.waiter.click_when(
             classes=("button_green",),
             texts=("BEGIN", "SHOWDOWN", "SHOWDOWN!"),
-            allow_greedy_click=False,
+            allow_greedy_click=True,
+            prefer_bottom=True,
             tag="unity_cup_click_showdown",
         ):
             logger_uma.info("[UnityCup] Clicked begin showdown")
-            sleep(5)
-            # Wait up to 10 seconds for race_after_next to appear
+            # Short scaled beat, then poll — the old blind sleep(5) is folded
+            # into the poll window below, so ready-early screens proceed early.
+            self._beat(1.5)
             t0 = time.time()
             race_after_next_found = False
-            
-            while (time.time() - t0) < 10.0:
+
+            while (time.time() - t0) < 13.5:
                 if self.waiter.seen(
                     classes=("race_after_next",),
                     tag="unity_cup_check_race_after_next"
@@ -1055,63 +1245,40 @@ class AgentUnityCup(AgentScenario):
                         logger_uma.debug("[unity_cup] race_after_next inactive")
                     
                     if is_active:
-                        sleep(1)
+                        self._beat(0.5)
                         self.ctrl.click_xyxy_center(race_after_next_det["xyxy"], clicks=1)
                         logger_uma.debug("[unity_cup] Clicked race after next first")
-                        sleep(3)
-                        # Skip button loop (same pattern as race.py)
-                        skip_clicks = 0
-                        t0 = time.time()
-                        while (time.time() - t0) < 5.0 and skip_clicks < 1:  # Max 12s of skip attempts
-                            if self.waiter.click_when(
-                                classes=("button_skip",),
-                                prefer_bottom=True,
-                                timeout_s=2.0,
-                                clicks=random.randint(3, 5),  # 3-5 clicks per detection
-                                tag="unity_cup_skip"
-                            ):
-                                skip_clicks += 1
-                            time.sleep(0.12)  # Brief pause between attempts
-                        sleep(2)
-                        if skip_clicks > 0:
-                            logger_uma.debug(f"[unity_cup] Completed skip sequence (clicks={skip_clicks})")
-                            if self.waiter.click_when(
-                                classes=("button_green",),
-                                texts=("NEXT", ),
-                                allow_greedy_click=True,
-                                timeout_s=2.0,
-                                tag="unity_cup_next"
-                            ):
-                                sleep(5)
-                                if self.waiter.click_when(
-                                    classes=("race_after_next",),
-                                    allow_greedy_click=True,
-                                    tag="unity_cup_race_after_next",
-                                ):
-                                    logger_uma.debug("[unity_cup] Clicked race_after_next")
-                                    sleep(3)
+                        self._beat(1.0)
+                        # Drive the full result walk (skip animation → NEXT(s) →
+                        # CLOSE → tap-throughs) in-place, returning once a known
+                        # screen is back. Replaces the old truncated "skip once +
+                        # one NEXT + dead race_after_next poll", which bailed
+                        # mid-result and left the slow generic handler to finish.
+                        self._advance_result_screens()
                     else:
                         button_pink = next((d for d in dets if d.get("name") == "button_pink"), None)
                         if button_pink:
                             self.ctrl.click_xyxy_center(button_pink["xyxy"], clicks=1)
                             logger_uma.debug("[unity_cup] clicked Watch Main Race because other button was disabled")
-                            sleep(5)
+                            # Fold the old blind sleep(5)s into the click_when
+                            # poll windows: short scaled beat + longer timeout.
+                            self._beat(1.5)
                             if self.waiter.click_when(
                                 classes=("button_green",),
                                 texts=("RACE", ),
                                 allow_greedy_click=True,
-                                timeout_s=2.0,
+                                timeout_s=6.0,
                                 tag="unity_cup_kashimoto_next"
                             ):
-                                sleep(5)
+                                self._beat(1.5)
                                 if self.waiter.click_when(
                                     classes=("button_green",),
                                     texts=("RACE", ),
                                     allow_greedy_click=True,
-                                    timeout_s=5.0,
+                                    timeout_s=8.0,
                                     tag="unity_cup_kashimoto_next_race_2"
                                 ):
-                                    sleep(2)
+                                    self._beat(1.0)
                                     # Reactive second confirmation. Click as soon as popup appears,
                                     # or bail early if the pre-race lobby appears or skip buttons show up.
                                     t0 = time.time()
@@ -1147,8 +1314,10 @@ class AgentUnityCup(AgentScenario):
                                         ):
                                             logger_uma.error("[race] Race button not found after ~6s of retries. "
                                             "Cannot determine lobby state. Aborting race operation.")
-                                            
-                                    time.sleep(4)
+
+                                    # Skip loop below polls for button_skip; a
+                                    # scaled beat replaces the blind sleep(4).
+                                    self._beat(2.0)
                                     logger_uma.debug("[race] Starting skip loop")
                                     # Greedy skip: keep pressing while present; stop as soon as 'CLOSE' or 'NEXT' shows.
                                     closed_early = False
@@ -1188,7 +1357,7 @@ class AgentUnityCup(AgentScenario):
                                         clicks=3,
                                         tag="race_kashimoto_after_flow_next",
                                     )
-                                    sleep(1.5)
+                                    self._beat(1.5)
                                     logger_uma.debug(
                                         "[race kashimoto] Looking for button_green 'Next' button 2. Shown after race."
                                     )
@@ -1200,18 +1369,22 @@ class AgentUnityCup(AgentScenario):
                                         clicks=3,
                                         tag="race_kashimoto_after_flow_next_2",
                                     )
-                                    # song...
-                                    sleep(80)
+                                    # Song cutscene: scaled floor, then poll for
+                                    # the CLOSE button instead of blindly sitting
+                                    # out the old flat sleep(80) — never later
+                                    # than before (55 + 30 ≈ 80 + 3), usually
+                                    # earlier, and tolerant of length variation.
+                                    self._beat(55)
                                     logger_uma.debug("[race kashimoto] Looking for CLOSE button.")
                                     self.waiter.click_when(
                                         classes=("button_white",),
                                         texts=("CLOSE",),
                                         prefer_bottom=False,
                                         allow_greedy_click=False,
-                                        timeout_s=3,
+                                        timeout_s=30,
                                         tag="race_trophy",
                                     )
-                                    sleep(1.5)
+                                    self._beat(1.5)
                                     # 'Next' special
                                     logger_uma.debug(
                                         "[race kashimoto] Looking for race_after_next special button. When Pyramid"

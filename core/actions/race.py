@@ -234,6 +234,7 @@ class RaceFlow:
                 #    no OCR on the hot path.
                 if self.waiter.seen(
                     classes=("button_green",),
+                    texts=("OK",),
                     tag="race_nav_penalty_seen",
                 ):
                     # from_raceday forces to accept consecutive, there is no another option
@@ -256,6 +257,7 @@ class RaceFlow:
                         # (single snapshot, no OCR, no wait).
                         if self.waiter.try_click_once(
                             classes=("button_green",),
+                            texts=("OK",),
                             prefer_bottom=True,
                             allow_greedy_click=True,
                             tag="race_nav_penalty_ok_click",
@@ -1083,22 +1085,47 @@ class RaceFlow:
         Uses the unified Waiter API; no external polling loops.
         Returns False if the view button cannot be found after retries.
         """
-        # Try resolving 'View Results' with progressive retries (up to 15s total)
+        # Try resolving 'View Results' with progressive retries (up to 15s total,
+        # scaled by Settings.RACE_AWAIT_SCALE for slower devices/loaded systems).
         view_btn = self._pick_view_results_button()
         if view_btn is None:
-            # Retry with progressive delays: 2s, 3s, 5s, 5s (total ~15s)
+            # Retry with progressive delays: 2s, 3s, 5s, 5s (total ~15s @ scale=1)
             retry_delays = [2, 3, 5, 5]
             for i, delay in enumerate(retry_delays, 1):
                 logger_uma.warning(
                     "No view result button found, waiting %ds more (attempt %d/%d)...",
                     delay, i, len(retry_delays)
                 )
-                time.sleep(delay)
+                self._beat(delay)
                 view_btn = self._pick_view_results_button()
                 if view_btn is not None:
                     logger_uma.info("View button found after %d retry attempt(s)", i)
                     break
-        
+
+        # Still nothing after the fixed budget — before aborting, check whether
+        # the race is genuinely still animating (button_skip visible). A slow
+        # device / a system under heavy load can blow the ~15s fixed budget
+        # while the race itself is legitimately still playing; erroring out
+        # here previously caused the caller to re-enter the raceday flow and
+        # re-click 'Race!' on top of an in-progress race. Keep polling in
+        # scaled increments (bounded) as long as we can positively confirm
+        # it's still racing, instead of giving up on a false negative.
+        max_extra_wait = 30.0
+        extra_waited = 0.0
+        while (
+            view_btn is None
+            and extra_waited < max_extra_wait
+            and self.waiter.seen(
+                classes=("button_skip",), tag="race_lobby_view_results_still_racing"
+            )
+        ):
+            logger_uma.info(
+                "[race] Race still in progress (skip button visible); extending View Results wait."
+            )
+            self._beat(3)
+            extra_waited += 3 * float(Settings.RACE_AWAIT_SCALE)
+            view_btn = self._pick_view_results_button()
+
         # If still not found after all retries, abort the operation
         if view_btn is None:
             self._race_result_counters["lobby_view_failures"] += 1

@@ -211,6 +211,29 @@ All other "retries" (`_pick_view_results_button` progressive retries, the skip
 loop, the reactive confirm loops, the results gate) are navigation robustness, not
 re-racing. Background: [`try-again-bug/`](../try-again-bug/).
 
+### `lobby()`'s View-Results wait: scaled + "still racing" extension (2026-07 fix)
+
+A live log (ADB to a phone, PC under heavy load) showed `lobby()` giving up
+after its fixed ~15s budget (2+3+5+5s, unscaled) with `seen=['button_skip:0.99']`
+— i.e. the race was still legitimately animating, not stuck. Once `lobby()`
+aborted, the caller (`ura/agent.py`) just `continue`s; if the screen still
+classified as `Raceday` on the next iteration, it re-entered the raceday flow
+from scratch and **re-clicked green 'Race!' while the previous race might
+still be in progress underneath**.
+
+Root cause: the retry delays were a hardcoded `time.sleep()`, not scaled by
+`Settings.RACE_AWAIT_SCALE` like the rest of the file's waits — so a slower
+device or a system under CPU/GPU contention with the game (higher ADB +
+YOLO/OCR latency) blows the fixed budget before the screen actually
+transitions. There was also no signal to distinguish "stuck" from "still
+racing."
+
+Fixed by: (1) the existing 2/3/5/5s retries now go through `_beat()` so they
+scale with pacing; (2) after that budget, if `button_skip` is still visible
+(a positive "race is genuinely still playing" signal), keep polling in scaled
+3s increments up to an extra 30s instead of aborting — only giving up once
+neither the View Results button nor the skip button can be found.
+
 ### Post-skip screens — captured
 
 After tapping **View results** in the lobby, the game walks two screen *types*. The

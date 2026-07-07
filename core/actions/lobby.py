@@ -1414,12 +1414,124 @@ class LobbyFlow(ABC):
                 
                 if chosen is not None:
                     self.ctrl.click_xyxy_center(chosen['xyxy'])
-                    time.sleep(0.5)
+                    time.sleep(1.0)
+                    # A Group/Team support card (e.g. Team Sirius) opens a second
+                    # "Choose Recreation Partner" screen; handle it if present.
+                    partner_result = self._handle_recreation_partner_screen()
+                    if partner_result is False:
+                        # Group had no available partner → backed out; let the
+                        # caller fall through to Rest instead of a phantom RESTED.
+                        return False
+                    time.sleep(2)
+                    return True
                 else:
                     logger_uma.warning("[lobby] No active recreation rows found, skipping click")
-                
+                    time.sleep(1)
+                    return False
+
             time.sleep(2)
         return click
+
+    def _is_choose_partner_screen(self, img) -> bool:
+        """OCR-anchor: True when the 'Choose Recreation Partner' (Group) screen is up."""
+        try:
+            w, h = img.size
+            header = img.crop((0, 0, w, int(0.22 * h)))
+            txt = normalize_ocr_text(self.ocr.text(header, joiner=" ", min_conf=0.2) or "")
+            return (
+                fuzzy_contains(txt, "choose recreation partner", 0.7)
+                or fuzzy_contains(txt, "recreation partner", 0.7)
+            )
+        except Exception:
+            return False
+
+    def _cancel_recreation(self) -> None:
+        """Back out of the recreation / partner screen to the lobby."""
+        self.waiter.click_when(
+            classes=("button_white",),
+            texts=("CANCEL", "BACK"),
+            require_text_match=True,
+            prefer_bottom=True,
+            timeout_s=2.0,
+            tag="recreation_cancel",
+        )
+        time.sleep(1.0)
+
+    def _handle_recreation_partner_screen(self) -> Optional[bool]:
+        """Handle the Group-card 'Choose Recreation Partner' screen.
+
+        Returns:
+          True  -> detected the screen and clicked an available partner
+          False -> detected the screen but no available partner; cancelled out
+          None  -> not on the partner screen (normal single-level recreation)
+        """
+        try:
+            img, dets = collect(
+                self.yolo_engine,
+                imgsz=self.waiter.cfg.imgsz,
+                conf=self.waiter.cfg.conf,
+                iou=self.waiter.cfg.iou,
+                tag="recreation_partner_screen",
+                agent=self.waiter.cfg.agent,
+            )
+            if not self._is_choose_partner_screen(img):
+                return None
+            logger_uma.info("[lobby] Group card opened 'Choose Recreation Partner' screen")
+
+            rows = [d for d in dets if d.get("name") == "recreation_row"]
+            if not rows:
+                logger_uma.warning("[lobby] Partner screen: no recreation_row detections; cancelling")
+                self._cancel_recreation()
+                return False
+
+            try:
+                clf = ActiveButtonClassifier.load(Settings.IS_BUTTON_ACTIVE_CLF_PATH)
+            except Exception:
+                clf = None
+
+            available = []
+            for row in rows:
+                rxy = row["xyxy"]
+                # Skip greyed rows per the active-button classifier.
+                is_active = True
+                if clf is not None:
+                    try:
+                        is_active = bool(clf.predict(img.crop(rxy)))
+                    except Exception:
+                        is_active = True
+                if not is_active:
+                    continue
+                # Skip 'Event Complete!' and locked ("Complete all events…to unlock") rows.
+                try:
+                    txt = normalize_ocr_text(
+                        self.ocr.text(img.crop(rxy), joiner=" ", min_conf=0.2) or ""
+                    )
+                except Exception:
+                    txt = ""
+                if (
+                    fuzzy_contains(txt, "event complete", 0.75)
+                    or fuzzy_contains(txt, "to unlock", 0.75)
+                    or fuzzy_contains(txt, "complete all events", 0.7)
+                ):
+                    continue
+                available.append(row)
+
+            if not available:
+                logger_uma.info(
+                    "[lobby] Partner screen: no available partner (all complete/locked) → cancel"
+                )
+                self._cancel_recreation()
+                return False
+
+            available.sort(key=lambda r: r["xyxy"][1])  # top-to-bottom → first available
+            chosen = available[0]
+            self.ctrl.click_xyxy_center(chosen["xyxy"])
+            logger_uma.info("[lobby] Selected first available recreation partner")
+            time.sleep(1.0)
+            return True
+        except Exception as e:
+            logger_uma.debug(f"[lobby] partner-screen handling failed: {e}")
+            return None
 
     def _go_skills(self) -> bool:
         logger_uma.info("[lobby] Opening Skills")

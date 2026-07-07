@@ -29,7 +29,7 @@ import type { StrategyComponentProps } from './UraStrategy'
  * Currently inherits URA base logic; extend with Unity Cup-specific toggles as needed
  * (e.g., team race scheduling, explosion burst management, etc.)
  */
-export default function UnityCupStrategy({ preset }: StrategyComponentProps) {
+export default function UnityCupStrategy({ preset, embedded }: StrategyComponentProps) {
   const patchPreset = useConfigStore((s) => s.patchPreset)
   const [advancedOpen, setAdvancedOpen] = useState(false)
 
@@ -43,13 +43,13 @@ export default function UnityCupStrategy({ preset }: StrategyComponentProps) {
   return (
     <Section
       title="Bot Strategy / Policy"
-      sx={{ px: 0, py: 0, width: '100%', maxWidth: 'none' }}
-      contentSx={{ gap: 2, width: '100%' }}
-      titleSx={{ textAlign: 'center', mb: 0 }}
+      sx={{ px: 0, py: 0, width: '100%', maxWidth: 'none', ...(embedded ? { variant: 'plain' } : {}) }}
+      contentSx={{ gap: embedded ? 1 : 2, width: '100%' }}
+      titleSx={{ textAlign: embedded ? 'left' : 'center', mb: 0, ...(embedded ? { fontSize: '1rem' } : {}) }}
     >
       <Stack
         sx={{
-          p: { xs: 1.75, md: 2.25 },
+          p: embedded ? 0 : { xs: 1.75, md: 2.25 },
           width: '100%',
         }}
       >

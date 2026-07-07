@@ -64,6 +64,32 @@ const rarityFrameSx = (rarity: string, w?: number, h?: number) => {
   return { ...base, background: 'linear-gradient(135deg,#cfd8dc,#eceff1)' }
 }
 
+const rarityGradient = (rarity: string) =>
+  rarity === 'SSR'
+    ? 'linear-gradient(135deg,#8a2be2,#00e5ff,#ffd54f)'
+    : rarity === 'SR'
+      ? 'linear-gradient(135deg,#d4af37,#fff4c2)'
+      : 'linear-gradient(135deg,#cfd8dc,#eceff1)'
+
+// Fluid variant for the support deck: image fills the column width and keeps
+// its native aspect ratio (no fixed box / cropping).
+const rarityFrameFluidSx = (rarity: string) => ({
+  position: 'relative' as const,
+  borderRadius: 1,
+  p: '2px',
+  width: '100%',
+  lineHeight: 0,
+  background: rarityGradient(rarity),
+  '& img': {
+    width: '100%',
+    height: 'auto',
+    objectFit: 'contain',
+    imageRendering: 'auto',
+    borderRadius: 1,
+    display: 'block',
+  },
+})
+
 const emptySlotSx = {
   width: THUMB,
   height: THUMB_H,
@@ -776,15 +802,15 @@ export default function EventSetupSection({ index }: Props) {
           <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 1 }}>
             <Typography variant="subtitle1">Support Deck (up to 6)</Typography>
           </Stack>
-          <Stack direction="row" flexWrap="wrap" gap={1.5}>
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: 'repeat(2, 1fr)', sm: 'repeat(3, 1fr)' }, gap: 1.5 }}>
             {supports.map((sel, idx) => (
-              <Box key={idx} sx={{ flexBasis: { xs: 'calc(50% - 12px)', sm: 'calc(33.33% - 12px)', md: 'calc(16.66% - 12px)' } }}>
+              <Box key={idx} sx={{ minWidth: 0 }}>
                 <Card variant="outlined" sx={{ position:'relative' }}>
                   <CardActionArea onClick={() => setPickSlot(idx)}>
                     <Stack alignItems="center" spacing={1} sx={{ p: 1 }}>
                       {sel ? (
                         <>
-                          <Box sx={rarityFrameSx(sel.rarity || '', THUMB, THUMB_H)}>
+                          <Box sx={rarityFrameFluidSx(sel.rarity || '')}>
                             <SmartImage
                               candidates={supportImageCandidates(sel.name || "", sel.rarity, sel.attribute)}
                               alt={sel.name || ""}
@@ -882,7 +908,7 @@ export default function EventSetupSection({ index }: Props) {
                 </Card>
               </Box>
             ))}
-          </Stack>
+          </Box>
         </CardContent>
       </Card>
 

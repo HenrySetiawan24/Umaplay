@@ -1,11 +1,11 @@
-import { Container, Stack, Box, Tabs, Tab, Paper, useTheme, useMediaQuery } from '@mui/material'
+import { Container, Stack, Box, Tabs, Tab, Paper, TextField, MenuItem, useTheme, useMediaQuery } from '@mui/material'
 import GeneralForm from '@/components/general/GeneralForm'
-import SaveLoadBar from '@/components/common/SaveLoadBar'
+import TopSaveBar from '@/components/common/TopSaveBar'
 import { useEffect, useRef, useState } from 'react'
 import { useConfigStore } from '@/store/configStore'
 import { useNavPrefsStore } from '@/store/navPrefsStore'
 import PresetsTabs from '@/components/presets/PresetsTabs'
-import { PresetSettingsSection, PresetStrategySection, PresetEventSection, PresetSkillsSchedulerSection, PresetRaceSchedulerSection } from '@/components/presets/PresetPanel'
+import { PresetSettingsSection, PresetEventSection, PresetSkillsSchedulerSection, PresetRaceSchedulerSection } from '@/components/presets/PresetPanel'
 import ShopPrefs from '@/components/nav/ShopPrefs'
 import TeamTrialsPrefs from '@/components/nav/TeamTrialsPrefs'
 import DailyActionsBar from '@/components/nav/DailyActionsBar'
@@ -13,13 +13,23 @@ import RunHistory from '@/components/history/RunHistory'
 import LogsView from '@/components/logviewer/LogsView'
 import BotControl from '@/components/common/BotControl'
 
+type TabKey = 'scenario' | 'daily_trials' | 'history' | 'logs'
+
+const TAB_ITEMS: { value: TabKey; label: string }[] = [
+  { value: 'scenario', label: 'Scenario setup' },
+  { value: 'daily_trials', label: 'Daily & Trials' },
+  { value: 'history', label: 'Run History' },
+  { value: 'logs', label: 'Logs' },
+]
+
 export default function Home() {
   const saveLocal = useConfigStore((s) => s.saveLocal)
   const config = useConfigStore((s) => s.config)
   const theme = useTheme()
   const isWide = useMediaQuery(theme.breakpoints.up(1400))
   const isMd = useMediaQuery(theme.breakpoints.up('md'))
-  const [tab, setTab] = useState<'scenario' | 'daily_trials' | 'history' | 'logs'>('scenario')
+  const isXs = useMediaQuery(theme.breakpoints.down('sm'))
+  const [tab, setTab] = useState<TabKey>('scenario')
   const configLoadedRef = useRef(false)
 
   useEffect(() => {
@@ -49,6 +59,9 @@ export default function Home() {
           sx={{
             borderRadius: 3,
             overflow: 'hidden',
+            position: 'sticky',
+            top: 8,
+            zIndex: (theme) => theme.zIndex.appBar,
             bgcolor: (theme) => theme.palette.mode === 'dark' ? theme.palette.background.paper : '#ffffff',
             border: (theme) => `1px solid ${theme.palette.divider}`,
             background: (theme) =>
@@ -57,14 +70,35 @@ export default function Home() {
                 : 'linear-gradient(to bottom, #ffffff 0%, #fafafa 100%)',
           }}
         >
-          <Box sx={{ display: 'flex', alignItems: 'center', pr: { xs: 1, sm: 2 } }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 0.75, sm: 1.5 }, pr: { xs: 1, sm: 2 } }}>
+            {isXs ? (
+              <TextField
+                select
+                size="small"
+                value={tab}
+                onChange={(e) => setTab(e.target.value as TabKey)}
+                sx={{
+                  flex: 1,
+                  minWidth: 0,
+                  mx: 1,
+                  my: 1,
+                  '& .MuiInputBase-input': { fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1, fontSize: 13 },
+                }}
+              >
+                {TAB_ITEMS.map((t) => (
+                  <MenuItem key={t.value} value={t.value}>{t.label}</MenuItem>
+                ))}
+              </TextField>
+            ) : (
             <Tabs
               value={tab}
               onChange={(_, next) => setTab(next)}
               variant="scrollable"
               scrollButtons="auto"
+              allowScrollButtonsMobile
               sx={{
                 flex: 1,
+                minWidth: 0,
                 px: { xs: 1, sm: 2 },
               '& .MuiTab-root': {
                 minHeight: 56,
@@ -112,8 +146,12 @@ export default function Home() {
             <Tab value="history" label="Run History" />
             <Tab value="logs" label="Logs" />
           </Tabs>
+            )}
           <DailyActionsBar />
-          <BotControl />
+          <TopSaveBar />
+          <Box sx={{ ml: { xs: 1, sm: 2 }, flexShrink: 0 }}>
+            <BotControl />
+          </Box>
           </Box>
         </Paper>
 
@@ -137,7 +175,6 @@ export default function Home() {
                 <GeneralForm />
                 <PresetsTabs />
                 {!isMd && <PresetSettingsSection />}
-                {!isMd && <PresetStrategySection />}
                 {!isWide && <PresetSkillsSchedulerSection />}
               </Stack>
             </Box>
@@ -158,17 +195,11 @@ export default function Home() {
             }}>
               <Stack spacing={3}>
                 {isMd && !isWide && <PresetSettingsSection />}
-                {isMd && !isWide && <PresetStrategySection />}
-                {isWide && <PresetStrategySection />}
                 <PresetEventSection />
                 <PresetRaceSchedulerSection />
               </Stack>
             </Box>
           </Box>
-
-          <Stack sx={{ alignItems: 'center' }}>
-            <SaveLoadBar />
-          </Stack>
         </Box>
         <Box sx={{ display: tab === 'daily_trials' ? 'block' : 'none' }}>
           <Box sx={{

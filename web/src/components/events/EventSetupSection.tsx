@@ -20,7 +20,7 @@ import type {
   RewardCategory,
 } from '@/types/events'
 import SmartImage from '@/components/common/SmartImage'
-import { supportImageCandidates, scenarioImageCandidates, traineeImageCandidates, supportTypeIcons } from '@/utils/imagePaths'
+import { supportImageCandidates, scenarioImageCandidates, traineeImageCandidates, supportTypeIcons, supportRarityIcons } from '@/utils/imagePaths'
 import { useCharactersData, findCharByName } from '@/hooks/useCharactersData'
 import { useEventsSetupStore } from '@/store/eventsSetupStore'
 import { useConfigStore } from '@/store/configStore'
@@ -105,6 +105,9 @@ const emptySlotSx = {
 const rarityRank = (r: string) =>
   r === 'SSR' ? 0 : r === 'SR' ? 1 : r === 'R' ? 2 : 9
 
+type RarityKey = 'SSR' | 'SR' | 'R'
+const RARITY_ORDER: RarityKey[] = ['SSR', 'SR', 'R']
+
 
 // ---- Support picker dialog
 function SupportPickerDialog({
@@ -113,12 +116,14 @@ function SupportPickerDialog({
   const [q, setQ] = useState('')
   const [debouncedQ, setDebouncedQ] = useState('')
   const [attrFilter, setAttrFilter] = useState<AttrKey>('SPD')
+  const [rarityFilter, setRarityFilter] = useState<RarityKey | 'all'>('all')
 
   useEffect(() => {
     if (open) {
       setQ('')
       setDebouncedQ('')
       setAttrFilter('SPD')
+      setRarityFilter('all')
     }
   }, [open])
 
@@ -203,13 +208,47 @@ function SupportPickerDialog({
             </Box>
           ))}
         </Stack>
+        {/* Rarity filter buttons */}
+        <Stack direction="row" spacing={1} sx={{ mb: 1, flexWrap: 'wrap' }}>
+          <Box
+            role="button"
+            onClick={() => setRarityFilter('all')}
+            sx={{
+              display: 'flex', alignItems: 'center', px: 1.25, py: 0.75, borderRadius: 1, cursor: 'pointer',
+              bgcolor: rarityFilter === 'all' ? 'action.selected' : 'action.hover',
+              border: '1px solid',
+              borderColor: rarityFilter === 'all' ? 'primary.main' : 'divider',
+              userSelect: 'none',
+            }}
+          >
+            <Typography variant="caption">ALL</Typography>
+          </Box>
+          {RARITY_ORDER.map((r) => (
+            <Box
+              key={r}
+              role="button"
+              onClick={() => setRarityFilter(r)}
+              sx={{
+                display: 'flex', alignItems: 'center', px: 1, py: 0.5, borderRadius: 1, cursor: 'pointer',
+                bgcolor: rarityFilter === r ? 'action.selected' : 'action.hover',
+                border: '1px solid',
+                borderColor: rarityFilter === r ? 'primary.main' : 'divider',
+                userSelect: 'none',
+              }}
+            >
+              <img src={supportRarityIcons[r]} height={16} alt={r} />
+            </Box>
+          ))}
+        </Stack>
         <Divider sx={{ mb: 2 }} />
-        {/* Visible list for the selected attribute */}
+        {/* Visible list for the selected attribute + rarity */}
         <Stack direction="row" flexWrap="wrap" gap={1.5}>
           {((q.trim()
               ? filtered.all
               : filtered.byAttr[attrFilter]) || []
-            ).map((s) => (
+            )
+            .filter((s) => rarityFilter === 'all' || String(s.rarity) === rarityFilter)
+            .map((s) => (
             <Box
               key={`${s.name}-${s.rarity}-${s.attribute}`}
               sx={{ flexBasis: { xs: 'calc(50% - 12px)', sm: 'calc(33.33% - 12px)', md: 'calc(25% - 12px)' } }}

@@ -30,7 +30,7 @@ import SupportPriorityDialog from './SupportPriorityDialog'
 type Props = { index: EventsIndex }
 
 // ---- helpers
-const ATTR_ORDER: AttrKey[] = ['SPD','STA','PWR','GUTS','WIT','PAL']
+const ATTR_ORDER: AttrKey[] = ['SPD','STA','PWR','GUTS','WIT','PAL','GRP']
 
 // --- visuals
 const THUMB = 64
@@ -130,7 +130,7 @@ function SupportPickerDialog({
   const filtered = useMemo(() => {
     const term = debouncedQ.trim().toLowerCase()
     const byAttrOut: Record<AttrKey, SupportSet[]> = {
-      SPD: [], STA: [], PWR: [], GUTS: [], WIT: [], PAL: [], None: [],
+      SPD: [], STA: [], PWR: [], GUTS: [], WIT: [], PAL: [], GRP: [], None: [],
     }
     let all: SupportSet[] = []
 

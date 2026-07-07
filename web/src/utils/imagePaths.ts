@@ -7,6 +7,7 @@ export const supportTypeIcons: Record<string, string> = {
   GUTS: '/icons/support_card_type_guts.png',
   WIT: '/icons/support_card_type_wit.png',
   PAL: '/icons/support_card_type_friend.png',
+  GRP: '/icons/support_card_type_group.png', // placeholder; replace with real group type art
   None: '/icons/support_card_type_wit.png', // fallback
 }
 

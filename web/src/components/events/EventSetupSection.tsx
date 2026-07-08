@@ -15,12 +15,13 @@ import type {
   SupportSet,
   TraineeSet,
   AttrKey,
+  Rarity,
   EventOptionEffect,
   ChoiceEvent,
   RewardCategory,
 } from '@/types/events'
 import SmartImage from '@/components/common/SmartImage'
-import { supportImageCandidates, scenarioImageCandidates, traineeImageCandidates, supportTypeIcons } from '@/utils/imagePaths'
+import { supportImageCandidates, scenarioImageCandidates, traineeImageCandidates, supportTypeIcons, supportRarityIcons } from '@/utils/imagePaths'
 import { useCharactersData, findCharByName } from '@/hooks/useCharactersData'
 import { useEventsSetupStore } from '@/store/eventsSetupStore'
 import { useConfigStore } from '@/store/configStore'
@@ -30,7 +31,7 @@ import SupportPriorityDialog from './SupportPriorityDialog'
 type Props = { index: EventsIndex }
 
 // ---- helpers
-const ATTR_ORDER: AttrKey[] = ['SPD','STA','PWR','GUTS','WIT','PAL']
+const ATTR_ORDER: AttrKey[] = ['SPD','STA','PWR','GUTS','WIT','PAL','GRP']
 
 // --- visuals
 const THUMB = 64
@@ -64,6 +65,32 @@ const rarityFrameSx = (rarity: string, w?: number, h?: number) => {
   return { ...base, background: 'linear-gradient(135deg,#cfd8dc,#eceff1)' }
 }
 
+const rarityGradient = (rarity: string) =>
+  rarity === 'SSR'
+    ? 'linear-gradient(135deg,#8a2be2,#00e5ff,#ffd54f)'
+    : rarity === 'SR'
+      ? 'linear-gradient(135deg,#d4af37,#fff4c2)'
+      : 'linear-gradient(135deg,#cfd8dc,#eceff1)'
+
+// Fluid variant for the support deck: image fills the column width and keeps
+// its native aspect ratio (no fixed box / cropping).
+const rarityFrameFluidSx = (rarity: string) => ({
+  position: 'relative' as const,
+  borderRadius: 1,
+  p: '2px',
+  width: '100%',
+  lineHeight: 0,
+  background: rarityGradient(rarity),
+  '& img': {
+    width: '100%',
+    height: 'auto',
+    objectFit: 'contain',
+    imageRendering: 'auto',
+    borderRadius: 1,
+    display: 'block',
+  },
+})
+
 const emptySlotSx = {
   width: THUMB,
   height: THUMB_H,
@@ -79,6 +106,55 @@ const emptySlotSx = {
 const rarityRank = (r: string) =>
   r === 'SSR' ? 0 : r === 'SR' ? 1 : r === 'R' ? 2 : 9
 
+type RarityKey = 'SSR' | 'SR' | 'R'
+const RARITY_ORDER: RarityKey[] = ['SSR', 'SR', 'R']
+
+// Runtime: index.supports is Map<AttrKey, Map<Rarity, SupportSet[]>>. Resolve
+// the full catalog entry (with title) for a lightweight SelectedSupport.
+function findSupportSet(
+  index: EventsIndex,
+  sel: { name: string; attribute: AttrKey; rarity: Rarity } | null | undefined
+): SupportSet | undefined {
+  if (!sel) return undefined
+  const byAttr = index.supports as any
+  if (!(byAttr instanceof Map)) return undefined
+  const rarMap = byAttr.get(sel.attribute)
+  if (!(rarMap instanceof Map)) return undefined
+  const exactArr = rarMap.get(sel.rarity) as SupportSet[] | undefined
+  const exact = exactArr?.find((s) => s.name === sel.name)
+  if (exact) return exact
+  for (const arr of rarMap.values()) {
+    const found = (arr as SupportSet[]).find((s) => s.name === sel.name)
+    if (found) return found
+  }
+  return undefined
+}
+
+// Rarity badge + uma name + card title (the bracketed flavor subtitle), shared
+// between the picker list and the selected Support Deck tiles.
+function SupportNameBlock({
+  s, align = 'left',
+}: { s: { name: string; rarity?: string; title?: string | null }; align?: 'left' | 'center' }) {
+  const rarityIcon = s.rarity ? supportRarityIcons[String(s.rarity)] : undefined
+  return (
+    <Box sx={{ minWidth: 0, textAlign: align }}>
+      {rarityIcon && (
+        <Box
+          component="img"
+          src={rarityIcon}
+          alt={String(s.rarity)}
+          sx={{ height: 14, display: 'block', mb: 0.25, ...(align === 'center' ? { mx: 'auto' } : {}) }}
+        />
+      )}
+      <Typography variant="body2" noWrap sx={{ fontWeight: 600 }}>{s.name}</Typography>
+      {s.title && (
+        <Typography variant="caption" color="text.secondary" noWrap sx={{ display: 'block', fontStyle: 'italic' }}>
+          {s.title}
+        </Typography>
+      )}
+    </Box>
+  )
+}
 
 // ---- Support picker dialog
 function SupportPickerDialog({
@@ -87,12 +163,14 @@ function SupportPickerDialog({
   const [q, setQ] = useState('')
   const [debouncedQ, setDebouncedQ] = useState('')
   const [attrFilter, setAttrFilter] = useState<AttrKey>('SPD')
+  const [rarityFilter, setRarityFilter] = useState<RarityKey | 'all'>('all')
 
   useEffect(() => {
     if (open) {
       setQ('')
       setDebouncedQ('')
       setAttrFilter('SPD')
+      setRarityFilter('all')
     }
   }, [open])
 
@@ -101,44 +179,34 @@ function SupportPickerDialog({
     return () => clearTimeout(timer)
   }, [q])
 
+  // Search, attribute tab, and rarity filter all compose (AND), so results
+  // are always within the currently selected category — search never leaks
+  // matches from other attributes/rarities in.
   const filtered = useMemo(() => {
     const term = debouncedQ.trim().toLowerCase()
-    const byAttrOut: Record<AttrKey, SupportSet[]> = {
-      SPD: [], STA: [], PWR: [], GUTS: [], WIT: [], PAL: [], None: [],
-    }
-    let all: SupportSet[] = []
+    let list: SupportSet[] = []
 
     const byAttr = index.supports as any
     if (byAttr instanceof Map) {
-      for (const attr of ATTR_ORDER) {
-        const rarMap = byAttr.get(attr)
-        let list: SupportSet[] = []
-        if (rarMap instanceof Map) {
-          for (const arr of rarMap.values()) list = list.concat(arr as SupportSet[])
-          list.sort((a, b) => {
-            const ra = rarityRank(String(a.rarity))
-            const rb = rarityRank(String(b.rarity))
-            if (ra !== rb) return ra - rb
-            return a.name.localeCompare(b.name)
-          })
-        }
-        const filt = term ? list.filter(s => s.name.toLowerCase().includes(term)) : list
-        byAttrOut[attr] = filt
-        if (term) {
-          all = all.concat(filt)
-        }
+      const rarMap = byAttr.get(attrFilter)
+      if (rarMap instanceof Map) {
+        for (const arr of rarMap.values()) list = list.concat(arr as SupportSet[])
       }
     }
     if (term) {
-      all.sort((a, b) => {
-        const ra = rarityRank(String(a.rarity))
-        const rb = rarityRank(String(b.rarity))
-        if (ra !== rb) return ra - rb
-        return a.name.localeCompare(b.name)
-      })
+      list = list.filter((s) => s.name.toLowerCase().includes(term))
     }
-    return { byAttr: byAttrOut, all }
-  }, [index, debouncedQ])
+    if (rarityFilter !== 'all') {
+      list = list.filter((s) => String(s.rarity) === rarityFilter)
+    }
+    list.sort((a, b) => {
+      const ra = rarityRank(String(a.rarity))
+      const rb = rarityRank(String(b.rarity))
+      if (ra !== rb) return ra - rb
+      return a.name.localeCompare(b.name)
+    })
+    return list
+  }, [index, debouncedQ, attrFilter, rarityFilter])
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="md">
       <DialogTitle sx={{ display:'flex', alignItems:'center', gap:1 }}>
@@ -177,13 +245,42 @@ function SupportPickerDialog({
             </Box>
           ))}
         </Stack>
+        {/* Rarity filter buttons */}
+        <Stack direction="row" spacing={1} sx={{ mb: 1, flexWrap: 'wrap' }}>
+          <Box
+            role="button"
+            onClick={() => setRarityFilter('all')}
+            sx={{
+              display: 'flex', alignItems: 'center', px: 1.25, py: 0.75, borderRadius: 1, cursor: 'pointer',
+              bgcolor: rarityFilter === 'all' ? 'action.selected' : 'action.hover',
+              border: '1px solid',
+              borderColor: rarityFilter === 'all' ? 'primary.main' : 'divider',
+              userSelect: 'none',
+            }}
+          >
+            <Typography variant="caption">ALL</Typography>
+          </Box>
+          {RARITY_ORDER.map((r) => (
+            <Box
+              key={r}
+              role="button"
+              onClick={() => setRarityFilter(r)}
+              sx={{
+                display: 'flex', alignItems: 'center', px: 1, py: 0.5, borderRadius: 1, cursor: 'pointer',
+                bgcolor: rarityFilter === r ? 'action.selected' : 'action.hover',
+                border: '1px solid',
+                borderColor: rarityFilter === r ? 'primary.main' : 'divider',
+                userSelect: 'none',
+              }}
+            >
+              <img src={supportRarityIcons[r]} height={16} alt={r} />
+            </Box>
+          ))}
+        </Stack>
         <Divider sx={{ mb: 2 }} />
-        {/* Visible list for the selected attribute */}
+        {/* Visible list for the selected attribute + rarity + search */}
         <Stack direction="row" flexWrap="wrap" gap={1.5}>
-          {((q.trim()
-              ? filtered.all
-              : filtered.byAttr[attrFilter]) || []
-            ).map((s) => (
+          {filtered.map((s) => (
             <Box
               key={`${s.name}-${s.rarity}-${s.attribute}`}
               sx={{ flexBasis: { xs: 'calc(50% - 12px)', sm: 'calc(33.33% - 12px)', md: 'calc(25% - 12px)' } }}
@@ -201,10 +298,7 @@ function SupportPickerDialog({
                         rounded={6}
                       />
                     </Box>
-                    <Box sx={{ minWidth: 0 }}>
-                      <Typography variant="body2" noWrap>{s.name}</Typography>
-                      {/* rarity text removed per design; keep attribute subtle if you want */}
-                    </Box>
+                    <SupportNameBlock s={s} />
                   </Stack>
                 </CardActionArea>
               </Card>
@@ -585,24 +679,9 @@ export default function EventSetupSection({ index }: Props) {
   const openOptionsForSupport = (slot: number) => {
     const sel = supports[slot]
     if (!sel) return
-    // Runtime: index.supports is Map<AttrKey, Map<Rarity, SupportSet[]>>
-    let set: SupportSet | undefined
-    const byAttr = index.supports as any
-    if (byAttr instanceof Map) {
-      const rarMap = byAttr.get(sel.attribute)
-      if (rarMap instanceof Map) {
-        const exactArr = rarMap.get(sel.rarity) as SupportSet[] | undefined
-        set = exactArr?.find(s => s.name === sel.name)
-        if (!set) {
-          for (const arr of rarMap.values()) {
-            const found = (arr as SupportSet[]).find(s => s.name === sel.name)
-            if (found) { set = found; break }
-          }
-        }
-      }
-    }
+    const set = findSupportSet(index, sel)
     if (!set) return
-    
+
     const evs: ChoiceEvent[] = (((set as unknown as { events?: ChoiceEvent[]; choice_events?: ChoiceEvent[] }).events)
       ?? ((set as unknown as { events?: ChoiceEvent[]; choice_events?: ChoiceEvent[] }).choice_events)
       ?? [])
@@ -776,15 +855,17 @@ export default function EventSetupSection({ index }: Props) {
           <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 1 }}>
             <Typography variant="subtitle1">Support Deck (up to 6)</Typography>
           </Stack>
-          <Stack direction="row" flexWrap="wrap" gap={1.5}>
-            {supports.map((sel, idx) => (
-              <Box key={idx} sx={{ flexBasis: { xs: 'calc(50% - 12px)', sm: 'calc(33.33% - 12px)', md: 'calc(16.66% - 12px)' } }}>
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: 'repeat(2, 1fr)', sm: 'repeat(3, 1fr)' }, gap: 1.5 }}>
+            {supports.map((sel, idx) => {
+              const selSet = findSupportSet(index, sel)
+              return (
+              <Box key={idx} sx={{ minWidth: 0 }}>
                 <Card variant="outlined" sx={{ position:'relative' }}>
                   <CardActionArea onClick={() => setPickSlot(idx)}>
                     <Stack alignItems="center" spacing={1} sx={{ p: 1 }}>
                       {sel ? (
                         <>
-                          <Box sx={rarityFrameSx(sel.rarity || '', THUMB, THUMB_H)}>
+                          <Box sx={rarityFrameFluidSx(sel.rarity || '')}>
                             <SmartImage
                               candidates={supportImageCandidates(sel.name || "", sel.rarity, sel.attribute)}
                               alt={sel.name || ""}
@@ -800,7 +881,7 @@ export default function EventSetupSection({ index }: Props) {
                               <img src={supportTypeIcons[sel.attribute || ""]} width={16} height={16} />
                             </Box>
                           </Box>
-                          <Typography variant="body2" noWrap>{sel.name}</Typography>
+                          <SupportNameBlock s={selSet ?? sel} align="center" />
                           {(() => {
                             const pr = sel.priority
                             const hasCustom = pr
@@ -881,8 +962,9 @@ export default function EventSetupSection({ index }: Props) {
                   )}
                 </Card>
               </Box>
-            ))}
-          </Stack>
+              )
+            })}
+          </Box>
         </CardContent>
       </Card>
 

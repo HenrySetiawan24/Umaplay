@@ -351,13 +351,19 @@ class AgentScenario(ABC):
             try:
                 year_code = int(year_prefix[1:])
                 if year_code == 0:
+                    # Pre-debut: the banner reads "Junior Year Pre-Debut" (no month) and
+                    # `state.turn` is the "N turn(s) left" until the debut, a FIXED anchor
+                    # for every uma (Junior Make Debut is always elapsed turn 12 = Y1 Late
+                    # Jun). So elapsed = 12 - turns_left: 11 left -> turn 1 (Jan Early) ...
+                    # 0 left -> turn 12 (Jun Late / debut).
                     turn_value = getattr(self.lobby.state, "turn", None)
-                    if isinstance(turn_value, (int, float)) and turn_value > 0:
-                        y, m, d = character_data.goal_turn_to_date(int(turn_value))
+                    if isinstance(turn_value, (int, float)) and 0 <= turn_value <= 11:
+                        elapsed_turn = 12 - int(turn_value)
+                        y, m, d = character_data.goal_turn_to_date(elapsed_turn)
                         if y == 1:
                             logger_uma.info(
-                                "[date] Pre-debut inferred Y1-%02d-%d from turn=%d",
-                                m, d, turn_value,
+                                "[date] Pre-debut inferred Y1-%02d-%d from turns_left=%d (elapsed=%d)",
+                                m, d, int(turn_value), elapsed_turn,
                             )
                             return f"Y1-{m:02d}-{d}"
                     return current or ""

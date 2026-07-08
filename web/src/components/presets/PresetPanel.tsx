@@ -1,6 +1,6 @@
 import Section from '@/components/common/Section'
 import { useConfigStore } from '@/store/configStore'
-import { Stack, TextField, Box } from '@mui/material'
+import { Stack, TextField, Box, Divider } from '@mui/material'
 import PriorityStats from './PriorityStats'
 import TargetStats from './TargetStats'
 import MoodSelector from './MoodSelector'
@@ -59,10 +59,12 @@ function useSelectedPreset() {
 }
 
 export function PresetSettingsSection(_props: { compact?: boolean }) {
-  const { selected } = useSelectedPreset()
+  const { selected, scenarioKey } = useSelectedPreset()
   const renamePreset = useConfigStore((s) => s.renamePreset)
 
   if (!selected) return null
+
+  const StrategyComponent = getStrategyComponent(scenarioKey)
 
   return (
     <Section title="Preset" sx={{ width: '100%', maxWidth: 'none' }}>
@@ -78,21 +80,10 @@ export function PresetSettingsSection(_props: { compact?: boolean }) {
         <TargetStats presetId={selected.id} />
         <MoodSelector presetId={selected.id} />
         <StyleSelector presetId={selected.id} />
+        <Divider sx={{ my: 0.5 }} />
+        {/* Bot Strategy / Policy is merged into this card in a compact, borderless form */}
+        <StrategyComponent preset={selected} embedded />
       </Stack>
-    </Section>
-  )
-}
-
-export function PresetStrategySection(_props: { compact?: boolean }) {
-  const { selected, scenarioKey } = useSelectedPreset()
-  if (!selected) return null
-
-  return (
-    <Section title="Bot Strategy / Policy" sx={{ width: '100%', maxWidth: 'none' }}>
-      {(() => {
-        const StrategyComponent = getStrategyComponent(scenarioKey)
-        return <StrategyComponent preset={selected} />
-      })()}
     </Section>
   )
 }

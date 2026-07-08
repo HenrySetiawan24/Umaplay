@@ -16,13 +16,15 @@ import type { Preset } from '@/models/types'
 
 export interface StrategyComponentProps {
   preset: Preset
+  /** When true, render without the bordered Section wrapper (merged into a parent card, more compact). */
+  embedded?: boolean
 }
 
 /**
  * URA-specific Bot Strategy controls
  * Encapsulates training policy toggles for URA Finale scenario
  */
-export default function UraStrategy({ preset }: StrategyComponentProps) {
+export default function UraStrategy({ preset, embedded }: StrategyComponentProps) {
   const patchPreset = useConfigStore((s) => s.patchPreset)
 
   const handleNumberChange = (key: 'weakTurnSv' | 'racePrecheckSv', value: string) => {
@@ -35,17 +37,17 @@ export default function UraStrategy({ preset }: StrategyComponentProps) {
   return (
     <Section
       title="Bot Strategy / Policy"
-      sx={{ px: 0, py: 0, width: '100%', maxWidth: 'none' }}
-      contentSx={{ gap: 2, width: '100%' }}
-      titleSx={{ textAlign: 'center' }}
+      sx={{ px: 0, py: 0, width: '100%', maxWidth: 'none', ...(embedded ? { variant: 'plain' } : {}) }}
+      contentSx={{ gap: embedded ? 1 : 2, width: '100%' }}
+      titleSx={{ textAlign: embedded ? 'left' : 'center', ...(embedded ? { fontSize: '1rem' } : {}) }}
     >
       <Stack
         sx={{
-          p: { xs: 1.75, md: 2.25 },
+          p: embedded ? 0 : { xs: 1.75, md: 2.25 },
           width: '100%',
         }}
       >
-        <Stack spacing={2}>
+        <Stack spacing={embedded ? 1.5 : 2}>
           <FormControlLabel
             control={
               <Switch

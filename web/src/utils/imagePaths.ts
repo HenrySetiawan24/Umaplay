@@ -7,7 +7,14 @@ export const supportTypeIcons: Record<string, string> = {
   GUTS: '/icons/support_card_type_guts.png',
   WIT: '/icons/support_card_type_wit.png',
   PAL: '/icons/support_card_type_friend.png',
+  GRP: '/icons/support_card_type_group.png',
   None: '/icons/support_card_type_wit.png', // fallback
+}
+
+export const supportRarityIcons: Record<string, string> = {
+  SSR: '/icons/support_rarity_ssr.png',
+  SR: '/icons/support_rarity_sr.png',
+  R: '/icons/support_rarity_r.png',
 }
 
 export function supportImageCandidates(name: string, rarity: any, attr: any) {

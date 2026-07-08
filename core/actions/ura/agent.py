@@ -841,7 +841,12 @@ class AgentURA(AgentScenario):
 
             if action.value == TrainAction.RECREATION.value:
                 if not self.lobby._go_recreate(reason="Recreating..."):
-                    logger_uma.error("[training] ERROR when trying to recreate")
+                    logger_uma.error(
+                        "[training] ERROR when trying to recreate → falling back to Rest "
+                        "(avoids re-deciding recreation and looping)"
+                    )
+                    if not self.lobby._go_rest(reason="Recreation unavailable, resting instead"):
+                        logger_uma.error("[training] ERROR when trying to rest as recreation fallback")
                 return
 
             if action.value == TrainAction.RACE.value:

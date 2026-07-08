@@ -1,7 +1,7 @@
 // Core effect payload in options (raw outcomes inside each option)
 export type EventOptionEffect = Record<string, any>; // { power?: number, hints?: string[], ... }
 
-export type AttrKey = 'SPD' | 'STA' | 'PWR' | 'GUTS' | 'WIT' | 'PAL' | 'None';
+export type AttrKey = 'SPD' | 'STA' | 'PWR' | 'GUTS' | 'WIT' | 'PAL' | 'GRP' | 'None';
 export type Rarity = 'SSR' | 'SR' | 'R';
 
 export type RawChoiceEvent = {
@@ -19,6 +19,7 @@ export type RawEventSet = {
   rarity?: Rarity | 'None';
   attribute?: AttrKey;
   id?: string;
+  title?: string | null; // support cards only: bracketed flavor subtitle, e.g. "[Hometown Cheers]"
   choice_events: RawChoiceEvent[];
 };
 
@@ -36,6 +37,7 @@ export type SupportSet = {
   kind: 'support';
   id?: string;
   name: string;
+  title?: string | null;
   attribute: AttrKey;
   rarity: Rarity;
   imgCandidates: string[];

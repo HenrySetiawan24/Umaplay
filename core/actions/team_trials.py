@@ -126,8 +126,6 @@ class TeamTrialsFlow:
         logger_uma.info(
             f"[TeamTrials] Clicked opponent banner (slot={preferred_index + 1})"
         )
-        sleep(5)
-        sleep(4)
 
         # Pre-start: a few green clicks (progression prompts)
         pre = nav.click_button_loop(
@@ -153,7 +151,7 @@ class TeamTrialsFlow:
                 logger_uma.warning("[TeamTrials] Could not press Start button of race in second intent")
                 return
         logger_uma.debug(f"[TeamTrials] pre-start greens: {pre}")
-        sleep(1.8)
+        sleep(1)
         # Try to hit 'RACE!' (avoid CANCEL)
         started = self.waiter.click_when(
             classes=("button_green",),
@@ -314,7 +312,7 @@ class TeamTrialsFlow:
                 self._shop_resume_failures = 0
 
     def _handle_post_race_sequence(self, *, ensure_enter_shop: bool) -> None:
-        sleep(10)
+        sleep(2)
         adv = nav.advance_sequence_with_mid_taps(
             self.waiter,
             self.yolo_engine,
@@ -352,7 +350,7 @@ class TeamTrialsFlow:
                 timeout_s=2.0,
                 tag="team_trials_next",
             ):
-                sleep(5)
+                sleep(2)
                 if self.waiter.click_when(
                     classes=("race_after_next",),
                     allow_greedy_click=True,
@@ -362,7 +360,7 @@ class TeamTrialsFlow:
                     logger_uma.debug("[TeamTrials] Clicked race_after_next")
                     sleep(3)
         else:
-            sleep(5)
+            sleep(2)
 
         img, dets = nav.collect_snapshot(
             self.waiter, self.yolo_engine, tag="team_trials_midtap"
@@ -370,7 +368,7 @@ class TeamTrialsFlow:
         nav.random_center_tap(
             self.ctrl, img, clicks=random.randint(4, 5), dev_frac=0.01
         )
-        sleep(4.2)
+        sleep(2)
         img, dets = nav.collect_snapshot(
             self.waiter, self.yolo_engine, tag="team_trials_especial_reward"
         )

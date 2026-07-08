@@ -78,3 +78,11 @@ start_uma.sh
 scripts
 
 .deps_installed
+
+# Personal scratch / debugging captures (not for the repo)
+.tmp_verify_formula.py
+dev_claw.ipynb
+oguri capper.json
+docs/ai/features/actions/images/daily - legend - trials/
+docs/ai/features/actions/images/unity race goal day/
+docs/ai/features/actions/images/unity/

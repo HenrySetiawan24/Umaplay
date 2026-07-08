@@ -25,6 +25,7 @@ function normalizeSupportSet(raw: RawEventSet): SupportSet {
     kind: 'support',
     id: raw.id,
     name: raw.name,
+    title: raw.title,
     attribute: (raw.attribute as AttrKey)!,
     rarity: (raw.rarity as Rarity)!,
     imgCandidates: supportImageCandidates(raw.name, (raw.attribute as AttrKey)!, (raw.rarity as Rarity)!),

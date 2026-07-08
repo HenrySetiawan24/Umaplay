@@ -8,9 +8,7 @@ import {
   DialogTitle,
   IconButton,
   InputAdornment,
-  List,
-  ListItem,
-  ListItemText,
+  ButtonBase,
   Stack,
   TextField,
   Typography,
@@ -20,22 +18,25 @@ import {
   ToggleButtonGroup,
   Avatar,
   Card,
-  CardContent,
-  CardHeader,
   useTheme,
+  useMediaQuery,
+  Tooltip,
 } from '@mui/material'
 import { styled } from '@mui/material/styles'
+import CloseIcon from '@mui/icons-material/Close'
 
 type GridProps = {
   container?: boolean
   spacing?: number
   xs?: number
   sm?: number
+  md?: number
   lg?: number
+  xl?: number
   children?: React.ReactNode
 }
 
-const Grid = ({ container, spacing = 2, xs, sm, lg, children }: GridProps) => {
+const Grid = ({ container, spacing = 2, xs, sm, md, lg, xl, children }: GridProps) => {
   if (container) {
     const StyledContainer = styled('div')(({ theme }) => ({
       display: 'flex',
@@ -64,10 +65,22 @@ const Grid = ({ container, spacing = 2, xs, sm, lg, children }: GridProps) => {
         maxWidth: `${(sm / 12) * 100}%`,
       }
     }
+    if (md) {
+      styles[theme.breakpoints.up('md')] = {
+        flexBasis: `${(md / 12) * 100}%`,
+        maxWidth: `${(md / 12) * 100}%`,
+      }
+    }
     if (lg) {
       styles[theme.breakpoints.up('lg')] = {
         flexBasis: `${(lg / 12) * 100}%`,
         maxWidth: `${(lg / 12) * 100}%`,
+      }
+    }
+    if (xl) {
+      styles[theme.breakpoints.up('xl')] = {
+        flexBasis: `${(xl / 12) * 100}%`,
+        maxWidth: `${(xl / 12) * 100}%`,
       }
     }
     return styles
@@ -90,6 +103,8 @@ type CategoryMeta = {
   id: string
   label: string
   icon?: string
+  count?: number
+  sample?: string
 }
 
 const rarityColors: Record<SkillRarity, string> = {
@@ -105,80 +120,71 @@ const rarityBgColors: Record<SkillRarity, string> = {
 }
 
 const FALLBACK_ICON = '/icons/skills/utx_ico_skill_9999.png'
-const PAGE_SIZE = 21
+const PAGE_SIZE = 48
+// Cap the home "Skills to buy" preview so it stays scrollable (taller list before it starts scrolling).
+const SKILLS_PREVIEW_MAX_H = 1050
 
-const categoryOrder = [
-  '1001', // buff
-  '1002',
-  '1003',
-  '1004',
-  '1005',
-  '1006',
-  '1007',
-  '1008',
-  '1009',
-  '1010',
-  '1011',
-  '1012',
-  '1013',
-  '1014',
-  '1015',
-  '1016',
-  '1017',
-  '1018',
-  '1019',
-  '2001', // debuff
-  '2002',
-  '2003',
-  '2004',
-  '2005',
-  '2006',
-  '2007',
-  '2008',
-]
+// Strip trailing rank glyphs game skills use for aptitude tiers (e.g. "Right-Handed ◎" -> "Right-Handed").
+function cleanSkillName(name: string): string {
+  return name.replace(/[◎○×]+\s*$/u, '').trim()
+}
 
+// Sample a few distinct skill names from a category to use as a self-describing tooltip,
+// instead of hardcoding a guessed category label (category IDs carry no official name).
+function sampleNames(skills: Skill[], max = 3): string {
+  const seen = new Set<string>()
+  const out: string[] = []
+  for (const s of skills) {
+    const clean = cleanSkillName(s.name)
+    if (!clean || seen.has(clean)) continue
+    seen.add(clean)
+    out.push(clean)
+    if (out.length >= max) break
+  }
+  return out.join(', ')
+}
 
 function getCategoryMeta(skills: Skill[]): CategoryMeta[] {
-  const groups = new Map<string, { count: number; icon?: string }>()
+  const groups = new Map<string, { count: number; icon?: string; skills: Skill[] }>()
   for (const skill of skills) {
     const category = skill.category ?? 'unknown'
     const icon = skill.icon_filename ? `/icons/skills/${skill.icon_filename}` : undefined
     const meta = groups.get(category)
     if (meta) {
       meta.count += 1
+      meta.skills.push(skill)
       if (!meta.icon && icon) meta.icon = icon
     } else {
-      groups.set(category, { count: 1, icon })
+      groups.set(category, { count: 1, icon, skills: [skill] })
     }
   }
 
+  // Numeric sort so new category IDs (e.g. future rescrapes) slot into place
+  // automatically instead of needing a hardcoded list kept in sync by hand.
   const order = (a: string, b: string) => {
-    const ai = categoryOrder.indexOf(a)
-    const bi = categoryOrder.indexOf(b)
-    if (ai === -1 && bi === -1) return a.localeCompare(b)
-    if (ai === -1) return 1
-    if (bi === -1) return -1
-    return ai - bi
+    const an = Number(a)
+    const bn = Number(b)
+    if (Number.isNaN(an) && Number.isNaN(bn)) return a.localeCompare(b)
+    if (Number.isNaN(an)) return 1
+    if (Number.isNaN(bn)) return -1
+    return an - bn
   }
 
   const metas: CategoryMeta[] = []
-  for (const [id, { icon }] of groups.entries()) {
+  for (const [id, { icon, count, skills: catSkills }] of groups.entries()) {
     // Only show categories with actual icons beyond fallback
     if (icon && !icon.endsWith('utx_ico_skill_9999.png')) {
       metas.push({
         id,
         label: id === 'unknown' ? 'Misc' : id,
         icon,
+        count,
+        sample: sampleNames(catSkills),
       })
     }
   }
   metas.sort((a, b) => order(a.id, b.id))
   return metas
-}
-
-function rarityChip(_rarity: SkillRarity | undefined): React.ReactNode {
-  // Don't show any badge for rarity
-  return null
 }
 
 const rarityOptions: SkillRarity[] = ['normal', 'gold', 'unique']
@@ -192,13 +198,20 @@ export default function SkillsPicker({ presetId }: { presetId: string }) {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])
   const [rarityFilter, setRarityFilter] = useState<SkillRarity | 'all'>('all')
   const [page, setPage] = useState(0)
+  const [mode, setMode] = useState<'browse' | 'selected'>('browse')
   const theme = useTheme()
+  const isNarrow = useMediaQuery(theme.breakpoints.down('sm'))
 
   // Debounce search query with proper cleanup
   useEffect(() => {
     const timer = setTimeout(() => setDebouncedQ(q), 400)
     return () => clearTimeout(timer)
   }, [q])
+
+  // Always open on the Browse panel
+  useEffect(() => {
+    if (open) setMode('browse')
+  }, [open])
 
   // Reset pagination when filters change
   useEffect(() => {
@@ -217,11 +230,6 @@ export default function SkillsPicker({ presetId }: { presetId: string }) {
   const categories = useMemo(() => getCategoryMeta(skills), [skills])
 
   const filtered = useMemo<Skill[]>(() => {
-    const rawTerm = q.trim().toLowerCase()
-    if (rawTerm.length > 0 && rawTerm.length < 3) {
-      return []
-    }
-
     const term = debouncedQ.trim().toLowerCase()
 
     return skills.filter((s) => {
@@ -252,12 +260,90 @@ export default function SkillsPicker({ presetId }: { presetId: string }) {
     return filtered.slice(start, start + PAGE_SIZE)
   }, [filtered, page])
 
+  // Selected-panel contents: the picked skills (resolved to catalog objects), filtered by the shared search term.
+  const selectedSkillObjs = useMemo<Skill[]>(() => {
+    const term = debouncedQ.trim().toLowerCase()
+    const objs = preset.skillsToBuy.map((name) => skills.find((s) => s.name === name) ?? ({ name } as Skill))
+    if (!term) return objs
+    return objs.filter((s) => s.name.toLowerCase().includes(term) || (s.description || '').toLowerCase().includes(term))
+  }, [preset.skillsToBuy, skills, debouncedQ])
+
   const add = (name: string) => {
     if (selected.has(name)) return
     patchPreset(presetId, 'skillsToBuy', [...preset.skillsToBuy, name])
   }
   const remove = (name: string) => {
     patchPreset(presetId, 'skillsToBuy', preset.skillsToBuy.filter(n => n !== name))
+  }
+
+  // Shared horizontal skill card used by both the Browse and Selected panels.
+  const renderSkillCard = (skill: Skill) => {
+    const icon = skill.icon_filename ? `/icons/skills/${skill.icon_filename}` : FALLBACK_ICON
+    const selectedState = selected.has(skill.name)
+    const toggleSkill = () => {
+      selectedState ? remove(skill.name) : add(skill.name)
+    }
+    return (
+      <Grid key={skill.name} xs={12} md={6} xl={4}>
+        <Card
+          variant="outlined"
+          sx={{
+            borderColor: selectedState ? theme.palette.primary.main : 'divider',
+            bgcolor: selectedState
+              ? `${theme.palette.primary.main}08`
+              : skill.rarity
+              ? rarityBgColors[skill.rarity]
+              : 'background.paper',
+            background: skill.rarity === 'unique'
+              ? 'linear-gradient(135deg, rgba(138,43,226,0.15), rgba(0,229,255,0.15), rgba(255,213,79,0.15))'
+              : undefined,
+            position: 'relative',
+            height: '100%',
+            width: '100%',
+            cursor: 'pointer',
+            '&:hover': {
+              borderColor: theme.palette.primary.main,
+              bgcolor: selectedState
+                ? `${theme.palette.primary.main}12`
+                : `${theme.palette.primary.main}0A`,
+            },
+          }}
+          onClick={toggleSkill}
+        >
+          {/* Horizontal layout: icon on the left, name + description stacked on the right */}
+          <Stack direction="row" spacing={1.25} alignItems="center" sx={{ p: 1, height: '100%' }}>
+            <Avatar src={icon} variant="rounded" sx={{ width: 40, height: 40, flexShrink: 0 }} />
+            <Box sx={{ flex: 1, minWidth: 0 }}>
+              <Typography variant="body2" noWrap sx={{ fontWeight: 600 }}>{skill.name}</Typography>
+              <Typography
+                variant="caption"
+                color="text.secondary"
+                sx={{
+                  display: '-webkit-box',
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: 'vertical',
+                  overflow: 'hidden',
+                  lineHeight: 1.35,
+                }}
+              >
+                {skill.description || 'No description'}
+              </Typography>
+            </Box>
+            <IconButton
+              size="small"
+              onClick={(e) => {
+                e.stopPropagation()
+                toggleSkill()
+              }}
+              color={selectedState ? 'error' : 'primary'}
+              sx={{ flexShrink: 0, alignSelf: 'flex-start' }}
+            >
+              {selectedState ? <RemoveCircleOutlineIcon fontSize="small" /> : <AddCircleOutlineIcon fontSize="small" />}
+            </IconButton>
+          </Stack>
+        </Card>
+      </Grid>
+    )
   }
 
   return (
@@ -269,34 +355,81 @@ export default function SkillsPicker({ presetId }: { presetId: string }) {
         </Button>
       </Stack>
 
-      {/* quick preview */}
-      <Box sx={{ mt: 1, display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+      {/* quick preview — horizontal tiles: icon on the left, name (up to 2 lines) on the right.
+          Scrollable with a capped height so the card stays roughly aligned with the Race Scheduler. */}
+      <Box
+        sx={{
+          mt: 1,
+          display: 'grid',
+          gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, minmax(0, 1fr))', lg: 'repeat(3, minmax(0, 1fr))' },
+          gap: 1,
+          maxHeight: SKILLS_PREVIEW_MAX_H,
+          overflowY: 'auto',
+          pr: 0.5,
+        }}
+      >
         {preset.skillsToBuy.map(n => {
           const skill = skills.find(s => s.name === n)
           const icon = skill?.icon_filename ? `/icons/skills/${skill.icon_filename}` : FALLBACK_ICON
-          const chipStyle = skill?.rarity === 'unique'
-            ? {
-                background: rarityBgColors.unique,
-                color: theme.palette.text.primary,
-                '& .MuiChip-deleteIcon': {
-                  color: theme.palette.text.secondary,
-                },
-              }
-            : {
-                bgcolor: skill?.rarity ? rarityBgColors[skill.rarity] : 'background.paper',
-              }
           return (
-            <Chip
-              key={n}
-              avatar={<Avatar src={icon} variant="rounded" sx={{ width: 28, height: 28 }} />}
-              label={n}
-              size="small"
-              onDelete={() => remove(n)}
-              sx={{
-                ...chipStyle,
-                maxWidth: 200,
-              }}
-            />
+            <Tooltip key={n} title={skill?.description || n}>
+              <Box
+                sx={{
+                  position: 'relative',
+                  minWidth: 0,
+                  borderRadius: 1.5,
+                  border: '1px solid',
+                  borderColor: 'divider',
+                  bgcolor: skill?.rarity && skill.rarity !== 'unique' ? rarityBgColors[skill.rarity] : 'background.paper',
+                  background: skill?.rarity === 'unique' ? rarityBgColors.unique : undefined,
+                  p: 0.5,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 0.75,
+                  transition: 'border-color 0.15s',
+                  '&:hover': { borderColor: theme.palette.primary.main },
+                  '&:hover .skill-remove': { opacity: 1 },
+                }}
+              >
+                <Avatar src={icon} variant="rounded" sx={{ width: 32, height: 32, flexShrink: 0 }} />
+                <Typography
+                  variant="caption"
+                  sx={{
+                    flex: 1,
+                    minWidth: 0,
+                    pr: 2,
+                    fontWeight: 600,
+                    lineHeight: 1.2,
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden',
+                  }}
+                >
+                  {n}
+                </Typography>
+                <IconButton
+                  className="skill-remove"
+                  size="small"
+                  onClick={() => remove(n)}
+                  sx={{
+                    position: 'absolute',
+                    top: 2,
+                    right: 2,
+                    width: 18,
+                    height: 18,
+                    opacity: { xs: 1, sm: 0 },
+                    transition: 'opacity 0.15s',
+                    bgcolor: 'background.paper',
+                    border: '1px solid',
+                    borderColor: 'divider',
+                    '&:hover': { bgcolor: 'error.main', color: '#fff' },
+                  }}
+                >
+                  <CloseIcon sx={{ fontSize: 12 }} />
+                </IconButton>
+              </Box>
+            </Tooltip>
           )
         })}
         {!preset.skillsToBuy.length && (
@@ -304,13 +437,27 @@ export default function SkillsPicker({ presetId }: { presetId: string }) {
         )}
       </Box>
 
-      <Dialog open={open} onClose={() => setOpen(false)} maxWidth="lg" fullWidth>
+      <Dialog
+        open={open}
+        onClose={() => setOpen(false)}
+        maxWidth="xl"
+        fullWidth
+        fullScreen={isNarrow}
+      >
         <DialogTitle>Skill Library</DialogTitle>
-        <DialogContent sx={{ p: 0 }}>
-          <Stack direction="row" spacing={0} sx={{ height: 'calc(100vh - 200px)', minHeight: 500 }}>
-            {/* Left: Search, filters, grid */}
-            <Box sx={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', p: 2, pr: 1 }}>
-              <Stack spacing={2}>
+        <DialogContent sx={{ p: 0, display: 'flex', flexDirection: 'column', flex: 1 }}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              height: { xs: '100%', md: 'calc(100vh - 200px)' },
+              minHeight: { xs: 0, md: 500 },
+              flex: 1,
+              overflow: 'hidden',
+            }}
+          >
+            {/* Shared header: search + rarity + Browse/Selected segmented control (stays put while panels slide) */}
+            <Box sx={{ p: 2, pb: 1.5 }}>
                 <Stack
                   direction={{ xs: 'column', md: 'row' }}
                   spacing={2}
@@ -319,7 +466,7 @@ export default function SkillsPicker({ presetId }: { presetId: string }) {
                   <TextField
                     fullWidth
                     size="small"
-                    placeholder="Search by name or description (min 3 characters)"
+                    placeholder="Search by name or description"
                     value={q}
                     onChange={(e) => setQ(e.target.value)}
                     InputProps={{
@@ -329,7 +476,6 @@ export default function SkillsPicker({ presetId }: { presetId: string }) {
                         </InputAdornment>
                       ),
                     }}
-                    helperText={q.length > 0 && q.length < 3 ? `Type ${3 - q.length} more character${3 - q.length > 1 ? 's' : ''} to search` : ''}
                   />
                   <ToggleButtonGroup
                     value={rarityFilter}
@@ -355,59 +501,127 @@ export default function SkillsPicker({ presetId }: { presetId: string }) {
                       </ToggleButton>
                     ))}
                   </ToggleButtonGroup>
-                </Stack>
 
-                <Stack direction="row" spacing={1} flexWrap="wrap">
-                  <Chip
-                    icon={<SelectAllIcon fontSize="small" />}
-                    label="All types"
-                    size="small"
-                    color={!selectedCategories.length ? 'primary' : 'default'}
-                    onClick={() => setSelectedCategories([])}
-                  />
-                  {categories.map((cat) => (
+                  {/* Browse / Selected sliding segmented control — the pill behind the labels slides in sync with the panels */}
+                  <Box
+                    sx={{
+                      position: 'relative',
+                      display: 'inline-flex',
+                      flexShrink: 0,
+                      p: 0.5,
+                      borderRadius: 999,
+                      bgcolor: 'action.hover',
+                      alignSelf: { xs: 'flex-start', md: 'center' },
+                    }}
+                  >
                     <Box
-                      key={cat.id}
-                      onClick={() => {
-                        setSelectedCategories((prev) =>
-                          prev.includes(cat.id)
-                            ? prev.filter((id) => id !== cat.id)
-                            : [...prev, cat.id]
-                        )
-                      }}
                       sx={{
-                        width: 48,
-                        height: 48,
-                        borderRadius: 2,
-                        border: '2px solid',
-                        borderColor: selectedCategories.includes(cat.id) 
-                          ? theme.palette.primary.main 
-                          : theme.palette.divider,
-                        bgcolor: selectedCategories.includes(cat.id)
-                          ? `${theme.palette.primary.main}15`
-                          : 'background.paper',
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        p: 0.5,
-                        transition: 'all 0.2s',
-                        '&:hover': {
-                          borderColor: theme.palette.primary.main,
-                          bgcolor: `${theme.palette.primary.main}08`,
-                        },
+                        position: 'absolute',
+                        top: 4,
+                        bottom: 4,
+                        left: 4,
+                        width: 'calc(50% - 4px)',
+                        borderRadius: 999,
+                        bgcolor: 'background.paper',
+                        boxShadow: 2,
+                        transform: mode === 'selected' ? 'translateX(100%)' : 'translateX(0)',
+                        transition: 'transform 750ms cubic-bezier(0.4, 0, 0.2, 1)',
                       }}
+                    />
+                    {(['browse', 'selected'] as const).map((m) => (
+                      <ButtonBase
+                        key={m}
+                        onClick={() => setMode(m)}
+                        sx={{
+                          zIndex: 1,
+                          minWidth: 108,
+                          px: 1.75,
+                          py: 0.75,
+                          borderRadius: 999,
+                          fontSize: 13,
+                          fontWeight: 600,
+                          whiteSpace: 'nowrap',
+                          color: mode === m ? 'text.primary' : 'text.secondary',
+                          transition: 'color 200ms',
+                        }}
+                      >
+                        {m === 'browse' ? 'Browse' : `Selected (${preset.skillsToBuy.length})`}
+                      </ButtonBase>
+                    ))}
+                  </Box>
+                </Stack>
+              </Box>
+
+              {/* Sliding viewport: Browse panel and Selected panel side by side in a 2×-wide track */}
+              <Box sx={{ position: 'relative', flex: 1, overflow: 'hidden' }}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    width: '200%',
+                    height: '100%',
+                    transform: mode === 'selected' ? 'translateX(-50%)' : 'translateX(0)',
+                    transition: 'transform 750ms cubic-bezier(0.4, 0, 0.2, 1)',
+                  }}
+                >
+                  {/* Panel A: Browse (all skills, category filters, pagination) */}
+                  <Box sx={{ width: '50%', height: '100%', overflow: 'auto', px: 2, pb: 2, display: 'flex', flexDirection: 'column' }}>
+                    <Stack direction="row" spacing={1} flexWrap="wrap">
+                  <Tooltip title={`${skills.length} skills total`}>
+                    <Chip
+                      icon={<SelectAllIcon fontSize="small" />}
+                      label="All types"
+                      size="small"
+                      color={!selectedCategories.length ? 'primary' : 'default'}
+                      onClick={() => setSelectedCategories([])}
+                    />
+                  </Tooltip>
+                  {categories.map((cat) => (
+                    <Tooltip
+                      key={cat.id}
+                      title={cat.sample ? `${cat.sample}${cat.count ? ` (${cat.count})` : ''}` : cat.label}
                     >
                       <Box
-                        component="img"
-                        src={cat.icon}
-                        sx={{
-                          width: '100%',
-                          height: '100%',
-                          objectFit: 'contain',
+                        onClick={() => {
+                          setSelectedCategories((prev) =>
+                            prev.includes(cat.id)
+                              ? prev.filter((id) => id !== cat.id)
+                              : [...prev, cat.id]
+                          )
                         }}
-                      />
-                    </Box>
+                        sx={{
+                          width: 48,
+                          height: 48,
+                          borderRadius: 2,
+                          border: '2px solid',
+                          borderColor: selectedCategories.includes(cat.id)
+                            ? theme.palette.primary.main
+                            : theme.palette.divider,
+                          bgcolor: selectedCategories.includes(cat.id)
+                            ? `${theme.palette.primary.main}15`
+                            : 'background.paper',
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          p: 0.5,
+                          transition: 'all 0.2s',
+                          '&:hover': {
+                            borderColor: theme.palette.primary.main,
+                            bgcolor: `${theme.palette.primary.main}08`,
+                          },
+                        }}
+                      >
+                        <Box
+                          component="img"
+                          src={cat.icon}
+                          sx={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'contain',
+                          }}
+                        />
+                      </Box>
+                    </Tooltip>
                   ))}
                   {!!selectedCategories.length && (
                     <Box
@@ -429,17 +643,10 @@ export default function SkillsPicker({ presetId }: { presetId: string }) {
                       </Button>
                     </Box>
                   )}
-                </Stack>
-              </Stack>
+                    </Stack>
 
-              <Box sx={{ flex: 1, overflow: 'auto', mt: 2 }}>
-                {q.length > 0 && q.length < 3 ? (
-                  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', p: 4 }}>
-                    <Typography variant="body2" color="text.secondary" align="center">
-                      Type at least 3 characters to start searching
-                    </Typography>
-                  </Box>
-                ) : filtered.length === 0 ? (
+                    <Box sx={{ flex: 1, overflow: 'auto', mt: 2 }}>
+                {filtered.length === 0 ? (
                   <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', p: 4 }}>
                     <Typography variant="body2" color="text.secondary" align="center">
                       No skills found
@@ -447,169 +654,58 @@ export default function SkillsPicker({ presetId }: { presetId: string }) {
                   </Box>
                 ) : (
                   <Grid container spacing={1.5}>
-                    {paginated.map((skill) => {
-                    const icon = skill.icon_filename ? `/icons/skills/${skill.icon_filename}` : FALLBACK_ICON
-                    const selectedState = selected.has(skill.name)
-                    const toggleSkill = () => {
-                      selectedState ? remove(skill.name) : add(skill.name)
-                    }
-                    return (
-                      <Grid key={skill.name} xs={12} sm={6} lg={4}>
-                        <Card
+                    {paginated.map(renderSkillCard)}
+                  </Grid>
+                )}
+                    </Box>
+
+                    {filtered.length > PAGE_SIZE && (
+                      <Stack direction="row" spacing={1} justifyContent="center" alignItems="center" sx={{ mt: 2 }}>
+                        <Button
+                          size="small"
                           variant="outlined"
-                          sx={{
-                            borderColor: selectedState ? theme.palette.primary.main : 'divider',
-                            bgcolor: selectedState
-                              ? `${theme.palette.primary.main}08`
-                              : skill.rarity
-                              ? rarityBgColors[skill.rarity]
-                              : 'background.paper',
-                            background: skill.rarity === 'unique'
-                              ? 'linear-gradient(135deg, rgba(138,43,226,0.15), rgba(0,229,255,0.15), rgba(255,213,79,0.15))'
-                              : undefined,
-                            position: 'relative',
-                            height: '100%',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            width: '100%',
-                            cursor: 'pointer',
-                            '&:hover': {
-                              borderColor: theme.palette.primary.main,
-                              bgcolor: selectedState
-                                ? `${theme.palette.primary.main}12`
-                                : `${theme.palette.primary.main}0A`,
-                            },
-                          }}
-                          onClick={toggleSkill}
+                          onClick={() => setPage((prev) => Math.max(0, prev - 1))}
+                          disabled={page === 0}
                         >
-                          <CardHeader
-                            avatar={<Avatar src={icon} variant="rounded" sx={{ width: 32, height: 32 }} />}
-                            title={
-                              <Stack direction="row" spacing={0.5} alignItems="center" justifyContent="space-between">
-                                <Stack direction="row" spacing={0.5} alignItems="center" sx={{ flex: 1, minWidth: 0 }}>
-                                  <Typography variant="body2" noWrap sx={{ flex: 1 }}>{skill.name}</Typography>
-                                  {rarityChip(skill.rarity)}
-                                </Stack>
-                                <IconButton
-                                  size="small"
-                                  onClick={(e) => {
-                                    e.stopPropagation()
-                                    toggleSkill()
-                                  }}
-                                  color={selectedState ? 'error' : 'primary'}
-                                >
-                                  {selectedState ? <RemoveCircleOutlineIcon fontSize="small" /> : <AddCircleOutlineIcon fontSize="small" />}
-                                </IconButton>
-                              </Stack>
-                            }
-                            sx={{ pb: 0.5 }}
-                          />
-                          <CardContent sx={{ pt: 0, pb: 1, '&:last-child': { pb: 1 }, flexGrow: 1 }}>
-                            <Typography
-                              variant="caption"
-                              color="text.secondary"
-                              sx={{
-                                display: '-webkit-box',
-                                WebkitLineClamp: 2,
-                                WebkitBoxOrient: 'vertical',
-                                overflow: 'hidden',
-                                lineHeight: 1.4,
-                              }}
-                            >
-                              {skill.description || 'No description'}
-                            </Typography>
-                          </CardContent>
-                        </Card>
+                          Previous
+                        </Button>
+                        <Typography variant="caption" color="text.secondary">
+                          Page {page + 1} of {totalPages}
+                        </Typography>
+                        <Button
+                          size="small"
+                          variant="outlined"
+                          onClick={() => setPage((prev) => Math.min(totalPages - 1, prev + 1))}
+                          disabled={page >= totalPages - 1}
+                        >
+                          Next
+                        </Button>
+                      </Stack>
+                    )}
+                  </Box>
+
+                  {/* Panel B: Selected (only the picked skills, filtered by the shared search) */}
+                  <Box sx={{ width: '50%', height: '100%', overflow: 'auto', p: 2, display: 'flex', flexDirection: 'column' }}>
+                    <Typography variant="subtitle2" sx={{ mb: 1.5 }}>
+                      {preset.skillsToBuy.length} skill{preset.skillsToBuy.length === 1 ? '' : 's'} selected
+                    </Typography>
+                    {selectedSkillObjs.length === 0 ? (
+                      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flex: 1, p: 4 }}>
+                        <Typography variant="body2" color="text.secondary" align="center">
+                          {preset.skillsToBuy.length === 0
+                            ? 'No skills selected yet. Switch to Browse to add some.'
+                            : 'No selected skills match your search.'}
+                        </Typography>
+                      </Box>
+                    ) : (
+                      <Grid container spacing={1.5}>
+                        {selectedSkillObjs.map(renderSkillCard)}
                       </Grid>
-                    )
-                  })}
-                </Grid>
-                )}
+                    )}
+                  </Box>
+                </Box>
               </Box>
-
-              {filtered.length > PAGE_SIZE && (
-                <Stack direction="row" spacing={1} justifyContent="center" alignItems="center" sx={{ mt: 2 }}>
-                  <Button
-                    size="small"
-                    variant="outlined"
-                    onClick={() => setPage((prev) => Math.max(0, prev - 1))}
-                    disabled={page === 0}
-                  >
-                    Previous
-                  </Button>
-                  <Typography variant="caption" color="text.secondary">
-                    Page {page + 1} of {totalPages}
-                  </Typography>
-                  <Button
-                    size="small"
-                    variant="outlined"
-                    onClick={() => setPage((prev) => Math.min(totalPages - 1, prev + 1))}
-                    disabled={page >= totalPages - 1}
-                  >
-                    Next
-                  </Button>
-                </Stack>
-              )}
             </Box>
-
-            {/* Right: Selected sidebar */}
-            <Box
-              sx={{
-                width: 320,
-                borderLeft: 1,
-                borderColor: 'divider',
-                display: 'flex',
-                flexDirection: 'column',
-                bgcolor: 'background.default',
-              }}
-            >
-              <Box sx={{ p: 2, borderBottom: 1, borderColor: 'divider' }}>
-                <Typography variant="subtitle2">
-                  Selected ({preset.skillsToBuy.length})
-                </Typography>
-              </Box>
-              <List dense sx={{ flex: 1, overflow: 'auto', p: 0 }}>
-                {preset.skillsToBuy.map((name) => {
-                  const skill = skills.find((s) => s.name === name)
-                  const icon = skill?.icon_filename ? `/icons/skills/${skill.icon_filename}` : FALLBACK_ICON
-                  return (
-                    <ListItem
-                      key={name}
-                      sx={{
-                        borderBottom: 1,
-                        borderColor: 'divider',
-                        '&:hover': { bgcolor: 'action.hover' },
-                      }}
-                      secondaryAction={
-                        <IconButton edge="end" size="small" onClick={() => remove(name)} color="error">
-                          <RemoveCircleOutlineIcon fontSize="small" />
-                        </IconButton>
-                      }
-                    >
-                      <ListItemText
-                        primary={
-                          <Stack direction="row" spacing={1} alignItems="center">
-                            <Avatar src={icon} variant="rounded" sx={{ width: 40, height: 40 }} />
-                            <Typography variant="body2" noWrap sx={{ flex: 1, pr: 1 }}>{name}</Typography>
-                          </Stack>
-                        }
-                        secondary={
-                          <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 0.5 }}>
-                            {skill?.description}
-                          </Typography>
-                        }
-                      />
-                    </ListItem>
-                  )
-                })}
-                {!preset.skillsToBuy.length && (
-                  <Typography variant="caption" color="text.secondary" sx={{ p: 2, display: 'block', textAlign: 'center' }}>
-                    No skills selected yet.
-                  </Typography>
-                )}
-              </List>
-            </Box>
-          </Stack>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpen(false)}>Close</Button>

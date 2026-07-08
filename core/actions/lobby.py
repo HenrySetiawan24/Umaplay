@@ -1414,12 +1414,171 @@ class LobbyFlow(ABC):
                 
                 if chosen is not None:
                     self.ctrl.click_xyxy_center(chosen['xyxy'])
-                    time.sleep(0.5)
+                    time.sleep(1.0)
+                    # A Group/Team support card (e.g. Team Sirius) opens a second
+                    # "Choose Recreation Partner" screen; handle it if present.
+                    partner_result = self._handle_recreation_partner_screen()
+                    if partner_result is False:
+                        # Group had no available partner → backed out; let the
+                        # caller fall through to Rest instead of a phantom RESTED.
+                        return False
+                    time.sleep(2)
+                    return True
                 else:
                     logger_uma.warning("[lobby] No active recreation rows found, skipping click")
-                
+                    time.sleep(1)
+                    return False
+
             time.sleep(2)
         return click
+
+    def _is_choose_partner_screen(self, img) -> bool:
+        """OCR-anchor: True when the 'Choose Recreation Partner' (Group) screen is up."""
+        try:
+            w, h = img.size
+            header = img.crop((0, 0, w, int(0.22 * h)))
+            txt = normalize_ocr_text(self.ocr.text(header, joiner=" ", min_conf=0.2) or "")
+            return (
+                fuzzy_contains(txt, "choose recreation partner", 0.7)
+                or fuzzy_contains(txt, "recreation partner", 0.7)
+            )
+        except Exception:
+            return False
+
+    def _cancel_recreation(self, *, max_presses: int = 3) -> bool:
+        """Back out of the recreation / partner screen stack to the Lobby.
+
+        The partner screen and the recreation screen are stacked modals — one
+        Cancel only pops a single level. Keep pressing (bounded) until a Lobby
+        class is visible again, so the caller can reliably fall back to Rest.
+        Returns True if the Lobby is confirmed visible afterwards.
+        """
+        lobby_classes = ("lobby_training", "lobby_recreation", "lobby_races", "lobby_rest")
+        for _ in range(max_presses):
+            if self.waiter.seen(classes=lobby_classes, tag="recreation_cancel_check"):
+                return True
+            clicked = self.waiter.click_when(
+                classes=("button_white",),
+                texts=("CANCEL", "BACK"),
+                require_text_match=True,
+                prefer_bottom=True,
+                timeout_s=2.0,
+                tag="recreation_cancel",
+            )
+            time.sleep(1.0)
+            if not clicked:
+                break
+        return self.waiter.seen(classes=lobby_classes, tag="recreation_cancel_check")
+
+    def _handle_recreation_partner_screen(self) -> Optional[bool]:
+        """Handle the Group-card 'Choose Recreation Partner' screen.
+
+        Returns:
+          True  -> detected the screen and clicked an available partner
+          False -> detected the screen but no available partner; cancelled out
+          None  -> not on the partner screen (normal single-level recreation)
+        """
+        try:
+            img, dets = collect(
+                self.yolo_engine,
+                imgsz=self.waiter.cfg.imgsz,
+                conf=self.waiter.cfg.conf,
+                iou=self.waiter.cfg.iou,
+                tag="recreation_partner_screen",
+                agent=self.waiter.cfg.agent,
+            )
+            if not self._is_choose_partner_screen(img):
+                return None
+            logger_uma.info("[lobby] Group card opened 'Choose Recreation Partner' screen")
+
+            # No YOLO class fires on this screen's member rows (confirmed live:
+            # 'recreation_row' never appears here even though it does on the
+            # single-level Tazuna recreation screen). Locate rows purely by OCR:
+            # every row (available, complete, or locked) carries an
+            # "Event Progress" label, which we use as a row anchor.
+            if not self.ocr:
+                self._cancel_recreation()
+                return False
+            try:
+                raw = self.ocr.raw(img)
+            except Exception as e:
+                logger_uma.debug(f"[lobby] partner-screen OCR failed: {e}")
+                self._cancel_recreation()
+                return False
+            res = (raw or {}).get("res", {}) or {}
+            texts = res.get("rec_texts", []) or []
+            boxes = res.get("rec_boxes", None)
+            polys = res.get("rec_polys", None)
+
+            def _box_for(i: int) -> Optional[Tuple[float, float, float, float]]:
+                if boxes is not None and i < len(boxes):
+                    try:
+                        b = boxes[i]
+                        return (float(b[0]), float(b[1]), float(b[2]), float(b[3]))
+                    except Exception:
+                        pass
+                if polys is not None and i < len(polys):
+                    try:
+                        pts = polys[i]
+                        xs = [float(p[0]) for p in pts]
+                        ys = [float(p[1]) for p in pts]
+                        return (min(xs), min(ys), max(xs), max(ys))
+                    except Exception:
+                        pass
+                return None
+
+            lines: list = []
+            for i, raw_t in enumerate(texts):
+                t = (raw_t or "").strip()
+                box = _box_for(i)
+                if t and box is not None:
+                    lines.append((t, box))
+
+            anchors = [box for t, box in lines if fuzzy_contains(t, "event progress", 0.7)]
+            if not anchors:
+                logger_uma.warning(
+                    "[lobby] Partner screen: no 'Event Progress' rows found via OCR; cancelling"
+                )
+                self._cancel_recreation()
+                return False
+
+            anchors.sort(key=lambda b: b[1])  # top-to-bottom
+            centers = [(b[1] + b[3]) / 2.0 for b in anchors]
+            if len(centers) >= 2:
+                gaps = [b - a for a, b in zip(centers, centers[1:])]
+                row_half_h = max(40.0, (sum(gaps) / len(gaps)) / 2.0)
+            else:
+                row_half_h = 0.045 * img.size[1]
+
+            available = []
+            for box in anchors:
+                y_center = (box[1] + box[3]) / 2.0
+                band_lo, band_hi = y_center - row_half_h, y_center + row_half_h
+                row_texts = [t for t, b in lines if band_lo <= (b[1] + b[3]) / 2.0 <= band_hi]
+                row_blob = normalize_ocr_text(" ".join(row_texts))
+                if fuzzy_contains(row_blob, "event complete", 0.75):
+                    continue
+                if fuzzy_contains(row_blob, "to unlock", 0.75) or fuzzy_contains(
+                    row_blob, "complete all events", 0.7
+                ):
+                    continue
+                available.append(box)
+
+            if not available:
+                logger_uma.info(
+                    "[lobby] Partner screen: no available partner (all complete/locked) → cancel"
+                )
+                self._cancel_recreation()
+                return False
+
+            chosen = available[0]  # top-to-bottom → first available
+            self.ctrl.click_xyxy_center(chosen)
+            logger_uma.info("[lobby] Selected first available recreation partner (OCR row)")
+            time.sleep(1.0)
+            return True
+        except Exception as e:
+            logger_uma.debug(f"[lobby] partner-screen handling failed: {e}")
+            return None
 
     def _go_skills(self) -> bool:
         logger_uma.info("[lobby] Opening Skills")

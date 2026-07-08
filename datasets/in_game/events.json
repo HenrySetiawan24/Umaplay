@@ -119,7 +119,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Touching Sleeves Is Good Luck! ♪]",
+    "support_id": 30078
   },
   {
     "type": "support",
@@ -260,7 +262,9 @@
         "id": "200432",
         "name": "Focus"
       }
-    ]
+    ],
+    "title": "[Mission: Nourishing the Soul]",
+    "support_id": 30141
   },
   {
     "type": "support",
@@ -362,7 +366,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Fire at My Heels]",
+    "support_id": 30028
   },
   {
     "type": "support",
@@ -407,7 +413,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10055
   },
   {
     "type": "support",
@@ -519,7 +527,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": null
   },
   {
     "type": "support",
@@ -596,7 +606,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Cute + Cute = ?]",
+    "support_id": 20007
   },
   {
     "type": "support",
@@ -690,7 +702,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Even the Littlest Bud]",
+    "support_id": 30018
   },
   {
     "type": "support",
@@ -786,7 +800,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Lamplit Training of a Witch-to-Be]",
+    "support_id": 20023
   },
   {
     "type": "support",
@@ -875,7 +891,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Piece of Mind]",
+    "support_id": 30016
   },
   {
     "type": "support",
@@ -985,7 +1003,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[The Setting Sun and Rising Stars]",
+    "support_id": 30025
   },
   {
     "type": "support",
@@ -1090,7 +1110,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Princess Bride]",
+    "support_id": 30039
   },
   {
     "type": "support",
@@ -1204,7 +1226,9 @@
         "chain_step": 3,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Turbo Booooost!]",
+    "support_id": 30026
   },
   {
     "type": "support",
@@ -1342,7 +1366,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Beyond This Shining Moment]",
+    "support_id": 30002
   },
   {
     "type": "support",
@@ -1602,7 +1628,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Soaring Waltz]",
+    "support_id": 30140
   },
   {
     "type": "support",
@@ -1700,7 +1728,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Run(my)way]",
+    "support_id": 30014
   },
   {
     "type": "support",
@@ -1846,7 +1876,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30184
   },
   {
     "type": "support",
@@ -1937,7 +1969,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Double Carrot Punch!]",
+    "support_id": 30020
   },
   {
     "type": "support",
@@ -2024,7 +2058,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[///WARNING GATE///]",
+    "support_id": 20031
   },
   {
     "type": "support",
@@ -2100,7 +2136,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[5:00 a.m.—Right on Schedule]",
+    "support_id": 20013
   },
   {
     "type": "support",
@@ -2179,7 +2217,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Poolside High Tides]",
+    "support_id": 20014
   },
   {
     "type": "support",
@@ -2256,7 +2296,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[First-Rate Plan]",
+    "support_id": 20020
   },
   {
     "type": "support",
@@ -2376,7 +2418,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Peak Sakura Season]",
+    "support_id": 30038
   },
   {
     "type": "support",
@@ -2492,7 +2536,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30221
   },
   {
     "type": "support",
@@ -2669,7 +2715,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Breakaway Battleship]",
+    "support_id": 30004
   },
   {
     "type": "support",
@@ -2780,7 +2828,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Foolproof Plan]",
+    "support_id": 30008
   },
   {
     "type": "support",
@@ -2879,7 +2929,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Split the Sky, White Lightning!]",
+    "support_id": 30009
   },
   {
     "type": "support",
@@ -3032,7 +3084,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Heart Aflutter in the Evening Breeze]",
+    "support_id": 30139
   },
   {
     "type": "support",
@@ -3126,7 +3180,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Showered in Joy]",
+    "support_id": 30023
   },
   {
     "type": "support",
@@ -3213,7 +3269,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[The Perfect Book for You]",
+    "support_id": 20028
   },
   {
     "type": "support",
@@ -3291,7 +3349,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[My Solo Drawn to Raindrop Drums]",
+    "support_id": 20008
   },
   {
     "type": "support",
@@ -3458,7 +3518,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30197
   },
   {
     "type": "support",
@@ -3568,7 +3630,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Fiery Discipline]",
+    "support_id": 30032
   },
   {
     "type": "support",
@@ -3713,7 +3777,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30183
   },
   {
     "type": "support",
@@ -3862,7 +3928,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30245
   },
   {
     "type": "support",
@@ -3960,7 +4028,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Champion's Passion]",
+    "support_id": 30007
   },
   {
     "type": "support",
@@ -4070,7 +4140,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[My Umadol Way! ☆]",
+    "support_id": 30017
   },
   {
     "type": "support",
@@ -4155,7 +4227,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Lifting Your Spirits]",
+    "support_id": 20027
   },
   {
     "type": "support",
@@ -4247,7 +4321,9 @@
         "chain_step": 2,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Let's Get This Party Lit!]",
+    "support_id": 20024
   },
   {
     "type": "support",
@@ -4327,7 +4403,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Reach the Top!]",
+    "support_id": 20003
   },
   {
     "type": "support",
@@ -4406,7 +4484,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Digital's Recharge Station]",
+    "support_id": 20005
   },
   {
     "type": "support",
@@ -4488,7 +4568,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Trial Initiation]",
+    "support_id": 20006
   },
   {
     "type": "support",
@@ -4580,7 +4662,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Pal-Assisted Training]",
+    "support_id": 20009
   },
   {
     "type": "support",
@@ -4658,7 +4742,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[On and Off the Court]",
+    "support_id": 20010
   },
   {
     "type": "support",
@@ -4763,7 +4849,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Who Wants the First Bite?]",
+    "support_id": 30040
   },
   {
     "type": "support",
@@ -4862,7 +4950,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Just Keep Going]",
+    "support_id": 30030
   },
   {
     "type": "support",
@@ -4991,7 +5081,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Go Ahead and Laugh]",
+    "support_id": 30027
   },
   {
     "type": "support",
@@ -5157,7 +5249,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[The Brightest Star in Japan!]",
+    "support_id": 30001
   },
   {
     "type": "support",
@@ -5268,7 +5362,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Fairest Fleur]",
+    "support_id": 30006
   },
   {
     "type": "support",
@@ -5363,7 +5459,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Watch My Star Fly!]",
+    "support_id": 30011
   },
   {
     "type": "support",
@@ -5458,7 +5556,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[BNWinner!]",
+    "support_id": 30012
   },
   {
     "type": "support",
@@ -5550,7 +5650,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Urara's Day Off!]",
+    "support_id": 30019
   },
   {
     "type": "support",
@@ -5647,7 +5749,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[The World's My Oyster]",
+    "support_id": 20029
   },
   {
     "type": "support",
@@ -5730,7 +5834,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Nothing Escapes the Vice Prez]",
+    "support_id": 20004
   },
   {
     "type": "support",
@@ -5807,7 +5913,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[City Girl 101]",
+    "support_id": 20011
   },
   {
     "type": "support",
@@ -5896,7 +6004,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Fighting for Fortune]",
+    "support_id": 20017
   },
   {
     "type": "support",
@@ -5973,86 +6083,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Mejiro Dober",
-    "rarity": "SSR",
-    "attribute": "WIT",
-    "id": "Mejiro Dober_WIT_SSR",
-    "choice_events": [
-      {
-        "type": "chain",
-        "chain_step": 1,
-        "name": "One Step Forward",
-        "options": {
-          "1": [
-            {
-              "energy": -10,
-              "skill_pts": 15,
-              "bond": 5
-            },
-            {
-              "energy": -10,
-              "skill_pts": 45,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "guts": 5,
-              "wit": 5,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "type": "random",
-        "chain_step": 1,
-        "name": "Give It a Try",
-        "options": {
-          "1": [
-            {
-              "energy": 15,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "mood": 1,
-              "skill_pts": 15,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "type": "random",
-        "chain_step": 1,
-        "name": "Hope She'll Like It...",
-        "options": {
-          "1": [
-            {
-              "skill_pts": 45,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "hints": [
-                "Unyielding Spirit"
-              ],
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      }
-    ]
+    ],
+    "title": "[It's Just Water]",
+    "support_id": 20019
   },
   {
     "type": "support",
@@ -6177,7 +6210,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Hometown Cheers]",
+    "support_id": 30031
   },
   {
     "type": "support",
@@ -6258,370 +6293,9 @@
         },
         "default_preference": 1
       }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Air Shakur",
-    "rarity": "SSR",
-    "attribute": "WIT",
-    "id": "Air Shakur_WIT_SSR",
-    "choice_events": [
-      {
-        "type": "random",
-        "chain_step": 1,
-        "name": "//Verification Required",
-        "options": {
-          "1": [
-            {
-              "energy": 10,
-              "guts": 5,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "energy": -10,
-              "stamina": 5,
-              "guts": 10,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "type": "random",
-        "chain_step": 1,
-        "name": "//Absolute Desire",
-        "options": {
-          "1": [
-            {
-              "hints": [
-                "Pace Strategy"
-              ],
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "energy_max": 4,
-              "guts": 5,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Nice Nature",
-    "rarity": "SR",
-    "attribute": "WIT",
-    "id": "Nice Nature_WIT_SR",
-    "choice_events": [
-      {
-        "type": "chain",
-        "chain_step": 1,
-        "name": "Chasing Their Backs",
-        "options": {
-          "1": [
-            {
-              "energy": 5,
-              "wit": 3,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "bond": 20
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "type": "random",
-        "chain_step": 1,
-        "name": "Not like Meow",
-        "options": {
-          "1": [
-            {
-              "energy": 20,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "energy": 10,
-              "wit": 5,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "type": "random",
-        "chain_step": 1,
-        "name": "(Delicious) Burden",
-        "options": {
-          "1": [
-            {
-              "hints": [
-                "Ramp Up"
-              ],
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "mood": 1,
-              "energy_max": 4,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Ikuno Dictus",
-    "rarity": "SR",
-    "attribute": "WIT",
-    "id": "Ikuno Dictus_WIT_SR",
-    "choice_events": [
-      {
-        "type": "chain",
-        "chain_step": 2,
-        "name": "Ikuno-Style Support",
-        "options": {
-          "1": [
-            {
-              "wit": 15,
-              "hints": [
-                "Frenzied Front Runners"
-              ],
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "wit": 15,
-              "hints": [
-                "Frenzied End Closers"
-              ],
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "type": "random",
-        "chain_step": 1,
-        "name": "Ikuno-Style Flawless Method",
-        "options": {
-          "1": [
-            {
-              "wit": 10,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "skill_pts": 30,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "type": "random",
-        "chain_step": 1,
-        "name": "Ikuno-Style Management",
-        "options": {
-          "1": [
-            {
-              "stamina": 20,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "hints": [
-                "Trick (Rear)"
-              ],
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Fuji Kiseki",
-    "rarity": "SR",
-    "attribute": "WIT",
-    "id": "Fuji Kiseki_WIT_SR",
-    "choice_events": [
-      {
-        "type": "random",
-        "chain_step": 1,
-        "name": "Sleight of Hand",
-        "options": {
-          "1": [
-            {
-              "wit": 5,
-              "skill_pts": 15,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "power": 5,
-              "skill_pts": 15,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "type": "random",
-        "chain_step": 1,
-        "name": "Misdirection",
-        "options": {
-          "1": [
-            {
-              "hints": [
-                "Prepared to Pass"
-              ],
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "skill_pts": 30,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Daiwa Scarlet",
-    "rarity": "SR",
-    "attribute": "WIT",
-    "id": "Daiwa Scarlet_WIT_SR",
-    "choice_events": [
-      {
-        "type": "random",
-        "chain_step": 1,
-        "name": "I'm Going to Win Tomorrow!",
-        "options": {
-          "1": [
-            {
-              "wit": 10,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "mood": 1,
-              "skill_pts": 15,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "type": "random",
-        "chain_step": 1,
-        "name": "This Is Nothing!",
-        "options": {
-          "1": [
-            {
-              "hints": [
-                "Stamina to Spare"
-              ],
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "energy": 20,
-              "mood": 1,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Agnes Tachyon",
-    "rarity": "SR",
-    "attribute": "WIT",
-    "id": "Agnes Tachyon_WIT_SR",
-    "choice_events": [
-      {
-        "type": "random",
-        "chain_step": 1,
-        "name": "The Correlation between Sleep and Efficiency",
-        "options": {
-          "1": [
-            {
-              "power": 5,
-              "wit": 5,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "wit": 10,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "type": "random",
-        "chain_step": 1,
-        "name": "Happenstance Introduced Through Intervention",
-        "options": {
-          "1": [
-            {
-              "hints": [
-                "Late Surger Savvy"
-              ],
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "wit": 10,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      }
-    ]
+    ],
+    "title": "[Wave of Gratitude]",
+    "support_id": 30010
   },
   {
     "type": "support",
@@ -6675,143 +6349,9 @@
         },
         "default_preference": 1
       }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Matikanefukukitaru",
-    "rarity": "SR",
-    "attribute": "WIT",
-    "id": "Matikanefukukitaru_WIT_SR",
-    "choice_events": [
-      {
-        "type": "chain",
-        "chain_step": 2,
-        "name": "Guidance and Friends",
-        "options": {
-          "1": [
-            {
-              "skill_pts": 45,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "energy": 10,
-              "mood": 1,
-              "hints": [
-                "Right-Handed ○"
-              ],
-              "bond": 5
-            },
-            {
-              "energy": -20,
-              "hints": [
-                "Right-Handed ○"
-              ],
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "type": "random",
-        "chain_step": 1,
-        "name": "Maximum Spirituality",
-        "options": {
-          "1": [
-            {
-              "wit": 5,
-              "skill_pts": 15,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "energy": -10,
-              "speed": 5,
-              "stamina": 5,
-              "power": 5,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "type": "random",
-        "chain_step": 1,
-        "name": "When Piety and Kindness Intersect",
-        "options": {
-          "1": [
-            {
-              "skill_pts": 30,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "energy": 20,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Mejiro Dober",
-    "rarity": "SR",
-    "attribute": "WIT",
-    "id": "Mejiro Dober_WIT_SR",
-    "choice_events": [
-      {
-        "type": "random",
-        "chain_step": 1,
-        "name": "Give It a Try",
-        "options": {
-          "1": [
-            {
-              "energy": 15,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "mood": 1,
-              "skill_pts": 15,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "type": "random",
-        "chain_step": 1,
-        "name": "Hope She'll Like It...",
-        "options": {
-          "1": [
-            {
-              "skill_pts": 45,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "hints": [
-                "Unyielding Spirit"
-              ],
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      }
-    ]
+    ],
+    "title": "[A Marvelous ☆ Plan]",
+    "support_id": 20015
   },
   {
     "type": "support",
@@ -7027,7 +6567,9 @@
         "id": "201611",
         "name": "Tail Held High"
       }
-    ]
+    ],
+    "title": "[Tracen Reception]",
+    "support_id": 30021
   },
   {
     "type": "support",
@@ -7252,7 +6794,9 @@
         "id": "201621",
         "name": "Shake It Out"
       }
-    ]
+    ],
+    "title": "[Trainers' Teamwork]",
+    "support_id": 20021
   },
   {
     "type": "support",
@@ -7436,7 +6980,9 @@
         "chain_step": 3,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30168
   },
   {
     "type": "support",
@@ -7553,7 +7099,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tonight, We Waltz]",
+    "support_id": 30056
   },
   {
     "type": "support",
@@ -7683,7 +7231,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Paint the Sky Red]",
+    "support_id": 30055
   },
   {
     "type": "support",
@@ -7731,7 +7281,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10013
   },
   {
     "type": "support",
@@ -7879,7 +7431,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30176
   },
   {
     "type": "support",
@@ -8023,7 +7577,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30224
   },
   {
     "type": "support",
@@ -8177,7 +7733,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Mini☆Vacation]",
+    "support_id": 30047
   },
   {
     "type": "support",
@@ -8283,7 +7841,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[It's All Mine!]",
+    "support_id": 30045
   },
   {
     "type": "support",
@@ -8393,161 +7953,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Mejiro Ardan",
-    "rarity": "SR",
-    "attribute": "WIT",
-    "id": "Mejiro Ardan_WIT_SR",
-    "choice_events": [
-      {
-        "type": "chain",
-        "chain_step": 1,
-        "name": "Special Drinks Made with Friends ♬",
-        "options": {
-          "1": [
-            {
-              "energy": 10,
-              "speed": 5,
-              "wit": 5,
-              "skill_pts": 10
-            },
-            {
-              "wit": 10
-            }
-          ],
-          "2": [
-            {
-              "mood": 1,
-              "speed": 10
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "type": "random",
-        "chain_step": 1,
-        "name": "The Glass Girl Wants to Study",
-        "options": {
-          "1": [
-            {
-              "speed": 10,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "energy": 10,
-              "wit": 5,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "type": "random",
-        "chain_step": 1,
-        "name": "The Glass Girl Wants to Play",
-        "options": {
-          "1": [
-            {
-              "speed": 10,
-              "wit": 10,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "hints": [
-                "Hesitant Pace Chasers"
-              ],
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Nice Nature",
-    "rarity": "SSR",
-    "attribute": "WIT",
-    "id": "Nice Nature_WIT_SSR",
-    "choice_events": [
-      {
-        "type": "chain",
-        "chain_step": 2,
-        "name": "Irrepressible Feelings",
-        "options": {
-          "1": [
-            {
-              "energy": 10,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "energy": -5,
-              "speed": 5,
-              "power": 5,
-              "bond": 5,
-              "status": "Heal all negative status effects"
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "type": "random",
-        "chain_step": 1,
-        "name": "Not like Meow",
-        "options": {
-          "1": [
-            {
-              "energy": 20,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "energy": 10,
-              "wit": 5,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "type": "random",
-        "chain_step": 1,
-        "name": "(Delicious) Burden",
-        "options": {
-          "1": [
-            {
-              "bond": 5,
-              "hints": [
-                "Ramp Up"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "mood": 1,
-              "energy": 4,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      }
-    ]
+    ],
+    "title": "[Full-Blown Tantrum]",
+    "support_id": 30046
   },
   {
     "type": "support",
@@ -8705,7 +8113,9 @@
         "id": "200022",
         "name": "Left-Handed ○"
       }
-    ]
+    ],
+    "title": "[Winning Dream]",
+    "support_id": 30062
   },
   {
     "type": "support",
@@ -8944,7 +8354,9 @@
         "id": "201631",
         "name": "Sympathy"
       }
-    ]
+    ],
+    "title": "[Planned Perfection]",
+    "support_id": 30036
   },
   {
     "type": "support",
@@ -9104,7 +8516,9 @@
         "id": "200152",
         "name": "Firm Conditions ○"
       }
-    ]
+    ],
+    "title": "[Happiness Just around the Bend]",
+    "support_id": 30034
   },
   {
     "type": "support",
@@ -9343,7 +8757,9 @@
         "id": "201631",
         "name": "Sympathy"
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10060
   },
   {
     "type": "support",
@@ -9481,7 +8897,9 @@
         "id": "200781",
         "name": "Trick (Rear)"
       }
-    ]
+    ],
+    "title": "[Warm Heart, Soft Steps]",
+    "support_id": 30063
   },
   {
     "type": "support",
@@ -9529,7 +8947,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10003
   },
   {
     "type": "support",
@@ -9578,7 +8998,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10001
   },
   {
     "type": "support",
@@ -9627,7 +9049,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10005
   },
   {
     "type": "support",
@@ -9676,7 +9100,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10002
   },
   {
     "type": "support",
@@ -9725,7 +9151,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10004
   },
   {
     "type": "support",
@@ -9777,7 +9205,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10008
   },
   {
     "type": "support",
@@ -9825,7 +9255,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10007
   },
   {
     "type": "support",
@@ -9873,7 +9305,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10010
   },
   {
     "type": "support",
@@ -9922,7 +9356,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10009
   },
   {
     "type": "support",
@@ -9970,7 +9406,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10006
   },
   {
     "type": "support",
@@ -10017,7 +9455,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10011
   },
   {
     "type": "support",
@@ -10066,54 +9506,9 @@
         },
         "default_preference": 2
       }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Symboli Rudolf",
-    "rarity": "R",
-    "attribute": "WIT",
-    "choice_events": [
-      {
-        "name": "The Emperor's Encouragement",
-        "options": {
-          "1": [
-            {
-              "speed": 10,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "energy": -10,
-              "skill_pts": 30,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "The Student Council President's Thoughtfulness",
-        "options": {
-          "1": [
-            {
-              "bond": 5,
-              "hints": [
-                "Rainy Days ○"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "stamina": 15,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10014
   },
   {
     "type": "support",
@@ -10163,7 +9558,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10012
   },
   {
     "type": "support",
@@ -10210,7 +9607,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10015
   },
   {
     "type": "support",
@@ -10258,7 +9657,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10016
   },
   {
     "type": "support",
@@ -10305,7 +9706,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10019
   },
   {
     "type": "support",
@@ -10354,7 +9757,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10018
   },
   {
     "type": "support",
@@ -10403,7 +9808,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10020
   },
   {
     "type": "support",
@@ -10451,7 +9858,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10017
   },
   {
     "type": "support",
@@ -10646,7 +10055,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10021
   },
   {
     "type": "support",
@@ -10846,7 +10257,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10022
   },
   {
     "type": "support",
@@ -10894,7 +10307,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10023
   },
   {
     "type": "support",
@@ -10944,7 +10359,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10024
   },
   {
     "type": "support",
@@ -10992,7 +10409,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10025
   },
   {
     "type": "support",
@@ -11042,7 +10461,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10026
   },
   {
     "type": "support",
@@ -11090,7 +10511,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10027
   },
   {
     "type": "support",
@@ -11139,7 +10562,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10028
   },
   {
     "type": "support",
@@ -11188,7 +10613,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10029
   },
   {
     "type": "support",
@@ -11235,7 +10662,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10030
   },
   {
     "type": "support",
@@ -11283,7 +10712,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10031
   },
   {
     "type": "support",
@@ -11333,7 +10764,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10032
   },
   {
     "type": "support",
@@ -11380,7 +10813,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10033
   },
   {
     "type": "support",
@@ -11429,7 +10864,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10034
   },
   {
     "type": "support",
@@ -11476,7 +10913,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10035
   },
   {
     "type": "support",
@@ -11523,7 +10962,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10036
   },
   {
     "type": "support",
@@ -11572,7 +11013,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10037
   },
   {
     "type": "support",
@@ -11619,7 +11062,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10038
   },
   {
     "type": "support",
@@ -11669,7 +11114,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10039
   },
   {
     "type": "support",
@@ -11717,7 +11164,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10040
   },
   {
     "type": "support",
@@ -11761,7 +11210,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10041
   },
   {
     "type": "support",
@@ -11808,7 +11259,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10042
   },
   {
     "type": "support",
@@ -11857,7 +11310,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10043
   },
   {
     "type": "support",
@@ -11905,7 +11360,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10044
   },
   {
     "type": "support",
@@ -11953,7 +11410,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10045
   },
   {
     "type": "support",
@@ -12000,7 +11459,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10046
   },
   {
     "type": "support",
@@ -12047,7 +11508,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10047
   },
   {
     "type": "support",
@@ -12098,7 +11561,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10048
   },
   {
     "type": "support",
@@ -12146,7 +11611,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10049
   },
   {
     "type": "support",
@@ -12192,7 +11659,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10050
   },
   {
     "type": "support",
@@ -12239,7 +11708,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10051
   },
   {
     "type": "support",
@@ -12285,7 +11756,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10052
   },
   {
     "type": "support",
@@ -12331,7 +11804,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10053
   },
   {
     "type": "support",
@@ -12379,7 +11854,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10054
   },
   {
     "type": "support",
@@ -12427,7 +11904,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10056
   },
   {
     "type": "support",
@@ -12474,7 +11953,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10057
   },
   {
     "type": "support",
@@ -12523,7 +12004,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10059
   },
   {
     "type": "support",
@@ -12571,7 +12054,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10058
   },
   {
     "type": "support",
@@ -12620,7 +12105,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10062
   },
   {
     "type": "support",
@@ -12672,7 +12159,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10061
   },
   {
     "type": "support",
@@ -12718,7 +12207,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10063
   },
   {
     "type": "support",
@@ -12766,7 +12257,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10064
   },
   {
     "type": "support",
@@ -12814,7 +12307,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10065
   },
   {
     "type": "support",
@@ -12862,7 +12357,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10067
   },
   {
     "type": "support",
@@ -12911,7 +12408,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10066
   },
   {
     "type": "support",
@@ -12959,7 +12458,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10068
   },
   {
     "type": "support",
@@ -13007,7 +12508,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10069
   },
   {
     "type": "support",
@@ -13055,7 +12558,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10070
   },
   {
     "type": "support",
@@ -13103,7 +12608,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10071
   },
   {
     "type": "support",
@@ -13151,7 +12658,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10072
   },
   {
     "type": "support",
@@ -13328,7 +12837,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Acupuncturist]",
+    "support_id": 10074
   },
   {
     "type": "support",
@@ -13374,7 +12885,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10075
   },
   {
     "type": "support",
@@ -13422,7 +12935,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10073
   },
   {
     "type": "support",
@@ -13469,7 +12984,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10077
   },
   {
     "type": "support",
@@ -13518,7 +13035,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10076
   },
   {
     "type": "support",
@@ -13565,7 +13084,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10078
   },
   {
     "type": "support",
@@ -13613,7 +13134,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10080
   },
   {
     "type": "support",
@@ -13659,7 +13182,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10079
   },
   {
     "type": "support",
@@ -13706,7 +13231,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10081
   },
   {
     "type": "support",
@@ -13752,7 +13279,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10082
   },
   {
     "type": "support",
@@ -13964,7 +13493,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Event Producer]",
+    "support_id": 10083
   },
   {
     "type": "support",
@@ -14010,7 +13541,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10085
   },
   {
     "type": "support",
@@ -14057,7 +13590,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10084
   },
   {
     "type": "support",
@@ -14104,7 +13639,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10087
   },
   {
     "type": "support",
@@ -14152,7 +13689,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10086
   },
   {
     "type": "support",
@@ -14200,7 +13739,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10088
   },
   {
     "type": "support",
@@ -14248,7 +13789,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10089
   },
   {
     "type": "support",
@@ -14295,7 +13838,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10090
   },
   {
     "type": "support",
@@ -14341,7 +13886,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10091
   },
   {
     "type": "support",
@@ -14389,7 +13936,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10092
   },
   {
     "type": "support",
@@ -14436,7 +13985,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Tracen Academy]",
+    "support_id": 10093
   },
   {
     "type": "support",
@@ -14644,7 +14195,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10094
   },
   {
     "type": "support",
@@ -14691,7 +14244,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10095
   },
   {
     "type": "support",
@@ -14738,7 +14293,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10096
   },
   {
     "type": "support",
@@ -14786,7 +14343,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10097
   },
   {
     "type": "support",
@@ -14834,7 +14393,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10098
   },
   {
     "type": "support",
@@ -14880,7 +14441,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10100
   },
   {
     "type": "support",
@@ -14927,7 +14490,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10099
   },
   {
     "type": "support",
@@ -14974,7 +14539,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10101
   },
   {
     "type": "support",
@@ -15020,7 +14587,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10102
   },
   {
     "type": "support",
@@ -15066,7 +14635,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10103
   },
   {
     "type": "support",
@@ -15112,7 +14683,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10105
   },
   {
     "type": "support",
@@ -15286,7 +14859,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10104
   },
   {
     "type": "support",
@@ -15333,7 +14908,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10106
   },
   {
     "type": "support",
@@ -15379,7 +14956,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10107
   },
   {
     "type": "support",
@@ -15425,7 +15004,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10108
   },
   {
     "type": "support",
@@ -15626,7 +15207,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10109
   },
   {
     "type": "support",
@@ -15673,7 +15256,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10110
   },
   {
     "type": "support",
@@ -15721,7 +15306,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10111
   },
   {
     "type": "support",
@@ -15768,7 +15355,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10113
   },
   {
     "type": "support",
@@ -15815,7 +15404,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10114
   },
   {
     "type": "support",
@@ -15862,7 +15453,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10115
   },
   {
     "type": "support",
@@ -15908,7 +15501,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10116
   },
   {
     "type": "support",
@@ -15955,7 +15550,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10117
   },
   {
     "type": "support",
@@ -16002,7 +15599,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10118
   },
   {
     "type": "support",
@@ -16049,7 +15648,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10119
   },
   {
     "type": "support",
@@ -16097,7 +15698,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10121
   },
   {
     "type": "support",
@@ -16144,7 +15747,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10120
   },
   {
     "type": "support",
@@ -16190,7 +15795,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10122
   },
   {
     "type": "support",
@@ -16237,7 +15844,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10123
   },
   {
     "type": "support",
@@ -16285,7 +15894,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10124
   },
   {
     "type": "support",
@@ -16332,7 +15943,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10126
   },
   {
     "type": "support",
@@ -16380,7 +15993,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10125
   },
   {
     "type": "support",
@@ -16427,7 +16042,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10127
   },
   {
     "type": "support",
@@ -16623,7 +16240,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10128
   },
   {
     "type": "support",
@@ -16670,7 +16289,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10129
   },
   {
     "type": "support",
@@ -16719,7 +16340,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10131
   },
   {
     "type": "support",
@@ -16766,7 +16389,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10132
   },
   {
     "type": "support",
@@ -16815,7 +16440,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10133
   },
   {
     "type": "support",
@@ -16863,7 +16490,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10134
   },
   {
     "type": "support",
@@ -16913,7 +16542,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10135
   },
   {
     "type": "support",
@@ -16960,7 +16591,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10136
   },
   {
     "type": "support",
@@ -17007,7 +16640,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10137
   },
   {
     "type": "support",
@@ -17187,7 +16822,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10138
   },
   {
     "type": "support",
@@ -17234,7 +16871,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 10139
   },
   {
     "type": "support",
@@ -17310,7 +16949,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Well, Look Who's Home]",
+    "support_id": 20001
   },
   {
     "type": "support",
@@ -17387,7 +17028,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Nothing Hard Work Can't Solve!]",
+    "support_id": 20002
   },
   {
     "type": "support",
@@ -17463,82 +17106,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Marvelous Sunday",
-    "rarity": "SR",
-    "attribute": "WIT",
-    "choice_events": [
-      {
-        "name": "Marvelous, No Question ☆",
-        "options": {
-          "1": [
-            {
-              "energy": 10,
-              "speed": 5,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "mood": 1,
-              "speed": 5,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "How To Be More Marvelous ☆",
-        "options": {
-          "1": [
-            {
-              "energy": 10,
-              "mood": 1,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "bond": 5,
-              "hints": [
-                "Hanshin Racecourse ○"
-              ]
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "Marvelous World Plan ☆",
-        "options": {
-          "1": [
-            {
-              "guts": 5,
-              "wit": 5
-            }
-          ]
-        },
-        "chain_step": 1,
-        "default_preference": 1
-      },
-      {
-        "name": "Marvelously Marvelous ☆",
-        "options": {
-          "1": [
-            {
-              "guts": 15,
-              "wit": 15
-            }
-          ]
-        },
-        "chain_step": 2,
-        "default_preference": 1
-      }
-    ]
+    ],
+    "title": "[Experimental Studies on Subject A]",
+    "support_id": 20012
   },
   {
     "type": "support",
@@ -17625,7 +17195,9 @@
         "chain_step": 2,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Fate's Forecast]",
+    "support_id": 20016
   },
   {
     "type": "support",
@@ -17701,7 +17273,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Ignore the Stares]",
+    "support_id": 20018
   },
   {
     "type": "support",
@@ -17797,7 +17371,9 @@
         "chain_step": 2,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Now Dat's What I Call Grilled Squid!]",
+    "support_id": 20022
   },
   {
     "type": "support",
@@ -17881,7 +17457,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Never Skip Warm-Ups]",
+    "support_id": 20025
   },
   {
     "type": "support",
@@ -17964,7 +17542,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Messing Around]",
+    "support_id": 20026
   },
   {
     "type": "support",
@@ -18056,7 +17636,9 @@
         "chain_step": 2,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[You Earned It!]",
+    "support_id": 20030
   },
   {
     "type": "support",
@@ -18146,7 +17728,9 @@
         "chain_step": 2,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Laughing through the Mud]",
+    "support_id": 20032
   },
   {
     "type": "support",
@@ -18234,7 +17818,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Mud-Caked Compañero]",
+    "support_id": 20033
   },
   {
     "type": "support",
@@ -18316,7 +17902,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[My Heart Will Go On]",
+    "support_id": 20034
   },
   {
     "type": "support",
@@ -18408,7 +17996,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Turf as Nails]",
+    "support_id": 20035
   },
   {
     "type": "support",
@@ -18491,7 +18081,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20036
   },
   {
     "type": "support",
@@ -18569,7 +18161,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Grma, Ramen ♪]",
+    "support_id": 20037
   },
   {
     "type": "support",
@@ -18654,7 +18248,9 @@
         "chain_step": 2,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[The Brightest Star Shines On]",
+    "support_id": 20038
   },
   {
     "type": "support",
@@ -18737,7 +18333,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[An Annoying Supervisor]",
+    "support_id": 20039
   },
   {
     "type": "support",
@@ -18820,7 +18418,9 @@
         "chain_step": 2,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Hot Hearts and Cool Drinks]",
+    "support_id": 20040
   },
   {
     "type": "support",
@@ -18902,7 +18502,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Aim for the Brightest]",
+    "support_id": 20041
   },
   {
     "type": "support",
@@ -18989,7 +18591,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[The Perfect Morning Greeting!]",
+    "support_id": 20042
   },
   {
     "type": "support",
@@ -19068,7 +18672,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[At the End of the Day]",
+    "support_id": 20043
   },
   {
     "type": "support",
@@ -19153,7 +18759,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Cozy Cute Memory ♪]",
+    "support_id": 20044
   },
   {
     "type": "support",
@@ -19241,7 +18849,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Almost... an Umadol?! ♡]",
+    "support_id": 20045
   },
   {
     "type": "support",
@@ -19328,7 +18938,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Reckless Witch Training]",
+    "support_id": 20046
   },
   {
     "type": "support",
@@ -19414,7 +19026,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[I Love You... Dear Food]",
+    "support_id": 20048
   },
   {
     "type": "support",
@@ -19497,7 +19111,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Step! Smile! Wink!]",
+    "support_id": 20047
   },
   {
     "type": "support",
@@ -19585,7 +19201,9 @@
         "chain_step": 2,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Going for Gold]",
+    "support_id": 20049
   },
   {
     "type": "support",
@@ -19673,7 +19291,9 @@
         "chain_step": 2,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Bobbing with the Waves]",
+    "support_id": 20050
   },
   {
     "type": "support",
@@ -19758,7 +19378,9 @@
         "chain_step": 2,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[The 3rd Miracle]",
+    "support_id": 20051
   },
   {
     "type": "support",
@@ -19840,7 +19462,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Go, Go! Tsuyoshi!]",
+    "support_id": 20052
   },
   {
     "type": "support",
@@ -19927,7 +19551,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Stop, Prez!]",
+    "support_id": 20053
   },
   {
     "type": "support",
@@ -20013,7 +19639,9 @@
         "chain_step": 2,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Mighty Fotografia]",
+    "support_id": 20054
   },
   {
     "type": "support",
@@ -20121,7 +19749,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[A Clip to Keep Your Heart Warm]",
+    "support_id": 20055
   },
   {
     "type": "support",
@@ -20210,7 +19840,9 @@
         "chain_step": 2,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Dead End: Blocking the Path]",
+    "support_id": 20056
   },
   {
     "type": "support",
@@ -20294,7 +19926,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Your Laugh After School]",
+    "support_id": 20058
   },
   {
     "type": "support",
@@ -20374,7 +20008,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Gentle and Sleek]",
+    "support_id": 20057
   },
   {
     "type": "support",
@@ -20463,7 +20099,9 @@
         "chain_step": 2,
         "default_preference": 3
       }
-    ]
+    ],
+    "title": "[Ah, Wonderful Saccharinity]",
+    "support_id": 20059
   },
   {
     "type": "support",
@@ -20549,7 +20187,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Try a Sweet Swim Ring]",
+    "support_id": 20060
   },
   {
     "type": "support",
@@ -20654,7 +20294,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Golshi's House Specialty]",
+    "support_id": 20061
   },
   {
     "type": "support",
@@ -20744,7 +20386,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[One Bomb Drive ♪]",
+    "support_id": 20062
   },
   {
     "type": "support",
@@ -20831,7 +20475,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Summer Evening Shower]",
+    "support_id": 20063
   },
   {
     "type": "support",
@@ -20921,7 +20567,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Gods of Luck Are Early to Rise]",
+    "support_id": 20064
   },
   {
     "type": "support",
@@ -21010,7 +20658,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[The Splendid Aftertaste of Good Tea]",
+    "support_id": 20065
   },
   {
     "type": "support",
@@ -21094,7 +20744,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20066
   },
   {
     "type": "support",
@@ -21183,7 +20835,9 @@
         "chain_step": 2,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20068
   },
   {
     "type": "support",
@@ -21266,7 +20920,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20069
   },
   {
     "type": "support",
@@ -21347,7 +21003,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20067
   },
   {
     "type": "support",
@@ -21426,7 +21084,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20070
   },
   {
     "type": "support",
@@ -21503,7 +21163,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20071
   },
   {
     "type": "support",
@@ -21585,7 +21247,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20072
   },
   {
     "type": "support",
@@ -21673,7 +21337,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20073
   },
   {
     "type": "support",
@@ -21751,7 +21417,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20074
   },
   {
     "type": "support",
@@ -21829,7 +21497,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20075
   },
   {
     "type": "support",
@@ -21916,7 +21586,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20076
   },
   {
     "type": "support",
@@ -22000,7 +21672,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20077
   },
   {
     "type": "support",
@@ -22077,7 +21751,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20078
   },
   {
     "type": "support",
@@ -22165,7 +21841,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20079
   },
   {
     "type": "support",
@@ -22241,7 +21919,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20080
   },
   {
     "type": "support",
@@ -22317,7 +21997,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20081
   },
   {
     "type": "support",
@@ -22400,7 +22082,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20082
   },
   {
     "type": "support",
@@ -22479,7 +22163,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20083
   },
   {
     "type": "support",
@@ -22555,7 +22241,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20084
   },
   {
     "type": "support",
@@ -22641,7 +22329,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20085
   },
   {
     "type": "support",
@@ -22718,7 +22408,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20086
   },
   {
     "type": "support",
@@ -22801,7 +22493,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20087
   },
   {
     "type": "support",
@@ -22891,7 +22585,9 @@
         "chain_step": 2,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20088
   },
   {
     "type": "support",
@@ -22966,7 +22662,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20089
   },
   {
     "type": "support",
@@ -23044,7 +22742,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20090
   },
   {
     "type": "support",
@@ -23127,7 +22827,9 @@
         "chain_step": 2,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20091
   },
   {
     "type": "support",
@@ -23211,7 +22913,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20092
   },
   {
     "type": "support",
@@ -23301,7 +23005,9 @@
         "chain_step": 2,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20093
   },
   {
     "type": "support",
@@ -23379,7 +23085,9 @@
         "chain_step": 2,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 20094
   },
   {
     "type": "support",
@@ -23478,7 +23186,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[7 More Centimeters]",
+    "support_id": 30013
   },
   {
     "type": "support",
@@ -23583,129 +23293,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Yukino Bijin",
-    "rarity": "SSR",
-    "attribute": "WIT",
-    "choice_events": [
-      {
-        "name": "For a Spiffy Concert",
-        "options": {
-          "1": [
-            {
-              "guts": 10,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "energy": -10,
-              "guts": 15,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "Aiming for the City Spots",
-        "options": {
-          "1": [
-            {
-              "energy": -10,
-              "mood": 1,
-              "guts": 10,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "bond": 5,
-              "hints": [
-                "Corner Acceleration ○"
-              ]
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "Cozy Memories of Wanko Soba",
-        "options": {
-          "1": [
-            {
-              "mood": 1,
-              "bond": 5,
-              "hints": [
-                "Inner Post Proficiency ○"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "bond": 5,
-              "hints": [
-                "Hydrate"
-              ]
-            }
-          ]
-        },
-        "chain_step": 1,
-        "default_preference": 1
-      },
-      {
-        "name": "The Class Rep's Intense Crash Course",
-        "options": {
-          "1": [
-            {
-              "mood": 2,
-              "power": 10,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "power": 10,
-              "guts": 10,
-              "wit": 10,
-              "bond": 5
-            }
-          ]
-        },
-        "chain_step": 2,
-        "default_preference": 1
-      },
-      {
-        "name": "I Wanna Win!",
-        "options": {
-          "1": [
-            {
-              "mood": 4,
-              "bond": 5,
-              "hints": [
-                "No Stopping Me! (+2)"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "power": 10,
-              "guts": 10,
-              "wit": 10,
-              "bond": 5,
-              "hints": [
-                "No Stopping Me! (+2)"
-              ]
-            }
-          ]
-        },
-        "chain_step": 3,
-        "default_preference": 2
-      }
-    ]
+    ],
+    "title": "[Get Lots of Hugs for Me]",
+    "support_id": 30024
   },
   {
     "type": "support",
@@ -23817,7 +23407,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[The Unequivocal Emperor]",
+    "support_id": 30037
   },
   {
     "type": "support",
@@ -23916,7 +23508,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[My Thoughts, My Desires]",
+    "support_id": 30041
   },
   {
     "type": "support",
@@ -24020,7 +23614,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[43, 8, 1]",
+    "support_id": 30043
   },
   {
     "type": "support",
@@ -24232,7 +23828,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[From the Ground Up]",
+    "support_id": 30052
   },
   {
     "type": "support",
@@ -24333,7 +23931,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Daring to Dream]",
+    "support_id": 30054
   },
   {
     "type": "support",
@@ -24439,123 +24039,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Seiun Sky",
-    "rarity": "SSR",
-    "attribute": "WIT",
-    "choice_events": [
-      {
-        "name": "Recruiting Cat Catchers",
-        "options": {
-          "1": [
-            {
-              "energy": 10,
-              "wit": 5,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "energy": -10,
-              "speed": 15,
-              "stamina": 5,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "Recruiting Advisors",
-        "options": {
-          "1": [
-            {
-              "wit": 15,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "bond": 5,
-              "hints": [
-                "Keeping the Lead"
-              ]
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "Sudden Murder Mystery! Part 1",
-        "options": {
-          "1": [
-            {
-              "wit": 5,
-              "skill_pts": 20,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "energy": 15,
-              "bond": 5
-            }
-          ]
-        },
-        "chain_step": 1,
-        "default_preference": 2
-      },
-      {
-        "name": "Sudden Murder Mystery! Part 2",
-        "options": {
-          "1": [
-            {
-              "wit": 10,
-              "bond": 5,
-              "hints": [
-                "Frenzied Pace Chasers"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "energy": 10,
-              "skill_pts": 10,
-              "bond": 5
-            }
-          ]
-        },
-        "chain_step": 2,
-        "default_preference": 2
-      },
-      {
-        "name": "Sudden Murder Mystery! Part 3",
-        "options": {
-          "1": [
-            {
-              "wit": 25,
-              "bond": 10,
-              "hints": [
-                "Vanguard Spirit",
-                "Vanguard Spirit (+2)"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "energy": 10,
-              "stamina": 10,
-              "skill_pts": 15
-            }
-          ]
-        },
-        "chain_step": 3,
-        "default_preference": 2
-      }
-    ]
+    ],
+    "title": "[Hands Up, Crook!]",
+    "support_id": 30053
   },
   {
     "type": "support",
@@ -24655,104 +24141,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Twin Turbo",
-    "rarity": "SSR",
-    "attribute": "GUTS",
-    "choice_events": [
-      {
-        "name": "思い込んだら一直線！",
-        "options": {
-          "1": [
-            {
-              "speed": 20,
-              "mood": -1
-            }
-          ],
-          "2": [
-            {
-              "energy": -10,
-              "power": 20,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "燃えてきた！！",
-        "options": {
-          "1": [
-            {
-              "energy": 15,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "bond": 5,
-              "hints": [
-                "Skill ID: 200532"
-              ]
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "『せんでん』始動！！",
-        "options": {
-          "1": [
-            {
-              "energy": -5,
-              "guts": 15,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "energy": 20,
-              "bond": -5
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "『せんでん』全開！！",
-        "options": {
-          "1": [
-            {
-              "energy": -10,
-              "speed": 7,
-              "power": 7,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "『せんでん』最高！！",
-        "options": {
-          "1": [
-            {
-              "energy": -20,
-              "guts": 25,
-              "bond": 10,
-              "hints": [
-                "Skill ID: 200721 (+3)",
-                "Skill ID: 200722 (+3)"
-              ]
-            }
-          ]
-        },
-        "default_preference": 1
-      }
-    ]
+    ],
+    "title": "[Regal Racers]",
+    "support_id": 30058
   },
   {
     "type": "support",
@@ -24847,7 +24238,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Our Resounding Steps]",
+    "support_id": 30061
   },
   {
     "type": "support",
@@ -24947,104 +24340,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Tamamo Cross",
-    "rarity": "SSR",
-    "attribute": "PWR",
-    "choice_events": [
-      {
-        "name": "タマモ先輩の学園案内",
-        "options": {
-          "1": [
-            {
-              "wit": 10,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "stamina": 5,
-              "guts": 5,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "負けられん戦い！",
-        "options": {
-          "1": [
-            {
-              "bond": 5,
-              "hints": [
-                "Skill ID: 200482"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "stamina": 5,
-              "wit": 5,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "ミイラハント～笑劇を打破せよ！～",
-        "options": {
-          "1": [
-            {
-              "power": 10,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "energy": 20,
-              "speed": 10,
-              "hints": [
-                "Skill ID: 200162"
-              ]
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "ミイラハント～目覚めよ狩人！～",
-        "options": {
-          "1": [
-            {
-              "speed": 10,
-              "power": 10
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "ミイラハント～最恐スイート・マミー～",
-        "options": {
-          "1": [
-            {
-              "speed": 20,
-              "power": 20,
-              "hints": [
-                "Skill ID: 201411",
-                "Skill ID: 201411 (+3)"
-              ]
-            }
-          ]
-        },
-        "default_preference": 1
-      }
-    ]
+    ],
+    "title": "[Fugue of Fortune]",
+    "support_id": 30059
   },
   {
     "type": "support",
@@ -25151,105 +24449,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Mihono Bourbon",
-    "rarity": "SSR",
-    "attribute": "WIT",
-    "choice_events": [
-      {
-        "name": "他人に危害を及ぼしてはならない",
-        "options": {
-          "1": [
-            {
-              "energy": -10,
-              "stamina": 5,
-              "power": 15,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "energy": 10,
-              "wit": 5,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "命令は守らなければならない",
-        "options": {
-          "1": [
-            {
-              "bond": 5,
-              "hints": [
-                "Skill ID: 200432"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "speed": 10,
-              "skill_pts": 15,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "ステータス『つまらない？』",
-        "options": {
-          "1": [
-            {
-              "speed": 10,
-              "bond": 5,
-              "hints": [
-                "Skill ID: 201282"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "wit": 15,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "ステータス『そのまま』",
-        "options": {
-          "1": [
-            {
-              "stamina": 5,
-              "wit": 10
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "ステータス『楽しい！』",
-        "options": {
-          "1": [
-            {
-              "stamina": 5,
-              "wit": 10,
-              "hints": [
-                "Skill ID: 200531"
-              ]
-            }
-          ]
-        },
-        "default_preference": 1
-      }
-    ]
+    ],
+    "title": "[Magical Heroine]",
+    "support_id": 30065
   },
   {
     "type": "support",
@@ -25575,7 +24777,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Esteemed and Adored]",
+    "support_id": 30067
   },
   {
     "type": "support",
@@ -25678,7 +24882,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Cutie Pie with Shining Eyes]",
+    "support_id": 30068
   },
   {
     "type": "support",
@@ -25778,7 +24984,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[The Whistling Arrow's Taunt]",
+    "support_id": 30069
   },
   {
     "type": "support",
@@ -25887,7 +25095,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Dancing Light into the Night]",
+    "support_id": 30070
   },
   {
     "type": "support",
@@ -25992,109 +25202,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Narita Taishin",
-    "rarity": "SSR",
-    "attribute": "WIT",
-    "choice_events": [
-      {
-        "name": "別に、ほっといて",
-        "options": {
-          "1": [
-            {
-              "stamina": 5,
-              "skill_pts": 15,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "power": 5,
-              "skill_pts": 15,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "別に、邪魔しないで",
-        "options": {
-          "1": [
-            {
-              "bond": 5,
-              "hints": [
-                "Skill ID: 201212"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "skill_pts": 30,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "タイシンの恩返し",
-        "options": {
-          "1": [
-            {
-              "energy": -5,
-              "stamina": 10,
-              "wit": 10,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "素直トレーニング！",
-        "options": {
-          "1": [
-            {
-              "power": 10,
-              "bond": 5,
-              "hints": [
-                "Skill ID: 201142"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "stamina": 10,
-              "bond": 5,
-              "hints": [
-                "Skill ID: 201202"
-              ]
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "真っ直ぐ届け、この気持ち！",
-        "options": {
-          "1": [
-            {
-              "stamina": 15,
-              "wit": 15,
-              "hints": [
-                "Skill ID: 200621 (+3)",
-                "Skill ID: 200622 (+3)"
-              ]
-            }
-          ]
-        },
-        "default_preference": 1
-      }
-    ]
+    ],
+    "title": "[Make! Some! NOISE!]",
+    "support_id": 30071
   },
   {
     "type": "support",
@@ -26206,7 +25316,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Party Formation]",
+    "support_id": 30072
   },
   {
     "type": "support",
@@ -26306,106 +25418,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Manhattan Cafe",
-    "rarity": "SSR",
-    "attribute": "STA",
-    "choice_events": [
-      {
-        "name": "夜の独走",
-        "options": {
-          "1": [
-            {
-              "stamina": 10,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "energy": 10,
-              "stamina": 5,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "静けさを嗜む",
-        "options": {
-          "1": [
-            {
-              "stamina": 5,
-              "skill_pts": 15,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "bond": 5,
-              "hints": [
-                "Skill ID: 200142"
-              ]
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "ヒカレテ",
-        "options": {
-          "1": [
-            {
-              "stamina": 10,
-              "wit": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "ミツケテ",
-        "options": {
-          "1": [
-            {
-              "stamina": 10,
-              "wit": 10,
-              "bond": 10,
-              "energy": 15,
-              "hints": [
-                "Skill ID: 201182",
-                "Skill ID: 201182"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "energy": 15,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "オイカケテ",
-        "options": {
-          "1": [
-            {
-              "stamina": 15,
-              "bond": 5,
-              "hints": [
-                "Skill ID: 201221"
-              ]
-            }
-          ]
-        },
-        "default_preference": 1
-      }
-    ]
+    ],
+    "title": "[Dazzling Day in the Snow]",
+    "support_id": 30074
   },
   {
     "type": "support",
@@ -26511,7 +25526,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Lucky Star in the Sky]",
+    "support_id": 30077
   },
   {
     "type": "support",
@@ -26977,7 +25994,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Passing the Dream On]",
+    "support_id": 30081
   },
   {
     "type": "support",
@@ -27080,7 +26099,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Leaping into the Unknown]",
+    "support_id": 30079
   },
   {
     "type": "support",
@@ -27258,7 +26279,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[This Might Sting!]",
+    "support_id": 30080
   },
   {
     "type": "support",
@@ -27359,7 +26382,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Little Cupcakes, Big Emotions]",
+    "support_id": 30082
   },
   {
     "type": "support",
@@ -27466,7 +26491,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Super! Sonic! Flower Power!]",
+    "support_id": 30083
   },
   {
     "type": "support",
@@ -27564,7 +26591,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[My Way]",
+    "support_id": 30084
   },
   {
     "type": "support",
@@ -27675,7 +26704,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Peachy Silhouette]",
+    "support_id": 30086
   },
   {
     "type": "support",
@@ -27790,197 +26821,9 @@
         "chain_step": 3,
         "default_preference": 2
       }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Mejiro Bright",
-    "rarity": "SSR",
-    "attribute": "STA",
-    "choice_events": [
-      {
-        "name": "のんびり、ゆったり。",
-        "options": {
-          "1": [
-            {
-              "stamina": 15,
-              "guts": 5,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "speed": 15,
-              "power": 5,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "しっかり、じっくり。",
-        "options": {
-          "1": [
-            {
-              "energy": 10,
-              "bond": 5,
-              "hints": [
-                "Skill ID: 200742"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "wit": 20,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "わたくし、捜しますわ～",
-        "options": {
-          "1": [
-            {
-              "mood": 1,
-              "stamina": 10,
-              "bond": 10
-            }
-          ],
-          "2": [
-            {
-              "energy": 10,
-              "wit": 10,
-              "bond": 10
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "わたくし、演じますわ～",
-        "options": {
-          "1": [
-            {
-              "stamina": 15,
-              "hints": [
-                "Skill ID: 202022"
-              ]
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "わたくし、負けませんわ～",
-        "options": {
-          "1": [
-            {
-              "stamina": 15,
-              "bond": 5,
-              "hints": [
-                "Skill ID: 201211"
-              ]
-            }
-          ]
-        },
-        "default_preference": 1
-      }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Satono Diamond",
-    "rarity": "SSR",
-    "attribute": "WIT",
-    "choice_events": [
-      {
-        "name": "新しいもの、大好きです！",
-        "options": {
-          "1": [
-            {
-              "guts": 10,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "energy": -10,
-              "stamina": 20,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "難しいこと、大好きです！",
-        "options": {
-          "1": [
-            {
-              "stamina": 5,
-              "guts": 10,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "bond": 5,
-              "hints": [
-                "Skill ID: 200851"
-              ]
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "見えない献身",
-        "options": {
-          "1": [
-            {
-              "wit": 10,
-              "bond": 5,
-              "hints": [
-                "Skill ID: 201631"
-              ]
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "言葉では足りない",
-        "options": {
-          "1": [
-            {
-              "speed": 10,
-              "wit": 10,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "みんなとみる夢",
-        "options": {
-          "1": [
-            {
-              "wit": 40,
-              "bond": 10,
-              "hints": [
-                "Skill ID: 201692 (+3)",
-                "Skill ID: 201691 (+3)"
-              ]
-            }
-          ]
-        },
-        "default_preference": 1
-      }
-    ]
+    ],
+    "title": "[A Fan's Joy]",
+    "support_id": 30085
   },
   {
     "type": "support",
@@ -28082,7 +26925,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[A MORE MARVELOUS WORLD! ☆]",
+    "support_id": 30089
   },
   {
     "type": "support",
@@ -28185,7 +27030,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Enchaînement]",
+    "support_id": 30090
   },
   {
     "type": "support",
@@ -28289,7 +27136,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Escorte Étoile]",
+    "support_id": 30091
   },
   {
     "type": "support",
@@ -28393,7 +27242,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Mag!c Number]",
+    "support_id": 30092
   },
   {
     "type": "support",
@@ -28499,115 +27350,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Seeking the Pearl",
-    "rarity": "SSR",
-    "attribute": "SPD",
-    "choice_events": [
-      {
-        "name": "全力でパッション！",
-        "options": {
-          "1": [
-            {
-              "energy": 10,
-              "mood": 1,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "power": 5,
-              "guts": 5,
-              "bond": 5,
-              "hints": [
-                "Skill ID: 202992"
-              ]
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "全力でシンキング！",
-        "options": {
-          "1": [
-            {
-              "wit": 20,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "energy": -10,
-              "bond": 5,
-              "hints": [
-                "Skill ID: 201591 (+3)"
-              ]
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "It will be fine",
-        "options": {
-          "1": [
-            {
-              "speed": 10,
-              "wit": 10,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "Re:START！",
-        "options": {
-          "1": [
-            {
-              "energy": 10,
-              "wit": 10,
-              "bond": 5,
-              "hints": [
-                "Skill ID: 200702 (+2)"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "power": 20,
-              "skill_pts": 10,
-              "bond": 5,
-              "hints": [
-                "Skill ID: 202042 (+2)"
-              ]
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "You are Me",
-        "options": {
-          "1": [
-            {
-              "speed": 14,
-              "guts": 7,
-              "wit": 7,
-              "bond": 5,
-              "hints": [
-                "Skill ID: 202121"
-              ]
-            }
-          ]
-        },
-        "default_preference": 1
-      }
-    ]
+    ],
+    "title": "[Make These Feelings Reach You!]",
+    "support_id": 30094
   },
   {
     "type": "support",
@@ -28710,7 +27455,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Dear Mr. C.B.]",
+    "support_id": 30097
   },
   {
     "type": "support",
@@ -28801,101 +27548,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Haru Urara",
-    "rarity": "SSR",
-    "attribute": "PWR",
-    "choice_events": [
-      {
-        "name": "うららん☆テスト勉強",
-        "options": {
-          "1": [
-            {
-              "energy": 10,
-              "wit": 5,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "mood": 1,
-              "wit": 5,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "うららん☆ふくへーダッシュ！",
-        "options": {
-          "1": [
-            {
-              "bond": 5,
-              "hints": [
-                "Skill ID: 200302"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "mood": 1,
-              "energy": 10,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "素敵なけっこんしき？",
-        "options": {
-          "1": [
-            {
-              "energy": 30,
-              "bond": 10
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "こんせぷと、きーまり！",
-        "options": {
-          "1": [
-            {
-              "energy": 25,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "mood": 2,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "ワクワク、ふぉーゆー！",
-        "options": {
-          "1": [
-            {
-              "energy": 50,
-              "bond": 5,
-              "hints": [
-                "Skill ID: 201401"
-              ]
-            }
-          ]
-        },
-        "default_preference": 1
-      }
-    ]
+    ],
+    "title": "[Go Go☆Princess!]",
+    "support_id": 30096
   },
   {
     "type": "support",
@@ -28993,7 +27648,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Beloved Orchid Bouquet]",
+    "support_id": 30099
   },
   {
     "type": "support",
@@ -29093,7 +27750,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Day I Dreamed Of]",
+    "support_id": 30100
   },
   {
     "type": "support",
@@ -29200,7 +27859,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Q≠0]",
+    "support_id": 30101
   },
   {
     "type": "support",
@@ -29302,7 +27963,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Twinkle in Your Eyes ∞]",
+    "support_id": 30102
   },
   {
     "type": "support",
@@ -29403,7 +28066,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Machitan☆Adventure]",
+    "support_id": 30103
   },
   {
     "type": "support",
@@ -29502,7 +28167,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[\"Rhodonite and the Dreamstone\"]",
+    "support_id": 30104
   },
   {
     "type": "support",
@@ -29610,100 +28277,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Maruzensky",
-    "rarity": "SSR",
-    "attribute": "SPD",
-    "choice_events": [
-      {
-        "name": "可愛い後輩ちゃんのためだもの",
-        "options": {
-          "1": [
-            {
-              "bond": 5,
-              "hints": [
-                "Skill ID: 200532"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "energy": 5,
-              "speed": 10,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "マブいドライブだっちゅ～の",
-        "options": {
-          "1": [
-            {
-              "speed": 5,
-              "mood": 1,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "wit": 5,
-              "mood": 1,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "渚のリゾート Romanticに恋して",
-        "options": {
-          "1": [
-            {
-              "speed": 25,
-              "wit": 5,
-              "bond": 15
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "思い出のときめき 今も My Heartに",
-        "options": {
-          "1": [
-            {
-              "speed": 25,
-              "power": 5,
-              "bond": 15,
-              "hints": [
-                "Skill ID: 200432"
-              ]
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "ずっと Zutto 輝いて Forever",
-        "options": {
-          "1": [
-            {
-              "speed": 30,
-              "wit": 10,
-              "hints": [
-                "Skill ID: 201271"
-              ]
-            }
-          ]
-        },
-        "default_preference": 1
-      }
-    ]
+    ],
+    "title": "[Tailwind to My Goals]",
+    "support_id": 30106
   },
   {
     "type": "support",
@@ -29851,104 +28427,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Nakayama Festa",
-    "rarity": "SSR",
-    "attribute": "WIT",
-    "choice_events": [
-      {
-        "name": "夕暮れにひと勝負",
-        "options": {
-          "1": [
-            {
-              "energy": 15,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "guts": 15,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "夕暮れの独り飯",
-        "options": {
-          "1": [
-            {
-              "bond": 5,
-              "hints": [
-                "Skill ID: 200042"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "bond": 5,
-              "hints": [
-                "Skill ID: 200052"
-              ]
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "揺るぎなき眼",
-        "options": {
-          "1": [
-            {
-              "wit": 10,
-              "skill_pts": 20,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "炎は冷たい背の内に",
-        "options": {
-          "1": [
-            {
-              "bond": 10
-            }
-          ],
-          "2": [
-            {
-              "bond": 10
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "デスパレートに輝いて",
-        "options": {
-          "1": [
-            {
-              "speed": 30,
-              "stamina": 20,
-              "wit": 30,
-              "skill_pts": 60,
-              "bond": 10,
-              "hints": [
-                "Skill ID: 202031 (+3)",
-                "Skill ID: 202031",
-                "Skill ID: 202032"
-              ]
-            }
-          ]
-        },
-        "default_preference": 1
-      }
-    ]
+    ],
+    "title": "[It's on the House]",
+    "support_id": 30110
   },
   {
     "type": "support",
@@ -30042,7 +28523,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[A Good Heart Blossoms to Its Fullest]",
+    "support_id": 30109
   },
   {
     "type": "support",
@@ -30204,7 +28687,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Constellation of Stars]",
+    "support_id": 30060
   },
   {
     "type": "support",
@@ -30312,7 +28797,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Teio-Oo-Oo!!!]",
+    "support_id": 30111
   },
   {
     "type": "support",
@@ -30413,7 +28900,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Uchronia Architect]",
+    "support_id": 30113
   },
   {
     "type": "support",
@@ -30515,7 +29004,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Ah, Such Majesty]",
+    "support_id": 30114
   },
   {
     "type": "support",
@@ -30618,7 +29109,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Moonlit Devil ♪]",
+    "support_id": 30115
   },
   {
     "type": "support",
@@ -30716,7 +29209,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Sunlit Angel ♪]",
+    "support_id": 30116
   },
   {
     "type": "support",
@@ -30811,7 +29306,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Onwards, Demon Queen Lackeys!]",
+    "support_id": 30117
   },
   {
     "type": "support",
@@ -30913,7 +29410,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[A Win Foreshadowed]",
+    "support_id": 30118
   },
   {
     "type": "support",
@@ -31008,7 +29507,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Hopeful Petals Dancing in the Night]",
+    "support_id": 30119
   },
   {
     "type": "support",
@@ -31111,7 +29612,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[U & Me]",
+    "support_id": 30121
   },
   {
     "type": "support",
@@ -31214,108 +29717,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Eishin Flash",
-    "rarity": "SSR",
-    "attribute": "SPD",
-    "choice_events": [
-      {
-        "name": "想定外のお昼",
-        "options": {
-          "1": [
-            {
-              "energy": 15,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "speed": 5,
-              "guts": 5,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "想定外への対応",
-        "options": {
-          "1": [
-            {
-              "guts": 10,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "bond": 5,
-              "hints": [
-                "Skill ID: 200292"
-              ]
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "汝、ギャルの守護者たるべし",
-        "options": {
-          "1": [
-            {
-              "energy": 10,
-              "skill_pts": 10,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "汝、ウマドルとなりて盛り上げるべし",
-        "options": {
-          "1": [
-            {
-              "speed": 15,
-              "wit": 10,
-              "bond": 5,
-              "hints": [
-                "Skill ID: 200592"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "energy": 40,
-              "power": 15,
-              "bond": 10
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "汝、苫小牧を愛す友を愛すべし",
-        "options": {
-          "1": [
-            {
-              "energy": 30,
-              "speed": 15,
-              "skill_pts": 15,
-              "bond": 10,
-              "hints": [
-                "Skill ID: 201383",
-                "Skill ID: 201383 (+3)"
-              ]
-            }
-          ]
-        },
-        "default_preference": 1
-      }
-    ]
+    ],
+    "title": "[Pious Flame, Heavens Scorcher]",
+    "support_id": 30120
   },
   {
     "type": "support",
@@ -31419,7 +29823,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Glad Tidings]",
+    "support_id": 30123
   },
   {
     "type": "support",
@@ -31522,7 +29928,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Are You Merry?]",
+    "support_id": 30124
   },
   {
     "type": "support",
@@ -31617,7 +30025,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Don't Stop Anymore!]",
+    "support_id": 30125
   },
   {
     "type": "support",
@@ -31721,7 +30131,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[To Winds Untraveled]",
+    "support_id": 30126
   },
   {
     "type": "support",
@@ -31827,7 +30239,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Outrunning Misfortune]",
+    "support_id": 30127
   },
   {
     "type": "support",
@@ -31928,7 +30342,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Capricious Excellence]",
+    "support_id": 30128
   },
   {
     "type": "support",
@@ -32029,7 +30445,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[From Icy Blues to Verdant Hues]",
+    "support_id": 30129
   },
   {
     "type": "support",
@@ -32134,7 +30552,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[To You]",
+    "support_id": 30130
   },
   {
     "type": "support",
@@ -32237,7 +30657,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Transform! Garçon Form!]",
+    "support_id": 30132
   },
   {
     "type": "support",
@@ -32347,7 +30769,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Marvelous☆Chocolate Show]",
+    "support_id": 30131
   },
   {
     "type": "support",
@@ -32449,7 +30873,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Fondente Smile]",
+    "support_id": 30133
   },
   {
     "type": "support",
@@ -32562,7 +30988,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Radiant]",
+    "support_id": 30134
   },
   {
     "type": "support",
@@ -32663,7 +31091,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Unyielding Resolve]",
+    "support_id": 30136
   },
   {
     "type": "support",
@@ -32762,7 +31192,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Hold Aloft the Blazing Torch]",
+    "support_id": 30135
   },
   {
     "type": "support",
@@ -33117,7 +31549,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Chasing Eternal Glory]",
+    "support_id": 30137
   },
   {
     "type": "support",
@@ -33224,332 +31658,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Mihono Bourbon",
-    "rarity": "SSR",
-    "attribute": "WIT",
-    "choice_events": [
-      {
-        "name": "Do No Harm",
-        "options": {
-          "1": [
-            {
-              "energy": -10,
-              "stamina": 5,
-              "power": 15,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "energy": 10,
-              "wit": 5,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "Orders Must Be Followed",
-        "options": {
-          "1": [
-            {
-              "bond": 5,
-              "hints": [
-                "Focus"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "speed": 10,
-              "skill_pts": 15,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "ミッション『雷特訓』",
-        "options": {
-          "1": [
-            {
-              "wit": 15,
-              "bond": 15,
-              "hints": [
-                "Front Runner Savvy ○ (+3)",
-                "Front Runner Savvy ○"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "energy": 10,
-              "bond": 5
-            }
-          ]
-        },
-        "chain_step": 1,
-        "default_preference": 1
-      },
-      {
-        "name": "ミッション『友を応援』",
-        "options": {
-          "1": [
-            {
-              "speed": 10,
-              "power": 10,
-              "wit": 10,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "energy": 20,
-              "bond": 5
-            }
-          ]
-        },
-        "chain_step": 2,
-        "default_preference": 2
-      },
-      {
-        "name": "緊急ミッション『エネルギー注入』",
-        "options": {
-          "1": [
-            {
-              "energy": 10,
-              "wit": 10,
-              "skill_pts": 10,
-              "bond": 5,
-              "hints": [
-                "Skill ID: 201602"
-              ]
-            }
-          ]
-        },
-        "chain_step": 3,
-        "default_preference": 1
-      },
-      {
-        "name": "Status—Boring?",
-        "options": {
-          "1": [
-            {
-              "speed": 10,
-              "bond": 5,
-              "hints": [
-                "Moxie"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "wit": 15,
-              "bond": 5
-            }
-          ]
-        },
-        "chain_step": 1,
-        "default_preference": 1
-      },
-      {
-        "name": "Status—As I Am",
-        "options": {
-          "1": [
-            {
-              "stamina": 5,
-              "wit": 10
-            }
-          ]
-        },
-        "chain_step": 2,
-        "default_preference": 1
-      },
-      {
-        "name": "Status—Fun!",
-        "options": {
-          "1": [
-            {
-              "stamina": 5,
-              "wit": 10,
-              "hints": [
-                "Taking the Lead"
-              ]
-            }
-          ]
-        },
-        "chain_step": 3,
-        "default_preference": 1
-      }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Sakura Laurel",
-    "rarity": "SSR",
-    "attribute": "STA",
-    "choice_events": [
-      {
-        "name": "いつだって前向きに！",
-        "options": {
-          "1": [
-            {
-              "stamina": 15,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "mood": 2,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "なんだって前向きに！",
-        "options": {
-          "1": [
-            {
-              "energy": 10,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "bond": 5,
-              "hints": [
-                "Subdued Pace Chasers"
-              ]
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "みんなはひとりのために！",
-        "options": {
-          "1": [
-            {
-              "stamina": 15,
-              "bond": 15,
-              "hints": [
-                "Skill ID: 202612 (+2)",
-                "Skill ID: 202612"
-              ]
-            }
-          ]
-        },
-        "chain_step": 1,
-        "default_preference": 1
-      },
-      {
-        "name": "いつかの桜餅の味は",
-        "options": {
-          "1": [
-            {
-              "stamina": 10,
-              "power": 10,
-              "guts": 10,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "speed": 15,
-              "wit": 15,
-              "bond": 5
-            }
-          ],
-          "3": [
-            {
-              "energy": 20,
-              "mood": 1,
-              "bond": 5
-            }
-          ]
-        },
-        "chain_step": 2,
-        "default_preference": 3
-      },
-      {
-        "name": "ひとりはみんなのために！",
-        "options": {
-          "1": [
-            {
-              "stamina": 30,
-              "skill_pts": 15,
-              "bond": 10,
-              "hints": [
-                "On Your Left! (+3)",
-                "On Your Left!"
-              ]
-            }
-          ]
-        },
-        "chain_step": 3,
-        "default_preference": 1
-      },
-      {
-        "name": "それって大人でマーベラスだね",
-        "options": {
-          "1": [
-            {
-              "stamina": 5,
-              "guts": 5,
-              "bond": 5
-            }
-          ]
-        },
-        "chain_step": 1,
-        "default_preference": 1
-      },
-      {
-        "name": "元気のヒケツ、教えてあげる",
-        "options": {
-          "1": [
-            {
-              "stamina": 10,
-              "guts": 5,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "bond": 5,
-              "hints": [
-                "Skill ID: 201692 (+2)"
-              ]
-            }
-          ]
-        },
-        "chain_step": 2,
-        "default_preference": 2
-      },
-      {
-        "name": "閉じ込められちゃった、ね？",
-        "options": {
-          "1": [
-            {
-              "stamina": 10,
-              "bond": 5,
-              "hints": [
-                "Skill ID: 202121"
-              ]
-            }
-          ]
-        },
-        "chain_step": 3,
-        "default_preference": 1
-      }
-    ]
+    ],
+    "title": "[Don't Close Your Eyes Now]",
+    "support_id": 30138
   },
   {
     "type": "support",
@@ -33641,7 +31752,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Welcome to Umayuru]",
+    "support_id": 30145
   },
   {
     "type": "support",
@@ -33741,7 +31854,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[The View at Journey's End]",
+    "support_id": 30143
   },
   {
     "type": "support",
@@ -33845,7 +31960,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[The Frontier]",
+    "support_id": 30147
   },
   {
     "type": "support",
@@ -33951,7 +32068,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Run Forth! Dash On! Ever Forward!]",
+    "support_id": 30146
   },
   {
     "type": "support",
@@ -34054,7 +32173,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Something Blue]",
+    "support_id": 30148
   },
   {
     "type": "support",
@@ -34181,7 +32302,9 @@
         "chain_step": 3,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Haute Couture Memory]",
+    "support_id": 30149
   },
   {
     "type": "support",
@@ -34277,7 +32400,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Heart Ignition!]",
+    "support_id": 30150
   },
   {
     "type": "support",
@@ -34393,7 +32518,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[All'alba vincerò!]",
+    "support_id": 30152
   },
   {
     "type": "support",
@@ -34506,7 +32633,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Gentle Moon]",
+    "support_id": 30153
   },
   {
     "type": "support",
@@ -34607,7 +32736,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Chill Chill Night]",
+    "support_id": 30151
   },
   {
     "type": "support",
@@ -34713,7 +32844,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[As the Seagulls Soar]",
+    "support_id": 30154
   },
   {
     "type": "support",
@@ -34808,7 +32941,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[#Summer #NewMe]",
+    "support_id": 30155
   },
   {
     "type": "support",
@@ -34922,7 +33057,9 @@
         "chain_step": 3,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": "[Lifelong Wonder]",
+    "support_id": 30156
   },
   {
     "type": "support",
@@ -35044,7 +33181,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[The Bubbles We Gaze upon Together]",
+    "support_id": 30157
   },
   {
     "type": "support",
@@ -35150,98 +33289,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Air Groove",
-    "rarity": "SSR",
-    "attribute": "SPD",
-    "choice_events": [
-      {
-        "name": "峻厳にして優渥",
-        "options": {
-          "1": [
-            {
-              "bond": 5,
-              "hints": [
-                "Skill ID: 200502"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "energy": 10,
-              "wit": 10,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "俊敏にして剛腕",
-        "options": {
-          "1": [
-            {
-              "power": 15,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "speed": 10,
-              "stamina": 5,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "想うゆえに届かず",
-        "options": {
-          "1": [
-            {
-              "speed": 10,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "想うゆえに進めず",
-        "options": {
-          "1": [
-            {
-              "speed": 10,
-              "bond": 5,
-              "hints": [
-                "Skill ID: 200372"
-              ]
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "想うゆえに離れず",
-        "options": {
-          "1": [
-            {
-              "energy": -5,
-              "speed": 15,
-              "bond": 5,
-              "hints": [
-                "Skill ID: 200581"
-              ]
-            }
-          ]
-        },
-        "default_preference": 1
-      }
-    ]
+    ],
+    "title": "[Summer Splash]",
+    "support_id": 30158
   },
   {
     "type": "support",
@@ -35360,7 +33410,9 @@
         "chain_step": 3,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30161
   },
   {
     "type": "support",
@@ -35568,7 +33620,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30160
   },
   {
     "type": "support",
@@ -35665,7 +33719,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30162
   },
   {
     "type": "support",
@@ -35816,7 +33872,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30163
   },
   {
     "type": "support",
@@ -35932,7 +33990,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30164
   },
   {
     "type": "support",
@@ -36041,7 +34101,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30165
   },
   {
     "type": "support",
@@ -36147,7 +34209,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30166
   },
   {
     "type": "support",
@@ -36245,7 +34309,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30167
   },
   {
     "type": "support",
@@ -36388,7 +34454,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30171
   },
   {
     "type": "support",
@@ -36501,117 +34569,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "King Halo",
-    "rarity": "SSR",
-    "attribute": "GUTS",
-    "choice_events": [
-      {
-        "name": "付き合う権利をあげる！",
-        "options": {
-          "1": [
-            {
-              "energy": -20,
-              "speed": 10,
-              "power": 10,
-              "wit": 5,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "mood": -1,
-              "guts": 25,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "助言する権利をあげる！",
-        "options": {
-          "1": [
-            {
-              "guts": 10,
-              "wit": 5,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "bond": 5,
-              "hints": [
-                "Skill ID: 200512"
-              ]
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "キングの流儀／クッキング編",
-        "options": {
-          "1": [
-            {
-              "energy": 10,
-              "skill_pts": 15,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "キングの流儀／ドレスアップ編",
-        "options": {
-          "1": [
-            {
-              "speed": 15,
-              "power": 15,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "energy": 10,
-              "guts": 10,
-              "skill_pts": 10,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "キングの流儀／相伝編",
-        "options": {
-          "1": [
-            {
-              "speed": 15,
-              "power": 15,
-              "bond": 5,
-              "hints": [
-                "Skill ID: 202541"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "energy": 15,
-              "guts": 15,
-              "hints": [
-                "Skill ID: 202751"
-              ]
-            }
-          ]
-        },
-        "default_preference": 2
-      }
-    ]
+    ],
+    "title": null,
+    "support_id": 30169
   },
   {
     "type": "support",
@@ -36717,7 +34677,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30172
   },
   {
     "type": "support",
@@ -36831,7 +34793,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30173
   },
   {
     "type": "support",
@@ -36944,7 +34908,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30174
   },
   {
     "type": "support",
@@ -37040,7 +35006,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30175
   },
   {
     "type": "support",
@@ -37194,7 +35162,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30179
   },
   {
     "type": "support",
@@ -37304,7 +35274,9 @@
         "chain_step": 3,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30177
   },
   {
     "type": "support",
@@ -37406,7 +35378,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30178
   },
   {
     "type": "support",
@@ -37692,7 +35666,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30180
   },
   {
     "type": "support",
@@ -37788,7 +35764,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30181
   },
   {
     "type": "support",
@@ -37897,7 +35875,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30182
   },
   {
     "type": "support",
@@ -37985,7 +35965,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30185
   },
   {
     "type": "support",
@@ -38092,7 +36074,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30187
   },
   {
     "type": "support",
@@ -38191,7 +36175,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30186
   },
   {
     "type": "support",
@@ -38365,7 +36351,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30188
   },
   {
     "type": "support",
@@ -38459,7 +36447,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30189
   },
   {
     "type": "support",
@@ -38545,7 +36535,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30190
   },
   {
     "type": "support",
@@ -38643,7 +36635,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30191
   },
   {
     "type": "support",
@@ -38735,7 +36729,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30192
   },
   {
     "type": "support",
@@ -38832,7 +36828,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30193
   },
   {
     "type": "support",
@@ -38929,7 +36927,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30194
   },
   {
     "type": "support",
@@ -39042,7 +37042,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30195
   },
   {
     "type": "support",
@@ -39138,7 +37140,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30196
   },
   {
     "type": "support",
@@ -39310,7 +37314,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30201
   },
   {
     "type": "support",
@@ -39420,7 +37426,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30198
   },
   {
     "type": "support",
@@ -39529,7 +37537,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30199
   },
   {
     "type": "support",
@@ -39627,153 +37637,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Vivlos",
-    "rarity": "SSR",
-    "attribute": "SPD",
-    "choice_events": [
-      {
-        "name": "いつの間にかあまーい時間♪",
-        "options": {
-          "1": [
-            {
-              "energy": -5,
-              "power": 25,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "guts": 15,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "いつの日にかキラキラセレブ♪",
-        "options": {
-          "1": [
-            {
-              "bond": 5,
-              "hints": [
-                "Late Surger Straightaways ○"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "power": 10,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "ヴィブ・ラ・フランス♪",
-        "options": {
-          "1": [
-            {
-              "energy": 10,
-              "speed": 5,
-              "power": 5,
-              "bond": 10
-            }
-          ]
-        },
-        "chain_step": 1,
-        "default_preference": 1
-      },
-      {
-        "name": "スキップを止めないで",
-        "options": {
-          "1": [
-            {
-              "energy": 10,
-              "speed": 5,
-              "power": 5,
-              "bond": 10,
-              "hints": [
-                "Tail Held High (+3)"
-              ]
-            }
-          ]
-        },
-        "chain_step": 2,
-        "default_preference": 1
-      },
-      {
-        "name": "夢見る私の手を取って",
-        "options": {
-          "1": [
-            {
-              "energy": 10,
-              "speed": 15,
-              "power": 15,
-              "bond": 10,
-              "hints": [
-                "Skill ID: 201612 (+3)"
-              ]
-            }
-          ]
-        },
-        "chain_step": 3,
-        "default_preference": 1
-      },
-      {
-        "name": "お姉ちゃんにもご褒美を",
-        "options": {
-          "1": [
-            {
-              "speed": 10,
-              "bond": 5
-            }
-          ]
-        },
-        "chain_step": 1,
-        "default_preference": 1
-      },
-      {
-        "name": "この気持ち、受け取って？",
-        "options": {
-          "1": [
-            {
-              "speed": 10,
-              "bond": 5
-            }
-          ]
-        },
-        "chain_step": 2,
-        "default_preference": 1
-      },
-      {
-        "name": "言わなくても伝わっちゃうの♪",
-        "options": {
-          "1": [
-            {
-              "speed": 15,
-              "bond": 5,
-              "hints": [
-                "Relax"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "skill_pts": 25,
-              "bond": 5
-            }
-          ]
-        },
-        "chain_step": 3,
-        "default_preference": 1
-      }
-    ]
+    ],
+    "title": null,
+    "support_id": 30200
   },
   {
     "type": "support",
@@ -39880,7 +37746,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30202
   },
   {
     "type": "support",
@@ -39978,7 +37846,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30203
   },
   {
     "type": "support",
@@ -40075,7 +37945,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30205
   },
   {
     "type": "support",
@@ -40182,7 +38054,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30204
   },
   {
     "type": "support",
@@ -40383,7 +38257,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30207
   },
   {
     "type": "support",
@@ -40491,7 +38367,9 @@
         "chain_step": 3,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30208
   },
   {
     "type": "support",
@@ -40607,7 +38485,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30209
   },
   {
     "type": "support",
@@ -40725,7 +38605,9 @@
         "chain_step": 3,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30211
   },
   {
     "type": "support",
@@ -40826,7 +38708,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30210
   },
   {
     "type": "support",
@@ -40923,7 +38807,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30212
   },
   {
     "type": "support",
@@ -41030,7 +38916,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30214
   },
   {
     "type": "support",
@@ -41153,7 +39041,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30215
   },
   {
     "type": "support",
@@ -41245,7 +39135,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30217
   },
   {
     "type": "support",
@@ -41338,7 +39230,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30216
   },
   {
     "type": "support",
@@ -41448,121 +39342,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Fuji Kiseki",
-    "rarity": "SSR",
-    "attribute": "GUTS",
-    "choice_events": [
-      {
-        "name": "スライハンド",
-        "options": {
-          "1": [
-            {
-              "wit": 5,
-              "skill_pts": 15,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "power": 5,
-              "skill_pts": 15,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "ミスディレクション",
-        "options": {
-          "1": [
-            {
-              "bond": 5,
-              "hints": [
-                "Skill ID: 200582"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "skill_pts": 30,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "Etude",
-        "options": {
-          "1": [
-            {
-              "guts": 15,
-              "bond": 10
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "Premiere",
-        "options": {
-          "1": [
-            {
-              "energy": 10,
-              "speed": 5,
-              "power": 5,
-              "guts": 5,
-              "bond": 5,
-              "hints": [
-                "Skill ID: 202982 (+2)"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "speed": 5,
-              "power": 5,
-              "guts": 5,
-              "bond": 5,
-              "hints": [
-                "Skill ID: 202981"
-              ]
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "Remake",
-        "options": {
-          "1": [
-            {
-              "speed": 10,
-              "power": 10,
-              "guts": 10,
-              "bond": 5,
-              "hints": [
-                "Skill ID: 202981 (+3)"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "energy": 10,
-              "guts": 10,
-              "skill_pts": 25,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      }
-    ]
+    ],
+    "title": null,
+    "support_id": 30218
   },
   {
     "type": "support",
@@ -41659,7 +39441,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30220
   },
   {
     "type": "support",
@@ -41771,7 +39555,9 @@
         "chain_step": 3,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30222
   },
   {
     "type": "support",
@@ -41871,7 +39657,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30223
   },
   {
     "type": "support",
@@ -41970,7 +39758,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30225
   },
   {
     "type": "support",
@@ -42082,7 +39872,9 @@
         "chain_step": 3,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30226
   },
   {
     "type": "support",
@@ -42204,7 +39996,9 @@
         "chain_step": 3,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30227
   },
   {
     "type": "support",
@@ -42323,7 +40117,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30228
   },
   {
     "type": "support",
@@ -42427,7 +40223,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30229
   },
   {
     "type": "support",
@@ -42546,7 +40344,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30230
   },
   {
     "type": "support",
@@ -42647,7 +40447,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30231
   },
   {
     "type": "support",
@@ -42768,7 +40570,9 @@
         "chain_step": 3,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30232
   },
   {
     "type": "support",
@@ -42907,7 +40711,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30235
   },
   {
     "type": "support",
@@ -43031,7 +40837,9 @@
         "chain_step": 3,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30233
   },
   {
     "type": "support",
@@ -43200,7 +41008,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30236
   },
   {
     "type": "support",
@@ -43310,7 +41120,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30234
   },
   {
     "type": "support",
@@ -43431,7 +41243,9 @@
         "chain_step": 3,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30237
   },
   {
     "type": "support",
@@ -43522,7 +41336,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30238
   },
   {
     "type": "support",
@@ -43618,7 +41434,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30239
   },
   {
     "type": "support",
@@ -43666,7 +41484,9 @@
         },
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30240
   },
   {
     "type": "support",
@@ -43992,7 +41812,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30241
   },
   {
     "type": "support",
@@ -44111,7 +41933,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30244
   },
   {
     "type": "support",
@@ -44230,7 +42054,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30242
   },
   {
     "type": "support",
@@ -44326,7 +42152,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30243
   },
   {
     "type": "support",
@@ -44436,7 +42264,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30246
   },
   {
     "type": "support",
@@ -44533,7 +42363,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30247
   },
   {
     "type": "support",
@@ -44632,7 +42464,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30248
   },
   {
     "type": "support",
@@ -44743,7 +42577,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30249
   },
   {
     "type": "support",
@@ -44847,7 +42683,9 @@
         "chain_step": 3,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30250
   },
   {
     "type": "support",
@@ -44943,7 +42781,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30251
   },
   {
     "type": "support",
@@ -45056,7 +42896,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30252
   },
   {
     "type": "support",
@@ -45157,7 +42999,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30253
   },
   {
     "type": "support",
@@ -45264,7 +43108,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30254
   },
   {
     "type": "support",
@@ -45435,7 +43281,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30256
   },
   {
     "type": "support",
@@ -45524,7 +43372,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30255
   },
   {
     "type": "support",
@@ -45590,7 +43440,9 @@
         "chain_step": 1,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30258
   },
   {
     "type": "support",
@@ -45689,7 +43541,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30259
   },
   {
     "type": "support",
@@ -45885,7 +43739,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30257
   },
   {
     "type": "support",
@@ -45976,7 +43832,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30260
   },
   {
     "type": "support",
@@ -46086,158 +43944,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Duramente",
-    "rarity": "SSR",
-    "attribute": "STA",
-    "choice_events": [
-      {
-        "name": "流すべきこの汗",
-        "options": {
-          "1": [
-            {
-              "speed": 10,
-              "guts": 10,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "energy": 25,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "追うべき背中",
-        "options": {
-          "1": [
-            {
-              "stamina": 15,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "bond": 5,
-              "hints": [
-                "Skill ID: 202602"
-              ]
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "可愛いが最強？",
-        "options": {
-          "1": [
-            {
-              "energy": 5,
-              "stamina": 15,
-              "bond": 5
-            }
-          ]
-        },
-        "chain_step": 1,
-        "default_preference": 1
-      },
-      {
-        "name": "可愛いを実践！",
-        "options": {
-          "1": [
-            {
-              "mood": 1,
-              "energy": 10,
-              "stamina": 15,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "stamina": 20,
-              "skill_pts": 10,
-              "bond": 5
-            }
-          ]
-        },
-        "chain_step": 2,
-        "default_preference": 1
-      },
-      {
-        "name": "可愛いの真の力！",
-        "options": {
-          "1": [
-            {
-              "stamina": 15,
-              "skill_pts": 10,
-              "bond": 5,
-              "hints": [
-                "Skill ID: 202901",
-                "Skill ID: 203751"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "energy": 15,
-              "stamina": 20,
-              "skill_pts": 15,
-              "bond": 5
-            }
-          ]
-        },
-        "chain_step": 3,
-        "default_preference": 2
-      },
-      {
-        "name": "それはいつかのイニーツィオ",
-        "options": {
-          "1": [
-            {
-              "stamina": 10,
-              "bond": 5
-            }
-          ]
-        },
-        "chain_step": 1,
-        "default_preference": 1
-      },
-      {
-        "name": "そして2人はア・ポコ・ア・ポコ",
-        "options": {
-          "1": [
-            {
-              "stamina": 15,
-              "bond": 5
-            }
-          ]
-        },
-        "chain_step": 2,
-        "default_preference": 1
-      },
-      {
-        "name": "リヴァーレだからこそ",
-        "options": {
-          "1": [
-            {
-              "stamina": 15,
-              "bond": 5,
-              "hints": [
-                "Rushing Gale!"
-              ]
-            }
-          ]
-        },
-        "chain_step": 3,
-        "default_preference": 1
-      }
-    ]
+    ],
+    "title": null,
+    "support_id": 30261
   },
   {
     "type": "support",
@@ -46332,7 +44041,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30263
   },
   {
     "type": "support",
@@ -46456,7 +44167,9 @@
         "chain_step": 3,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30264
   },
   {
     "type": "support",
@@ -46560,7 +44273,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30265
   },
   {
     "type": "support",
@@ -46653,7 +44368,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30267
   },
   {
     "type": "support",
@@ -46755,7 +44472,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30266
   },
   {
     "type": "support",
@@ -46924,7 +44643,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Danke Schön]",
+    "support_id": 30122
   },
   {
     "type": "support",
@@ -47046,7 +44767,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30268
   },
   {
     "type": "support",
@@ -47110,7 +44833,9 @@
         "chain_step": 1,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30270
   },
   {
     "type": "support",
@@ -47245,7 +44970,9 @@
         "chain_step": 3,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30219
   },
   {
     "type": "support",
@@ -47351,7 +45078,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30274
   },
   {
     "type": "support",
@@ -47449,7 +45178,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30273
   },
   {
     "type": "support",
@@ -47550,7 +45281,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30269
   },
   {
     "type": "support",
@@ -47730,7 +45463,9 @@
         },
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30276
   },
   {
     "type": "support",
@@ -47834,7 +45569,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30277
   },
   {
     "type": "support",
@@ -47938,7 +45675,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30279
   },
   {
     "type": "support",
@@ -48123,7 +45862,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": "[Seaside Bloom]",
+    "support_id": 30159
   },
   {
     "type": "support",
@@ -48225,7 +45966,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30280
   },
   {
     "type": "support",
@@ -48337,7 +46080,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30281
   },
   {
     "type": "support",
@@ -48506,7 +46251,9 @@
         "chain_step": 3,
         "default_preference": 2
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30170
   },
   {
     "type": "support",
@@ -48623,7 +46370,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30283
   },
   {
     "type": "support",
@@ -48727,7 +46476,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30284
   },
   {
     "type": "support",
@@ -48842,7 +46593,9 @@
         "chain_step": 3,
         "default_preference": 1
       }
-    ]
+    ],
+    "title": null,
+    "support_id": 30287
   },
   {
     "type": "support",
@@ -48891,109 +46644,9 @@
         },
         "default_preference": 2
       }
-    ]
-  },
-  {
-    "type": "support",
-    "name": "Fine Motion",
-    "rarity": "SSR",
-    "attribute": "WIT",
-    "choice_events": [
-      {
-        "name": "Wonderful New Shoes",
-        "options": {
-          "1": [
-            {
-              "speed": 5,
-              "skill_pts": 10,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "energy": -10,
-              "stamina": 5,
-              "skill_pts": 20,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 2
-      },
-      {
-        "name": "Reminiscent Clover",
-        "options": {
-          "1": [
-            {
-              "bond": 5,
-              "hints": [
-                "Corner Adept ○"
-              ]
-            }
-          ],
-          "2": [
-            {
-              "guts": 15,
-              "bond": 5
-            }
-          ]
-        },
-        "default_preference": 1
-      },
-      {
-        "name": "Lovely Training Weather ♪",
-        "options": {
-          "1": [
-            {
-              "wit": 5,
-              "skill_pts": 20,
-              "bond": 5
-            }
-          ],
-          "2": [
-            {
-              "speed": 10,
-              "stamina": 5
-            }
-          ],
-          "3": [
-            {
-              "bond": 5
-            }
-          ]
-        },
-        "chain_step": 1,
-        "default_preference": 1
-      },
-      {
-        "name": "Lovely Concert Weather ♪",
-        "options": {
-          "1": [
-            {
-              "energy": 10,
-              "skill_pts": 10
-            }
-          ]
-        },
-        "chain_step": 2,
-        "default_preference": 1
-      },
-      {
-        "name": "Lovely Racing Weather ♪",
-        "options": {
-          "1": [
-            {
-              "energy": -10,
-              "guts": 5,
-              "wit": "+5/+10",
-              "skill_pts": 15
-            }
-          ]
-        },
-        "chain_step": 3,
-        "default_preference": 1
-      }
-    ]
+    ],
+    "title": null,
+    "support_id": 30288
   },
   {
     "type": "scenario",

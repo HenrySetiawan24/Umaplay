@@ -80,6 +80,17 @@ Thin `waiter.click_when` wrappers, each targeting one lobby button:
 energy from the event catalog, and the active-button classifier, then clicks the
 best *active* row (filtering out completed PAL chains).
 
+**Group (GRP) support cards** (e.g. Team Sirius) add a second step: selecting the
+group card opens a **"Choose Recreation Partner"** screen listing group members.
+`_go_recreate` detects it via OCR of the header (`_is_choose_partner_screen`) and
+`_handle_recreation_partner_screen` picks the **first available** partner —
+skipping greyed rows (active-button classifier) and rows whose OCR reads
+"Event Complete!" or the locked "…to unlock" text. Best-reward selection is not
+possible: the group card's events are a flat, unordered pool with no per-member
+association, so any available member just advances the shared chain. If no member
+is available it cancels out (`_cancel_recreation`) and `_go_recreate` returns
+`False` so the caller falls through to Rest.
+
 ### Race decision logic
 
 - **`_maybe_do_goal_race(img, dets)`** — the critical-goal race trigger. Classifies the

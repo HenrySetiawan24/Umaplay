@@ -209,6 +209,15 @@ def parse_career_date(s: str) -> DateInfo:
     text = re.sub(r"[^\w\s]", " ", text)  # kill punctuation/dashes
     text = re.sub(r"\s+", " ", text).strip()
 
+    # The in-game pre-debut banner reads "Junior Year Pre-Debut": it contains
+    # "junior year" but is really Y0. Detect the pre-debut / final markers on the
+    # full string FIRST, otherwise the year token ("junior year") wins and the
+    # date is mis-parsed as Junior with an unknown month.
+    if "pre debut" in text or "predebut" in text:
+        return DateInfo(raw=raw, year_code=0, month=None, half=None)
+    if "final season" in text or "finale season" in text:
+        return DateInfo(raw=raw, year_code=4, month=None, half=None)
+
     tokens = text.split()
     if text.startswith("car"):
         tokens = tokens[1:]

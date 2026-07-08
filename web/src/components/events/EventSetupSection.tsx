@@ -132,44 +132,34 @@ function SupportPickerDialog({
     return () => clearTimeout(timer)
   }, [q])
 
+  // Search, attribute tab, and rarity filter all compose (AND), so results
+  // are always within the currently selected category — search never leaks
+  // matches from other attributes/rarities in.
   const filtered = useMemo(() => {
     const term = debouncedQ.trim().toLowerCase()
-    const byAttrOut: Record<AttrKey, SupportSet[]> = {
-      SPD: [], STA: [], PWR: [], GUTS: [], WIT: [], PAL: [], GRP: [], None: [],
-    }
-    let all: SupportSet[] = []
+    let list: SupportSet[] = []
 
     const byAttr = index.supports as any
     if (byAttr instanceof Map) {
-      for (const attr of ATTR_ORDER) {
-        const rarMap = byAttr.get(attr)
-        let list: SupportSet[] = []
-        if (rarMap instanceof Map) {
-          for (const arr of rarMap.values()) list = list.concat(arr as SupportSet[])
-          list.sort((a, b) => {
-            const ra = rarityRank(String(a.rarity))
-            const rb = rarityRank(String(b.rarity))
-            if (ra !== rb) return ra - rb
-            return a.name.localeCompare(b.name)
-          })
-        }
-        const filt = term ? list.filter(s => s.name.toLowerCase().includes(term)) : list
-        byAttrOut[attr] = filt
-        if (term) {
-          all = all.concat(filt)
-        }
+      const rarMap = byAttr.get(attrFilter)
+      if (rarMap instanceof Map) {
+        for (const arr of rarMap.values()) list = list.concat(arr as SupportSet[])
       }
     }
     if (term) {
-      all.sort((a, b) => {
-        const ra = rarityRank(String(a.rarity))
-        const rb = rarityRank(String(b.rarity))
-        if (ra !== rb) return ra - rb
-        return a.name.localeCompare(b.name)
-      })
+      list = list.filter((s) => s.name.toLowerCase().includes(term))
     }
-    return { byAttr: byAttrOut, all }
-  }, [index, debouncedQ])
+    if (rarityFilter !== 'all') {
+      list = list.filter((s) => String(s.rarity) === rarityFilter)
+    }
+    list.sort((a, b) => {
+      const ra = rarityRank(String(a.rarity))
+      const rb = rarityRank(String(b.rarity))
+      if (ra !== rb) return ra - rb
+      return a.name.localeCompare(b.name)
+    })
+    return list
+  }, [index, debouncedQ, attrFilter, rarityFilter])
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="md">
       <DialogTitle sx={{ display:'flex', alignItems:'center', gap:1 }}>
@@ -241,14 +231,9 @@ function SupportPickerDialog({
           ))}
         </Stack>
         <Divider sx={{ mb: 2 }} />
-        {/* Visible list for the selected attribute + rarity */}
+        {/* Visible list for the selected attribute + rarity + search */}
         <Stack direction="row" flexWrap="wrap" gap={1.5}>
-          {((q.trim()
-              ? filtered.all
-              : filtered.byAttr[attrFilter]) || []
-            )
-            .filter((s) => rarityFilter === 'all' || String(s.rarity) === rarityFilter)
-            .map((s) => (
+          {filtered.map((s) => (
             <Box
               key={`${s.name}-${s.rarity}-${s.attribute}`}
               sx={{ flexBasis: { xs: 'calc(50% - 12px)', sm: 'calc(33.33% - 12px)', md: 'calc(25% - 12px)' } }}

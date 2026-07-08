@@ -451,7 +451,7 @@ export default function SkillsPicker({ presetId }: { presetId: string }) {
               display: 'flex',
               flexDirection: 'column',
               height: { xs: '100%', md: 'calc(100vh - 200px)' },
-              minHeight: { xs: 0, md: 500 },
+              minHeight: 0,
               flex: 1,
               overflow: 'hidden',
             }}
@@ -552,19 +552,24 @@ export default function SkillsPicker({ presetId }: { presetId: string }) {
                 </Stack>
               </Box>
 
-              {/* Sliding viewport: Browse panel and Selected panel side by side in a 2×-wide track */}
-              <Box sx={{ position: 'relative', flex: 1, overflow: 'hidden' }}>
+              {/* Sliding viewport: Browse panel and Selected panel side by side in a 2×-wide track.
+                  This outer box must itself be a flex container so the track below can size via
+                  flex (`flex: 1`) instead of `height: 100%` -- percentage heights on a plain block
+                  child of a flex-grown parent don't reliably resolve, so the track was silently
+                  falling back to its content's natural height (no clipping, no scroll). */}
+              <Box sx={{ position: 'relative', flex: 1, minHeight: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
                 <Box
                   sx={{
                     display: 'flex',
                     width: '200%',
-                    height: '100%',
+                    flex: '1 1 auto',
+                    minHeight: 0,
                     transform: mode === 'selected' ? 'translateX(-50%)' : 'translateX(0)',
                     transition: 'transform 750ms cubic-bezier(0.4, 0, 0.2, 1)',
                   }}
                 >
                   {/* Panel A: Browse (all skills, category filters, pagination) */}
-                  <Box sx={{ width: '50%', height: '100%', overflow: 'auto', px: 2, pb: 2, display: 'flex', flexDirection: 'column' }}>
+                  <Box sx={{ width: '50%', alignSelf: 'stretch', minHeight: 0, overflow: 'hidden', px: 2, pb: 2, display: 'flex', flexDirection: 'column' }}>
                     <Stack direction="row" spacing={1} flexWrap="wrap">
                   <Tooltip title={`${skills.length} skills total`}>
                     <Chip
@@ -645,7 +650,7 @@ export default function SkillsPicker({ presetId }: { presetId: string }) {
                   )}
                     </Stack>
 
-                    <Box sx={{ flex: 1, overflow: 'auto', mt: 2 }}>
+                    <Box sx={{ flex: 1, minHeight: 0, overflow: 'auto', mt: 2 }}>
                 {filtered.length === 0 ? (
                   <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', p: 4 }}>
                     <Typography variant="body2" color="text.secondary" align="center">
@@ -685,23 +690,25 @@ export default function SkillsPicker({ presetId }: { presetId: string }) {
                   </Box>
 
                   {/* Panel B: Selected (only the picked skills, filtered by the shared search) */}
-                  <Box sx={{ width: '50%', height: '100%', overflow: 'auto', p: 2, display: 'flex', flexDirection: 'column' }}>
+                  <Box sx={{ width: '50%', alignSelf: 'stretch', minHeight: 0, overflow: 'hidden', p: 2, display: 'flex', flexDirection: 'column' }}>
                     <Typography variant="subtitle2" sx={{ mb: 1.5 }}>
                       {preset.skillsToBuy.length} skill{preset.skillsToBuy.length === 1 ? '' : 's'} selected
                     </Typography>
-                    {selectedSkillObjs.length === 0 ? (
-                      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flex: 1, p: 4 }}>
-                        <Typography variant="body2" color="text.secondary" align="center">
-                          {preset.skillsToBuy.length === 0
-                            ? 'No skills selected yet. Switch to Browse to add some.'
-                            : 'No selected skills match your search.'}
-                        </Typography>
-                      </Box>
-                    ) : (
-                      <Grid container spacing={1.5}>
-                        {selectedSkillObjs.map(renderSkillCard)}
-                      </Grid>
-                    )}
+                    <Box sx={{ flex: 1, minHeight: 0, overflow: 'auto' }}>
+                      {selectedSkillObjs.length === 0 ? (
+                        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', p: 4 }}>
+                          <Typography variant="body2" color="text.secondary" align="center">
+                            {preset.skillsToBuy.length === 0
+                              ? 'No skills selected yet. Switch to Browse to add some.'
+                              : 'No selected skills match your search.'}
+                          </Typography>
+                        </Box>
+                      ) : (
+                        <Grid container spacing={1.5}>
+                          {selectedSkillObjs.map(renderSkillCard)}
+                        </Grid>
+                      )}
+                    </Box>
                   </Box>
                 </Box>
               </Box>

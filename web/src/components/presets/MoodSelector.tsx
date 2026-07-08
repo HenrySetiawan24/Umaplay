@@ -9,6 +9,7 @@ import {
 } from '@mui/material'
 import { useConfigStore } from '@/store/configStore'
 import type { MoodName } from '@/models/types'
+import { capHeightImgSx } from '@/utils/imagePaths'
 
 // Optional: drop mood images into src/assets/mood/*.png with these names
 const moodImgs: Partial<Record<MoodName, string>> = {
@@ -18,6 +19,10 @@ const moodImgs: Partial<Record<MoodName, string>> = {
   GOOD: '/mood/good.png',
   GREAT: '/mood/great.png',
 }
+
+// Max height the mood button art scales up to before the browser caps by
+// height and shrinks width to match, preserving aspect ratio.
+const MOOD_IMG_MAX_H = 72
 
 const MOODS: MoodName[] = ['AWFUL', 'BAD', 'NORMAL', 'GOOD', 'GREAT']
 
@@ -46,7 +51,7 @@ export default function MoodSelector({ presetId }: { presetId: string }) {
           alignItems: 'start',
         }}
       >
-        <ToggleButtonGroup exclusive value={preset.minimalMood} onChange={setMood}>
+        <ToggleButtonGroup exclusive value={preset.minimalMood} onChange={setMood} sx={{ width: '100%' }}>
           {MOODS.map((m) => {
             const selected = preset.minimalMood === m
             return (
@@ -54,6 +59,8 @@ export default function MoodSelector({ presetId }: { presetId: string }) {
                 key={m}
                 value={m}
                 sx={{
+                  flex: 1,
+                  minWidth: 0,
                   px: 0.5,
                   display: 'flex',
                   alignItems: 'center',
@@ -63,7 +70,10 @@ export default function MoodSelector({ presetId }: { presetId: string }) {
                 }}
               >
                 {moodImgs[m] ? (
-                  <Box component="img" src={moodImgs[m]} alt={m} sx={{ width: '100%', maxWidth: 80, display: 'block' }} />
+                  // Fills the button's full width, up to MOOD_IMG_MAX_H; past
+                  // that the browser caps by height and shrinks width to
+                  // match, preserving aspect ratio (no cropping/stretching).
+                  <Box component="img" src={moodImgs[m]} alt={m} sx={capHeightImgSx(MOOD_IMG_MAX_H)} />
                 ) : (
                   m
                 )}

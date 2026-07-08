@@ -1,5 +1,25 @@
 export const PLACEHOLDER = `/placeholder_card.png`; // add a neutral image; UI will fallback to this on final error.
 
+/**
+ * Sx for an <img> (or a Box component="img") that fills its container's
+ * width, up to `maxHeight`. Past that, the browser caps by height instead
+ * and scales width down to match (native max-width+max-height letterboxing,
+ * no JS/measurement needed) so a wide container never stretches the image
+ * taller than intended -- aspect ratio is always preserved, image is
+ * centered when narrower than the container.
+ */
+export function capHeightImgSx(maxHeight: number) {
+  return {
+    display: 'block',
+    maxWidth: '100%',
+    maxHeight,
+    width: 'auto',
+    height: 'auto',
+    margin: '0 auto',
+    objectFit: 'contain',
+  } as const
+}
+
 export const supportTypeIcons: Record<string, string> = {
   SPD: '/icons/support_card_type_spd.png',
   STA: '/icons/support_card_type_sta.png',

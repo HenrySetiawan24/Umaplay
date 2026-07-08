@@ -19,6 +19,7 @@ export type RawEventSet = {
   rarity?: Rarity | 'None';
   attribute?: AttrKey;
   id?: string;
+  title?: string | null; // support cards only: bracketed flavor subtitle, e.g. "[Hometown Cheers]"
   choice_events: RawChoiceEvent[];
 };
 
@@ -36,6 +37,7 @@ export type SupportSet = {
   kind: 'support';
   id?: string;
   name: string;
+  title?: string | null;
   attribute: AttrKey;
   rarity: Rarity;
   imgCandidates: string[];

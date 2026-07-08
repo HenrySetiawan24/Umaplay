@@ -15,6 +15,7 @@ import type {
   SupportSet,
   TraineeSet,
   AttrKey,
+  Rarity,
   EventOptionEffect,
   ChoiceEvent,
   RewardCategory,
@@ -108,6 +109,52 @@ const rarityRank = (r: string) =>
 type RarityKey = 'SSR' | 'SR' | 'R'
 const RARITY_ORDER: RarityKey[] = ['SSR', 'SR', 'R']
 
+// Runtime: index.supports is Map<AttrKey, Map<Rarity, SupportSet[]>>. Resolve
+// the full catalog entry (with title) for a lightweight SelectedSupport.
+function findSupportSet(
+  index: EventsIndex,
+  sel: { name: string; attribute: AttrKey; rarity: Rarity } | null | undefined
+): SupportSet | undefined {
+  if (!sel) return undefined
+  const byAttr = index.supports as any
+  if (!(byAttr instanceof Map)) return undefined
+  const rarMap = byAttr.get(sel.attribute)
+  if (!(rarMap instanceof Map)) return undefined
+  const exactArr = rarMap.get(sel.rarity) as SupportSet[] | undefined
+  const exact = exactArr?.find((s) => s.name === sel.name)
+  if (exact) return exact
+  for (const arr of rarMap.values()) {
+    const found = (arr as SupportSet[]).find((s) => s.name === sel.name)
+    if (found) return found
+  }
+  return undefined
+}
+
+// Rarity badge + uma name + card title (the bracketed flavor subtitle), shared
+// between the picker list and the selected Support Deck tiles.
+function SupportNameBlock({
+  s, align = 'left',
+}: { s: { name: string; rarity?: string; title?: string | null }; align?: 'left' | 'center' }) {
+  const rarityIcon = s.rarity ? supportRarityIcons[String(s.rarity)] : undefined
+  return (
+    <Box sx={{ minWidth: 0, textAlign: align }}>
+      {rarityIcon && (
+        <Box
+          component="img"
+          src={rarityIcon}
+          alt={String(s.rarity)}
+          sx={{ height: 14, display: 'block', mb: 0.25, ...(align === 'center' ? { mx: 'auto' } : {}) }}
+        />
+      )}
+      <Typography variant="body2" noWrap sx={{ fontWeight: 600 }}>{s.name}</Typography>
+      {s.title && (
+        <Typography variant="caption" color="text.secondary" noWrap sx={{ display: 'block', fontStyle: 'italic' }}>
+          {s.title}
+        </Typography>
+      )}
+    </Box>
+  )
+}
 
 // ---- Support picker dialog
 function SupportPickerDialog({
@@ -251,10 +298,7 @@ function SupportPickerDialog({
                         rounded={6}
                       />
                     </Box>
-                    <Box sx={{ minWidth: 0 }}>
-                      <Typography variant="body2" noWrap>{s.name}</Typography>
-                      {/* rarity text removed per design; keep attribute subtle if you want */}
-                    </Box>
+                    <SupportNameBlock s={s} />
                   </Stack>
                 </CardActionArea>
               </Card>
@@ -635,24 +679,9 @@ export default function EventSetupSection({ index }: Props) {
   const openOptionsForSupport = (slot: number) => {
     const sel = supports[slot]
     if (!sel) return
-    // Runtime: index.supports is Map<AttrKey, Map<Rarity, SupportSet[]>>
-    let set: SupportSet | undefined
-    const byAttr = index.supports as any
-    if (byAttr instanceof Map) {
-      const rarMap = byAttr.get(sel.attribute)
-      if (rarMap instanceof Map) {
-        const exactArr = rarMap.get(sel.rarity) as SupportSet[] | undefined
-        set = exactArr?.find(s => s.name === sel.name)
-        if (!set) {
-          for (const arr of rarMap.values()) {
-            const found = (arr as SupportSet[]).find(s => s.name === sel.name)
-            if (found) { set = found; break }
-          }
-        }
-      }
-    }
+    const set = findSupportSet(index, sel)
     if (!set) return
-    
+
     const evs: ChoiceEvent[] = (((set as unknown as { events?: ChoiceEvent[]; choice_events?: ChoiceEvent[] }).events)
       ?? ((set as unknown as { events?: ChoiceEvent[]; choice_events?: ChoiceEvent[] }).choice_events)
       ?? [])
@@ -827,7 +856,9 @@ export default function EventSetupSection({ index }: Props) {
             <Typography variant="subtitle1">Support Deck (up to 6)</Typography>
           </Stack>
           <Box sx={{ display: 'grid', gridTemplateColumns: { xs: 'repeat(2, 1fr)', sm: 'repeat(3, 1fr)' }, gap: 1.5 }}>
-            {supports.map((sel, idx) => (
+            {supports.map((sel, idx) => {
+              const selSet = findSupportSet(index, sel)
+              return (
               <Box key={idx} sx={{ minWidth: 0 }}>
                 <Card variant="outlined" sx={{ position:'relative' }}>
                   <CardActionArea onClick={() => setPickSlot(idx)}>
@@ -850,7 +881,7 @@ export default function EventSetupSection({ index }: Props) {
                               <img src={supportTypeIcons[sel.attribute || ""]} width={16} height={16} />
                             </Box>
                           </Box>
-                          <Typography variant="body2" noWrap>{sel.name}</Typography>
+                          <SupportNameBlock s={selSet ?? sel} align="center" />
                           {(() => {
                             const pr = sel.priority
                             const hasCustom = pr
@@ -931,7 +962,8 @@ export default function EventSetupSection({ index }: Props) {
                   )}
                 </Card>
               </Box>
-            ))}
+              )
+            })}
           </Box>
         </CardContent>
       </Card>

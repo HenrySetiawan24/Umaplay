@@ -13,6 +13,12 @@ risk_level: medium
 # Purpose
 Document how to regenerate, publish, and validate the canonical training-policy graph that mirrors `decide_action_training()` using the shared graph interpreter. Follow this when refreshing parity after logic updates or when syncing UI defaults with backend behavior.
 
+> **Source of truth for the logic itself:** [`docs/ai/features/actions/training-scan.md`](../features/actions/training-scan.md)
+> (prose/tables) and `docs/ai/policies/<scenario>/flow_training.mmd` (diagrams). This
+> graph is a fourth encoding of the same `decide_action_training()` decision tree — when
+> refreshing parity, diff against those first, not just the Python source, so drift gets
+> caught in one place.
+
 # Scope & Preconditions
 - Maintainable on developer workstations with Python >= 3.10, Node >= 18, and repo dependencies installed via `pip install -r requirements.txt` and `npm install` in `web/`.
 - Requires write access to the repository and ability to run `pytest` and `npm` scripts.

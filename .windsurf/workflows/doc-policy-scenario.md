@@ -10,7 +10,7 @@ auto_execution_mode: 1
 
 ## 🎯 Goal
 
-Produce accurate, readable, and maintainable **Lobby**, **Training**, **Scoring**, and any other requested flowcharts (e.g. `flow_lobby.mmd`, `flow_training.mmd`, `flow_scoring_system.mmd`, `flow_<custom>.mmd`) plus a concise `notes.txt` that documents thresholds, gates, tie-break rules, and cameo/spirit scoring. Prefer **small, safe edits** when the code evolved slightly; perform **full rewrites** only when logic materially changed. For **minor** findings, adjust wording and edge labels; for **major** changes, update nodes/branches and the thresholds legend, and record rationale in `notes.txt`.
+Produce accurate, readable, and maintainable **Lobby**, **Training**, **Scoring**, and any other requested flowcharts (e.g. `flow_lobby.mmd`, `flow_training.mmd`, `flow_scoring_system.mmd`, `flow_<custom>.mmd`) that stay in sync with `docs/ai/features/actions/training-scan.md` (the prose/table **source of truth** for thresholds, gates, tie-break rules, and cameo/spirit scoring — do not restate that content into a per-scenario `notes.txt`/`agent-notes.md`; those files are for content that doesn't fit a diagram, e.g. Unity Cup's `agent-notes.md` agent-loop timing changelog, not decision logic). Prefer **small, safe edits** when the code evolved slightly; perform **full rewrites** only when logic materially changed. For **minor** findings, adjust wording and edge labels; for **major** changes, update nodes/branches and the thresholds legend, and flag the corresponding section of `training-scan.md` for a matching update (this workflow does not edit that file itself).
 
 ---
 
@@ -32,8 +32,7 @@ Produce accurate, readable, and maintainable **Lobby**, **Training**, **Scoring*
 * **Thresholds & vocabulary:**
 
   * Extract numeric gates (SV bins, energy %, mood levels, risk multipliers, hint multipliers) directly from code/constants.
-  * Define **named bins** in `notes.txt` (e.g., `SV_high`, `SV_mid`, `SV_late`, `risk_high`) and reflect them in the diagrams with explicit numbers.
-  * Describe tie-break/priority guard, cameo values, and spirit combos succinctly in notes; keep diagram edges short.
+  * Named bins (e.g., `SV_high`, `SV_mid`, `SV_late`, `risk_high`) and tie-break/priority-guard/cameo/spirit-combo descriptions live in `docs/ai/features/actions/training-scan.md`, not in a per-scenario file this workflow writes — reflect the numbers in the diagrams with explicit values, keep diagram edges short, and flag `training-scan.md` in the report if a bin name/value needs updating there.
 * **Validation & truth-checking:**
 
   * Cross-check each branch against code comments and conditionals.
@@ -48,7 +47,7 @@ Produce accurate, readable, and maintainable **Lobby**, **Training**, **Scoring*
 
    * Identify the scenario folder under `docs/ai/policies/<scenario>/`.
    * Locate governing code: lobby flows (`core/actions/<scenario>/lobby.py`), training policy (`core/actions/<scenario>/training_policy.py`), scoring helpers (`core/actions/<scenario>/training_check.py`, `compute_support_values`), agent glue (`core/actions/<scenario>/agent.py`), and any scenario-specific utils/configs.
-   * Review existing diagrams and `notes.txt` for drift (missing branches, outdated thresholds or cameo numbers).
+   * Review existing diagrams against `docs/ai/features/actions/training-scan.md` for drift (missing branches, outdated thresholds or cameo numbers) — that doc is the source of truth, not the diagrams themselves.
 2. **Compare with reference:**
 
    * Map code branches → diagram nodes/edges and list mismatches (missing node, wrong threshold, renamed concept, reordered priority, updated cameo/scoring rules).
@@ -68,7 +67,7 @@ Produce accurate, readable, and maintainable **Lobby**, **Training**, **Scoring*
 Define scenario (`<scenario>`), desired artifacts, and scope:
 
 * Collect inputs: source modules, existing diagrams, user screenshots/notes, scenario configs.
-* Record expected outputs (which `.mmd` files and whether `notes.txt` needs changes).
+* Record expected outputs (which `.mmd` files, and whether `training-scan.md` needs a matching update).
 * Decide validation plan (Mermaid parse sanity, branch coverage, threshold consistency).
 
 ### Step 2 — Select Mode
@@ -87,13 +86,13 @@ Choose **light / moderate / major** based on mismatches gathered in Update Detec
 * **flow_lobby.mmd:** encode race-plan guards, energy/mood/infirmary checks, summer prep, and transition to training. Show when the loop ends vs continues.
 * **flow_training.mmd:** map decision ladder from SV computation through final fallbacks. Highlight thresholds, caps, WIT logic, director windows, spirits, and race fallbacks. Keep priority guard and distribution gates explicit.
 * **flow_scoring_system.mmd (or requested scoring flow):** diagram scoring pipeline (support contributions, hints, combos, spirits, risk scaling, greedy flag). Reference cameo values and multipliers verbatim.
-* **notes.txt:** synchronize terminology and numeric gates (SV bins, energy thresholds, risk multipliers, cameo scores, spirit combos, hint defaults, distribution thresholds). Include quick references for tie-break logic, director windows, summer rules, and scenario toggles.
+* **Do not write a per-scenario `notes.txt`/`agent-notes.md` with thresholds.** If numeric gates (SV bins, energy thresholds, risk multipliers, cameo scores, spirit combos, hint defaults, distribution thresholds) changed, update `docs/ai/features/actions/training-scan.md` instead (outside this workflow's file scope — flag it in the report) so there is exactly one prose reference, not a per-scenario copy.
 * Apply the Mermaid style rules (ASCII labels, single-line nodes, no stray punctuation).
 
 ### Step 5 — Verify
 
 * **Syntax sanity:** ensure each `.mmd` renders in strict Mermaid (all nodes reachable, no dangling edges).
-* **Semantic alignment:** cross-check numbers and terminology against code; ensure `notes.txt` matches diagram labels.
+* **Semantic alignment:** cross-check numbers and terminology against code; ensure diagram labels match `docs/ai/features/actions/training-scan.md` (the prose source of truth).
 * **Completeness:** confirm every branch in code is reflected somewhere (including error/skip guards). Ensure scoring diagram covers all additive components and risk logic.
 * **Report:** summarize update mode, files touched, key changes, and verification results using the template below.
 
@@ -107,7 +106,10 @@ Choose **light / moderate / major** based on mismatches gathered in Update Detec
 
     * `docs\ai\policies\<scenario>\flow_lobby.mmd`
     * `docs\ai\policies\<scenario>\flow_training.mmd`
-    * `docs\ai\policies\<scenario>\notes.txt`
+    * `docs\ai\policies\<scenario>\flow_scoring_system.mmd` (if scoring changed)
+  * Do **not** create or overwrite a per-scenario `notes.txt`/`agent-notes.md` —
+    if thresholds/gates drifted, flag `docs/ai/features/actions/training-scan.md`
+    as needing a matching update in the report instead.
   * Provide a **summary report** with update mode, changed files, and a concise change list (bullets). Include short before/after snippets for non-trivial edits.
 * If no updates needed:
 
@@ -127,10 +129,13 @@ Choose **light / moderate / major** based on mismatches gathered in Update Detec
 ## Files
 - docs\ai\policies\<scenario>\flow_lobby.mmd  — <created|updated|unchanged>
 - docs\ai\policies\<scenario>\flow_training.mmd  — <created|updated|unchanged>
-- docs\ai\policies\<scenario>\notes.txt  — <created|updated|unchanged>
+- docs\ai\policies\<scenario>\flow_scoring_system.mmd  — <created|updated|unchanged>
 
 ## Changes
 - <short bullet per change: what/why; thresholds, branches, labels>
+
+## training-scan.md follow-up (if thresholds changed)
+- <none | which section of docs/ai/features/actions/training-scan.md needs updating>
 
 ## Verification
 - Mermaid parse: <ok|failed> (tool or reasoning)

@@ -25,7 +25,7 @@ Map the code you touched to its doc and update it in the same change:
 | You changed… | Update… |
 |---|---|
 | A `core/actions/*.py` flow class | its `docs/ai/features/actions/<flow>.md` **and** the tables + flow-map in `docs/ai/features/actions/README.md` |
-| Scenario lobby/training/scoring logic (`core/actions/<scenario>/…`) | `docs/ai/policies/<scenario>/*.mmd` + `notes.txt` (ASCII-only, parse-safe Mermaid — see `.windsurf/workflows/doc-policy-scenario.md`) |
+| Scenario lobby/training/scoring **decision logic** (thresholds, gates, SV scoring) | `docs/ai/features/actions/training-scan.md` (prose source of truth) **and** `docs/ai/policies/<scenario>/*.mmd` (ASCII-only, parse-safe Mermaid — see `.windsurf/workflows/doc-policy-scenario.md`). Do **not** write thresholds/gates prose into a per-scenario `notes.txt`/`agent-notes.md` — that file (Unity Cup only) is for agent-loop timing/navigation notes, not decision logic. |
 | A new `Settings` / nav-pref | document the key, default, and getter in the relevant feature doc |
 | Dataset / event pipeline | `README.dev.md` if the workflow changed |
 

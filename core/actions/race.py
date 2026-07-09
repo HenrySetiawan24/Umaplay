@@ -228,10 +228,11 @@ class RaceFlow:
                     classes=("race_square",), tag="race_nav_seen_squares"
                 ):
                     return True
-                # 2) A green button with no squares in this nav window is the
-                #    consecutive-race penalty OK popup (if squares were up we'd
-                #    have returned at the check above). Detect it class-only —
-                #    no OCR on the hot path.
+                # 2) A green button reading 'OK' in this nav window is the
+                #    consecutive-race penalty popup (squares would have
+                #    returned at the check above). One OCR verification here —
+                #    class-only gating misfired on stray green buttons, so the
+                #    text check is deliberate (see 139ee0e).
                 if self.waiter.seen(
                     classes=("button_green",),
                     texts=("OK",),
@@ -239,8 +240,8 @@ class RaceFlow:
                 ):
                     # from_raceday forces to accept consecutive, there is no another option
                     if not Settings.ACCEPT_CONSECUTIVE_RACE and not from_raceday:
-                        # Refusal is a hard stop — confirm it really is the OK
-                        # popup (one OCR) before raising.
+                        # Refusal is a hard stop — belt-and-braces re-confirm
+                        # on a fresh frame before raising.
                         if self.waiter.seen(
                             classes=("button_green",),
                             texts=("OK",),
@@ -253,8 +254,10 @@ class RaceFlow:
                                 "Consecutive race not accepted by settings."
                             )
                     else:
-                        # Accept the penalty promptly: click the green OK by class
-                        # (single snapshot, no OCR, no wait).
+                        # Accept promptly: single snapshot, no wait. The gate
+                        # above already OCR-verified 'OK'; note the fast path
+                        # inside try_click_once may still click a lone green
+                        # greedily (its `texts` only applies with 2+ candidates).
                         if self.waiter.try_click_once(
                             classes=("button_green",),
                             texts=("OK",),
@@ -1179,9 +1182,21 @@ class RaceFlow:
                 timeout_s=6,
                 tag="race_lobby_race_click",
             ):
-                logger_uma.error("[race] Race button not found after ~6s of retries. "
-                "Cannot determine lobby state. Aborting race operation.")
-                return False
+                # Chain recovery: an earlier confirm may have double-fired and
+                # the race is already running — aborting here would re-enter
+                # raceday on top of an in-progress race. If skip buttons are
+                # visible, fall through: the reactive loop below breaks on
+                # button_skip and hands off to the skip handling.
+                if self.waiter.seen(
+                    classes=("button_skip",), tag="race_lobby_race_click_chain_next"
+                ):
+                    logger_uma.info(
+                        "[race] 'RACE' button absent but race is already running; continuing to skip handling."
+                    )
+                else:
+                    logger_uma.error("[race] Race button not found after ~6s of retries. "
+                    "Cannot determine lobby state. Aborting race operation.")
+                    return False
             self._beat(5)
             self.waiter.click_when(
                 classes=("button_green",),
@@ -1649,14 +1664,44 @@ class RaceFlow:
         # otherwise a stray green button elsewhere on screen (e.g. a lobby
         # quick-access affordance) gets clicked blindly, since the fast paths
         # below don't consult `texts` at all (see Waiter.click_when docstring).
-        if not self.waiter.click_when(
+        clicked_list_race = self.waiter.click_when(
             classes=("button_green",),
             texts=("RACE",),
             prefer_bottom=True,
             require_text_match=True,
             timeout_s=2,
             tag="race_list_race",
-        ):
+        )
+        if not clicked_list_race:
+            # Chain recovery. Two benign explanations before giving up:
+            # (a) the click already landed and we're past this step — the
+            #     pre-race lobby ('button_change') is up, so continue and let
+            #     the gates below take it from here;
+            # (b) the race-square click above never registered, so the list
+            #     'Race' button never appeared — re-fire the square (its
+            #     detection is still in scope) and retry this step once.
+            if self.waiter.seen(
+                classes=("button_change",), tag="race_list_race_chain_next"
+            ):
+                logger_uma.info(
+                    "[race] 'Race' (list) click timed out but pre-race lobby is up; continuing."
+                )
+                clicked_list_race = True
+            elif square is not None:
+                logger_uma.info(
+                    "[race] 'Race' (list) not found; re-clicking race square and retrying once."
+                )
+                self.ctrl.click_xyxy_center(square["xyxy"], clicks=1)
+                self._beat(0.5)
+                clicked_list_race = self.waiter.click_when(
+                    classes=("button_green",),
+                    texts=("RACE",),
+                    prefer_bottom=True,
+                    require_text_match=True,
+                    timeout_s=2,
+                    tag="race_list_race_chain",
+                )
+        if not clicked_list_race:
             logger_uma.warning("[race] couldn't find green 'Race' button (list).")
             self._last_failure_reason = RaceFailureReason.RACE_BUTTON_LIST_MISSING
             return False
@@ -1726,6 +1771,7 @@ class RaceFlow:
         t0 = time.time()
         max_wait = 14.0
         saw_pre_lobby = False
+        last_popup_probe = 0.0
         while (time.time() - t0) < max_wait:
             if abort_requested():
                 logger_uma.info(
@@ -1736,6 +1782,24 @@ class RaceFlow:
             if self.waiter.seen(classes=("button_change",), tag="race_pre_lobby_gate"):
                 saw_pre_lobby = True
                 break
+            # Chain recovery: on slow devices the confirm popup can render
+            # AFTER the 5s popup window above already closed; it then sits
+            # unclicked and this wait dies with PRE_LOBBY_TIMEOUT. Once the
+            # lobby is overdue (~4s), re-probe for that late popup every ~2s.
+            elapsed = time.time() - t0
+            if elapsed > 4.0 and (elapsed - last_popup_probe) >= 2.0:
+                last_popup_probe = elapsed
+                if self.waiter.click_when(
+                    classes=("button_green",),
+                    texts=("RACE", "OK"),
+                    prefer_bottom=True,
+                    require_text_match=True,
+                    timeout_s=0.3,
+                    tag="race_pre_lobby_late_popup",
+                ):
+                    logger_uma.info(
+                        "[race] Late confirm popup appeared during pre-lobby wait; clicked it."
+                    )
             time.sleep(0.15)
 
         if not saw_pre_lobby:

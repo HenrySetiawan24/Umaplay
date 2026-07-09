@@ -66,16 +66,12 @@ NEXT/OK/Try-Again buttons. When adding a new top-level flow loop, call it too.
 
 ---
 
-## SOPs
-- `docs/ai/SOPs/sop-config-back-front.md` (Reference of web folder and web UI)
-- `docs/ai/SOPs/waiter-usage-and-integration.md` (Important)
-- `docs/ai/SOPs/towards-custom-training-policy-graph.md` (Notes on evolving training-policy automation graph)
-- `docs/ai/SOPs/adding-new-scenario.md` (How to onboard a new training scenario end-to-end)
- - `docs/ai/SOPs/sop-presets-tab-groups.md` (Using Chrome-like preset tab groups in the Web UI)
+## Documentation map
 
-## Extra docs
-Policies about how agent, training, etc algorithm works in diagrams
-- docs\ai\policies
+See [`docs/ai/INDEX.md`](INDEX.md) for the full sitemap of `docs/ai/`
+(SOPs, per-scenario policy diagrams, per-screen action-flow docs, and
+feature design docs), including the SOPs table (kept in one place instead of
+duplicated here).
 
 ## Runtime Topology (diagram as text)
 ```
@@ -102,7 +98,7 @@ Policies about how agent, training, etc algorithm works in diagrams
   `core/actions/events.EventFlow`) fuses YOLO+OCR hints with template matching scores that blend multi-scale TM, perceptual hash, and HSV hair histograms (with gray-world balancing/masks) so lookalike trainees (e.g., seasonal alts) stay separable. When presets specify a trainee in
   `config.json`, the retriever promotes that card even if it scores slightly lower and, if that name is missing, falls back to the "trainee/general/None/None" catalog entry to avoid dead ends when seasonal data is absent. The same flow remembers two-phase prompts (e.g., Acupuncturist) and auto-confirms the follow-up dialog when only the accept/reconsider buttons are present.
   - **Scenario routing**: `core/scenarios/registry.py` maps scenario keys (URA, Unity Cup/Aoharu aliases) to policy callables so `AgentScenario` instantiations fetch the correct training strategy without duplicating logic. This registry is populated during agent bootstrap.
-  - **AgentNav (`core/agent_nav.py`)** provides hotkey-triggered navigation flows for Team Trials and Daily Races, reusing shared perception but with dedicated YOLO weights (`Settings.YOLO_WEIGHTS_NAV`).
+  - **AgentNav (`core/agent_nav.py`)** provides hotkey-triggered navigation flows for Team Trials and Daily Races, reusing shared perception but with dedicated YOLO weights (`Settings.YOLO_WEIGHTS_NAV`). Unrecognized screens (`UnknownNav`) fall back to `nav.try_advance_unknown` — an OCR-verified whitelist click (CLOSE/OK/NEXT only, destructive/regressive verbs forbidden, never class-only) plus a periodic center-tap for tap-to-continue screens, mirroring the career agents' `agent_unknown_advance` handler.
   - **Automation flows**: `core/actions/` modules cover training (`training_policy.py`, `training_check.py`), lobby orchestration (`lobby.py`), race execution (`race.py`, `daily_race.py`), Team Trials automation (`team_trials.py`), claw game (`claw.py`), event handling (`events.py`), and skill purchasing (`skills.py`). The Unity Cup training stack uses a scenario-specific SV builder in `core/actions/unity_cup/training_check.py` (blue/white spirit values, combos, and hint priorities) plus a policy in `core/actions/unity_cup/training_policy.py` that reads `Settings.UNITY_CUP_ADVANCED` to apply burst allowlists (blocking blue spirits on disallowed or capped stats), seasonal multipliers (Junior/Classic vs Senior), and deadline boosts near Senior November and the Final Season, with fallbacks when all burst tiles would otherwise be filtered out. Skill purchasing respects per-preset `skillPtsCheck` thresholds, while event handling consults per-entity energy overflow toggles plus ranked reward priorities (skill pts → stats → hints by default) before rotating choices. `core/utils/event_processor.UserPrefs` now persists reward priority maps per support/scenario/trainee, and `EventFlow` falls back to the global order only when entity-specific lists are absent. When an event would overcap energy, `EventFlow.process_event_screen()` scores each option (via `max_positive_energy()` and `extract_reward_categories()`), builds the rotation order around the player-preferred pick, and only reorders if the chosen option violates the energy cap. Safe alternatives are then filtered by reward priority, preferring matches that satisfy the entity-specific ranking before defaulting to the first non-overflowing candidate, with adjustments surfaced through debug telemetry. URA and Unity Cup lobby flows (`core/actions/ura/lobby.py`, `core/actions/unity_cup/lobby.py`) tap `PalMemoryManager.any_next_energy()` and now RaceFlow emits structured logs around loss detection, respects `Settings.TRY_AGAIN_ON_FAILED_GOAL`, and clears alarm-clock confirmations before recursing, with regression coverage under `tests/core/actions/test_race_retry.py`.
  onward) automatically route auto-rest into PAL recreation whenever a remaining chain step yields energy, to avoid wasting the final training turns. Their training policies thread a `pal_recreation_hint` flag (`core/actions/ura/training_policy.py`, `core/actions/unity_cup/training_policy.py`) so weak-turn logic opts into recreation instead of rest when PAL bonuses are imminent.
 - **Controllers (`core/controllers/`)** abstract capture/input for Steam, Scrcpy, optional BlueStacks, and ADB-backed Android sessions. In addition to `SteamController`, `ScrcpyController`, and `BlueStacksController`, the new `core/controllers/adb.py` issues `adb` taps/swipes/screenshots so BlueStacks (or any reachable Android device) can run without hijacking the local mouse. `ADBController.discover_devices()` is a classmethod wrapping `adb devices -l` that works without instantiating a controller (no auto-connect/screen-detect side effects); `server/main.py`'s `GET /api/adb/devices` exposes it, and the web UI's ADB-device field (`web/src/components/general/GeneralForm.tsx`, both the `adb` mode and `bluestack`+`useAdb` cases) is a `freeSolo` Autocomplete populated from it, refreshable and still free-text so an as-yet-unconnected `host:port` can be entered. `core/controllers/base.py` defines the contract every controller implements.
@@ -242,7 +238,7 @@ This design allows the core loop to evolve independently of perception implement
 ## Performance & Reliability
 - **Hot paths**: YOLO detection and OCR loops dominate runtime; leverage remote inference to offload heavy computation.
 - **Caching**: YOLO engines reuse loaded weights; config store hydrates defaults from schema to avoid undefined fields.
-- **Recovery**: `AgentNav` includes stale-state detection for shops/results; `core/actions/race` handles consecutive race refusals; unknown screens trigger safe clicks with patience backoff.
+- **Recovery**: `AgentNav` includes stale-state detection for shops/results plus an OCR-whitelist advance for `UnknownNav` frames (`nav.try_advance_unknown`); `core/actions/race` handles consecutive race refusals and chain-recovers its timeout-prone await points (probe next step's gate / re-fire previous click / retry once — see `race-flow.md` Part C); unknown screens trigger safe clicks with patience backoff.
 - **Cleanup**: Training debug folders automatically compressed/relocated when exceeding 250 MB.
 
 ## Risks & Hotspots

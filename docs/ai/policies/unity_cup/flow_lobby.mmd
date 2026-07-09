@@ -1,4 +1,5 @@
 flowchart TD
+%% Must stay in sync with docs/ai/features/actions/training-scan.md (prose source of truth)
 START[Start of turn in lobby] --> PLAN{Planned race today?}
 
 PLAN -->|Yes and guard passes| RACE_PLAN[Run planned race then end turn]
@@ -10,11 +11,23 @@ PLAN_SUPPRESS --> EARLY
 EARLY -->|Yes| RACE_GOAL[Run goal race then end turn]
 EARLY -->|No| INFIRM{Infirmary active and not summer?}
 
-INFIRM -->|Yes| DO_INFIRM[Go to infirmary then end turn]
+INFIRM -->|Yes| INFIRM_PRECHECK{Pre-check training value allowed?}
 INFIRM -->|No| ENERGY{Energy <= auto rest minimum?}
 
-ENERGY -->|Yes| REST_LOW[Rest then end turn]
+INFIRM_PRECHECK -->|Best SV >= race pre-check threshold| SKIP_INFIRM[Skip infirmary and go training]
+INFIRM_PRECHECK -->|Best SV below threshold or pre-check disabled| DO_INFIRM[Go to infirmary then end turn]
+
+SKIP_INFIRM --> ENTER_TRAIN_PRE[Open training screen via pre-check]
+ENTER_TRAIN_PRE --> ENTER_TRAIN[Open training screen]
+
+ENERGY -->|Yes| ENERGY_PAL{PAL recreation ready?}
 ENERGY -->|No| SUMMER{Summer in <=2 turns and energy <=50?}
 
-SUMMER -->|Yes| REST_SUMMER[Rest to prep summer then end turn]
-SUMMER -->|No| ENTER_TRAIN[Open training screen]
+ENERGY_PAL -->|Yes and late-season or mood < GREAT| REST_PAL[Use PAL recreation then end turn]
+ENERGY_PAL -->|No or PAL not ready| REST_LOW[Rest then end turn]
+
+SUMMER -->|Yes and PAL ready| REST_PAL_SUMMER[Use PAL recreation to prep summer]
+SUMMER -->|Yes and no PAL| REST_SUMMER[Rest to prep summer then end turn]
+SUMMER -->|No| ENTER_TRAIN
+
+ENTER_TRAIN --> TRAINING[Open training screen]

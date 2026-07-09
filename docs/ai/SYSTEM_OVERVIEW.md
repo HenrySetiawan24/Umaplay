@@ -66,16 +66,12 @@ NEXT/OK/Try-Again buttons. When adding a new top-level flow loop, call it too.
 
 ---
 
-## SOPs
-- `docs/ai/SOPs/sop-config-back-front.md` (Reference of web folder and web UI)
-- `docs/ai/SOPs/waiter-usage-and-integration.md` (Important)
-- `docs/ai/SOPs/towards-custom-training-policy-graph.md` (Notes on evolving training-policy automation graph)
-- `docs/ai/SOPs/adding-new-scenario.md` (How to onboard a new training scenario end-to-end)
- - `docs/ai/SOPs/sop-presets-tab-groups.md` (Using Chrome-like preset tab groups in the Web UI)
+## Documentation map
 
-## Extra docs
-Policies about how agent, training, etc algorithm works in diagrams
-- docs\ai\policies
+See [`docs/ai/INDEX.md`](INDEX.md) for the full sitemap of `docs/ai/`
+(SOPs, per-scenario policy diagrams, per-screen action-flow docs, and
+feature design docs), including the SOPs table (kept in one place instead of
+duplicated here).
 
 ## Runtime Topology (diagram as text)
 ```

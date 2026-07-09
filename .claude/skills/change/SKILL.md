@@ -16,14 +16,17 @@ Do this before writing anything.
 2. `docs/ai/CONTRIBUTING.md` — conventions (incl. the notebook-prototyping workflow).
 
 Then jump to the row(s) below that match your change. Read the doc, follow its
-code-path references, *then* open the source.
+code-path references, *then* open the source. If your change doesn't map cleanly
+to any row, start at `docs/ai/INDEX.md` (full sitemap of `docs/ai/`) instead of
+guessing a file name.
 
 ## Route by what you're changing
 
 | Change area | Scan these docs first |
 |---|---|
 | An action/flow class (`core/actions/*.py`) | `docs/ai/features/actions/README.md` (flow index + how they relate) → the specific `…-flow.md`; then `docs/ai/SOPs/waiter-usage-and-integration.md` for the perception/click (`Waiter`, YOLO+OCR) patterns |
-| Scenario lobby / training / scoring logic (`core/actions/<scenario>/…`) | `docs/ai/policies/<scenario>/flow_lobby.mmd`, `flow_training.mmd`, `flow_scoring_system.mmd`, `notes.txt` (thresholds/bins) + `docs/ai/SOPs/towards-custom-training-policy-graph.md` |
+| Scenario lobby / training / scoring **decision logic** (thresholds, gates, SV scoring, `decide_action_training`) | `docs/ai/features/actions/training-scan.md` (prose source of truth) + `docs/ai/policies/<scenario>/flow_lobby.mmd`, `flow_training.mmd`, `flow_scoring_system.mmd` (diagram companion — see `docs/ai/policies/README.md`) + `docs/ai/SOPs/towards-custom-training-policy-graph.md` (the `core/policy/` graph mirror) |
+| Unity Cup **agent-loop** timing/navigation (`core/actions/unity_cup/agent.py` — showdown pacing, banner clicks, result-screen walk; not decision logic) | `docs/ai/policies/unity_cup/agent-notes.md` |
 | Adding a whole new scenario | `docs/ai/SOPs/adding-new-scenario.md` |
 | Config/settings crossing web ↔ Python | `docs/ai/SOPs/sop-config-back-front.md` |
 | Web preset UI / tab groups (`web/`) | `docs/ai/SOPs/sop-presets-tab-groups.md` |

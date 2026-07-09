@@ -245,6 +245,7 @@ class AgentNav:
 
         counter = 60
         patience = 3  # for any use case
+        consecutive_unknown = 0  # UnknownNav frames in a row (drives recovery)
         while not self._stop_event.is_set() and counter > 0 and patience > 0:
             img, dets = nav.collect_snapshot(
                 self.waiter, self.yolo_engine, agent=self.agent_name, tag="screen_detector"
@@ -255,6 +256,8 @@ class AgentNav:
                 continue
             screen, info = self.classify_nav_screen(dets)
             logger_uma.debug(f"[AgentNav] screen={screen} | info={info}")
+            if screen != "UnknownNav":
+                consecutive_unknown = 0
 
             if screen == "RaceScreen":
                 if self.action == "daily_races":
@@ -350,6 +353,29 @@ class AgentNav:
 
             else:
                 counter -= 1
+                if screen == "UnknownNav":
+                    # Recovery: OCR the generic buttons and click only a
+                    # known-safe forward verb (CLOSE/OK/NEXT); every candidate's
+                    # text lands in the logs either way so the screen can get a
+                    # real classifier rule later.
+                    consecutive_unknown += 1
+                    if nav.try_advance_unknown(
+                        self.waiter, dets, tag_prefix="agent_nav"
+                    ):
+                        logger_uma.info(
+                            "[AgentNav] Unknown screen: clicked a safe dismisser to advance."
+                        )
+                        consecutive_unknown = 0
+                        sleep(0.6)
+                    elif consecutive_unknown % 3 == 0:
+                        # Tap-to-continue screens show no clickable buttons at
+                        # all — a periodic center tap is the only way through
+                        # (mirrors the career agents' rescue).
+                        logger_uma.debug(
+                            "[AgentNav] Unknown screen persists (%d frames); center-tapping possible tap-to-continue screen.",
+                            consecutive_unknown,
+                        )
+                        nav.random_center_tap(self.ctrl, img, clicks=1)
 
             last_screen, last_info = screen, info
             for _ in range(20):

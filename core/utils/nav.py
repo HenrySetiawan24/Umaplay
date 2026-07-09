@@ -86,6 +86,46 @@ def maybe_handle_connection_error(
     return False
 
 
+def try_advance_unknown(
+    waiter: Waiter,
+    dets: Optional[List[DetectionDict]] = None,
+    *,
+    tag_prefix: str,
+    timeout_s: float = 0.6,
+) -> bool:
+    """
+    Last-resort advance for a screen the caller's classifier couldn't name:
+    OCR the generic buttons on screen and click one only if it reads a
+    known-safe, forward-only dismisser (CLOSE/OK/NEXT). Never clicks
+    class-only (`allow_greedy_click=False`) — an unknown screen is exactly
+    where a bare `button_green` tap can commit something destructive — and
+    forbids every verb that spends resources (RESTORE), commits (RACE), or
+    regresses (BACK/CANCEL). Worst case it clicks nothing and the caller is
+    no worse off than before.
+
+    Cheap gate: when `dets` is given, skip the OCR probe entirely if the
+    frame has no green/white button (mirrors `maybe_handle_connection_error`).
+
+    Even a no-click call pays off in logs: `_pick_by_text` prints every
+    candidate's OCR text (`[waiter] OCR candidate … text=…`), turning
+    "Unknown screen" into "unknown screen whose buttons say X/Y" so a proper
+    classifier rule can be written later. Returns True if it clicked.
+    """
+    if dets is not None and not any(
+        d.get("name") in ("button_green", "button_white") for d in dets
+    ):
+        return False
+    return waiter.click_when(
+        classes=("button_green", "button_white"),
+        texts=("CLOSE", "OK", "NEXT"),
+        allow_greedy_click=False,
+        prefer_bottom=False,
+        forbid_texts=("RESTORE", "RETIRE", "TRY AGAIN", "CANCEL", "RACE", "BACK", "SHOP"),
+        timeout_s=timeout_s,
+        tag=f"{tag_prefix}_unknown_advance",
+    )
+
+
 def by_name(
     dets: List[DetectionDict], name: str, *, conf_min: float = 0.0
 ) -> List[DetectionDict]:

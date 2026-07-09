@@ -251,6 +251,7 @@ class Waiter:
             if (time.time() - t0) >= timeout:
                 if tag not in [
                     "agent_unknown_advance",
+                    "agent_nav_unknown_advance",
                 ]:
                     logger_uma.debug(
                         "[waiter] timeout after %.2fs (tag=%s)", timeout, tag

@@ -21,7 +21,7 @@ import type {
   RewardCategory,
 } from '@/types/events'
 import SmartImage from '@/components/common/SmartImage'
-import { supportImageCandidates, scenarioImageCandidates, traineeImageCandidates, supportTypeIcons, supportRarityIcons } from '@/utils/imagePaths'
+import { supportImageCandidates, scenarioImageCandidates, traineeImageCandidates, supportTypeIcons, supportRarityIcons, capHeightImgSx } from '@/utils/imagePaths'
 import { useCharactersData, findCharByName } from '@/hooks/useCharactersData'
 import { useEventsSetupStore } from '@/store/eventsSetupStore'
 import { useConfigStore } from '@/store/configStore'
@@ -72,8 +72,13 @@ const rarityGradient = (rarity: string) =>
       ? 'linear-gradient(135deg,#d4af37,#fff4c2)'
       : 'linear-gradient(135deg,#cfd8dc,#eceff1)'
 
-// Fluid variant for the support deck: image fills the column width and keeps
-// its native aspect ratio (no fixed box / cropping).
+// Max height (px) fluid card art scales up to before the browser caps by
+// height instead and shrinks width to match (see capHeightImgSx).
+const SUPPORT_DECK_IMG_MAX_H = 160
+const SCENARIO_TRAINEE_IMG_MAX_H = 220
+
+// Fluid variant for the support deck: image fills the column width (up to
+// SUPPORT_DECK_IMG_MAX_H) and keeps its native aspect ratio (no cropping).
 const rarityFrameFluidSx = (rarity: string) => ({
   position: 'relative' as const,
   borderRadius: 1,
@@ -82,18 +87,46 @@ const rarityFrameFluidSx = (rarity: string) => ({
   lineHeight: 0,
   background: rarityGradient(rarity),
   '& img': {
-    width: '100%',
-    height: 'auto',
-    objectFit: 'contain',
-    imageRendering: 'auto',
+    ...capHeightImgSx(SUPPORT_DECK_IMG_MAX_H),
     borderRadius: 1,
-    display: 'block',
+    imageRendering: 'auto',
   },
 })
 
 const emptySlotSx = {
   width: THUMB,
   height: THUMB_H,
+  borderRadius: 1,
+  display: 'grid',
+  placeItems: 'center',
+  bgcolor: 'action.hover',
+  border: '1px dashed',
+  borderColor: 'divider',
+} as const
+
+// Fluid, untinted frame for Scenario/Trainee art: fills the container width
+// (up to SCENARIO_TRAINEE_IMG_MAX_H), height scales automatically to
+// preserve the image's native aspect ratio (no cropping) -- same technique
+// as rarityFrameFluidSx, minus the rarity tint.
+const fluidImageFrameSx = {
+  position: 'relative' as const,
+  borderRadius: 1,
+  width: '100%',
+  lineHeight: 0,
+  '& img': {
+    ...capHeightImgSx(SCENARIO_TRAINEE_IMG_MAX_H),
+    borderRadius: 1,
+    imageRendering: 'auto',
+  },
+} as const
+
+// Empty-slot placeholder to match: full width up to the same cap, square
+// (scenario/trainee art is ~1:1), so selecting doesn't visually "jump" in size.
+const emptySlotFluidSx = {
+  width: '100%',
+  maxWidth: SCENARIO_TRAINEE_IMG_MAX_H, // square: capping width == capping height
+  mx: 'auto',
+  aspectRatio: '1 / 1',
   borderRadius: 1,
   display: 'grid',
   placeItems: 'center',
@@ -976,18 +1009,20 @@ export default function EventSetupSection({ index }: Props) {
             <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 1 }}>
               <Typography variant="subtitle1">Scenario</Typography>
             </Stack>
-            <Box sx={{ maxWidth: 280 }}>
+            <Box sx={{ width: '100%' }}>
               <Card variant="outlined" sx={{ position:'relative' }}>
                 <CardActionArea>
                   <Stack alignItems="center" spacing={1} sx={{ p: 1 }}>
                     {scenario ? (
                       <>
-                        <SmartImage candidates={scenarioImageCandidates(scenario.name || "")} alt={scenario.name} width={THUMB} rounded={8}/>
+                        <Box sx={fluidImageFrameSx}>
+                          <SmartImage candidates={scenarioImageCandidates(scenario.name || "")} alt={scenario.name} rounded={8}/>
+                        </Box>
                         <Typography variant="body2" noWrap>{scenario.name}</Typography>
                       </>
                     ) : (
                       <>
-                        <Box sx={emptySlotSx}>
+                        <Box sx={emptySlotFluidSx}>
                           <img src="/arrow_plus.png" width={THUMB} />
                         </Box>
                         <Typography variant="body2" color="text.secondary">Select</Typography>
@@ -1014,18 +1049,20 @@ export default function EventSetupSection({ index }: Props) {
             <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 1 }}>
               <Typography variant="subtitle1">Trainee</Typography>
             </Stack>
-            <Box sx={{ maxWidth: 280 }}>
+            <Box sx={{ width: '100%' }}>
               <Card variant="outlined" sx={{ position:'relative' }}>
                 <CardActionArea onClick={() => setTraineeOpen(true)}>
                   <Stack alignItems="center" spacing={1} sx={{ p: 1 }}>
                     {trainee ? (
                       <>
-                        <SmartImage candidates={traineeImageCandidates(trainee.name, findCharByName(charIndex, trainee.name)?.thumb_url)} alt={trainee.name || ""} width={THUMB} height={THUMB_H} rounded={8}/>
+                        <Box sx={fluidImageFrameSx}>
+                          <SmartImage candidates={traineeImageCandidates(trainee.name, findCharByName(charIndex, trainee.name)?.thumb_url)} alt={trainee.name || ""} rounded={8}/>
+                        </Box>
                         <Typography variant="body2" noWrap>{trainee.name}</Typography>
                       </>
                     ) : (
                       <>
-                        <Box sx={emptySlotSx}>
+                        <Box sx={emptySlotFluidSx}>
                           <img src="/arrow_plus.png" width={THUMB} />
                         </Box>
                         <Typography variant="body2" color="text.secondary">Select</Typography>

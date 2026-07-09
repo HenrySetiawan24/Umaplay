@@ -1,6 +1,21 @@
 import { useConfigStore } from '@/store/configStore'
-import { Box, Paper, TextField, Typography, Button, Stack, InputAdornment, Avatar } from '@mui/material'
+import { Box, Paper, TextField, Typography, Button, Stack } from '@mui/material'
 import { STAT_ICON } from '@/constants/ui'
+
+// Hides the native number-input up/down spinner buttons (Chrome/Safari + Firefox).
+const noSpinnerSx = {
+  '& input[type=number]': {
+    MozAppearance: 'textfield',
+  },
+  '& input[type=number]::-webkit-outer-spin-button': {
+    WebkitAppearance: 'none',
+    margin: 0,
+  },
+  '& input[type=number]::-webkit-inner-spin-button': {
+    WebkitAppearance: 'none',
+    margin: 0,
+  },
+} as const
 
 const DEFAULTS = { SPD: 1150, STA: 770, PWR: 570, GUTS: 270, WIT: 370 }
 
@@ -34,27 +49,30 @@ export default function TargetStats({ presetId }: { presetId: string }) {
         }}
       >
         {Object.entries(ts).map(([key, val]) => (
-          <TextField
-            key={key}
-            label={key}
-            type="number"
-            size="small"
-            value={val}
-            inputProps={{ min: 0 }}
-            onChange={(e) => set(key as any, Number(e.target.value || 0))}
-            fullWidth
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Avatar
-                    src={STAT_ICON[key as keyof typeof STAT_ICON]}
-                    alt={key}
-                    sx={{ width: 20, height: 20 }}
-                  />
-                </InputAdornment>
-              ),
-            }}
-          />
+          <Box key={key}>
+            <Typography
+              variant="caption"
+              color="text.secondary"
+              sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mb: 0.5, textTransform: 'uppercase', letterSpacing: 0.5 }}
+            >
+              <Box
+                component="img"
+                src={STAT_ICON[key as keyof typeof STAT_ICON]}
+                alt={key}
+                sx={{ height: '1em', width: 'auto', display: 'block' }}
+              />
+              {key}
+            </Typography>
+            <TextField
+              type="number"
+              size="small"
+              value={val}
+              inputProps={{ min: 0 }}
+              onChange={(e) => set(key as any, Number(e.target.value || 0))}
+              fullWidth
+              sx={noSpinnerSx}
+            />
+          </Box>
         ))}
       </Box>
     </Paper>

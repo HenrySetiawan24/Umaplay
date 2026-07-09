@@ -296,13 +296,17 @@ instead of one call each.
 **twice** per hit — once in `seen(classes=("button_green",), texts=("OK",))` to
 gate the branch, then again in `click_when(..., texts=("OK",))` to click it — a
 ~3s stall on the accept path (observed 2026-07: `21:55:41` detect → `21:55:44`
-click). In this window a `button_green` with **no** `race_square` present can only
-be the penalty popup (a loaded squares screen returns at the `race_square` check
-above), so the accept path now detects it **class-only (no OCR)** and clicks via
-`try_click_once(classes=("button_green",), prefer_bottom=True)`. OCR is kept only
-on the **refuse** branch (`ACCEPT_CONSECUTIVE_RACE` off), where it guards a hard
-stop and confirms the button truly reads `OK` before raising `ConsecutiveRaceRefused`.
-Net: the common accept path drops from two OCR passes to zero (~3s → ~YOLO-only).
+click). The click is now a non-polling `try_click_once` instead of a second
+`click_when` OCR pass.
+
+**Revised (139ee0e):** the first cut detected the popup *class-only* (zero OCR),
+reasoning that a `button_green` with no `race_square` in this window could only be
+the penalty popup — but that misfired on stray green buttons in the wild, so
+`texts=("OK",)` was restored on the `seen` gate. Standing rule confirmed again:
+**generic button-class detection must always be paired with text verification.**
+Net today: **one** OCR pass on the gate (down from two); the `try_click_once`
+accept click is snapshot-only (its single-candidate fast path doesn't OCR — the
+gate above already verified the text).
 
 ---
 
@@ -331,17 +335,50 @@ poll-bounded by `click_when`.
 
 ---
 
-## 4. Status
+## 4. Chain recovery on await timeouts (Part C)
+
+RaceFlow is a linear chain (square → list RACE → confirm popup → pre-lobby →
+lobby RACE → skip → results). Its await points used to `return False` on timeout
+without asking two cheap questions first: is the **next** step's screen already up
+(our click landed but the gate missed the frame), or is the **previous** step's
+button still up (our click never registered)? Each stuck-prone site now does one
+scoped probe-next / re-fire-prev / retry-once before failing exactly as before
+(same `RaceFailureReason`, same logs). Probes are `seen` class-only (cheap; probes
+don't click); every recovery **click** stays OCR-verified.
+
+- **C1 — `race_list_race` (run() step 3).** On timeout: `seen(button_change)` →
+  the click already landed, continue; else re-click the still-in-scope `square`
+  detection and retry the RACE click once (`race_list_race_chain`).
+- **C2 — pre-lobby wait (run() step 4).** On slow devices the confirm popup can
+  render *after* the 5s popup window closed, then sit unclicked until
+  `PRE_LOBBY_TIMEOUT`. Once the lobby is >4s overdue, the wait re-probes every ~2s
+  for a late green `RACE`/`OK` (`race_pre_lobby_late_popup`, `require_text_match`).
+- **C3 — `race_lobby_race_click` (lobby()).** On timeout: `seen(button_skip)` →
+  the race is already running (a confirm double-fired earlier); fall through to
+  the skip handling instead of aborting mid-race and re-entering raceday on top
+  of it.
+
+Related (AgentNav, not RaceFlow): `nav.try_advance_unknown` gives
+`agent_nav.py`'s `UnknownNav` state the same OCR-whitelist advance the career
+agents' `agent_unknown_advance` handler has — forward verbs only (`CLOSE/OK/NEXT`),
+destructive/regressive verbs forbidden, `allow_greedy_click=False` so every click
+is text-verified, plus a center-tap rescue every 3rd stuck frame.
+
+---
+
+## 5. Status
 
 - [x] A1 — row-1 highlight win check (`_row1_is_win` / `_content_bounds`; `_last_won:bool`)
 - [x] A2 — batched race-name OCR in `_pick_race_square`
 - [x] A3 — batched View-Results button OCR
 - [x] B1 — removed blind pre-lobby `sleep(7)`
 - [x] B2 — `RACE_AWAIT_SCALE` + `_beat()` + "Race pacing" slider; entry-path waits scaled
-- [x] A4 — class-only accept of the consecutive-race penalty popup (drops double-OCR, ~3s → YOLO-only)
+- [x] A4 — single-OCR gate + snapshot click for the consecutive-race penalty popup (was double-OCR; class-only variant reverted in 139ee0e — text verification required)
 - [x] B3 — skip TRY-AGAIN probe on confirmed wins
 - [x] Results gate — `_wait_for_results_screen` (YOLO-only) before win-check / NEXT
 - [x] Reaction gate — `_advance_past_reaction_screen` taps through the post-race uma placement reaction before the NEXT awaits (validated in the wild 2026-07: center-tap cleared it, NEXT in ~8s)
+- [x] C1–C3 — chain recovery at the three timeout-prone await points (probe-next / re-fire-prev / retry-once)
+- [x] AgentNav UnknownNav — OCR-whitelist advance via `nav.try_advance_unknown` + periodic center-tap (was a pure no-op)
 
 **Notes / known trade-offs:**
 - Post-strategy beat is scaled via `_beat`, not polled (no clean ready-signal vs

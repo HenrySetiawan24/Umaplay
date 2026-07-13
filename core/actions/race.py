@@ -1771,7 +1771,6 @@ class RaceFlow:
         t0 = time.time()
         max_wait = 14.0
         saw_pre_lobby = False
-        last_popup_probe = 0.0
         while (time.time() - t0) < max_wait:
             if abort_requested():
                 logger_uma.info(
@@ -1782,24 +1781,6 @@ class RaceFlow:
             if self.waiter.seen(classes=("button_change",), tag="race_pre_lobby_gate"):
                 saw_pre_lobby = True
                 break
-            # Chain recovery: on slow devices the confirm popup can render
-            # AFTER the 5s popup window above already closed; it then sits
-            # unclicked and this wait dies with PRE_LOBBY_TIMEOUT. Once the
-            # lobby is overdue (~4s), re-probe for that late popup every ~2s.
-            elapsed = time.time() - t0
-            if elapsed > 4.0 and (elapsed - last_popup_probe) >= 2.0:
-                last_popup_probe = elapsed
-                if self.waiter.click_when(
-                    classes=("button_green",),
-                    texts=("RACE", "OK"),
-                    prefer_bottom=True,
-                    require_text_match=True,
-                    timeout_s=0.3,
-                    tag="race_pre_lobby_late_popup",
-                ):
-                    logger_uma.info(
-                        "[race] Late confirm popup appeared during pre-lobby wait; clicked it."
-                    )
             time.sleep(0.15)
 
         if not saw_pre_lobby:

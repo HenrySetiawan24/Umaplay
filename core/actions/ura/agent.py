@@ -422,6 +422,11 @@ class AgentURA(AgentScenario):
                         continue
                     # Mark raced on current date-key to avoid double-race if date OCR doesn't tick
                     self.lobby.mark_raced_today(self._today_date_key())
+                    # The debut race just finished: the date banner is about
+                    # to jump straight from Pre-Debut to a real Junior Year
+                    # date, which _process_date_info would otherwise hold as
+                    # a "suspicious jump" forever (see mark_debut_race_done).
+                    self.lobby.mark_debut_race_done()
                     continue
                 else:
                     ok = self.race.run(

@@ -117,6 +117,19 @@ class LobbyFlow(ABC):
         self.plan_races_tentative = getattr(Settings, "PLAN_RACES_TENTATIVE", {}) or {}
         self._date_stable_count: int = 0
         self._date_artificial: bool = False
+        # Sticky: True once we've confirmed a real post-pre-debut date this run.
+        # `parse_career_date` silently defaults any unparseable/garbled OCR text
+        # to year_code=0 (Pre-Debut) -- once real progress is confirmed, the
+        # game cannot regress there, so any later year_code==0 candidate must be
+        # a stale/garbled read, not genuine pre-debut. See _process_date_info.
+        self._confirmed_past_predebut: bool = False
+        # One-shot: set by mark_debut_race_done() right after the mandatory
+        # pre-debut race finishes. The game guarantees the very next OCR
+        # date read is a real post-debut date, so it must be trusted
+        # immediately instead of going through the suspicious-jump
+        # persistence guard (which can never confirm it -- see
+        # _process_date_info).
+        self._debut_race_just_completed: bool = False
         self._pending_date_jump = None
         self._pending_date_back = None
         self._pending_date_back_count: int = 0
@@ -565,6 +578,8 @@ class LobbyFlow(ABC):
                         self.state.is_summer = is_summer(advanced)
                         self._date_stable_count = 0
                         self._date_artificial = True
+                        if date_is_regular_year(advanced) or date_is_terminal(advanced):
+                            self._confirmed_past_predebut = True
                         self._last_turn_at_date_update = curr_turn
                         # new key → clear raced-today memory
                         new_key = self.state.date_info.as_key()
@@ -587,6 +602,7 @@ class LobbyFlow(ABC):
                 self.state.is_summer = is_summer(cand)
                 self._date_stable_count = 0
                 self._date_artificial = False
+                self._confirmed_past_predebut = True
                 self._last_turn_at_date_update = (
                     self.state.turn if isinstance(self.state.turn, int) else None
                 )
@@ -599,10 +615,20 @@ class LobbyFlow(ABC):
                 logger_uma.debug("Ignoring non-final date after Final Season lock.")
             return
 
-        # Pre-debut handling: allow 0→(1..3/4), but never accept (1..3)→0
-        if prev and date_is_regular_year(prev) and date_is_pre_debut(cand):
+        # Pre-debut handling: allow 0->(1..3/4), but never accept a pre-debut
+        # reading once real progress has been confirmed this run. `prev` alone
+        # is not a reliable guard: `parse_career_date` silently defaults any
+        # unparseable/garbled OCR text to year_code=0, so if an earlier garbled
+        # read already corrupted `prev` back to a false pre-debut state, the
+        # old `prev and date_is_regular_year(prev)` check would stop protecting
+        # us right when we need it most. `_confirmed_past_predebut` is sticky
+        # for the whole run instead.
+        if self._confirmed_past_predebut and date_is_pre_debut(cand):
             logger_uma.debug(
-                f"Ignoring backward date {cand.as_key()} after {prev.as_key()}."
+                "Ignoring pre-debut candidate %s after confirmed progress (prev=%s); "
+                "likely a garbled/unparseable OCR read defaulting to year_code=0.",
+                cand.as_key(),
+                prev.as_key() if prev else None,
             )
             return
 
@@ -663,13 +689,23 @@ class LobbyFlow(ABC):
                 idx_new - idx_prev > 6
             ):
                 # Legitimate boundary: Senior Dec (Early/Late) → Final Season
-                if (
+                legit_boundary = (
                     prev.year_code == 3
                     and prev.month == 12
                     and (prev.half in (1, 2) or prev.half is None)
                     and cand.year_code == 4
-                ):
+                )
+                if legit_boundary or self._debut_race_just_completed:
                     # Accept immediately (no persistence required).
+                    if self._debut_race_just_completed:
+                        logger_uma.info(
+                            "[date] Accepting post-debut jump %s -> %s immediately "
+                            "(Δ=%d); debut race just completed, so a big jump is "
+                            "expected here, not a suspicious OCR glitch.",
+                            prev.as_key(),
+                            cand.as_key(),
+                            idx_new - idx_prev,
+                        )
                     pass
                 else:
                     # more than ~3 months (6 halves) in one hop → likely OCR glitch; require persistence
@@ -703,6 +739,9 @@ class LobbyFlow(ABC):
         self._date_stable_count = 0
         # accepted from OCR → not artificial
         self._date_artificial = False
+        if merged and (date_is_regular_year(merged) or date_is_terminal(merged)):
+            self._confirmed_past_predebut = True
+        self._debut_race_just_completed = False
         self._last_turn_at_date_update = (
             self.state.turn if isinstance(self.state.turn, int) else None
         )
@@ -890,6 +929,25 @@ class LobbyFlow(ABC):
         # one-shot guard this loop as well
         self._skip_race_once = True
         self._skip_guard_key = date_key
+
+    def mark_debut_race_done(self) -> None:
+        """Call right after the mandatory pre-debut race finishes successfully.
+
+        The date banner jumps straight from "Pre-Debut" to a real Junior Year
+        date, which is always more than MAX_SUSP_JUMP_HALVES away from the
+        held Pre-Debut state -- normally treated as a suspicious OCR glitch
+        that must repeat identically on a follow-up frame before being
+        trusted. That persistence check can never pass here: real turns keep
+        advancing between checks (e.g. Jul-1 -> Jul-2) while the held `prev`
+        stays stuck at Pre-Debut, so every frame looks like a brand new
+        "suspicious" jump forever. Marking this lets _process_date_info trust
+        the next OCR read directly instead of waiting on that dead-end check.
+        """
+        self._confirmed_past_predebut = True
+        self._debut_race_just_completed = True
+        self._pending_date_jump = None
+        self._pending_date_back = None
+        self._pending_date_back_count = 0
 
     def _current_date_key(self) -> Optional[str]:
         di = getattr(self.state, "date_info", None)

@@ -373,7 +373,29 @@ class TeamTrialsFlow:
             self.waiter, self.yolo_engine, tag="team_trials_especial_reward"
         )
         logger_uma.debug(f"[TeamTrials] especial reward detected: {len(dets) == 1}. dets: {dets}")
-        
+
+        # Empty dets here usually means a transient interstitial (e.g. a
+        # weekly-highscore reaction banner) is still covering the screen,
+        # not that nothing is there. Everything downstream (reward/shop/race
+        # again) is a single short-timeout attempt with no retry, so if this
+        # reaction screen hasn't cleared yet the whole sequence quietly whiffs
+        # and falls through to AgentNav's generic recovery -- which will
+        # never click SHOP or CANCEL for safety, leaving it stuck until a
+        # manual tap. Give the reaction screen a few chances to clear first.
+        retry = 0
+        while not dets and retry < 3:
+            logger_uma.debug(
+                "[TeamTrials] Empty detections after race (possible reaction "
+                "overlay); center-tapping and rechecking (attempt %d).",
+                retry + 1,
+            )
+            nav.random_center_tap(self.ctrl, img, clicks=random.randint(2, 3), dev_frac=0.05)
+            sleep(1.5)
+            img, dets = nav.collect_snapshot(
+                self.waiter, self.yolo_engine, tag="team_trials_especial_reward"
+            )
+            retry += 1
+
         # if len(dets) == 1 or not button_pink in dets
         if len(dets) == 1 or not nav.has(dets, "button_pink"):
             did_next = self.waiter.click_when(

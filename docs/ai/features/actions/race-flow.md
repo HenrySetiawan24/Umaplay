@@ -349,10 +349,24 @@ don't click); every recovery **click** stays OCR-verified.
 - **C1 — `race_list_race` (run() step 3).** On timeout: `seen(button_change)` →
   the click already landed, continue; else re-click the still-in-scope `square`
   detection and retry the RACE click once (`race_list_race_chain`).
-- **C2 — pre-lobby wait (run() step 4).** On slow devices the confirm popup can
-  render *after* the 5s popup window closed, then sit unclicked until
-  `PRE_LOBBY_TIMEOUT`. Once the lobby is >4s overdue, the wait re-probes every ~2s
-  for a late green `RACE`/`OK` (`race_pre_lobby_late_popup`, `require_text_match`).
+- **C2 — pre-lobby wait (run() step 4). REVERTED (2026-07-11).** Originally added
+  an active click for a confirm popup rendering *after* the original 5s popup
+  window closed, re-probing every ~2s once the lobby was >4s overdue. First
+  patched with a `button_white`-absence gate after an observed regression (a
+  click landing on the real lobby "RACE" button before `lobby()`'s
+  `is_view_active` check ran); a second field log then showed the gate wasn't
+  sufficient — the click still fired mid-transition and appears to have primed
+  `_wait_for_results_screen`'s class-only gate (`race_badge` + `button_green`,
+  no OCR) to false-positive on a non-leaderboard screen, cascading into a
+  fabricated loss reading (`row1 win-check sat=0.063`) on a **goal race**
+  (Tokyo Yushun) and a permanent stall once neither "TRY AGAIN" nor "NEXT"
+  matched the real on-screen button. Given the stakes (misplaying a
+  limited-attempt goal race) and that this was the only site among C1–C3 that
+  added a *new click* to a previously click-free polling loop, C2 was reverted
+  outright rather than patched further — the pre-lobby wait is back to a pure
+  `seen(button_change)` poll with no side effects. If the late-popup case
+  recurs, prefer a fix that doesn't click blind inside this loop (e.g.
+  surfacing it as a `PRE_LOBBY_TIMEOUT` with a diagnostic capture instead).
 - **C3 — `race_lobby_race_click` (lobby()).** On timeout: `seen(button_skip)` →
   the race is already running (a confirm double-fired earlier); fall through to
   the skip handling instead of aborting mid-race and re-entering raceday on top
@@ -377,7 +391,8 @@ is text-verified, plus a center-tap rescue every 3rd stuck frame.
 - [x] B3 — skip TRY-AGAIN probe on confirmed wins
 - [x] Results gate — `_wait_for_results_screen` (YOLO-only) before win-check / NEXT
 - [x] Reaction gate — `_advance_past_reaction_screen` taps through the post-race uma placement reaction before the NEXT awaits (validated in the wild 2026-07: center-tap cleared it, NEXT in ~8s)
-- [x] C1–C3 — chain recovery at the three timeout-prone await points (probe-next / re-fire-prev / retry-once)
+- [x] C1, C3 — chain recovery at two timeout-prone await points (probe-next / re-fire-prev / retry-once)
+- [ ] C2 — reverted (2026-07-11); caused a fabricated loss + permanent stall on a goal race, see Part 4
 - [x] AgentNav UnknownNav — OCR-whitelist advance via `nav.try_advance_unknown` + periodic center-tap (was a pure no-op)
 
 **Notes / known trade-offs:**
